@@ -1,7 +1,9 @@
+import ResponsiveAppBar from "./Appbar";
+
 function Header() {
   return (
     <>
-      <div>Header</div>
+      <ResponsiveAppBar />
     </>
   ) 
 }
