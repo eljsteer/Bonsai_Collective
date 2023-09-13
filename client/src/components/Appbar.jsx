@@ -49,10 +49,10 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+      <Container className="headerImage" maxWidth="none" sx ={{}}>
+        <Toolbar disableGutters sx ={{display: "flex", flexDirection: "row", margin: "20px"}}>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="a"
             href="/"
@@ -69,7 +69,7 @@ function ResponsiveAppBar() {
             Bonzai Collective
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
             <IconButton
               size="large"
               aria-label="account of current user"

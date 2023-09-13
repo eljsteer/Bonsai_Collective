@@ -1,7 +1,9 @@
+import ShopPreview from "../components/shopPreview"
+
 function Home() {
   return (
     <>
-      Home
+      <ShopPreview/>
     </>
   ) 
 }

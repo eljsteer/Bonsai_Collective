@@ -1,5 +1,17 @@
-/* #menu-appbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-} */
+.band {
+  background-color: aquamarine;
+}
+.headerImage {
+    /* The image used */
+    background-image: url("./assets/headerImage/jean-beller-R7MeaYXe1mA-unsplash.jpg");
+
+    min-height:100vh;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    /* Needed to position the navbar */
+    position: relative;
+}
