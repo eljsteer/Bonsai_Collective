@@ -5,19 +5,25 @@ import {
   RouterProvider,
 } from "react-router-dom"
 import './App.css'
-import Home from './pages/Home';
-// import ErrorPage from "./utils/error-page.jsx"
 
-// Pages
+// import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider, createTheme } from "@mui/material";
+
+const theme = createTheme();
+
+////// <<-- Layouts -->> //////
+import RootLayout from "./layouts/RootLayout"
+
+////// <<-- Pages -->> //////
+import ErrorPage from "./utils/error-page.jsx"
+import Home from './pages/Home';
 import Login from "./pages/Login";
 import Bonzai from "./pages/BonzaiTrees";
 import Signup from "./pages/Signup";
 
-import RootLayout from "./layouts/RootLayout"
-
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" element={<RootLayout />} errorElement= {<ErrorPage/>} >
       <Route index element={<Home />} />
       <Route path="bonzai" element = {<Bonzai/>} />
       <Route path="login" element = {<Login/>} />
@@ -27,11 +33,10 @@ const router = createBrowserRouter(
 )
 
 function App() {
-
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <RouterProvider router={router}/>
-    </>
+    </ThemeProvider>
   )
 }
 

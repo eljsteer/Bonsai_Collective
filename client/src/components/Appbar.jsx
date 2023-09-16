@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
@@ -12,9 +13,18 @@ import { styled } from "@mui/material/styles"
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Fab from '@mui/material/Fab';
+import Fade from '@mui/material/Fade';
 // import { GiBonsaiTree } from 'react-icons/gi';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import "../Styles.css"
+import { createTheme } from '@mui/material/styles';
+
+import "../styles/Header.css"
+
+////// <<---Images--->>//////
+import bonzaiLogo from "../assets/headerLogo/BonzaiLogo1.png";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -25,10 +35,72 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const theme = createTheme({
+  components: {
+    MuiRoot: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          backgroundColor: "rgba(255,255,255,0)",
+        },
+      },
+    },
+  },
+});
 
-function ResponsiveAppBar() {
+
+const pagesLeft = ['Home', 'About', 'Blog'];
+const pagesRight = ['Shop', 'Explore', 'Blog'];
+const settings = ['Profile', 'Account', 'Home', 'Logout'];
+
+function ScrollTop(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      '#back-to-top-anchor',
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: 'center',
+      });
+    }
+  };
+
+  return (
+    <Fade in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Fade>
+  );
+}
+
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+
+function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -48,9 +120,20 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar>
-      <Container className="headerImage" maxWidth="none" sx ={{}}>
+    <AppBar theme={theme}>
+      <Container className="headerContainer" maxWidth="none">
         <Toolbar disableGutters sx ={{display: "flex", flexDirection: "row", margin: "20px"}}>
+          <Box sx={{ flexGrow: 1 ,display: { xs: 'none', md: 'flex' }, justifyContent: "center" }}>
+            {pagesLeft.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
           <Typography
             variant="h5"
             noWrap
@@ -66,9 +149,8 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Bonzai Collective
           </Typography>
-
+          <img className="logo" src={bonzaiLogo} style={{ width: 100, height: 100 }} alt="Bonzai Collective logo" />
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
             <IconButton
               size="large"
@@ -98,7 +180,7 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+              {pagesLeft.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -120,10 +202,9 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Bonzai Collective
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+          <Box sx={{ flexGrow: 1 ,display: { xs: 'none', md: 'flex' }, justifyContent: "center" }}>
+            {pagesRight.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -133,7 +214,6 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="View Cart">
               <IconButton aria-label='cart' onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -166,6 +246,11 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
         </Toolbar>
+        <ScrollTop {...props}>
+        <Fab size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
       </Container>
     </AppBar>
   );

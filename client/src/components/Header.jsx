@@ -1,5 +1,4 @@
 import ResponsiveAppBar from "./Appbar";
-import "../Styles.css"
 
 function Header() {
   return (
