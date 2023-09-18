@@ -6,10 +6,10 @@ import {
 } from "react-router-dom"
 import './App.css'
 
-// import { ThemeProvider } from '@emotion/react';
-import { ThemeProvider, createTheme } from "@mui/material";
+import theme from "./styles/Theme"
 
-const theme = createTheme();
+// import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from "@mui/material/styles";
 
 ////// <<-- Layouts -->> //////
 import RootLayout from "./layouts/RootLayout"

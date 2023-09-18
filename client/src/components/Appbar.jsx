@@ -19,13 +19,12 @@ import Fab from '@mui/material/Fab';
 import Fade from '@mui/material/Fade';
 // import { GiBonsaiTree } from 'react-icons/gi';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { createTheme } from '@mui/material/styles';
-
 import "../styles/Header.css"
 
 ////// <<---Images--->>//////
 import bonzaiLogo from "../assets/headerLogo/BonzaiLogo1.png";
 
+//// <<----Custom Theme Example---->> //////
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
@@ -34,21 +33,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     padding: '0 4px',
   },
 }));
-
-const theme = createTheme({
-  components: {
-    MuiRoot: {
-      styleOverrides: {
-        // Name of the slot
-        root: {
-          // Some CSS
-          backgroundColor: "rgba(255,255,255,0)",
-        },
-      },
-    },
-  },
-});
-
 
 const pagesLeft = ['Home', 'About', 'Blog'];
 const pagesRight = ['Shop', 'Explore', 'Blog'];
@@ -120,8 +104,8 @@ function ResponsiveAppBar(props) {
   };
 
   return (
-    <AppBar theme={theme}>
-      <Container className="headerContainer" maxWidth="none">
+    <AppBar>
+      <Container className="headerContainer" maxWidth="none" >
         <Toolbar disableGutters sx ={{display: "flex", flexDirection: "row", margin: "20px"}}>
           <Box sx={{ flexGrow: 1 ,display: { xs: 'none', md: 'flex' }, justifyContent: "center" }}>
             {pagesLeft.map((page) => (
