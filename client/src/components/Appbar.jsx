@@ -1,24 +1,28 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import {
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  Container,
+  Fab,
+  Fade,
+  Menu,
+  MenuItem,
+  styled,
+  Toolbar,
+  Tooltip,
+  Typography,
+  useScrollTrigger,
+  IconButton,
+  } from '@mui/material';
+
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import { styled } from "@mui/material/styles"
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Fab from '@mui/material/Fab';
-import Fade from '@mui/material/Fade';
-// import { GiBonsaiTree } from 'react-icons/gi';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+// import { GiBonsaiTree } from 'react-icons/gi';
+
 import "../styles/Header.css"
 
 ////// <<---Images--->>//////
@@ -33,6 +37,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     padding: '0 4px',
   },
 }));
+// const StyledAppBar = styled(AppBar)(() => ({
+//   '& .MuiContainer-root': {
+//     backgroundColor: "rgba(255,255,255,0)"
+//   },
+// }));
 
 const pagesLeft = ['Home', 'About', 'Blog'];
 const pagesRight = ['Shop', 'Explore', 'Blog'];
@@ -104,7 +113,7 @@ function ResponsiveAppBar(props) {
   };
 
   return (
-    <AppBar>
+    <AppBar sx={{background: "none"}}>
       <Container className="headerContainer" maxWidth="none" >
         <Toolbar disableGutters sx ={{display: "flex", flexDirection: "row", margin: "20px"}}>
           <Box sx={{ flexGrow: 1 ,display: { xs: 'none', md: 'flex' }, justifyContent: "center" }}>

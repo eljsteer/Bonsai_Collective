@@ -4,12 +4,11 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom"
-import './App.css'
 
 import theme from "./styles/Theme"
 
 // import { ThemeProvider } from '@emotion/react';
-import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 ////// <<-- Layouts -->> //////
 import RootLayout from "./layouts/RootLayout"
@@ -35,6 +34,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <RouterProvider router={router}/>
     </ThemeProvider>
   )
