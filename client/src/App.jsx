@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom"
 
-import theme from "./styles/Theme"
+import theme from "./Theme"
 
 // import { ThemeProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from "@mui/material";

@@ -1,4 +1,4 @@
-import "../Styles.css"
+import "../styles/Header.css"
 
 function Dashboard() {
   return (
