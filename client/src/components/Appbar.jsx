@@ -128,7 +128,7 @@ function ResponsiveAppBar(props) {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="View Cart">
-              <IconButton aria-label='cart' onClick={handleOpenCartItems} sx={{ p: 0 }}>
+              <IconButton aria-label='cart' onClick={handleOpenCartItems} sx={{ p: "10px" }}>
                 <StyledBadge badgeContent={4} color="secondary">
                   <ShoppingCartOutlinedIcon />
                 </StyledBadge>

@@ -59,19 +59,6 @@ ScrollTop.propTypes = {
 function Footer(props) {
   return (
     <>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
       <ScrollTop {...props}>
         <Fab size="large" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />

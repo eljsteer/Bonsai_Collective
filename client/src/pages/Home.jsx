@@ -1,17 +1,14 @@
-// import { Container } from "@mui/material";
-// import ShopPreview from "../components/shopPreview"
+import ShopPreview from "../components/ShopPreview"
 import Dashboard from "../components/Dashboard";
+
 // import "../styles/Header.css"
 
 function Home() {
   return (
-    <Dashboard />
-    // <Container className="headerImage">
-    //   <ShopPreview/>
-    // </Container>
-    // <div>
-    //   <ShopPreview/>
-    // </div>
+    <>
+      <Dashboard />
+      <ShopPreview/>
+    </>
   ) 
 }
 
