@@ -2,7 +2,9 @@ import "../styles/Header.css"
 
 function Dashboard() {
   return (
-    <div className="headerImage">
+    <div id="dashboardBkg">
+      <div style={{top:0 }} className="headerImage" >
+      </div>
     </div>
   ) 
 }

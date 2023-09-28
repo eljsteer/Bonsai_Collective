@@ -64,7 +64,6 @@ function ResponsiveAppBar(props) {
     setAnchorElUserCart(null);
   };
 
-
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <img className="logo" src={bonzaiLogo} style={{ width: 50, height: 50, paddingTop: "auto" }} alt="Bonzai Collective logo" />
@@ -84,9 +83,9 @@ function ResponsiveAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Container sx={{ display: 'flex' }}>
-      <AppBar component="nav">
-        <Toolbar>
+    <Container id="back-to-top-anchor" sx={{ display: 'flex' }}>
+      <AppBar sx={{background: "none"}} component="nav">
+        <Toolbar >
           <IconButton
             color="inherit"
             aria-label="open drawer"

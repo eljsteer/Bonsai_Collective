@@ -11,7 +11,6 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 // import "../styles/Header.css"
 
-
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -60,6 +59,18 @@ ScrollTop.propTypes = {
 function Footer(props) {
   return (
     <>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
+      <div>Footer</div>
       <div>Footer</div>
       <ScrollTop {...props}>
         <Fab size="large" aria-label="scroll back to top">
