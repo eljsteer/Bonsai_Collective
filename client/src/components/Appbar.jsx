@@ -9,17 +9,19 @@ import {
   Container,
   Divider,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   Menu,
   MenuItem,
+  Slide,
   styled,
   Toolbar,
   Tooltip,
   Typography,
-  IconButton,
+  useScrollTrigger,
   } from '@mui/material';
 
 
@@ -46,8 +48,7 @@ const navItems = ['Home', 'About', 'Contact'];
 const pages = ['About', 'Blog','Shop', 'Explore'];
 const cartItems = ['Black Rectangle Pot', '5yr Chinese Elm', 'Japanese Red Maple Seeds - 20units','Display Rocks',];
 
-function ResponsiveAppBar(props) {
-  const { window } = props;
+function ResponsiveAppBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -80,88 +81,102 @@ function ResponsiveAppBar(props) {
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  function HideOnScroll(props) {
+    const { children } = props;
+    const trigger = useScrollTrigger();
+  
+    return (
+      <Slide appear={false} direction="down" in={!trigger}>
+        {children}
+      </Slide>
+    );
+  }
+  
+  HideOnScroll.propTypes = {
+    children: PropTypes.element.isRequired,
+  };
 
   return (
     <Container id="back-to-top-anchor" sx={{ display: 'flex' }}>
-      <AppBar sx={{background: "none"}} component="nav">
-        <Toolbar >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <img className="logo" src={bonzaiLogo} style={{ width: 100, height: 100 }} alt="Bonzai Collective logo" />
-          <Typography
-            variant="h5"
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', sm: 'none' },
-              justifyContent: "center",
-              textAlign: "center",
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontSize: "1em",
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            BONZAI COLLECTIVE
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: "center", }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                sx={{ my: 2, color: 'white'}}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="View Cart">
-              <IconButton aria-label='cart' onClick={handleOpenCartItems} sx={{ p: "10px" }}>
-                <StyledBadge badgeContent={4} color="secondary">
-                  <ShoppingCartOutlinedIcon />
-                </StyledBadge>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUserCart}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUserCart)}
-              onClose={handleCloseCartItems}
+      <HideOnScroll>
+        <AppBar sx={{background: "none"}} component="nav">
+          <Toolbar >
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: 'none' } }}
             >
-              {cartItems.map((cart) => (
-                <MenuItem key={cart} onClick={handleCloseCartItems}>
-                  <Typography textAlign="center">{cart}</Typography>
-                </MenuItem>
+              <MenuIcon />
+            </IconButton>
+            <img className="logo" src={bonzaiLogo} style={{ width: 100, height: 100 }} alt="Bonzai Collective logo" />
+            <Typography
+              variant="h5"
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', sm: 'none' },
+                justifyContent: "center",
+                textAlign: "center",
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontSize: "1em",
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              BONZAI COLLECTIVE
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: "center", }}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  sx={{ my: 2, color: 'white'}}
+                >
+                  {page}
+                </Button>
               ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </AppBar>
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="View Cart">
+                <IconButton aria-label='cart' onClick={handleOpenCartItems} sx={{ p: "10px" }}>
+                  <StyledBadge badgeContent={4} color="secondary">
+                    <ShoppingCartOutlinedIcon />
+                  </StyledBadge>
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUserCart}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUserCart)}
+                onClose={handleCloseCartItems}
+              >
+                {cartItems.map((cart) => (
+                  <MenuItem key={cart} onClick={handleCloseCartItems}>
+                    <Typography textAlign="center">{cart}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
       <nav>
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -182,13 +197,5 @@ function ResponsiveAppBar(props) {
     </Container>
   );
 }
-
-  ResponsiveAppBar.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window: PropTypes.func,
-  };
 
 export default ResponsiveAppBar;
