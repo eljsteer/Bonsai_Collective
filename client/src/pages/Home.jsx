@@ -1,4 +1,5 @@
-import ShopPreview from "../components/ShopPreview"
+// import ShopCarousel from "../components/ShopCarousel";
+import Featured from "../components/Featured";
 import Dashboard from "../components/Dashboard";
 
 // import "../styles/Header.css"
@@ -7,7 +8,7 @@ function Home() {
   return (
     <>
       <Dashboard />
-      <ShopPreview/>
+      <Featured/>
     </>
   ) 
 }

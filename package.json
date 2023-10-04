@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/eljsteer/Bonzai_Collective/issues"
   },
-  "homepage": "https://github.com/eljsteer/Bonzai_Collective#readme"
+  "homepage": "https://github.com/eljsteer/Bonzai_Collective#readme",
+  "dependencies": {
+    "swiper": "^10.3.1"
+  }
 }

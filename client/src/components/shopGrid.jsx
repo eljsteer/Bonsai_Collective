@@ -11,7 +11,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 let shopImageURL = "https://source.unsplash.com/random"
 
-export default function ShopPreview() {
+export default function ShopGrid() {
   return (
     <Box sx={{ alignItems: "center", flexGrow: 1 }}>
       <Grid container spacing={2} sx={{ justifyContent: "center"}}>
