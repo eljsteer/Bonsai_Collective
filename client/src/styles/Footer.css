@@ -1,0 +1,10 @@
+.footerNavList {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px #000;
+  list-style: none;
+}
+
+.footerNavList ListItem {
+  text-align: center;
+}
