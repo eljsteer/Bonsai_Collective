@@ -7,6 +7,7 @@ import {
   Container,
   Divider,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -20,7 +21,8 @@ import "../styles/Header.css"
 
 ////// <<---Images--->>//////
 import bonzaiLogo from "../assets/headerLogo/BonzaiLogo1.png";
-import AppBarContent from './AppBarContent';
+import ToolBarContent from './ToolBarContent';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -68,7 +70,19 @@ function ResponsiveAppBar() {
     <Container id="back-to-top-anchor" sx={{ display: 'flex' }}>
       <HideOnScroll>
         <AppBar sx={{background: "none"}} component="nav">
-          <AppBarContent />
+          <Toolbar sx={{justifyContent: "space-between"}}>
+            <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            className={mobileOpen}
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <ToolBarContent />
+          </Toolbar>
         </AppBar>
       </HideOnScroll>
       <nav>
