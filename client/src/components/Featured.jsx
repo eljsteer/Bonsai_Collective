@@ -1,11 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { register } from 'swiper/element/bundle';
 
+import featuredData from "../utils/featuredData.json";
+import FeaturedItem from "./FeaturedItem";
+
 import "../styles/Featured.css"
+import { Pagination } from 'swiper/modules';
+import { Box } from '@mui/material';
 
-const sliderImageURL = "https://source.unsplash.com/random"
-
-export default function App() {
+function Featured() {
   const swiperRef = useRef(null);
 
   useEffect(() => {
@@ -32,7 +35,7 @@ export default function App() {
 
     const swiperEl = document.querySelector('swiper-container')
     Object.assign(swiperEl, {
-      slidesPerView: 1,
+      slidesPerView: 4,
       spaceBetween: 10,
       pagination: {
         clickable: true,
@@ -42,12 +45,12 @@ export default function App() {
           slidesPerView: 2,
           spaceBetween: 20,
         },
-        768: {
-          slidesPerView: 4,
+        900: {
+          slidesPerView: 3,
           spaceBetween: 40,
         },
-        1024: {
-          slidesPerView: 5,
+        1200: {
+          slidesPerView: 4,
           spaceBetween: 50,
         },
       },
@@ -59,16 +62,21 @@ export default function App() {
   }, []);
 
   return (
-    <swiper-container class="mySwiper" init="false" ref={swiperRef}>
-      <swiper-slide >
-        <img src={sliderImageURL} style={{ width: 200, height: 200, }} />
-      </swiper-slide>
-      <swiper-slide >
-        <img src={sliderImageURL} style={{ width: 200, height: 200, }} />
-      </swiper-slide>
-      <swiper-slide >
-        <img src={sliderImageURL} style={{ width: 200, height: 200, }} />
-      </swiper-slide>
-    </swiper-container>
+    <Box className="featuredContainer">
+      <swiper-container 
+        class="mySwiper" 
+        navigation="true" 
+        pagination={{
+          dynamicBullets: true,
+        }}
+        modules={[Pagination]}
+        ref={swiperRef}>
+        {
+            featuredData.map( item => <FeaturedItem key={item.id} item={item} /> )
+        }
+      </swiper-container>
+    </Box>
   );
 }
+
+export default Featured;
