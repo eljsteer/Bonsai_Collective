@@ -5,7 +5,9 @@ import featuredData from "../utils/featuredData.json";
 import FeaturedItem from "./FeaturedItem";
 
 import "../styles/Featured.css"
-import { Pagination } from 'swiper/modules';
+
+// import { Navigation } from "swiper";
+
 import { Box } from '@mui/material';
 
 function Featured() {
@@ -21,7 +23,7 @@ function Featured() {
     });
 
     // Object with parameters
-    const params = {
+    const swiperParams = {
       // or pass it in on
       on: {
         slideChange(s) {
@@ -31,7 +33,7 @@ function Featured() {
     };
 
     // Assign it to swiper element
-    Object.assign(swiperRef.current, params);
+    Object.assign(swiperRef.current, swiperParams);
 
     const swiperEl = document.querySelector('swiper-container')
     Object.assign(swiperEl, {
@@ -39,6 +41,7 @@ function Featured() {
       spaceBetween: 10,
       pagination: {
         clickable: true,
+        dynamicBullets: true,
       },
       breakpoints: {
         640: {
@@ -63,14 +66,25 @@ function Featured() {
 
   return (
     <Box className="featuredContainer">
+      <div className="swiper-button-prev"></div>
+      <div className="swiper-button-next"></div>
       <swiper-container 
-        class="mySwiper" 
-        navigation="true" 
-        pagination={{
-          dynamicBullets: true,
+        class="mySwiper"
+        ref={swiperRef}
+        init="false"
+        grabCursor={true}
+        navigation = {{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+          disabledClass: "swiper-button-disabled",
         }}
-        modules={[Pagination]}
-        ref={swiperRef}>
+        style={{
+          "--swiper-navigation-color": "black",
+          "--swiper-navigation-size": "30px",
+          "--swiper-navigation-sides-offset": "10px",
+          padding: "20px"
+        }}
+      >
         {
             featuredData.map( item => <FeaturedItem key={item.id} item={item} /> )
         }

@@ -12,7 +12,7 @@ import {
 
 import "../styles/Featured.css";
 
-const shopImageURL = "https://source.unsplash.com/random";
+const shopImageURL = "https://source.unsplash.com/random/1200x900/?nature,plants,trees";
 
 function FeaturedItem ({item}) {
 
@@ -24,7 +24,7 @@ function FeaturedItem ({item}) {
     <swiper-slide >
     <div className="slide-content">
       <div className="card-wrapper">
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 300 }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -40,9 +40,9 @@ function FeaturedItem ({item}) {
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
+          <CardActions style={{display:"flex", justifyContent: "center"}}>
+            <Button color="primary" >
+              Shop This
             </Button>
           </CardActions>
         </Card>

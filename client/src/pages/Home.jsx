@@ -6,10 +6,10 @@ import Dashboard from "../components/Dashboard";
 
 function Home() {
   return (
-    <>
+    <div className="homePage">
       <Dashboard />
       <Featured/>
-    </>
+    </div>
   ) 
 }
 
