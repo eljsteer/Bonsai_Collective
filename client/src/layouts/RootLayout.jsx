@@ -7,7 +7,7 @@ import ScrollUpTop from "../components/ScrollUpTop";
 
 export default function RootLayout() {
   return (
-    <div className="root-layout" style={{background: "#C3BCAA"}}>
+    <div className="root-layout">
       <Header/>
       <main>
         <Outlet/>

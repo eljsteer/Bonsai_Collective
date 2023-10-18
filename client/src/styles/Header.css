@@ -12,9 +12,9 @@
     position: relative;
 }
 
-#dashboardBkg {
-  position: relative;
-  /* top: -64px; */
+.staticAppBar {
+  border: 2px 8px black;
+  box-shadow: 6px 4px 8px 4px black;
 }
 
 #scrollUp {

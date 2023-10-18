@@ -43,7 +43,7 @@ function ResponsiveAppBar() {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item}/>
             </ListItemButton>
           </ListItem>
         ))}
@@ -56,7 +56,7 @@ function ResponsiveAppBar() {
     const trigger = useScrollTrigger();
   
     return (
-      <Slide appear={false} direction="down" in={!trigger}>
+      <Slide appear={true} direction="down" in={trigger}>
         {children}
       </Slide>
     );
@@ -69,7 +69,7 @@ function ResponsiveAppBar() {
   return (
     <Container id="back-to-top-anchor" sx={{ display: 'flex' }}>
       <HideOnScroll>
-        <AppBar sx={{background: "none"}} component="nav">
+        <AppBar sx={{background: "#E2EBDA"}} component="nav">
           <Toolbar sx={{justifyContent: "space-between"}}>
             <IconButton
             color="inherit"

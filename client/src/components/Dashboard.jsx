@@ -2,10 +2,11 @@ import "../styles/Header.css"
 
 function Dashboard() {
   return (
-    <div id="dashboardBkg">
-      <div style={{top:0, zIndex: 0}} className="headerImage" >
-      </div>
+  <div>
+    <div style={{ top:-64, zIndex: 0}} className="headerImage" >
+      <div>Hello</div>
     </div>
+  </div>
   ) 
 }
 

@@ -96,7 +96,7 @@ function ToolBarContent () {
         {pages.map((page) => (
           <Button
             key={page}
-            sx={{ my: 2, color: 'white'}}
+            sx={{ my: 2, fontWeight: "bold", color: '#4D5C4B'}}
           >
             {page}
           </Button>

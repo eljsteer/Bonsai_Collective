@@ -32,7 +32,7 @@ function FeaturedItem ({item}) {
               alt="green iguana"
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant="h6" component="div">
                 {item.title}
               </Typography>
               <Typography variant="body1" color="text.primary">
@@ -41,7 +41,7 @@ function FeaturedItem ({item}) {
             </CardContent>
           </CardActionArea>
           <CardActions style={{display:"flex", justifyContent: "center"}}>
-            <Button color="primary" >
+            <Button variant="outlined">
               Shop This
             </Button>
           </CardActions>
