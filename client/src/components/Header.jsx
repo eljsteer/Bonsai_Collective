@@ -15,8 +15,8 @@ function Header() {
 
   return (
     <div>
-      <AppBar className="staticAppBar" sx={{background: "none"}} component="nav" position="static">
-        <Toolbar sx={{justifyContent: "space-between"}}>
+      <AppBar className="staticAppBar" sx={{background: "#515b3a"}} component="nav" position="static">
+        <Toolbar sx={{ justifyContent: "space-between"}}>
           <IconButton
           color="inherit"
           aria-label="open drawer"

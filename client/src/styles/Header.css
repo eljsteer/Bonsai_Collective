@@ -12,17 +12,22 @@
     position: relative;
 }
 
-.staticAppBar {
+/* .staticAppBar {
   border: 2px 8px black;
   box-shadow: 6px 4px 8px 4px black;
-}
+} */
 
 #scrollUp {
   z-index: 100;
 }
 
-@media screen and (max-width:600px) {  
+@media screen and (max-width: 600px) {  
   .logo {
     display: none;
+  }
+}
+@media (min-width: 900px) {
+  .css-1yo9slo-MuiToolbar-root {
+      min-height: 150px !important;
   }
 }

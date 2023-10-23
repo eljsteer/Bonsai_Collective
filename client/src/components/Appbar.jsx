@@ -16,11 +16,11 @@ import {
   Toolbar,
   useScrollTrigger,
   } from '@mui/material';
-
+// import { styled } from '@mui/material/styles';
 import "../styles/Header.css"
 
 ////// <<---Images--->>//////
-import bonzaiLogo from "../assets/headerLogo/BonzaiLogo1.png";
+import bonzaiLogo from "../assets/headerLogo/BonzaiLogo3.png";
 import ToolBarContent from './ToolBarContent';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -67,11 +67,11 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <Container id="back-to-top-anchor" sx={{ display: 'flex' }}>
+    <Container id="back-to-top-anchor" sx={{ display: 'flex', position: 'absolute' }}>
       <HideOnScroll>
-        <AppBar sx={{background: "#E2EBDA"}} component="nav">
-          <Toolbar sx={{justifyContent: "space-between"}}>
-            <IconButton
+        <AppBar sx={{backgroundColor: "#515b3a"}} component="nav">
+          <Toolbar sx={{ justifyContent: "space-between"}}>
+            <IconButton 
             color="inherit"
             aria-label="open drawer"
             edge="start"

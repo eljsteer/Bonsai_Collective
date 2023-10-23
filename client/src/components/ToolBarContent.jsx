@@ -11,7 +11,6 @@ import {
   Menu,
   MenuItem,
   styled,
-  // Toolbar,
   Tooltip,
   Typography,
   } from '@mui/material';
@@ -25,7 +24,7 @@ import { GiBonsaiTree } from 'react-icons/gi';
 import "../styles/Header.css"
 
 ////// <<---Images--->>//////
-import bonzaiLogo from "../assets/headerLogo/BonzaiLogo1.png";
+import bonzaiLogo from "../assets/headerLogo/BonzaiLogo2_Title.png";
 
 //// <<----Custom Theme Example---->> //////
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -40,13 +39,7 @@ const pages = ['About', 'Blog','Shop', 'Explore'];
 const cartItems = ['Black Rectangle Pot', '5yr Chinese Elm', 'Japanese Red Maple Seeds - 20units','Display Rocks',];
 
 function ToolBarContent () {
-  //  //// --- Cart Code--- //// 
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  // const handleDrawerToggle = () => {
-  //   setMobileOpen((prevState) => !prevState);
-  // };
-
+   //// --- Cart Code--- //// 
     const [anchorElUserCart, setAnchorElUserCart] = React.useState(null);
 
   const handleOpenCartItems = (event) => {
@@ -96,7 +89,7 @@ function ToolBarContent () {
         {pages.map((page) => (
           <Button
             key={page}
-            sx={{ my: 2, fontWeight: "bold", color: '#4D5C4B'}}
+            sx={{ my: 2, fontWeight: "bold", color: 'black'}}
           >
             {page}
           </Button>
@@ -105,7 +98,7 @@ function ToolBarContent () {
       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: "10px" }}>
-            <Avatar alt="Remy Sharp" sx={{backgroundColor: "#003300" }} />
+            <Avatar alt="Remy Sharp" sx={{backgroundColor: "#353d2f" }} />
           </IconButton>
         </Tooltip>
         <Menu
@@ -167,16 +160,10 @@ function ToolBarContent () {
         <Menu
           sx={{ mt: '45px' }}
           id="menu-appbar"
-          anchorEl={anchorElUserCart}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
           keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
+          anchorEl={anchorElUserCart}
+          anchorOrigin={{ horizontal: 'right', vertical: 'top'  }}
+          transformOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           open={Boolean(anchorElUserCart)}
           onClose={handleCloseCartItems}
         >

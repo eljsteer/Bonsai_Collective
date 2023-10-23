@@ -1,6 +1,7 @@
 swiper-container {
   width: 80%;
   height: 100%;
+  padding-block: 5rem;
 }
 
 swiper-slide {
