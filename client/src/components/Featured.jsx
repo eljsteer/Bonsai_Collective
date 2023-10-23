@@ -6,9 +6,7 @@ import FeaturedItem from "./FeaturedItem";
 
 import "../styles/Featured.css"
 
-// import { Navigation } from "swiper";
-
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 function Featured() {
   const swiperRef = useRef(null);
@@ -37,12 +35,12 @@ function Featured() {
 
     const swiperEl = document.querySelector('swiper-container')
     Object.assign(swiperEl, {
-      spaceBetween: 10,
+      spaceBetween: 40,
       loop: true,
-      pagination: {
-        clickable: true,
-        dynamicBullets: true,
-      },
+      // pagination: {
+      //   clickable: true,
+      //   dynamicBullets: true,
+      // },
       breakpoints: {
         600: {
           slidesPerView: 2,
@@ -52,9 +50,9 @@ function Featured() {
           slidesPerView: 3,
           spaceBetween: 40,
         },
-        1200: {
+        1600: {
           slidesPerView: 4,
-          spaceBetween: 50,
+          spaceBetween: 40,
         },
       },
       injectStyles: [
@@ -64,7 +62,7 @@ function Featured() {
             background-color: #515b3a;
             padding: 8px 18px;
             border-radius: 100%;
-          }
+          },
       `,
       ],
     });
@@ -75,7 +73,7 @@ function Featured() {
   }, []);
 
   return (
-    <Box className="featuredContainer">
+    <Box id="featuredContainer">
       <div className="swiper-button-prev"></div>
       <div className="swiper-button-next"></div>
       <swiper-container 
@@ -91,7 +89,7 @@ function Featured() {
         style={{
           "--swiper-navigation-color": "white",
           "--swiper-navigation-size": "30px",
-          "--swiper-navigation-offset": "0px",
+          "--swiper-navigation-offset": "20px",
           padding: "50px",
         }}
       >
@@ -99,6 +97,9 @@ function Featured() {
             featuredData.map( item => <FeaturedItem key={item.id} item={item} /> )
         }
       </swiper-container>
+      <Button id="viewMore" variant="outlined">
+        View More
+      </Button>
     </Box>
   );
 }

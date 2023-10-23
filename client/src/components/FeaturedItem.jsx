@@ -21,17 +21,16 @@ function FeaturedItem ({item}) {
   };
 
   return (
-    <swiper-slide lazy="true" >
+    <swiper-slide >
     <div className="slide-content">
       <div className="card-wrapper">
-        <Card sx={{ maxWidth: 300 }}>
+        <Card sx={{ maxWidth: 400 }}>
           <CardActionArea className="SwiperCardContainer">
             <CardMedia
               className="SwiperCardImage"
               component="img"
               image={shopImageURL}
               alt="green iguana"
-              loading="lazy"
             />
             <div className="Image_Overlay">
               <CardContent>

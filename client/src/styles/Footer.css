@@ -1,10 +1,15 @@
 .footerNavList {
+  text-align: center;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   border-bottom: 1px #000;
   list-style: none;
 }
 
-.footerNavList ListItem {
-  text-align: center;
+#FooterContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

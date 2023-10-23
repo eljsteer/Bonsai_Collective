@@ -1,5 +1,5 @@
-swiper-container {
-  height: 100%;
+#featuredContainer {
+  text-align: center;
 }
 
 swiper-slide {
@@ -18,7 +18,7 @@ swiper-slide img {
   object-fit: cover;
 }
 
-@media (min-width: 1600px) {  
+@media (min-width: 1500px) {  
   swiper-container {
     width: 90%;
   }
@@ -28,7 +28,7 @@ swiper-slide img {
     width: 80%;
   }
 }
-@media (min-width: 1800px) {  
+@media (min-width: 1900px) {  
   swiper-container {
     width: 70%;
   }
@@ -65,4 +65,8 @@ swiper-slide img {
 
 .Image_Overlay:hover {
   opacity: 1;
+}
+
+#viewMore {
+  text-wrap: nowrap;
 }
