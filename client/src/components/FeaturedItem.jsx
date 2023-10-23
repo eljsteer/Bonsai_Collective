@@ -12,7 +12,7 @@ import {
 
 import "../styles/Featured.css";
 
-const shopImageURL = "https://source.unsplash.com/random/1200x900/?nature,plants,trees";
+const shopImageURL = "https://source.unsplash.com/random/1000x1400/?nature,plants,trees";
 
 function FeaturedItem ({item}) {
 
@@ -21,30 +21,34 @@ function FeaturedItem ({item}) {
   };
 
   return (
-    <swiper-slide >
+    <swiper-slide lazy="true" >
     <div className="slide-content">
       <div className="card-wrapper">
         <Card sx={{ maxWidth: 300 }}>
-          <CardActionArea>
+          <CardActionArea className="SwiperCardContainer">
             <CardMedia
+              className="SwiperCardImage"
               component="img"
               image={shopImageURL}
               alt="green iguana"
+              loading="lazy"
             />
-            <CardContent>
-              <Typography gutterBottom variant="h6" component="div">
-                {item.title}
-              </Typography>
-              <Typography variant="body1" color="text.primary">
-                ${item.price}
-              </Typography>
-            </CardContent>
+            <div className="Image_Overlay">
+              <CardContent>
+                <Typography gutterBottom variant="h6" component="div">
+                  {item.title}
+                </Typography>
+                <Typography variant="body1" color="white">
+                  ${item.price}
+                </Typography>
+              </CardContent>
+              <CardActions style={{display:"flex", justifyContent: "center"}}>
+                <Button variant="outlined" style={{color: "white", border: "2px solid white"}}>
+                  Shop This
+                </Button>
+              </CardActions>
+            </div>
           </CardActionArea>
-          <CardActions style={{display:"flex", justifyContent: "center"}}>
-            <Button variant="outlined">
-              Shop This
-            </Button>
-          </CardActions>
         </Card>
       </div>
     </div>

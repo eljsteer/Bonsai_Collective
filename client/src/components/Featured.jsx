@@ -37,14 +37,14 @@ function Featured() {
 
     const swiperEl = document.querySelector('swiper-container')
     Object.assign(swiperEl, {
-      slidesPerView: 4,
       spaceBetween: 10,
+      loop: true,
       pagination: {
         clickable: true,
         dynamicBullets: true,
       },
       breakpoints: {
-        640: {
+        600: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
@@ -57,6 +57,16 @@ function Featured() {
           spaceBetween: 50,
         },
       },
+      injectStyles: [
+        `
+          .swiper-button-next,
+          .swiper-button-prev {
+            background-color: #515b3a;
+            padding: 8px 18px;
+            border-radius: 100%;
+          }
+      `,
+      ],
     });
     swiperEl.initialize();
 
@@ -79,10 +89,10 @@ function Featured() {
           disabledClass: "swiper-button-disabled",
         }}
         style={{
-          "--swiper-navigation-color": "black",
+          "--swiper-navigation-color": "white",
           "--swiper-navigation-size": "30px",
-          "--swiper-navigation-sides-offset": "10px",
-          padding: "20px"
+          "--swiper-navigation-offset": "0px",
+          padding: "50px",
         }}
       >
         {

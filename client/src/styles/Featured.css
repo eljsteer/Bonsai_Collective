@@ -1,7 +1,5 @@
 swiper-container {
-  width: 80%;
   height: 100%;
-  padding-block: 5rem;
 }
 
 swiper-slide {
@@ -10,6 +8,7 @@ swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 
 swiper-slide img {
@@ -19,6 +18,51 @@ swiper-slide img {
   object-fit: cover;
 }
 
-/* .featuredContainer {
-  background-color: rgba(43, 68, 0, 0.87);
-} */
+@media (min-width: 1600px) {  
+  swiper-container {
+    width: 90%;
+  }
+}
+@media (min-width: 1700px) {  
+  swiper-container {
+    width: 80%;
+  }
+}
+@media (min-width: 1800px) {  
+  swiper-container {
+    width: 70%;
+  }
+}
+
+.SwiperCardContainer {
+  position: relative;
+}
+
+.Image_Overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.6);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.4s
+}
+
+.Image_Overlay > * {
+  transform: translateY(20px);
+  transition: transform 0.4s;
+}
+
+.Image_Overlay:hover > * {
+  transform: translateY(0px);
+}
+
+.Image_Overlay:hover {
+  opacity: 1;
+}
