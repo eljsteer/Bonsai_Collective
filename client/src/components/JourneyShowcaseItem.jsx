@@ -1,32 +1,50 @@
-// import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
+// import { useState } from 'react';
+// import JourneysData from "../utils/journeysData.json"
 
-const JourneyImageURL = "https://source.unsplash.com/random/300x300/?nature,plants,trees";
+// const [side, setSide] = useState("leftSide")
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+// const numRandomBonzaiChapters = () => {
+//   const numBonzaiDB = JourneysData.length
+//   const randomInt = Math.floor(Math.random() * numBonzaiDB);
+//   const chapters = JourneysData[randomInt].chapers;
+//   return chapters;
+// }
 
-export default function JourneyShowcaseItem() {
-  return (
-    <Box container sx={{ flexGrow: 1 }}>
-      <Grid  sx={{display:"flex", flexDirection:"row"}}>
-        <Grid item xs={6} md={8}>
-          <Item>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui et laboriosam earum perferendis alias minima recusandae quo cum. Deserunt blanditiis eveniet fugiat optio explicabo perspiciatis vel voluptatem incidunt? Quis, excepturi.</p>
-          </Item>
-        </Grid>
-        <Grid item xs={6} md={8}>
-          <img  src={JourneyImageURL} />
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}
+// let numChapters  = numRandomBonzaiChapters();
+
+// function JourneyShowcaseItem() {
+//   if
+//         {numChapters.forEach((chapters) => {
+//     if(side === "leftSide") {
+//       <Grid key={chapters.chapterId}>
+//         <Box container="true" sx={{ flexGrow: 1 }}>
+//           <Grid  sx={{display:"flex", alignItems: "center", flexDirection:"row"}}>
+//             <Grid item="true" xs={6} md={8}>
+//               <img  src={JourneyImageURL} />
+//             </Grid>
+//             <Grid item xs={6} md={8}>
+//               <Item>
+//                 <p>{chapters.text}</p>
+//               </Item>
+//             </Grid>
+//           </Grid>
+//         </Box>
+//       </Grid>
+//     setSide = "rightSide"
+//     } else if(side === "rightSide") {
+//       <Grid key={chapters.chapterId}>
+//         <Box container="true" sx={{ flexGrow: 1 }}>
+//           <Grid  sx={{display:"flex", alignItems: "center", flexDirection:"row"}}>
+//             <Grid item xs={6} md={8}>
+//               <Item>
+//                 <p>{chapters.text}</p>
+//               </Item>
+//             </Grid>
+//             <Grid item="true" xs={6} md={8}>
+//               <img  src={JourneyImageURL} />
+//             </Grid>
+//           </Grid>
+//         </Box>
+//       </Grid>
+//     } 
+//   })}
