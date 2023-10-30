@@ -1,4 +1,3 @@
-// import ShopCarousel from "../components/ShopCarousel";
 import Featured from "../components/Featured";
 import Dashboard from "../components/Dashboard";
 import JourneyShowcase from "../components/JourneyShowcase";

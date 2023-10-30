@@ -27,8 +27,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
 
+////-------------------------------------////
+////<<-------- AppBar Function -------->>////
+////-------------------------------------////
+
 function ResponsiveAppBar() {
-   //// --- Cart Code--- //// 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
