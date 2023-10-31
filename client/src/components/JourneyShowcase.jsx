@@ -1,5 +1,4 @@
-import { useState } from 'react';
-// import { PropTypes } from '@mui/material';
+// import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -20,8 +19,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function JourneyShowcase() {
 
-  const [side, setSide] = useState("leftSide")
-
   const numRandomBonzaiChapters = () => {
     const numBonzaiDB = JourneysData.length
     const randomInt = Math.floor(Math.random() * numBonzaiDB);
@@ -30,7 +27,7 @@ export default function JourneyShowcase() {
   }
 
   let numChapters  = numRandomBonzaiChapters();
-  
+
   const LeftSideJourney = () => {
     return (
       <Box container="true" sx={{ flexGrow: 1 }}>
@@ -46,8 +43,8 @@ export default function JourneyShowcase() {
         </Grid>
       </Box>
     );
-    
   }
+
 
   const RightSideJourney = () => {
     return (
@@ -55,7 +52,7 @@ export default function JourneyShowcase() {
         <Grid  sx={{display:"flex", alignItems: "center", flexDirection:"row"}}>
           <Grid item xs={6} md={8}>
             <Item>
-              <p>{numChapters.text}</p>
+              <p>{}</p>
             </Item>
           </Grid>
           <Grid item="true" xs={6} md={8}>
@@ -66,18 +63,21 @@ export default function JourneyShowcase() {
     );
   }
 
-  function JourneyShowcaseItem () {
-    if(side === "leftSide") {
-      setSide("rightSide")
+  const JourneyShowcaseItem = (chapterId) => {
+    // JourneyShowcaseItem.propTypes = {
+    //   chapterId: PropTypes.chapterId,
+    // };
+    
+    if(chapterId % 2 === 0) {
       return (
         <LeftSideJourney />
       )
-    } else if (side === "rightSide") {
-      setSide("leftSide")
+    } else {
       return (
         <RightSideJourney/>
       );
     }
+    
   }
 
   return (
@@ -90,10 +90,10 @@ export default function JourneyShowcase() {
           alignItems="center"
           spacing={2}
         >
-          {numChapters.map((chapters) => {
-            <Grid key={chapters.chapterId}>
-              <JourneyShowcaseItem/>
-            </Grid>
+          {numChapters.map((chapter) => {
+            return (<div key={chapter.chapterId}>
+              <JourneyShowcaseItem />
+            </div>)
           })}
         </Grid>
       </Container>

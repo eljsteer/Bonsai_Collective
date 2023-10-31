@@ -163,7 +163,7 @@ function ToolBarContent () {
           keepMounted
           anchorEl={anchorElUserCart}
           anchorOrigin={{ horizontal: 'right', vertical: 'top'  }}
-          transformOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           open={Boolean(anchorElUserCart)}
           onClose={handleCloseCartItems}
         >
