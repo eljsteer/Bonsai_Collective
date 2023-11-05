@@ -18,7 +18,7 @@ export default function Footer() {
           <ListItem className="nav-item"><a href="#" className>FAQs</a></ListItem>
           <ListItem className="nav-item"><a href="#" className>About</a></ListItem>
         </List>
-        <Divider style={{ width: "100%", border: "1px solid #fff" }}  />
+        <Divider style={{ width: "100vw", border: "1px solid #fff" }}  />
         <p style={{ textAlign: "center", color:"#fff" }}>© 2023 JasonSteer</p>
       </Container>
     </Box>

@@ -1,7 +1,12 @@
-/* .leftSide {
-
+.leftSide {
+  justify-content: start;
 }
 
 .rightSide {
+  justify-content: end;
+}
 
-} */
+.journeyImg {
+  max-height: 500px;
+  width: auto
+}
