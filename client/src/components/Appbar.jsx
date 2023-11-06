@@ -40,7 +40,7 @@ function ResponsiveAppBar() {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <img className="logo" src={bonzaiLogo} style={{ width: 50, height: 50, paddingTop: "auto" }} alt="Bonzai Collective logo" />
+      <img className="logo" src={bonzaiLogo} style={{ width: 50, height: 50 }} alt="Bonzai Collective logo" />
       <Divider />
       <List>
         {navItems.map((item) => (

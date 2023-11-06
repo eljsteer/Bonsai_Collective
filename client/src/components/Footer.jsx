@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import "../styles/Footer.css"
 
 import { FaPinterest } from "react-icons/fa";
@@ -13,59 +14,50 @@ export default function Footer() {
           <div className="res__footer-links_div">
             <h4>About</h4>
             <a href="/about">
-              <p>About</p>
+              <Button>About</Button>
             </a>
             <a href="/team">
-              <p>Team</p>
+              <Button>Team</Button>
             </a>
             <a href="/testimonials">
-              <p>Testimonials</p>
+              <Button>Testimonials</Button>
             </a>
           </div>
           <div className="res__footer-links_div">
             <h4>Explore</h4>
             <a href="/bonzais">
-              <p>Bonzais</p>
+              <Button>Bonzais</Button>
             </a>
             <a href="/growers">
-              <p>Growers</p>
+              <Button>Growers</Button>
             </a>
             <a href="/vintage">
-              <p>Vintage</p>
+              <Button>Vintage</Button>
             </a>
           </div>
           <div className="res__footer-links_div">
             <h4>Resources</h4>
             <a href="/Essentials">
-              <p>Essentials</p>
+              <Button>Essentials</Button>
             </a>
             <a href="/decorations">
-              <p>Decorations</p>
+              <Button>Decorations</Button>
             </a>
             <a href="/delivery">
-              <p>Delivery</p>
+              <Button>Delivery</Button>
             </a>
           </div>
           <div className="res__footer-links_div">
             <h4>Contact</h4>
             <a href="/contact">
-              <p>Contact</p>
+              <Button>Contact</Button>
             </a>
             <a href="/faqs">
-              <p>FAQs</p>
+              <Button>FAQs</Button>
             </a>
             <a href="/blog">
-              <p>Grow Blog</p>
+              <Button>Grow Blog</Button>
             </a>
-          </div>
-          <div className="res__footer-links_div" style={{textAlign: "center"}}>
-            <h4>Coming soon on</h4>
-            <div className="socialmedia">
-              <FaXTwitter style={{fontSize:"2rem", margin:"2px"}}/>
-              <FaFacebook style={{fontSize:"2rem", margin:"2px"}}/>
-              <FaPinterest style={{fontSize:"2rem", margin:"2px"}}/>
-              <FaInstagram style={{fontSize:"2rem", margin:"2px"}}/>
-            </div>
           </div>
         </div>
 
@@ -76,11 +68,20 @@ export default function Footer() {
           <p>
             @{new Date().getFullYear()} Eljsteer. All rights reserved.
           </p>
+          <div className="res__footer-below-links">
+            <a href="/terms"><div><p>Terms & Conditions</p></div></a>
+            <a href="/privacy"><div><p>Privacy</p></div></a>
+            <a href="/security"><div><p>Security</p></div></a>
+          </div>
         </div>
-        <div className="res__footer-below-links">
-          <a href="/terms"><div><p>Terms & Conditions</p></div></a>
-          <a href="/privacy"><div><p>Privacy</p></div></a>
-          <a href="/security"><div><p>Security</p></div></a>
+        <div className="res__footer-social_div" style={{alignItems: "center"}}>
+          <h4>Coming soon on</h4>
+          <div className="socialmedia">
+            <FaXTwitter style={{fontSize:"2rem", margin:"2.5px"}}/>
+            <FaFacebook style={{fontSize:"2rem", margin:"2.5px"}}/>
+            <FaPinterest style={{fontSize:"2rem", margin:"2.5px"}}/>
+            <FaInstagram style={{fontSize:"2rem", margin:"2.5px"}}/>
+          </div>
         </div>
       </div>
       </div>

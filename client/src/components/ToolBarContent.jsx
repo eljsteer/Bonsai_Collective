@@ -7,6 +7,7 @@ import {
   Button,
   Divider,
   IconButton,
+
   ListItemIcon,
   Menu,
   MenuItem,
@@ -33,6 +34,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     padding: '0 4px',
   },
 }));
+
+// const StyledButton = styled(Button)(() => ({
+//   '& .MuiButtonBase-root-MuiButton-root': {
+//     borderRadius: "0px",
+//   },
+// }));
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const pages = ['About', 'Blog','Shop', 'Explore'];
@@ -85,11 +92,13 @@ function ToolBarContent () {
       >
         BONZAI COLLECTIVE
       </Typography> */}
-      <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: "center", }}>
+      <Box className="NavLinks" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: "center", }}>
         {pages.map((page) => (
           <Button
+            className="navLinksBttn"
+            href={"#"}
             key={page}
-            sx={{ my: 2, fontWeight: "bold", color: 'black'}}
+            sx={{ mx: 3, fontWeight: "bold", color: "black", borderRadius: "0"}}
           >
             {page}
           </Button>
