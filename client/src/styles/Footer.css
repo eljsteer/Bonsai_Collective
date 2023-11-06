@@ -4,11 +4,14 @@
 
 .footer{
   background-color: #282D24;
+  display: flex;
+  justify-content: center;
 }
 
 .res__footer{
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 
 .res__footer-links {
@@ -17,9 +20,10 @@
   align-items: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  width:100%;
+  width: 80%;
   text-align: left;
   margin-bottom: 2rem;
+  margin: auto;
 }
 
 .res__footer-links_div {
@@ -31,7 +35,7 @@
   color: white;
 }
 
-a {
+Link {
   color: rgb(175, 175, 175);
   text-decoration: none;
 }
@@ -40,6 +44,9 @@ a {
   font-size: 16px;
   line-height: 17px;
   margin-bottom: 0.6rem;
+}
+.res__footer-links_Link:hover {
+  background-color: #515B3A;
 }
 
 .res__footer-social_div {
@@ -56,7 +63,7 @@ a {
   margin-bottom: 0.6rem;
 }
 
-.res__footer-links_div a Button {
+.res__footer-links_Link Button {
   font-size: 12px;
   line-height: 15px;
   margin: 0.5rem 0;

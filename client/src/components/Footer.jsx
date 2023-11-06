@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom"
 import "../styles/Footer.css"
 
 import { FaPinterest } from "react-icons/fa";
@@ -13,51 +14,51 @@ export default function Footer() {
         <div className="res__footer-links">
           <div className="res__footer-links_div">
             <h4>About</h4>
-            <a href="/about">
+            <Link className="res__footer-links_Link" href="/about">
               <Button>About</Button>
-            </a>
-            <a href="/team">
+            </Link>
+            <Link className="res__footer-links_Link" href="/team">
               <Button>Team</Button>
-            </a>
-            <a href="/testimonials">
+            </Link>
+            <Link className="res__footer-links_Link" href="/testimonials">
               <Button>Testimonials</Button>
-            </a>
+            </Link>
           </div>
           <div className="res__footer-links_div">
             <h4>Explore</h4>
-            <a href="/bonzais">
+            <Link className="res__footer-links_Link" href="/bonzais">
               <Button>Bonzais</Button>
-            </a>
-            <a href="/growers">
+            </Link>
+            <Link className="res__footer-links_Link" href="/growers">
               <Button>Growers</Button>
-            </a>
-            <a href="/vintage">
+            </Link>
+            <Link className="res__footer-links_Link" href="/vintage">
               <Button>Vintage</Button>
-            </a>
+            </Link>
           </div>
           <div className="res__footer-links_div">
             <h4>Resources</h4>
-            <a href="/Essentials">
+            <Link className="res__footer-links_Link" href="/Essentials">
               <Button>Essentials</Button>
-            </a>
-            <a href="/decorations">
+            </Link>
+            <Link className="res__footer-links_Link" href="/decorations">
               <Button>Decorations</Button>
-            </a>
-            <a href="/delivery">
+            </Link>
+            <Link className="res__footer-links_Link" href="/delivery">
               <Button>Delivery</Button>
-            </a>
+            </Link>
           </div>
           <div className="res__footer-links_div">
             <h4>Contact</h4>
-            <a href="/contact">
+            <Link className="res__footer-links_Link" href="/contact">
               <Button>Contact</Button>
-            </a>
-            <a href="/faqs">
+            </Link>
+            <Link className="res__footer-links_Link" href="/faqs">
               <Button>FAQs</Button>
-            </a>
-            <a href="/blog">
+            </Link>
+            <Link className="res__footer-links_Link" href="/blog">
               <Button>Grow Blog</Button>
-            </a>
+            </Link>
           </div>
         </div>
 

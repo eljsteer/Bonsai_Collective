@@ -97,14 +97,13 @@ export default function JourneyShowcase() {
 
   return (
     <Box sx={{background: "#C3E1EA", display: "flex", justifyContent:"center"}}>
-      <Container className="journeyContainer" sx={{ flexGrow: 1, margin:0}}>
+      <Container className="journeyContainer" sx={{ flexGrow: 1, margin:0, minWidth:"100%"}}>
         <Grid   
           container="true"
           spacing={4}
           sx={{
             display:"flex",
-            justifyContent:"center",
-            alignItems:"center"
+            minWidth: "100%"
           }}
         >
           {numChapters.map((chapter) => {
@@ -113,7 +112,6 @@ export default function JourneyShowcase() {
                 key={chapter.chapterId}
                 style={{
                   display:"flex",
-                  minWidth: "100vw"
                 }}
                 className={chapter.chapterId % 2 !== 0 ? "leftSide" : "rightSide"}
               >

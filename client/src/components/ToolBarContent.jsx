@@ -98,13 +98,13 @@ function ToolBarContent () {
             className="navLinksBttn"
             href={"#"}
             key={page}
-            sx={{ mx: 3, fontWeight: "bold", color: "black", borderRadius: "0"}}
+            sx={{ mx: { sm: 1, md: 4, lg: 6}, fontFamily:"Montserrat, sans-serif",fontSize:{sm: "0.9rem", md: "1.2rem", lg: "1.25rem"}, fontWeight: "400", color: "black", borderRadius: "0"}}
           >
             {page}
           </Button>
         ))}
       </Box>
-      <Box sx={{ flexGrow: 0 }}>
+      <Box sx={{ display: "flex", flexDirection:"row", justifyContent:"space-between" }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: "10px" }}>
             <Avatar alt="Remy Sharp" sx={{backgroundColor: "#353d2f" }} />
@@ -126,7 +126,7 @@ function ToolBarContent () {
                 width: 32,
                 height: 32,
                 ml: -0.5,
-                mr: 1,
+                mr: 0.5,
               },
               '&:before': {
                 content: '""',
