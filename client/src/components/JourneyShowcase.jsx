@@ -30,7 +30,7 @@ export default function JourneyShowcase() {
 
   const LeftSideJourney = (props) => {
     LeftSideJourney.propTypes = {
-      journeyDescr: PropTypes.junction,
+      journeyDescr: PropTypes.func,
     };
     return (
       <Grid item="true"  className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
@@ -46,7 +46,7 @@ export default function JourneyShowcase() {
 
   const RightSideJourney = (props) => {
     RightSideJourney.propTypes = {
-      journeyDescr: PropTypes.function,
+      journeyDescr: PropTypes.func,
     };
     return (
       <Grid item="true" className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
@@ -62,7 +62,7 @@ export default function JourneyShowcase() {
 
   const MobileJourney = (props) => {
     MobileJourney.propTypes = {
-      journeyDescr: PropTypes.function,
+      journeyDescr: PropTypes.func,
     };
     return (
       <Grid item="true" className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", flexDirection:"column"}}>
@@ -78,7 +78,7 @@ export default function JourneyShowcase() {
 
   const JourneyShowcaseItem = (chapter) => {
     JourneyShowcaseItem.propTypes = {
-      chapterId: PropTypes.function,
+      chapterId: PropTypes.func,
     };
     if (screen.width <= 800) {
       <MobileJourney journeyDescr={chapter.journeyDescr}/>
