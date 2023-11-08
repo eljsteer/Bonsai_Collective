@@ -9,7 +9,7 @@ import {
 
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-// import "../styles/Header.css"
+import "../styles/Header.css"
 
 function ScrollTop(props) {
   const { children } = props;
@@ -31,7 +31,7 @@ function ScrollTop(props) {
   };
 
   return (
-    <Fade in={trigger}>
+    <Fade in={trigger} unmountOnExit>
       <Box
         onClick={handleScrollUpClick}
         role="presentation"

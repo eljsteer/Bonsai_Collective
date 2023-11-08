@@ -37,8 +37,8 @@ export default function JourneyShowcase() {
         <picture style={{padding:0}}>
           <img srcSet={JourneyImageURL} className="journeyImg"/>
         </picture>
-        <Item sx={{display:"flex", maxHeight:"500px"}}>
-            <p style={{display:"flex", alignItems:"center"}}>{props.journeyDescr}</p>
+        <Item sx={{display:"flex", maxHeight:"500px", opacity:"0.70"}}>
+            <p style={{display:"flex", alignItems:"center", color:"#000" }}>{props.journeyDescr}</p>
         </Item>
       </Grid>
     );
@@ -50,8 +50,8 @@ export default function JourneyShowcase() {
     };
     return (
       <Grid item="true" className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
-        <Item sx={{display:"flex", maxHeight:"500px"}} >
-          <p style={{display:"flex", alignItems:"center"}}>{props.journeyDescr}</p>
+        <Item sx={{display:"flex", maxHeight:"500px", opacity:"0.70"}} >
+          <p style={{display:"flex", alignItems:"center", color: "#000"}}>{props.journeyDescr}</p>
         </Item>
         <picture style={{padding:0}}>
           <img srcSet={JourneyImageURL} className="journeyImg"/>

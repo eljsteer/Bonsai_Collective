@@ -12,8 +12,8 @@
     position: relative;
 }
 
-#scrollUp {
-  z-index: 100;
+#back-to-top-anchor {
+  transition-duration: 100ms;
 }
 
 .navLinksBttn:hover::before {
@@ -24,6 +24,7 @@
 
 .navLinksBttn::before {
     display: block;
+    content: "";
     padding-top: 4px;
     border-bottom: 2px solid black;
     transform: scaleX(0);
