@@ -6,7 +6,8 @@ import FeaturedItem from "./FeaturedItem";
 
 import "../styles/Featured.css"
 
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
+import { Button } from '@mui/material';
 
 function Featured() {
   const swiperRef = useRef(null);

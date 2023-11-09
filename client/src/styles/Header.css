@@ -12,10 +12,6 @@
     position: relative;
 }
 
-#back-to-top-anchor {
-  transition-duration: 100ms;
-}
-
 .navLinksBttn:hover::before {
   border-bottom: 2px solid black;
   transform: scaleX(1);

@@ -1,9 +1,223 @@
-function Signup() {
-  return (
-    <>
-      <div>Signup</div>
-    </>
-  ) 
-}
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Divider,
+  TextField,
+  Typography,
+} from "@mui/material";
 
-export default Signup;
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+
+import {validateEmail } from "../utils/helpers";
+// import { useMutation } from "@apollo/client";
+// import { CREATE_USER } from "../utils/mutations";
+// import Auth from "../utils/auth";
+
+// >>------------------>>
+// Signup Page Code
+// >>------------------>>
+
+// Page Theme Material UI
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: "var(--ComponentGBColor)",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+const SignupForm = () => {
+  const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "" });
+  
+  const [firstInputError, setFirstInputError] = useState(false);
+  const [lastInputError, setLastInputError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passInputError, setPassInputError] = useState(false);
+
+  const [firstHelperText, setFirstHelperText] = useState(false);
+  const [lastHelperText, setLastHelperText] = useState(false);
+  const [emailHelperText, setEmailHelperText] = useState(false);
+  const [passHelperText, setPassHelperText] = useState(false);
+
+  // const [createUser ] = useMutation(CREATE_USER);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleBlur = (event) => {
+    const { name, value } = event.target;
+    const isValid = validateEmail(event.target.value);
+    if (name === "firstName") {
+      if(!value) {
+        setFirstInputError(true);
+        setFirstHelperText("Please enter your First Name");
+      } else if (value) {
+        setFirstInputError(false);
+        setFirstHelperText(false);
+      }
+    } else if (name === "lastName") {
+      if(!value) {
+        setLastInputError(true);
+        setLastHelperText("Please enter your Last Name");
+      } else if (value) {
+        setLastInputError(false);
+        setLastHelperText(false);
+      }
+    } else if (name === "email") {
+      if(!isValid) {
+        setEmailError(true);
+        setEmailHelperText("A valid Email is required");
+      } else if (isValid) {
+        setEmailError(false);
+        setEmailHelperText(false);
+      }
+    } else if( name === "password") {
+      if(!value) {
+        setPassInputError(true);
+        setPassHelperText("A valid Password is required");
+      } else if (value.length < 5) {
+        setPassInputError(true);
+        setPassHelperText("Password must be at least 5 characters");
+      } else if (value.length > 30) {
+        setPassInputError(true);
+        setPassHelperText("Password must be between 5 - 30 characters ");
+      } 
+    } 
+  }
+
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //   }
+  //   try {
+  //     const { data } = await createUser({
+  //       variables: { ...userFormData },
+  //     });
+  //     Auth.signup(data.createUser.token);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+
+  //   setUserFormData({
+  //     firstName: '',
+  //     lastName: '',
+  //     email: '',
+  //     password: '',
+  //   });
+  // };
+
+// JSX Page Returned
+  return (
+    <Container sx={{height: '100vh'}} maxwidth="sm" alignItems="center">
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "auto" },
+          flexGrow: 1
+        }}
+        noValidate
+        // onSubmit={handleFormSubmit}
+        autoComplete="off"
+      > 
+        <Card sx={{ maxWidth: 700, backgroundColor: "var(--ComponentGBColor)" }}>
+          <CardContent>
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="First Name"
+              type="text"
+              name="firstName"
+              placeholder="Please enter First Name"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.firstName}
+              error={firstInputError}
+              helperText={firstHelperText}
+              required
+            />
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Last Name"
+              type="text"
+              name="lastName"
+              placeholder="Please enter Last Name"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.lastName}
+              error={lastInputError}
+              helperText={lastHelperText}
+              required
+            />
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Email"
+              type="email"
+              name="email"
+              placeholder="Please enter your email"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.email}
+              error={emailError}
+              helperText={emailHelperText}
+              required
+            />
+            <TextField
+              id="outlined-error-helper-text"
+              sx={{display: 'flex', justifyContent:"center"}}
+              label="Password"
+              type="password"
+              name="password"
+              placeholder="Please enter a Password"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              value={userFormData.password}
+              error={passInputError}
+              helperText={passHelperText}
+              required
+            />
+          </CardContent>
+          <Box sx={{ width: '100%' }}>
+            <Card spacing={2}>
+              <Item>
+                <Button
+                  disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password) || emailError === true}
+                  type="submit"
+                  variant="contained"
+                  sx={{ width: '50%' }}
+                  // onSubmit={handleFormSubmit}
+                  >
+                  Sign Up
+                </Button>
+                <br/>
+                <br/>
+                <Divider/>
+                <Typography>OR</Typography>
+                <div style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
+                  <br />
+                  <Typography style={{textDecoration:"none"}}>Don't Have an Account?</Typography>
+                  <Typography>&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+                  <Link to="/login">Login</Link>
+                </div>
+              </Item>
+            </Card>
+          </Box>
+        </Card>
+      </Box>
+    </Container>
+  );
+};
+
+export default SignupForm;

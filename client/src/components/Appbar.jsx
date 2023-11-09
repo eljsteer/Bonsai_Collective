@@ -2,24 +2,22 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom"
 
-import {
-  AppBar,
-  Box,
-  Container,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Slide,
-  Toolbar,
-  Typography,
-  useScrollTrigger,
-  } from '@mui/material';
-// import { styled } from '@mui/material/styles';
+import {AppBar} from '@mui/material';
+import { Box } from '@mui/material';
+import { Container } from '@mui/material';
+import { Divider } from '@mui/material';
+import { Drawer } from '@mui/material';
+import { IconButton } from '@mui/material';
+import { List } from '@mui/material';
+import { ListItem } from '@mui/material';
+import { ListItemButton } from '@mui/material';
+import { ListItemIcon } from '@mui/material';
+import { ListItemText } from '@mui/material';
+import { Slide } from '@mui/material';
+import { Toolbar } from '@mui/material';
+import { Typography } from '@mui/material';
+import { useScrollTrigger } from '@mui/material';
+
 import "../styles/Header.css"
 
 ////// <<---Images & Icons--->>//////
@@ -131,7 +129,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <Container id="back-to-top-anchor" sx={{ display: 'flex', position: 'absolute' }}>
+    <Container id="back-to-top-anchor" sx={{ display: 'flex', position: 'absolute'}}>
       <HideOnScroll>
         <AppBar sx={{backgroundColor: "#515b3a"}} component="nav">
           <Toolbar sx={{ justifyContent: "space-between"}}>

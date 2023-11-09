@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
+import styled from '@mui/material/styles/styled';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -30,7 +30,7 @@ export default function JourneyShowcase() {
 
   const LeftSideJourney = (props) => {
     LeftSideJourney.propTypes = {
-      journeyDescr: PropTypes.func,
+      journeyDescr: PropTypes.string,
     };
     return (
       <Grid item="true"  className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
@@ -46,7 +46,7 @@ export default function JourneyShowcase() {
 
   const RightSideJourney = (props) => {
     RightSideJourney.propTypes = {
-      journeyDescr: PropTypes.func,
+      journeyDescr: PropTypes.string,
     };
     return (
       <Grid item="true" className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>

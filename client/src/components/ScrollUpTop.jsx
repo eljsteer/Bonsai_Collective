@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
 
-import {
-  Box,
-  Fab,
-  Fade,
-  useScrollTrigger,
-  } from '@mui/material';
+import { Box } from '@mui/material';
+import { Fab } from '@mui/material';
+import { Fade } from '@mui/material';
+import { useScrollTrigger } from '@mui/material';
+
+// import {
+//   Box,
+//   Fab,
+//   Fade,
+//   useScrollTrigger,
+//   } from '@mui/material';
 
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
@@ -31,7 +36,7 @@ function ScrollTop(props) {
   };
 
   return (
-    <Fade in={trigger} unmountOnExit>
+    <Fade in={trigger}>
       <Box
         onClick={handleScrollUpClick}
         role="presentation"

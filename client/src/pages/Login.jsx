@@ -1,28 +1,28 @@
 import { useState } from "react";
-import {
-  Alert,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Container,
-  IconButton,
-  InputAdornment,
-  Stack,
-  // Typography,
-  InputLabel,
-  OutlinedInput,
-} from '@mui/material';
+import { Link } from 'react-router-dom';
+
+import { Alert, Divider } from "@mui/material";
+import { Box } from "@mui/material";
+import { Button } from "@mui/material";
+import { Card } from "@mui/material";
+import { CardContent } from "@mui/material";
+import { Container } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { InputAdornment } from "@mui/material";
+import { Stack } from "@mui/material";
+import { InputLabel } from "@mui/material";
+import { OutlinedInput } from "@mui/material";
+import { Typography } from "@mui/material";
+
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
 import {validateEmail } from "../utils/helpers";
-// import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from "../utils/auth";
+// import { useMutation } from '@apollo/client';
+// import { LOGIN_USER } from '../utils/mutations';
+// import Auth from "../utils/auth";
 
 // Page Material UI Theme
 const Item = styled(Paper)(({ theme }) => ({
@@ -38,14 +38,14 @@ const Item = styled(Paper)(({ theme }) => ({
 ////      Login Page Code
 //// >>------------------------>> ////
 
-const LoginForm = () => {
+const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "", showPassword: false});
   const [showAlert, setShowAlert] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState(false);
   const [passwordHelperText, setPasswordHelperText] = useState(false);
-  const [ loginUser ] = useMutation(LOGIN_USER);
+  // const [ loginUser ] = useMutation(LOGIN_USER);
 
 
   const handleInputChange = (event) => {
@@ -99,24 +99,24 @@ const LoginForm = () => {
     } 
   }
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
 
-        try {
-          const { data } = await loginUser({ 
-            variables: { ...userFormData } 
-          });
-          Auth.login(data.login.token);
-        } catch (err) {
-          console.error(err);
-          setShowAlert(true);
-        }
+  //       try {
+  //         const { data } = await loginUser({ 
+  //           variables: { ...userFormData } 
+  //         });
+  //         Auth.login(data.login.token);
+  //       } catch (err) {
+  //         console.error(err);
+  //         setShowAlert(true);
+  //       }
 
-    setUserFormData({
-      email: '',
-      password: '',
-    });
-  };
+  //   setUserFormData({
+  //     email: '',
+  //     password: '',
+  //   });
+  // };
 
 // JSX Page Returned
   return (
@@ -128,7 +128,7 @@ const LoginForm = () => {
           flexGrow: 1
         }}
         noValidate
-        onSubmit={handleFormSubmit}
+        // onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
         <Card sx={{ maxWidth: 700, backgroundColor: "var(--ComponentGBColor)" }}>
@@ -179,27 +179,31 @@ const LoginForm = () => {
           </Alert>}
           
           <Box sx={{ width: '100%' }}>
-            <Stack spacing={2}>
+            <Card spacing={2}>
               <Item>
                 <Button
                 disabled={!(userFormData.email && userFormData.password)}
                 type='submit'
                 variant='contained'
                 sx={{ width: '50%' }}
-                onSubmit={handleFormSubmit}
+                // onSubmit={handleFormSubmit}
                 >
                   Log In
                 </Button>
+                <br/>
+                <br/>
+                <Divider/>
+                <br/>
+                <Typography>OR</Typography>
+                <br/>
+                <div style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
+                  <br />
+                  <Typography style={{textDecoration:"none"}}>Don't Have an Account?</Typography>
+                  <Typography>&nbsp;|&nbsp;</Typography>
+                  <Link to="/signup">Sign Up</Link>
+                </div>
               </Item>
-              {/* <Item>OR</Item>
-              <Item>
-                <Typography>Don't Have an Account? 
-                  <br />
-                  <br />
-                  <Link to="/signup"> Sign Up</Link>
-                </Typography>
-              </Item> */}
-            </Stack>
+            </Card>
           </Box>
         </Card>
       </Box>
@@ -207,4 +211,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Login;

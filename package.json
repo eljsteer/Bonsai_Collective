@@ -25,6 +25,5 @@
   },
   "homepage": "https://github.com/eljsteer/Bonzai_Collective#readme",
   "dependencies": {
-    "swiper": "^10.3.1"
   }
 }
