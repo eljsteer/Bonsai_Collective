@@ -38,18 +38,21 @@ export const LOGIN_USER = gql`
 // } 
 // `;
 
-// export const ADD_PROJECT = gql`
-//   mutation addProject($title: String!, $description: String!, $gitRepo: String, $fundingGoal: String, $currentFunds: String) {
-//     addProject(title: $title, description: $description, gitRepo: $gitRepo, fundingGoal: $fundingGoal, currentFunds: $currentFunds) {
-//       _id
-//       title
-//       description
-//       gitRepo
-//       fundingGoal
-//       currentFunds
-//     }
-//   }
-// `;
+export const ADD_BONZAI = gql`
+  mutation addBonzai($title: String!, $dateGrown: String!, $treeType: String, $scientificName: String, $description: String!, $price: String, $imageBonzai: String) {
+    addBonzai(title: $title, dateGrown: $dateGrown, treeType: $treeType, scientificName: $scientificName, description: $description, price: $price, imageBonzai: $imageBonzai) {
+      _id
+      userId
+      title
+      dateGrown
+      treeType
+      scientificName
+      description
+      price
+      imageBonzai
+    }
+  }
+`;
 
 // export const UPDATE_PROJECT = gql`
 //   mutation updateProject($projectData: ProjectInput!, $projectId: ID!) {
