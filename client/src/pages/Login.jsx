@@ -9,7 +9,6 @@ import { CardContent } from "@mui/material";
 import { Container } from "@mui/material";
 import { IconButton } from "@mui/material";
 import { InputAdornment } from "@mui/material";
-import { Stack } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import { OutlinedInput } from "@mui/material";
 import { Typography } from "@mui/material";
@@ -26,11 +25,11 @@ import {validateEmail } from "../utils/helpers";
 
 // Page Material UI Theme
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "var(--ComponentGBColor)",
-  ...theme.typography.body2,
+  backgroundColor: "#32392D",
+  ...theme.typography.body1,
   padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
+  textAlign: "center",
+  color: "white",
 }));
 
 
@@ -113,27 +112,27 @@ const Login = () => {
   //       }
 
   //   setUserFormData({
-  //     email: '',
-  //     password: '',
+  //     email: ",
+  //     password: ",
   //   });
   // };
 
 // JSX Page Returned
   return (
-    <Container sx={{height: '100vh'}} maxWidth="sm" alignItems="center">
+    <Container style={{ zIndex: -10}} className="coverImage" sx={{height: "100svh", display: "flex", alignItems: "center"}} maxWidth="sm" alignItems="center">
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: "auto" },
-          flexGrow: 1
+          "& .MuiTextField-root": { width: "auto" },
+          flexGrow: 1,
         }}
         noValidate
         // onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Card sx={{ maxWidth: 700, backgroundColor: "var(--ComponentGBColor)" }}>
-          <CardContent sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-            <InputLabel htmlFor="outlined-adornment-amount">Email</InputLabel>
+        <Card sx={{ maxWidth: 800, backgroundColor: "#32392D" }}>
+          <CardContent sx={{display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Email</InputLabel>
               <OutlinedInput
                 id="outlined-error-helper-text"
                 type="email"
@@ -144,10 +143,11 @@ const Login = () => {
                 value={userFormData.email}
                 error={emailError}
                 helperText={emailHelperText}
+                sx={{backgroundColor:"white", marginTop:"3px"}}
                 required
               />
               <br/>
-            <InputLabel htmlFor="outlined-adornment-amount">Password</InputLabel>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Password</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-error-helper-text"
                 type={userFormData.showPassword ? "text" : "password"}
@@ -158,6 +158,7 @@ const Login = () => {
                 value={userFormData.password}
                 error={passwordError}
                 helperText={passwordHelperText}
+                sx={{backgroundColor:"white", marginTop:"3px"}}
                 required
                 endAdornment={
                   <InputAdornment position="end">
@@ -177,15 +178,17 @@ const Login = () => {
           <Alert severity="error" onClose={() => {setShowAlert(false)}}>
             Incorrect details, please try again!
           </Alert>}
-          
-          <Box sx={{ width: '100%' }}>
-            <Card spacing={2}>
+          <Box sx={{ width: "100%" }}>
+            <Box spacing={2}>
               <Item>
                 <Button
-                disabled={!(userFormData.email && userFormData.password)}
-                type='submit'
-                variant='contained'
-                sx={{ width: '50%' }}
+                  disabled={!(userFormData.email && userFormData.password)}
+                  type="submit"
+                  variant="contained"
+                  sx={{ 
+                    "& .MuiButton-root": { backgroundColor:"#515B3A" },
+                    backgroundColor:"#515B3A",
+                    width: "50%" }}
                 // onSubmit={handleFormSubmit}
                 >
                   Log In
@@ -197,13 +200,13 @@ const Login = () => {
                 <Typography>OR</Typography>
                 <br/>
                 <div style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
-                  <br />
-                  <Typography style={{textDecoration:"none"}}>Don't Have an Account?</Typography>
-                  <Typography>&nbsp;|&nbsp;</Typography>
+                  <Typography>Don't Have an Account?</Typography>
+                  <Typography>&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
                   <Link to="/signup">Sign Up</Link>
                 </div>
+                <br/>
               </Item>
-            </Card>
+            </Box>
           </Box>
         </Card>
       </Box>

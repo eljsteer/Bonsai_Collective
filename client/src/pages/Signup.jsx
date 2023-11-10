@@ -25,14 +25,14 @@ import {validateEmail } from "../utils/helpers";
 
 // Page Theme Material UI
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "var(--ComponentGBColor)",
-  ...theme.typography.body2,
+  backgroundColor: "#32392D",
+  ...theme.typography.body1,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: "white",
 }));
 
-const SignupForm = () => {
+const Signup = () => {
   const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "" });
   
   const [firstInputError, setFirstInputError] = useState(false);
@@ -119,22 +119,25 @@ const SignupForm = () => {
 
 // JSX Page Returned
   return (
-    <Container sx={{height: '100vh'}} maxwidth="sm" alignItems="center">
+    <Container style={{ zIndex: -10}} className="coverImage" sx={{height: "100svh", display:"flex", alignItems:"center", justifyContent:"center"}} maxwidth="sm" alignItems="center">
       <Box
         component="form"
         sx={{
           "& .MuiTextField-root": { m: 1, width: "auto" },
-          flexGrow: 1
+          flexGrow: 1,
+          display: "flex",
+          flexDirection:"column",
+          justifyContent: "center"
         }}
         noValidate
         // onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Card sx={{ maxWidth: 700, backgroundColor: "var(--ComponentGBColor)" }}>
-          <CardContent>
+        <Card sx={{ maxWidth: 700, backgroundColor: "#32392D" }}>
+          <CardContent sx={{display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
             <TextField
               id="outlined-error-helper-text"
-              sx={{display: 'flex', justifyContent:"center"}}
+              sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
               label="First Name"
               type="text"
               name="firstName"
@@ -148,7 +151,7 @@ const SignupForm = () => {
             />
             <TextField
               id="outlined-error-helper-text"
-              sx={{display: 'flex', justifyContent:"center"}}
+              sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
               label="Last Name"
               type="text"
               name="lastName"
@@ -162,7 +165,7 @@ const SignupForm = () => {
             />
             <TextField
               id="outlined-error-helper-text"
-              sx={{display: 'flex', justifyContent:"center"}}
+              sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
               label="Email"
               type="email"
               name="email"
@@ -176,7 +179,7 @@ const SignupForm = () => {
             />
             <TextField
               id="outlined-error-helper-text"
-              sx={{display: 'flex', justifyContent:"center"}}
+              sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
               label="Password"
               type="password"
               name="password"
@@ -190,7 +193,7 @@ const SignupForm = () => {
             />
           </CardContent>
           <Box sx={{ width: '100%' }}>
-            <Card spacing={2}>
+            <Box spacing={2}>
               <Item>
                 <Button
                   disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password) || emailError === true}
@@ -204,15 +207,17 @@ const SignupForm = () => {
                 <br/>
                 <br/>
                 <Divider/>
+                <br/>
                 <Typography>OR</Typography>
+                <br/>
                 <div style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
-                  <br />
-                  <Typography style={{textDecoration:"none"}}>Don't Have an Account?</Typography>
+                  <Typography style={{color:"white"}}>Don't Have an Account?</Typography>
                   <Typography>&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
                   <Link to="/login">Login</Link>
                 </div>
+                <br/>
               </Item>
-            </Card>
+            </Box>
           </Box>
         </Card>
       </Box>
@@ -220,4 +225,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default Signup;
