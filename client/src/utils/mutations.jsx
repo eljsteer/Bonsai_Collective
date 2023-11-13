@@ -28,24 +28,23 @@ export const LOGIN_USER = gql`
   }
 `;
 
-// export const UPDATE_USER = gql`
-// mutation updateUser($updateData: UserInput!) {
-//   updateUser(updateData: $updateData) {
-//     github
-//     linkedin
-//     skills
-//   }
-// } 
-// `;
+export const UPDATE_BONZAI = gql`
+mutation updateBonzai($updateData: BonzaiInput!) {
+  updateBonzai(updateData: $updateData) {
+    github
+    linkedin
+    skills
+  }
+} 
+`;
 
 export const ADD_BONZAI = gql`
-  mutation addBonzai($title: String!, $dateGrown: String!, $treeType: String, $scientificName: String, $description: String!, $price: String, $imageBonzai: String) {
-    addBonzai(title: $title, dateGrown: $dateGrown, treeType: $treeType, scientificName: $scientificName, description: $description, price: $price, imageBonzai: $imageBonzai) {
+  mutation addBonzai($title: String!, $dateGrown: String!, $treeFamily: String, $scientificName: String, $description: String!, $price: String, $imageBonzai: String) {
+    addBonzai(title: $title, dateGrown: $dateGrown, treeFamily: $treeFamily, scientificName: $scientificName, description: $description, price: $price, imageBonzai: $imageBonzai) {
       _id
       userId
       title
-      dateGrown
-      treeType
+      treeFamily
       scientificName
       description
       price
@@ -54,39 +53,17 @@ export const ADD_BONZAI = gql`
   }
 `;
 
-// export const UPDATE_PROJECT = gql`
-//   mutation updateProject($projectData: ProjectInput!, $projectId: ID!) {
-//     updateProject(projectData: $projectData, projectId: $projectId) {
-//       _id
-//       email 
-//       firstName
-//       lastName
-//       github
-//       linkedin
-//       skills
-//       userProjects {
-//         # _id
-//         title
-//         description
-//         gitRepo
-//         fundingGoal
-//         currentFunds
-//         votes
-//       }
-//     }
-//   } 
-// `;
-
-// export const REMOVE_PROJECT = gql`
-//   mutation removeProject($projectId: ID!) {
-//     removeProject(projectId: $projectId) {
-//       _id
-//       title
-//       description
-//       gitRepo
-//       fundingGoal
-//       currentFunds
-//       votes
-//     }
-//   }  
-// `;
+export const REMOVE_BONZAI = gql`
+  mutation removeBonzai($bonzaiId: ID!) {
+    removeBonzai(bonzaiId: $bonzaiId) {
+      _id
+      title
+      dateGrown
+      treeFamily
+      scientificName
+      description
+      imageBonzai
+      price
+    }
+  }  
+`;
