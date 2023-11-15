@@ -30,7 +30,7 @@ export default function JourneyShowcase() {
 
   const LeftSideJourney = (props) => {
     LeftSideJourney.propTypes = {
-      journeyDescr: PropTypes.string,
+      chapterDescr: PropTypes.string,
     };
     return (
       <Grid item="true"  className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
@@ -38,7 +38,7 @@ export default function JourneyShowcase() {
           <img srcSet={JourneyImageURL} className="journeyImg"/>
         </picture>
         <Item sx={{display:"flex", maxHeight:"500px", opacity:"0.70"}}>
-            <p style={{display:"flex", alignItems:"center", color:"#000" }}>{props.journeyDescr}</p>
+            <p style={{display:"flex", alignItems:"center", color:"#000" }}>{props.chapterDescr}</p>
         </Item>
       </Grid>
     );
@@ -46,12 +46,12 @@ export default function JourneyShowcase() {
 
   const RightSideJourney = (props) => {
     RightSideJourney.propTypes = {
-      journeyDescr: PropTypes.string,
+      chapterDescr: PropTypes.string,
     };
     return (
       <Grid item="true" className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
         <Item sx={{display:"flex", maxHeight:"500px", opacity:"0.70"}} >
-          <p style={{display:"flex", alignItems:"center", color: "#000"}}>{props.journeyDescr}</p>
+          <p style={{display:"flex", alignItems:"center", color: "#000"}}>{props.chapterDescr}</p>
         </Item>
         <picture style={{padding:0}}>
           <img srcSet={JourneyImageURL} className="journeyImg"/>
@@ -62,12 +62,12 @@ export default function JourneyShowcase() {
 
   const MobileJourney = (props) => {
     MobileJourney.propTypes = {
-      journeyDescr: PropTypes.func,
+      chapterDescr: PropTypes.func,
     };
     return (
       <Grid item="true" className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", flexDirection:"column"}}>
         <Item sx={{display:"flex", maxHeight:"500px"}} >
-          <p style={{display:"flex", alignItems:"center"}}>{props.journeyDescr}</p>
+          <p style={{display:"flex", alignItems:"center"}}>{props.chapterDescr}</p>
         </Item>
         <picture style={{padding:0}}>
           <img srcSet={JourneyImageURL} className="journeyImg"/>
@@ -81,15 +81,15 @@ export default function JourneyShowcase() {
       chapterId: PropTypes.func,
     };
     if (screen.width <= 800) {
-      <MobileJourney journeyDescr={chapter.journeyDescr}/>
+      <MobileJourney chapterDescr={chapter.chapterDescr}/>
     } else {
       if(chapter.chapterId % 2 !== 0) {
         return (
-          <LeftSideJourney journeyDescr={chapter.journeyDescr}/>
+          <LeftSideJourney chapterDescr={chapter.chapterDescr}/>
         )
       } else {
         return (
-          <RightSideJourney journeyDescr={chapter.journeyDescr}/>
+          <RightSideJourney chapterDescr={chapter.chapterDescr}/>
         );
       }
     }
@@ -117,7 +117,7 @@ export default function JourneyShowcase() {
               >
               <JourneyShowcaseItem 
                 chapterId = {chapter.chapterId} 
-                journeyDescr={chapter.journeyDescr}
+                chapterDescr={chapter.chapterDescr}
               />
             </Grid>)
           })}
