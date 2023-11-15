@@ -7,6 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 
+//// --- Footer Function and JSX --- ////
 export default function Footer() {
   return (
     <div className="footer">

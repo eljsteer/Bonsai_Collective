@@ -21,14 +21,19 @@ import bonzaiLogo from "../assets/headerLogo/BonzaiLogo3.png";
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
 
-function Header() {
+////-------------------------------------////
+////<<-------- Header Function -------->>////
+////-------------------------------------////
 
+// Contains Toolbar Component, and also Appbar Component
+function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+//// --- Drawer function --- ////
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <img className="logo" src={bonzaiLogo} style={{ width: 50, height: 50, paddingTop: "auto" }} alt="Bonzai Collective logo" />

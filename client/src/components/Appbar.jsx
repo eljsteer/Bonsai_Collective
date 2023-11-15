@@ -32,7 +32,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 import Auth from "../utils/auth";
 
+
 const drawerWidth = 240;
+
+//// --- Navigation Bittons and Paths --- ////
 const navItems = [
   {
       id: 0,
@@ -87,6 +90,7 @@ function ResponsiveAppBar() {
     setMobileOpen((prevState) => !prevState);
   };
 
+//// --- Navigation Bar Mobile Drawer --- ////
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <img className="logo" src={bonzaiLogo} style={{ width: 50, height: 50 }} alt="Bonzai Collective logo" />
@@ -113,6 +117,7 @@ function ResponsiveAppBar() {
     </Box>
   );
 
+//// --- Hide Up Arrow Function --- ////
   function HideOnScroll(hideProps) {
     const { children } = hideProps;
     const trigger = useScrollTrigger();
@@ -128,6 +133,7 @@ function ResponsiveAppBar() {
     children: PropTypes.element.isRequired,
   };
 
+  //// --- Navigation Bar JSX --- ////
   return (
     <Container id="back-to-top-anchor" sx={{ display: 'flex', position: 'absolute'}}>
       <HideOnScroll>

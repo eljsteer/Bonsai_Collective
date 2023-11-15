@@ -10,14 +10,19 @@ import { Typography } from '@mui/material';
 
 import "../styles/Featured.css";
 
+//// --- Random Unsplash Image Source --- ////
 const shopImageURL = "https://source.unsplash.com/random/1000x1400/?nature,plants,trees";
 
+
+//// --- Featured Item Component--- ////
+// To be inserted into Featured Swiper container component.
 function FeaturedItem ({item}) {
 
   FeaturedItem.propTypes = {
     item: PropTypes.object,
   };
 
+  //// --- Featured Individual Item Component JSX --- ////
   return (
     <swiper-slide >
     <div className="slide-content">

@@ -9,6 +9,9 @@ import "../styles/Featured.css"
 import { Box } from '@mui/material';
 import { Button } from '@mui/material';
 
+////----------------------------------------------////
+////<<-------- Featured Swiper Function -------->>////
+////----------------------------------------------////
 function Featured() {
   const swiperRef = useRef(null);
 
@@ -34,14 +37,11 @@ function Featured() {
     // Assign it to swiper element
     Object.assign(swiperRef.current, swiperParams);
 
+    // Swiper element Settings and breakpoints
     const swiperEl = document.querySelector('swiper-container')
     Object.assign(swiperEl, {
       spaceBetween: 40,
       loop: true,
-      // pagination: {
-      //   clickable: true,
-      //   dynamicBullets: true,
-      // },
       breakpoints: {
         600: {
           slidesPerView: 2,
@@ -73,6 +73,7 @@ function Featured() {
     swiperRef.current.initialize();
   }, []);
 
+  //// --- Featured Swiper JSX --- ////
   return (
     <Box id="featuredContainer">
       <div className="swiper-button-prev"></div>
