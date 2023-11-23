@@ -38,7 +38,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Signup = () => {
-  const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "" });
+  const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "", showPassword: false});
   
   const [firstInputError, setFirstInputError] = useState(false);
   const [lastInputError, setLastInputError] = useState(false);
