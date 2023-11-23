@@ -7,10 +7,15 @@ import {
   CardContent,
   Container,
   Divider,
-  TextField,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
   Typography,
 } from "@mui/material";
 
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
@@ -50,6 +55,17 @@ const Signup = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleClickShowPassword = () => {
+    setUserFormData({
+      ...userFormData,
+      showPassword: !userFormData.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   const handleBlur = (event) => {
@@ -135,85 +151,97 @@ const Signup = () => {
       > 
         <Card sx={{ maxWidth: 700, backgroundColor: "#32392D" }}>
           <CardContent sx={{display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
-            <TextField
-              id="outlined-error-helper-text"
-              sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
-              label="First Name"
-              type="text"
-              name="firstName"
-              placeholder="Please enter First Name"
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-              value={userFormData.firstName}
-              error={firstInputError}
-              helperText={firstHelperText}
-              required
-            />
-            <TextField
-              id="outlined-error-helper-text"
-              sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
-              label="Last Name"
-              type="text"
-              name="lastName"
-              placeholder="Please enter Last Name"
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-              value={userFormData.lastName}
-              error={lastInputError}
-              helperText={lastHelperText}
-              required
-            />
-            <TextField
-              id="outlined-error-helper-text"
-              sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
-              label="Email"
-              type="email"
-              name="email"
-              placeholder="Please enter your email"
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-              value={userFormData.email}
-              error={emailError}
-              helperText={emailHelperText}
-              required
-            />
-            <TextField
-              id="outlined-error-helper-text"
-              sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
-              label="Password"
-              type="password"
-              name="password"
-              placeholder="Please enter a Password"
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-              value={userFormData.password}
-              error={passInputError}
-              helperText={passHelperText}
-              required
-            />
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">First Name</InputLabel>
+              <OutlinedInput
+                id="outlined-error-helper-text"
+                sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                type="text"
+                name="firstName"
+                placeholder="Please enter First Name"
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                value={userFormData.firstName}
+                error={firstInputError}
+                helperText={firstHelperText}
+                required
+              />
+              <p></p>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Last Name</InputLabel>
+              <OutlinedInput
+                id="outlined-error-helper-text"
+                sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                type="text"
+                name="lastName"
+                placeholder="Please enter Last Name"
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                value={userFormData.lastName}
+                error={lastInputError}
+                helperText={lastHelperText}
+                required
+              />
+              <p></p>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Email</InputLabel>
+              <OutlinedInput
+                id="outlined-error-helper-text"
+                sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                type="email"
+                name="email"
+                placeholder="Please enter your email"
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                value={userFormData.email}
+                error={emailError}
+                helperText={emailHelperText}
+                required
+              />
+              <p></p>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Password</InputLabel>
+              <OutlinedInput
+                id="outlined-error-helper-text"
+                sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                type={userFormData.showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Please enter a Password"
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                value={userFormData.password}
+                error={passInputError}
+                helperText={passHelperText}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                    {userFormData.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                required
+              />
           </CardContent>
-          <Box sx={{ width: '100%' }}>
+          <Box sx={{ width: "100%" }}>
             <Box spacing={2}>
               <Item>
                 <Button
                   disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password) || emailError === true}
                   type="submit"
                   variant="contained"
-                  sx={{ width: '50%' }}
+                  sx={{ width: "50%" }}
                   // onSubmit={handleFormSubmit}
                   >
                   Sign Up
                 </Button>
-                <br/>
-                <br/>
-                <Divider/>
-                <br/>
+                <Divider sx={{padding:"0px, 10px"}}/>
                 <Typography>OR</Typography>
                 <br/>
                 <div style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
-                  <Typography style={{color:"white"}}>Don't Have an Account?</Typography>
+                  <Typography style={{color:"white"}}>Already have an Account?</Typography>
                   <Typography>&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
-                  <Link to="/login">Login</Link>
+                  <Link style={{cursor:"pointer", color:"white"}} to="/login">Login</Link>
                 </div>
                 <br/>
               </Item>
