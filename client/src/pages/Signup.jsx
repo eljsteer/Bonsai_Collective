@@ -5,7 +5,7 @@ import {
   Button,
   Card,
   CardContent,
-  Container,
+  // Container,
   Divider,
   IconButton,
   InputAdornment,
@@ -135,26 +135,29 @@ const Signup = () => {
 
 // JSX Page Returned
   return (
-    <Container style={{ zIndex: -10}} className="coverImage" sx={{height: "100svh", display:"flex", alignItems:"center", justifyContent:"center"}} maxwidth="sm" alignItems="center">
+  <>
+    <div className="image__CoverImg" style={{ position: "relative", height: "100svh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
+    <div className="coverImageOverlay">
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "auto" },
+          "& .MuiTextField-root": { m: 1 },
           flexGrow: 1,
           display: "flex",
           flexDirection:"column",
-          justifyContent: "center"
+          justifyContent:"center",
+          alignItems:"center",
         }}
         noValidate
         // onSubmit={handleFormSubmit}
         autoComplete="off"
       > 
-        <Card sx={{ maxWidth: 700, backgroundColor: "#32392D" }}>
-          <CardContent sx={{display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
+        <Card sx={{ backgroundColor: "#32392D", }}>
+          <CardContent sx={{ display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
             <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">First Name</InputLabel>
               <OutlinedInput
                 id="outlined-error-helper-text"
-                sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                sx={{ display: 'flex', justifyContent:"center", backgroundColor:"white"}}
                 type="text"
                 name="firstName"
                 placeholder="Please enter First Name"
@@ -235,9 +238,8 @@ const Signup = () => {
                   >
                   Sign Up
                 </Button>
-                <Divider sx={{padding:"0px, 10px"}}/>
-                <Typography>OR</Typography>
-                <br/>
+                <Divider sx={{padding:"0px, 10px", margin:"20px"}}/>
+                <Typography sx={{ margin:"20px"}}>OR</Typography>
                 <div style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
                   <Typography style={{color:"white"}}>Already have an Account?</Typography>
                   <Typography>&nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
@@ -249,7 +251,9 @@ const Signup = () => {
           </Box>
         </Card>
       </Box>
-    </Container>
+    </div>
+    </div>
+  </>
   );
 };
 
