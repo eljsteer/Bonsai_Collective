@@ -6,12 +6,13 @@ import { Box } from "@mui/material";
 import { Button } from "@mui/material";
 import { Card } from "@mui/material";
 import { CardContent } from "@mui/material";
-// import { Container } from "@mui/material";
 import { IconButton } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import { OutlinedInput } from "@mui/material";
 import { Typography } from "@mui/material";
+import Snackbar from '@mui/material/Snackbar';
+import CloseIcon from '@mui/icons-material/Close';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -21,9 +22,9 @@ import Paper from '@mui/material/Paper';
 import "../styles/Login.css"
 
 import {validateEmail } from "../utils/helpers";
-// import { useMutation } from '@apollo/client';
-// import { LOGIN_USER } from '../utils/mutations';
-// import Auth from "../utils/auth";
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from "../utils/auth";
 
 // Page Material UI Theme
 const Item = styled(Paper)(({ theme }) => ({
@@ -46,7 +47,8 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState(false);
   const [passwordHelperText, setPasswordHelperText] = useState(false);
-  // const [ loginUser ] = useMutation(LOGIN_USER);
+  const [open, setOpen] = useState(false);
+  const [ loginUser ] = useMutation(LOGIN_USER);
 
 
   const handleInputChange = (event) => {
@@ -99,25 +101,58 @@ const Login = () => {
       }
     } 
   }
+  
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpen(false);
+    };
+    
+    const action = (
+        <IconButton
+          size="small"
+          aria-label="close"
+          color="inherit"
+          onClick={handleClose}
+        >
+          <CloseIcon fontSize="small" />
+        </IconButton>
+    );
 
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
+    try {
+      const { data } = await loginUser({ 
+        variables: { ...userFormData } 
+      });
+      Auth.login(data.login.token);
+      setOpen(true);
+      return (
+        <div>
+          <Snackbar
+            anchorOrigin={{ vertical:"top", horizontal:"center" }}
+            open={open}
+            autoHideDuration={2000}
+            onClose={handleClose}
+            message="Logged In!!"
+            severity="success"
+            action={action}
+          />
+        </div>
+      );
 
-  //       try {
-  //         const { data } = await loginUser({ 
-  //           variables: { ...userFormData } 
-  //         });
-  //         Auth.login(data.login.token);
-  //       } catch (err) {
-  //         console.error(err);
-  //         setShowAlert(true);
-  //       }
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
 
-  //   setUserFormData({
-  //     email: ",
-  //     password: ",
-  //   });
-  // };
+    setUserFormData({
+      email: "",
+      password: "",
+    });
+  };
 
 // JSX Page Returned
   return (
@@ -134,12 +169,12 @@ const Login = () => {
             alignItems:"center",
           }}
           noValidate
-          // onSubmit={handleFormSubmit}
+          onSubmit={handleFormSubmit}
           autoComplete="off"
         > 
           <Card sx={{ marginTop:"100px", backgroundColor: "#32392D" }}>
             <CardContent sx={{display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
-              <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Email</InputLabel>
+              <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text">Email</InputLabel>
                 <OutlinedInput
                   id="outlined-error-helper-text"
                   type="email"
@@ -149,12 +184,13 @@ const Login = () => {
                   onBlur={handleBlur}
                   value={userFormData.email}
                   error={emailError}
-                  helperText={emailHelperText}
+                  helpertext={emailHelperText ? emailHelperText : undefined}
                   sx={{backgroundColor:"white", marginTop:"3px"}}
+                  autoComplete="email"
                   required
                 />
                 <br/>
-              <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Password</InputLabel>
+              <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-password-error-helper-text">Password</InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password-error-helper-text"
                   type={userFormData.showPassword ? "text" : "password"}
@@ -164,7 +200,7 @@ const Login = () => {
                   onBlur={handleBlur}
                   value={userFormData.password}
                   error={passwordError}
-                  helperText={passwordHelperText}
+                  helpertext={passwordHelperText ? passwordHelperText : undefined}
                   sx={{backgroundColor:"white", marginTop:"3px"}}
                   required
                   endAdornment={
@@ -196,7 +232,7 @@ const Login = () => {
                       "& .MuiButton-root": { backgroundColor:"#515B3A" },
                       backgroundColor:"#515B3A",
                       width: "50%" }}
-                  // onSubmit={handleFormSubmit}
+                    onSubmit={handleFormSubmit}
                   >
                     Log In
                   </Button>

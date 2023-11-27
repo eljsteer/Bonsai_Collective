@@ -31,9 +31,7 @@ export const LOGIN_USER = gql`
 export const UPDATE_BONZAI = gql`
 mutation updateBonzai($updateData: BonzaiInput!) {
   updateBonzai(updateData: $updateData) {
-    github
-    linkedin
-    skills
+    chapters
   }
 } 
 `;

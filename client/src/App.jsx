@@ -19,6 +19,30 @@ import Home from './pages/Home';
 import Login from "./pages/Login";
 import Bonzai from "./pages/BonzaiTrees";
 import Signup from "./pages/Signup";
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
+import { setContext } from '@apollo/client/link/context'
+
+// create HTTP link for graphQL
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql',
+});
+
+// authLink variable to check local storage for token 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers, 
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,10 +57,12 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <RouterProvider router={router}/>
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <RouterProvider router={router}/>
+      </ThemeProvider>
+    </ApolloProvider>
   )
 }
 

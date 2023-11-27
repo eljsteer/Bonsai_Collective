@@ -20,9 +20,9 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
 import {validateEmail } from "../utils/helpers";
-// import { useMutation } from "@apollo/client";
-// import { CREATE_USER } from "../utils/mutations";
-// import Auth from "../utils/auth";
+import { useMutation } from "@apollo/client";
+import { CREATE_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 // >>------------------>>
 // Signup Page Code
@@ -43,14 +43,14 @@ const Signup = () => {
   const [firstInputError, setFirstInputError] = useState(false);
   const [lastInputError, setLastInputError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const [passInputError, setPassInputError] = useState(false);
+  const [passwordInputError, setPasswordInputError] = useState(false);
 
   const [firstHelperText, setFirstHelperText] = useState(false);
   const [lastHelperText, setLastHelperText] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState(false);
-  const [passHelperText, setPassHelperText] = useState(false);
+  const [passwordHelperText, setPasswordHelperText] = useState(false);
 
-  // const [createUser ] = useMutation(CREATE_USER);
+  const [createUser ] = useMutation(CREATE_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -97,41 +97,42 @@ const Signup = () => {
       }
     } else if( name === "password") {
       if(!value) {
-        setPassInputError(true);
-        setPassHelperText("A valid Password is required");
+        setPasswordInputError(true);
+        setPasswordHelperText("A valid Password is required");
       } else if (value.length < 5) {
-        setPassInputError(true);
-        setPassHelperText("Password must be at least 5 characters");
+        setPasswordInputError(true);
+        setPasswordHelperText("Password must be at least 5 characters");
       } else if (value.length > 30) {
-        setPassInputError(true);
-        setPassHelperText("Password must be between 5 - 30 characters ");
+        setPasswordInputError(true);
+        setPasswordHelperText("Password must be between 5 - 30 characters ");
       } 
     } 
   }
 
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-  //   const form = event.currentTarget;
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //   }
-  //   try {
-  //     const { data } = await createUser({
-  //       variables: { ...userFormData },
-  //     });
-  //     Auth.signup(data.createUser.token);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+    }
+    try {
+      const { data } = await createUser({
+        variables: { ...userFormData },
+      });
+      console.log({data})
+      Auth.signup(data.createUser.token);
+    } catch (err) {
+      console.error(err);
+    }
 
-  //   setUserFormData({
-  //     firstName: '',
-  //     lastName: '',
-  //     email: '',
-  //     password: '',
-  //   });
-  // };
+    setUserFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    });
+  };
 
 // JSX Page Returned
   return (
@@ -149,14 +150,13 @@ const Signup = () => {
           alignItems:"center",
         }}
         noValidate
-        // onSubmit={handleFormSubmit}
-        autoComplete="off"
+        onSubmit={handleFormSubmit}
       > 
         <Card sx={{ backgroundColor: "#32392D", }}>
           <CardContent sx={{ display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
-            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">First Name</InputLabel>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-first">First Name</InputLabel>
               <OutlinedInput
-                id="outlined-error-helper-text"
+                id="outlined-error-helper-text-first"
                 sx={{ display: 'flex', justifyContent:"center", backgroundColor:"white"}}
                 type="text"
                 name="firstName"
@@ -165,13 +165,13 @@ const Signup = () => {
                 onBlur={handleBlur}
                 value={userFormData.firstName}
                 error={firstInputError}
-                helperText={firstHelperText}
+                helpertext={firstHelperText ? firstHelperText : undefined}
                 required
               />
               <p></p>
-            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Last Name</InputLabel>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-last">Last Name</InputLabel>
               <OutlinedInput
-                id="outlined-error-helper-text"
+                id="outlined-error-helper-text-last"
                 sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
                 type="text"
                 name="lastName"
@@ -180,13 +180,13 @@ const Signup = () => {
                 onBlur={handleBlur}
                 value={userFormData.lastName}
                 error={lastInputError}
-                helperText={lastHelperText}
+                helpertext={lastHelperText ? lastHelperText : undefined}
                 required
               />
               <p></p>
-            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Email</InputLabel>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-email">Email</InputLabel>
               <OutlinedInput
-                id="outlined-error-helper-text"
+                id="outlined-error-helper-text-email"
                 sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
                 type="email"
                 name="email"
@@ -195,13 +195,14 @@ const Signup = () => {
                 onBlur={handleBlur}
                 value={userFormData.email}
                 error={emailError}
-                helperText={emailHelperText}
+                helpertext={emailHelperText ? emailHelperText : undefined}
+                autoComplete="email"
                 required
               />
               <p></p>
-            <InputLabel sx={{color:"white"}} htmlFor="outlined-adornment-amount">Password</InputLabel>
+            <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-password">Password</InputLabel>
               <OutlinedInput
-                id="outlined-error-helper-text"
+                id="outlined-error-helper-text-password"
                 sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
                 type={userFormData.showPassword ? "text" : "password"}
                 name="password"
@@ -209,8 +210,8 @@ const Signup = () => {
                 onChange={handleInputChange}
                 onBlur={handleBlur}
                 value={userFormData.password}
-                error={passInputError}
-                helperText={passHelperText}
+                error={passwordInputError}
+                helpertext={passwordHelperText ? passwordHelperText : undefined}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -234,7 +235,7 @@ const Signup = () => {
                   type="submit"
                   variant="contained"
                   sx={{ width: "50%" }}
-                  // onSubmit={handleFormSubmit}
+                  onSubmit={handleFormSubmit}
                   >
                   Sign Up
                 </Button>
