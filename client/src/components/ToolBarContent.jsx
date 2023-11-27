@@ -14,8 +14,10 @@ import { styled } from '@mui/material/styles';
 import { Tooltip } from '@mui/material';
 import { Typography } from '@mui/material';
 
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 import Logout from '@mui/icons-material/Logout';
-
+import Auth from '../utils/auth';
 
 // import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { GiBonsaiTree } from 'react-icons/gi';
@@ -44,14 +46,8 @@ const pages = ['About', 'Blog','Shop', 'Explore'];
 const cartItems = ['Black Rectangle Pot', '5yr Chinese Elm', 'Japanese Red Maple Seeds - 20units','Display Rocks',];
 
 function ToolBarContent () {
-  // const [loggedInState, setLoggedInState] = React.useState(false);
-
-  // const userName = " John Smith"
-
-  // const handleClick = () => {
-  //   loggedInState ? setLoggedInState(false) : setLoggedInState(true)
-  // }
-
+  // const { data} = useQuery(QUERY_ME);
+  // const userName = `${data.me.firstName} ${ data.me.lastName}`
    //// --- Cart Code--- //// 
     const [anchorElUserCart, setAnchorElUserCart] = React.useState(null);
 
@@ -63,79 +59,79 @@ function ToolBarContent () {
     setAnchorElUserCart(null);
   };
 
- //// --- Settings & Account Code--- //// 
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
-  // const open = Boolean(anchorElUser);
+ // --- Settings & Account Code--- //// 
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const open = Boolean(anchorElUser);
 
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
 
-  // function LoggedIn() {
-  //   return (
-  //     <Box>
-  //       <Tooltip title="Open settings">
-  //         <IconButton onClick={handleOpenUserMenu} sx={{ p: "10px" }}>
-  //           <Avatar alt={userName} sx={{backgroundColor: "#353d2f" }} />
-  //         </IconButton>
-  //       </Tooltip>
-  //       <Menu
-  //         anchorEl={anchorElUser}
-  //         id="account-menu"
-  //         open={open}
-  //         onClose={handleCloseUserMenu}
-  //         onClick={handleCloseUserMenu}
-  //         // PaperProps={{
-  //         //   elevation: 0,
-  //         //   sx: {
-  //         //     overflow: 'visible',
-  //         //     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-  //         //     mt: 1.5,
-  //         //     '& .MuiAvatar-root': {
-  //         //       width: 32,
-  //         //       height: 32,
-  //         //       ml: -0.5,
-  //         //       mr: 0.5,
-  //         //     },
-  //         //     '&:before': {
-  //         //       content: '""',
-  //         //       display: 'block',
-  //         //       position: 'absolute',
-  //         //       top: 0,
-  //         //       right: 14,
-  //         //       width: 10,
-  //         //       height: 10,
-  //         //       bgcolor: 'background.paper',
-  //         //       transform: 'translateY(-50%) rotate(45deg)',
-  //         //       zIndex: 0,
-  //         //     },
-  //         //   },
-  //         // }}
-  //         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-  //         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-  //       >
-  //         <MenuItem onClick={handleCloseUserMenu}>
-  //           <Avatar /> Profile
-  //         </MenuItem>
-  //         <MenuItem onClick={handleCloseUserMenu}>
-  //           <Avatar /> My account
-  //         </MenuItem>
-  //         <Divider />
-  //         <MenuItem onClick={handleCloseUserMenu}>
-  //           <ListItemIcon>
-  //             <Logout fontSize="small" />
-  //           </ListItemIcon>
-  //           Logout
-  //         </MenuItem>
-  //       </Menu>
-  //     </Box>
-  //   )
-  // }
+  function LoggedIn() {
+    return (
+      <Box>
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: "10px" }}>
+            {/* <Avatar alt={userName} sx={{backgroundColor: "#353d2f" }} /> */}
+          </IconButton>
+        </Tooltip>
+        <Menu
+          anchorEl={anchorElUser}
+          id="account-menu"
+          open={open}
+          onClose={handleCloseUserMenu}
+          onClick={handleCloseUserMenu}
+          // PaperProps={{
+          //   elevation: 0,
+          //   sx: {
+          //     overflow: 'visible',
+          //     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+          //     mt: 1.5,
+          //     '& .MuiAvatar-root': {
+          //       width: 32,
+          //       height: 32,
+          //       ml: -0.5,
+          //       mr: 0.5,
+          //     },
+          //     '&:before': {
+          //       content: '""',
+          //       display: 'block',
+          //       position: 'absolute',
+          //       top: 0,
+          //       right: 14,
+          //       width: 10,
+          //       height: 10,
+          //       bgcolor: 'background.paper',
+          //       transform: 'translateY(-50%) rotate(45deg)',
+          //       zIndex: 0,
+          //     },
+          //   },
+          // }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
+          <MenuItem onClick={handleCloseUserMenu}>
+            <Avatar /> Profile
+          </MenuItem>
+          <MenuItem onClick={handleCloseUserMenu}>
+            <Avatar /> My account
+          </MenuItem>
+          <Divider />
+          <MenuItem onClick={handleCloseUserMenu}>
+            <ListItemIcon>
+              <Logout fontSize="small" />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
+        </Menu>
+      </Box>
+    )
+  }
 
   function NotLoggedIn() {
     return (
@@ -188,13 +184,12 @@ function ToolBarContent () {
         ))}
       </Box>
       <Box sx={{ display: "flex", flexDirection:"row", justifyContent:"space-between", alignItems: "center"}}>
-        <NotLoggedIn/>
-        {/* { loggedInState 
+        { (Auth.loggedIn() 
           ? 
           <LoggedIn/>
           : 
-          <NotLoggedIn/>
-        } */}
+          <NotLoggedIn/>)
+        }
         <Tooltip title="View Cart">
           <IconButton aria-label='cart' onClick={handleOpenCartItems} sx={{ p: "20px" }}>
             <StyledBadge badgeContent={4} color="secondary">

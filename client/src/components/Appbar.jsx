@@ -35,7 +35,7 @@ import Auth from "../utils/auth";
 
 const drawerWidth = 240;
 
-//// --- Navigation Bittons and Paths --- ////
+//// --- Navigation Buttons and Paths --- ////
 const navItems = [
   {
       id: 0,
