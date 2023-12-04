@@ -13,10 +13,13 @@ import { MenuItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Tooltip } from '@mui/material';
 import { Typography } from '@mui/material';
+import { ListItemButton } from '@mui/material';
 
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
-import Logout from '@mui/icons-material/Logout';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+
+// import { useQuery } from '@apollo/client';
+// import { QUERY_ME } from '../utils/queries';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Auth from '../utils/auth';
 
 // import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -41,15 +44,57 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 //   },
 // }));
 
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const pages = ['About', 'Blog','Shop', 'Explore'];
+const navLinks = [
+  {
+      id: 0,
+      name: "About",
+      url: "/about"
+  },
+  {
+      id: 1,
+      name: "Blog",
+      url: "/blog"
+  },
+  {
+      id: 2,
+      name: "Shop",
+      url: "/shop"
+  },
+  {
+      id: 3,
+      name: "Explore",
+      url: "/explore"
+  }
+];
+
+const AccountLinks = [
+  {
+      id: 0,
+      icon: <Avatar sx={{ width: 30, height: 30 }} />,
+      name: "Profile",
+      url: "/profile"
+  },
+  {
+      id: 1,
+      icon: <ManageAccountsIcon />,
+      name: "My Account",
+      url: ""
+  },
+];
+
 const cartItems = ['Black Rectangle Pot', '5yr Chinese Elm', 'Japanese Red Maple Seeds - 20units','Display Rocks',];
 
+
+////-----------------------------------------------////
+////<<-------- Toolbar Component Function -------->>////
+////-----------------------------------------------////
 function ToolBarContent () {
+
   // const { data} = useQuery(QUERY_ME);
   // const userName = `${data.me.firstName} ${ data.me.lastName}`
-   //// --- Cart Code--- //// 
-    const [anchorElUserCart, setAnchorElUserCart] = React.useState(null);
+
+  //// --- Cart Code--- //// 
+  const [anchorElUserCart, setAnchorElUserCart] = React.useState(null);
 
   const handleOpenCartItems = (event) => {
     setAnchorElUserCart(event.currentTarget);
@@ -59,25 +104,25 @@ function ToolBarContent () {
     setAnchorElUserCart(null);
   };
 
- // --- Settings & Account Code--- //// 
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const open = Boolean(anchorElUser);
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
 
   function LoggedIn() {
+     // --- Settings & Account Code--- //// 
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const open = Boolean(anchorElUser);
+
+    const handleOpenUserMenu = (event) => {
+      setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseUserMenu = () => {
+      setAnchorElUser(null);
+    };
     return (
       <Box>
-        <Tooltip title="Open settings">
+        <Tooltip title="Account Settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: "10px" }}>
-            {/* <Avatar alt={userName} sx={{backgroundColor: "#353d2f" }} /> */}
+            <Avatar alt="Jason Steer" sx={{backgroundColor: "#353d2f" }} />
           </IconButton>
         </Tooltip>
         <Menu
@@ -86,47 +131,31 @@ function ToolBarContent () {
           open={open}
           onClose={handleCloseUserMenu}
           onClick={handleCloseUserMenu}
-          // PaperProps={{
-          //   elevation: 0,
-          //   sx: {
-          //     overflow: 'visible',
-          //     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-          //     mt: 1.5,
-          //     '& .MuiAvatar-root': {
-          //       width: 32,
-          //       height: 32,
-          //       ml: -0.5,
-          //       mr: 0.5,
-          //     },
-          //     '&:before': {
-          //       content: '""',
-          //       display: 'block',
-          //       position: 'absolute',
-          //       top: 0,
-          //       right: 14,
-          //       width: 10,
-          //       height: 10,
-          //       bgcolor: 'background.paper',
-          //       transform: 'translateY(-50%) rotate(45deg)',
-          //       zIndex: 0,
-          //     },
-          //   },
-          // }}
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <MenuItem onClick={handleCloseUserMenu}>
-            <Avatar /> Profile
-          </MenuItem>
-          <MenuItem onClick={handleCloseUserMenu}>
-            <Avatar /> My account
-          </MenuItem>
+          {AccountLinks.map((item) => (
+            <MenuItem key={item.id} 
+              onClick={handleCloseUserMenu}
+              sx={{display:"flex", flexDirection:"row"}}
+            >
+              <Link to={`${item.url}`}>
+                {item.icon}{item.name}
+              </Link>
+            </MenuItem>
+          ))}
           <Divider />
           <MenuItem onClick={handleCloseUserMenu}>
-            <ListItemIcon>
-              <Logout fontSize="small" />
-            </ListItemIcon>
-            Logout
+            <Link to="/">
+              <ListItemButton>
+                <ListItemIcon>
+                  <LogoutIcon 
+                    fontSize="small" 
+                  />
+                </ListItemIcon>
+                Logout
+              </ListItemButton>
+            </Link>
           </MenuItem>
         </Menu>
       </Box>
@@ -172,14 +201,14 @@ function ToolBarContent () {
         BONZAI COLLECTIVE
       </Typography> */}
       <Box className="NavLinks" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: "center", }}>
-        {pages.map((page) => (
+        {navLinks.map((navlink) => (
           <Button
             className="navLinksBttn"
-            href={"#"}
-            key={page}
+            href={navlink.url}
+            key={navlink.id}
             sx={{ mx: { sm: 1, md: 4, lg: 6}, fontFamily:"Montserrat, sans-serif",fontSize:{sm: "0.9rem", md: "1.2rem", lg: "1.25rem"}, fontWeight: "400", color: "black", borderRadius: "0"}}
           >
-            {page}
+            {navlink.name}
           </Button>
         ))}
       </Box>

@@ -140,12 +140,13 @@ function ResponsiveAppBar() {
         <AppBar sx={{backgroundColor: "#515b3a"}} component="nav">
           <Toolbar sx={{ justifyContent: "space-between"}}>
             <IconButton 
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            className={mobileOpen}
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              className="mobileOpen"
+              open={mobileOpen}
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: 'none' } }}
             >
               <MenuIcon />
             </IconButton>
