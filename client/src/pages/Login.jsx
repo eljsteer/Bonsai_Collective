@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { Alert, Divider } from "@mui/material";
 import { Box } from "@mui/material";
@@ -11,19 +11,19 @@ import { InputAdornment } from "@mui/material";
 import { InputLabel } from "@mui/material";
 import { OutlinedInput } from "@mui/material";
 import { Typography } from "@mui/material";
-import Snackbar from '@mui/material/Snackbar';
-import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from "@mui/material/Snackbar";
+import CloseIcon from "@mui/icons-material/Close";
 
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 
 import "../styles/Login.css"
 
 import {validateEmail } from "../utils/helpers";
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 // Page Material UI Theme
@@ -106,7 +106,7 @@ const Login = () => {
     event.preventDefault();
     
     const handleClose = (event, reason) => {
-      if (reason === 'clickaway') {
+      if (reason === "clickaway") {
         return;
       }
       setOpen(false);

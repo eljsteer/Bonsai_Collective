@@ -1,13 +1,13 @@
-import { useEffect, useRef } from 'react';
-import { register } from 'swiper/element/bundle';
+import { useEffect, useRef } from "react";
+import { register } from "swiper/element/bundle";
 
-import featuredData from "../utils/featuredData.json";
+import featuredData from "../../utils/jsonData/featuredData.json";
 import FeaturedItem from "./FeaturedItem";
 
-import "../styles/Featured.css"
+import "./styles/Featured.css"
 
-import { Box } from '@mui/material';
-import { Button } from '@mui/material';
+import { Box } from "@mui/material";
+import { Button } from "@mui/material";
 
 ////----------------------------------------------////
 ////<<-------- Featured Swiper Function -------->>////
@@ -20,7 +20,7 @@ function Featured() {
     register();
 
     // Add event listener
-    swiperRef.current.addEventListener('slidechange', (e) => {
+    swiperRef.current.addEventListener("slidechange", (e) => {
       console.log(e.detail);
     });
 
@@ -38,7 +38,7 @@ function Featured() {
     Object.assign(swiperRef.current, swiperParams);
 
     // Swiper element Settings and breakpoints
-    const swiperEl = document.querySelector('swiper-container')
+    const swiperEl = document.querySelector("swiper-container")
     Object.assign(swiperEl, {
       spaceBetween: 40,
       loop: true,

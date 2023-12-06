@@ -1,36 +1,36 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom"
 
-import {AppBar} from '@mui/material';
-import { Box } from '@mui/material';
-import { Container } from '@mui/material';
-import { Divider } from '@mui/material';
-import { Drawer } from '@mui/material';
-import { IconButton } from '@mui/material';
-import { List } from '@mui/material';
-import { ListItem } from '@mui/material';
-import { ListItemButton } from '@mui/material';
-import { ListItemIcon } from '@mui/material';
-import { ListItemText } from '@mui/material';
-import { Slide } from '@mui/material';
-import { Toolbar } from '@mui/material';
-import { Typography } from '@mui/material';
-import { useScrollTrigger } from '@mui/material';
+import {AppBar} from "@mui/material";
+import { Box } from "@mui/material";
+import { Container } from "@mui/material";
+import { Divider } from "@mui/material";
+import { Drawer } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { List } from "@mui/material";
+import { ListItem } from "@mui/material";
+import { ListItemButton } from "@mui/material";
+import { ListItemIcon } from "@mui/material";
+import { ListItemText } from "@mui/material";
+import { Slide } from "@mui/material";
+import { Toolbar } from "@mui/material";
+import { Typography } from "@mui/material";
+import { useScrollTrigger } from "@mui/material";
 
-import "../styles/Header.css"
+import "./styles/Header.css"
 
 ////// <<---Images & Icons--->>//////
-import bonzaiLogo from "../assets/headerLogo/BonzaiLogo3.png";
-import ToolBarContent from './ToolBarContent';
-import MenuIcon from '@mui/icons-material/Menu';
+import bonzaiLogo from "../../assets/headerLogo/BonzaiLogo3.png";
+import ToolBarContent from "./ToolBarContent";
+import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SearchIcon from "@mui/icons-material/Search";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 
 
 const drawerWidth = 240;
@@ -92,7 +92,7 @@ function ResponsiveAppBar() {
 
 //// --- Navigation Bar Mobile Drawer --- ////
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <img className="logo" src={bonzaiLogo} style={{ width: 50, height: 50 }} alt="Bonzai Collective logo" />
       <Typography variant="h6" sx={{ my: 2 }}>
         Bonzai Collective
@@ -135,7 +135,7 @@ function ResponsiveAppBar() {
 
   //// --- Navigation Bar JSX --- ////
   return (
-    <Container id="back-to-top-anchor" sx={{ display: 'flex', position: 'absolute'}}>
+    <Container id="back-to-top-anchor" sx={{ display: "flex", position: "absolute"}}>
       <HideOnScroll>
         <AppBar sx={{backgroundColor: "#515b3a"}} component="nav">
           <Toolbar sx={{ justifyContent: "space-between"}}>
@@ -146,7 +146,7 @@ function ResponsiveAppBar() {
               className="mobileOpen"
               open={mobileOpen}
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: 'none' } }}
+              sx={{ mr: 2, display: { sm: "none" } }}
             >
               <MenuIcon />
             </IconButton>
@@ -163,8 +163,8 @@ function ResponsiveAppBar() {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           }}
         >
           {drawer}

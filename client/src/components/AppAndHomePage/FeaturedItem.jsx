@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { Button } from '@mui/material';
-import { Card } from '@mui/material';
-import { CardActions } from '@mui/material';
-import { CardActionArea } from '@mui/material';
-import { CardContent } from '@mui/material';
-import { CardMedia } from '@mui/material';
-import { Typography } from '@mui/material';
+import { Button } from "@mui/material";
+import { Card } from "@mui/material";
+import { CardActions } from "@mui/material";
+import { CardActionArea } from "@mui/material";
+import { CardContent } from "@mui/material";
+import { CardMedia } from "@mui/material";
+import { Typography } from "@mui/material";
 
-import "../styles/Featured.css";
+import "./styles/Featured.css";
 
 //// --- Random Unsplash Image Source --- ////
 const shopImageURL = "https://source.unsplash.com/random/1000x1400/?nature,plants,trees";

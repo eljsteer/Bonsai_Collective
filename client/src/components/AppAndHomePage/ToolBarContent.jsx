@@ -1,45 +1,45 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import { Link } from "react-router-dom";
 
-import { Avatar } from '@mui/material';
-import { Badge } from '@mui/material';
-import { Box } from '@mui/material';
-import { Button } from '@mui/material';
-import { Divider } from '@mui/material';
-import { IconButton } from '@mui/material';
-import { ListItemIcon } from '@mui/material';
-import { Menu } from '@mui/material';
-import { MenuItem } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { Tooltip } from '@mui/material';
-import { Typography } from '@mui/material';
-import { ListItemButton } from '@mui/material';
+import { Avatar } from "@mui/material";
+import { Badge } from "@mui/material";
+import { Box } from "@mui/material";
+import { Button } from "@mui/material";
+import { Divider } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { ListItemIcon } from "@mui/material";
+import { Menu } from "@mui/material";
+import { MenuItem } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { Tooltip } from "@mui/material";
+import { Typography } from "@mui/material";
+import { ListItemButton } from "@mui/material";
 
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
-// import { useQuery } from '@apollo/client';
-// import { QUERY_ME } from '../utils/queries';
-import LogoutIcon from '@mui/icons-material/Logout';
-import Auth from '../utils/auth';
+// import { useQuery } from "@apollo/client";
+// import { QUERY_ME } from "../utils/queries";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Auth from "../../utils/auth";
 
-// import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { GiBonsaiTree } from 'react-icons/gi';
+// import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { GiBonsaiTree } from "react-icons/gi";
 
-import "../styles/Header.css"
+import "./styles/Header.css"
 
 ////// <<---Images--->>//////
-import bonzaiLogo from "../assets/headerLogo/BonzaiLogo2_Title.png";
+import bonzaiLogo from "../../assets/headerLogo/BonzaiLogo2_Title.png";
 
 //// <<----Custom Theme Example---->> //////
 const StyledBadge = styled(Badge)(({ theme }) => ({
-  '& .MuiBadge-badge': {
+  "& .MuiBadge-badge": {
     border: `2px solid ${theme.palette.background.paper}`,
-    padding: '0 4px',
+    padding: "0 4px",
   },
 }));
 
 // const StyledButton = styled(Button)(() => ({
-//   '& .MuiButtonBase-root-MuiButton-root': {
+//   "& .MuiButtonBase-root-MuiButton-root": {
 //     borderRadius: "0px",
 //   },
 // }));
@@ -82,7 +82,7 @@ const AccountLinks = [
   },
 ];
 
-const cartItems = ['Black Rectangle Pot', '5yr Chinese Elm', 'Japanese Red Maple Seeds - 20units','Display Rocks',];
+const cartItems = ["Black Rectangle Pot", "5yr Chinese Elm", "Japanese Red Maple Seeds - 20units","Display Rocks",];
 
 
 ////-----------------------------------------------////
@@ -131,8 +131,8 @@ function ToolBarContent () {
           open={open}
           onClose={handleCloseUserMenu}
           onClick={handleCloseUserMenu}
-          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           {AccountLinks.map((item) => (
             <MenuItem key={item.id} 
@@ -186,21 +186,21 @@ function ToolBarContent () {
         href="/"
         sx={{
           mr: 2,
-          display: { xs: 'none', sm: 'flex' },
+          display: { xs: "none", sm: "flex" },
           justifyContent: "center",
           textAlign: "center",
           flexGrow: 1,
-          fontFamily: 'monospace',
+          fontFamily: "monospace",
           fontSize: "1em",
           fontWeight: 700,
-          letterSpacing: '.3rem',
-          color: 'inherit',
-          textDecoration: 'none',
+          letterSpacing: ".3rem",
+          color: "inherit",
+          textDecoration: "none",
         }}
       >
         BONZAI COLLECTIVE
       </Typography> */}
-      <Box className="NavLinks" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' }, justifyContent: "center", }}>
+      <Box className="NavLinks" sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" }, justifyContent: "center", }}>
         {navLinks.map((navlink) => (
           <Button
             className="navLinksBttn"
@@ -220,19 +220,19 @@ function ToolBarContent () {
           <NotLoggedIn/>)
         }
         <Tooltip title="View Cart">
-          <IconButton aria-label='cart' onClick={handleOpenCartItems} sx={{ p: "20px" }}>
+          <IconButton aria-label="cart" onClick={handleOpenCartItems} sx={{ p: "20px" }}>
             <StyledBadge badgeContent={4} color="secondary">
               <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
             </StyledBadge>
           </IconButton>
         </Tooltip>
         <Menu
-          sx={{ mt: '45px' }}
+          sx={{ mt: "45px" }}
           id="menu-appbar"
           keepMounted
           anchorEl={anchorElUserCart}
-          anchorOrigin={{ horizontal: 'right', vertical: 'top'  }}
-          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: "right", vertical: "top"  }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
           open={Boolean(anchorElUserCart)}
           onClose={handleCloseCartItems}
         >

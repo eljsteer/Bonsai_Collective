@@ -1,6 +1,6 @@
 import { Button}  from "@mui/material";
 import { Link } from "react-router-dom"
-import "../styles/Footer.css"
+import "./styles/Footer.css"
 
 import { FaPinterest } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";

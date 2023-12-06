@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
-import styled from '@mui/material/styles/styled';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
-import JourneysData from "../utils/journeysData.json"
-import "../styles/JourneysHome.css"
+import PropTypes from "prop-types";
+import styled from "@mui/material/styles/styled";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Unstable_Grid2";
+import JourneysData from "../../utils/jsonData/journeysData.json"
+import "./styles/JourneysHome.css"
 
 const JourneyImageURL = "https://source.unsplash.com/random/500x500/?nature,plants,trees";
 
 // Item Styling for Bonzai Journey Showcase
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 

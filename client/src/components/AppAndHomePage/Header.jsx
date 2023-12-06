@@ -12,14 +12,14 @@ import { ListItemText } from "@mui/material";
 import { Toolbar } from "@mui/material";
 import { IconButton } from "@mui/material";
 
-import ToolBarContent from './ToolBarContent';
-import MenuIcon from '@mui/icons-material/Menu';
-import "../styles/Header.css"
+import ToolBarContent from "./ToolBarContent";
+import MenuIcon from "@mui/icons-material/Menu";
+import "./styles/Header.css"
 
-import bonzaiLogo from "../assets/headerLogo/BonzaiLogo3.png";
+import bonzaiLogo from "../../assets/headerLogo/BonzaiLogo3.png";
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ["Home", "About", "Contact"];
 
 ////-------------------------------------////
 ////<<-------- Header Function -------->>////
@@ -35,13 +35,13 @@ function Header() {
 
 //// --- Drawer function --- ////
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <img className="logo" src={bonzaiLogo} style={{ width: 50, height: 50, paddingTop: "auto" }} alt="Bonzai Collective logo" />
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
+            <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText primary={item}/>
             </ListItemButton>
           </ListItem>
@@ -61,7 +61,7 @@ function Header() {
             className="mobileOpen"
             open={mobileOpen}
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
@@ -77,8 +77,8 @@ function Header() {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           }}
         >
           {drawer}

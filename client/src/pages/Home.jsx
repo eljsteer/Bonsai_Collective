@@ -1,6 +1,6 @@
-import Featured from "../components/Featured";
-import Dashboard from "../components/Dashboard";
-import JourneyShowcase from "../components/JourneyShowcase";
+import Featured from "../components/AppAndHomePage/Featured";
+import Dashboard from "../components/AppAndHomePage/Dashboard";
+import JourneyShowcase from "../components/AppAndHomePage/JourneyShowcase";
 
 // import "../styles/Header.css"
 

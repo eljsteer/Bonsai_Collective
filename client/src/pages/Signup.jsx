@@ -14,10 +14,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 
 import {validateEmail } from "../utils/helpers";
 import { useMutation } from "@apollo/client";
@@ -33,7 +33,7 @@ const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#32392D",
   ...theme.typography.body1,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: "white",
 }));
 
@@ -157,7 +157,7 @@ const Signup = () => {
             <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-first">First Name</InputLabel>
               <OutlinedInput
                 id="outlined-error-helper-text-first"
-                sx={{ display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                sx={{ display: "flex", justifyContent:"center", backgroundColor:"white"}}
                 type="text"
                 name="firstName"
                 placeholder="Please enter First Name"
@@ -172,7 +172,7 @@ const Signup = () => {
             <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-last">Last Name</InputLabel>
               <OutlinedInput
                 id="outlined-error-helper-text-last"
-                sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
                 type="text"
                 name="lastName"
                 placeholder="Please enter Last Name"
@@ -187,7 +187,7 @@ const Signup = () => {
             <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-email">Email</InputLabel>
               <OutlinedInput
                 id="outlined-error-helper-text-email"
-                sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
                 type="email"
                 name="email"
                 placeholder="Please enter your email"
@@ -203,7 +203,7 @@ const Signup = () => {
             <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-password">Password</InputLabel>
               <OutlinedInput
                 id="outlined-error-helper-text-password"
-                sx={{display: 'flex', justifyContent:"center", backgroundColor:"white"}}
+                sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
                 type={userFormData.showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Please enter a Password"

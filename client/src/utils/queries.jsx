@@ -16,7 +16,7 @@ export const QUERY_ME =gql`
         userId
         title
         dateGrown
-        treeType
+        treeFamily
         scientificName
         description
         price
@@ -38,7 +38,7 @@ export const QUERY_USER = gql`
         userId
         title
         dateGrown
-        treeType
+        treeFamily
         scientificName
         description
         price
@@ -48,18 +48,38 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_PRODUCTS = gql`
+  query allProducts {
+    allProducts{
+      _id
+      name
+      summary
+      imageProduct
+      price
+      stock
+    }
+  }
+`;
+
 export const QUERY_BONZAI = gql`
   {
-    userBonzai {
+    allBonzai {
       _id
       userId
       title
       dateGrown
-      treeType
+      treeFamily
       scientificName
       description
       price
       imageBonzai
+      chapters {
+        _id
+        chapterIMG
+        age
+        chapterStage
+        chapterDescr
+      }
     }
   }
 `;
@@ -71,7 +91,7 @@ export const QUERY_SINGLE_BONZAI = gql`
       userId
       title
       dateGrown
-      treeType
+      treeFamily
       scientificName
       description
       price
