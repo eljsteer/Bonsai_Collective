@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Card } from "@mui/material";
 import { CardActions } from "@mui/material";
 import { CardActionArea } from "@mui/material";
@@ -21,6 +21,7 @@ export default function BonzaiItem (props) {
   BonzaiItem.propTypes = {
     title: PropTypes.string,
     price: PropTypes.string,
+    description: PropTypes.string,
     imageBonzai: PropTypes.src,
   };
 
@@ -28,10 +29,9 @@ export default function BonzaiItem (props) {
 
   //// --- Featured Individual Item Component JSX --- ////
   return (
-    <div className="bonzai-content">
-      <div className="card-wrapper">
-        <Card sx={{ maxWidth: 400 }}>
-          <CardActionArea className="BonzaiCardContainer">
+      <Card sx={{ display: "flex", maxWidth: 400 }}>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <CardActionArea  sx={{ flex: '1 0 auto' }} className="BonzaiCardContainer">
             <CardMedia 
               className="cardImage"
               component="img"
@@ -52,9 +52,13 @@ export default function BonzaiItem (props) {
                 </Button>
               </CardActions>
             </div>
+            <div>
+              <Typography variant="body1" color="black">
+                {props.description}
+              </Typography>
+            </div>
           </CardActionArea> 
-        </Card>
-      </div>
-    </div>
+        </Box>
+      </Card>
   )
 }

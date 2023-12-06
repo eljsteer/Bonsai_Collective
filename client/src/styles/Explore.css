@@ -24,6 +24,8 @@ swiper-slide img {
 }
 
 .BonzaiCardContainer {
+  display: flex;
+  flex-direction: row;
   position: relative;
 }
 

@@ -53,7 +53,8 @@ export const QUERY_PRODUCTS = gql`
     allProducts{
       _id
       name
-      summary
+      productDescription
+      category
       imageProduct
       price
       stock
@@ -78,7 +79,7 @@ export const QUERY_BONZAI = gql`
         chapterIMG
         age
         chapterStage
-        chapterDescr
+        chapterDescription
       }
     }
   }
