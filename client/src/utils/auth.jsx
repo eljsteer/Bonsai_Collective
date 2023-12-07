@@ -5,7 +5,6 @@
 // Used to decode a token and retrieve the  user"s information
 import { jwtDecode } from "jwt-decode";
 
-
 // create a new class to instantiate the user
 class AuthService {
   // get user data
@@ -40,7 +39,7 @@ class AuthService {
   login(idToken) {
     // Saves user token to localStorage
     localStorage.setItem("id_token", idToken);
-    window.location.replace("/");
+    window.location.assign("/");
   }
 
   signup(idToken) {
