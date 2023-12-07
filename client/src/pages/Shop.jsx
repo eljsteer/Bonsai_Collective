@@ -23,7 +23,7 @@ export default function Shop() {
   console.log(allProducts)
 
   if (loading) {
-    return <h2>Bonzai is starting...</h2>;
+    return <h2>Bonzai is Growing...</h2>;
   }
 
   if(error) {

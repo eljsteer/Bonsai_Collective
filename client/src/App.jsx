@@ -17,6 +17,7 @@ import RootLayout from "./layouts/RootLayout"
 import ErrorPage from "./utils/error-page.jsx"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 import About from "./pages/About.jsx";
 import Blog from "./pages/Blog.jsx";
 import Shop from "./pages/Shop.jsx";
@@ -53,6 +54,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="login" element = {<Login/>} />
       <Route path="signup" element = {<Signup/>} />
+      <Route path="profile" element = {<Profile/>} />
       <Route path="about" element = {<About/>} />
       <Route path="blog" element = {<Blog/>} />
       <Route path="shop" element = {<Shop/>} />

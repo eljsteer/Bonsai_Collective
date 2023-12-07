@@ -1,11 +1,8 @@
 
 import BonzaiItem from "../components/BonzaiItem";
 import { Link } from "react-router-dom";
-import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
-// import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 import { useQuery } from "@apollo/client";
@@ -19,14 +16,6 @@ import { QUERY_BONZAI } from "../utils/queries";
 // let theme = createTheme();
 // theme = responsiveFontSizes(theme);
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "var(--ComponentGBColor)",
-    ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
 export default function Explore() {
   const {loading, data} = useQuery(QUERY_BONZAI, {
     refetchQueries: [
@@ -37,7 +26,7 @@ export default function Explore() {
   const allBonzai = data?.allBonzai || [];
   
   if (loading) {
-    return <h2>Bonzai is starting...</h2>;
+    return <h2>Bonzai is Growing...</h2>;
   }
 
   // JSX Page Returned

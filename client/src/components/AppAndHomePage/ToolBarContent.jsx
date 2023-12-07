@@ -104,6 +104,9 @@ function ToolBarContent () {
     setAnchorElUserCart(null);
   };
 
+  const handleLogout = () => {
+    Auth.logout();
+  }
 
 
   function LoggedIn() {
@@ -147,7 +150,7 @@ function ToolBarContent () {
           <Divider />
           <MenuItem onClick={handleCloseUserMenu}>
             <Link to="/">
-              <ListItemButton>
+              <ListItemButton onClick={handleLogout}>
                 <ListItemIcon>
                   <LogoutIcon 
                     fontSize="small" 

@@ -8,12 +8,18 @@ import "./styles/Featured.css"
 
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 ////----------------------------------------------////
 ////<<-------- Featured Swiper Function -------->>////
 ////----------------------------------------------////
 function Featured() {
   const swiperRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/shop");
+  }
 
   useEffect(() => {
     // Register Swiper web component
@@ -99,7 +105,8 @@ function Featured() {
             featuredData.map( item => <FeaturedItem key={item.id} item={item} /> )
         }
       </swiper-container>
-      <Button id="viewMore" variant="outlined">
+      
+      <Button id="viewMore" variant="outlined" onClick={handleNavigate}>
         View More
       </Button>
     </Box>
