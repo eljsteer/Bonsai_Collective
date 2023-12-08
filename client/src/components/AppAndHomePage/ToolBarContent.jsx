@@ -17,6 +17,8 @@ import { ListItemButton } from "@mui/material";
 
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
+import { getSavedCartProducts } from "../../utils/localStorage"
+
 // import { useQuery } from "@apollo/client";
 // import { QUERY_ME } from "../utils/queries";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -82,7 +84,7 @@ const AccountLinks = [
   },
 ];
 
-const cartItems = ["Black Rectangle Pot", "5yr Chinese Elm", "Japanese Red Maple Seeds - 20units","Display Rocks",];
+// const cartItems = ["Black Rectangle Pot", "5yr Chinese Elm", "Japanese Red Maple Seeds - 20units","Display Rocks",];
 
 
 ////-----------------------------------------------////
@@ -90,6 +92,7 @@ const cartItems = ["Black Rectangle Pot", "5yr Chinese Elm", "Japanese Red Maple
 ////-----------------------------------------------////
 function ToolBarContent () {
 
+  let cartProductsArray = []
   // const { data} = useQuery(QUERY_ME);
   // const userName = `${data.me.firstName} ${ data.me.lastName}`
 
@@ -97,8 +100,17 @@ function ToolBarContent () {
   const [anchorElUserCart, setAnchorElUserCart] = React.useState(null);
 
   const handleOpenCartItems = (event) => {
-    setAnchorElUserCart(event.currentTarget);
+    if(cartProductsArray.length === 0) {
+      return;
+    } else {
+      setAnchorElUserCart(event.currentTarget);
+    }
   };
+
+  const handleNumCartItems = () => {
+    const numCartItems = cartProductsArray.length;
+    return numCartItems;
+  }
 
   const handleCloseCartItems = () => {
     setAnchorElUserCart(null);
@@ -108,6 +120,13 @@ function ToolBarContent () {
     Auth.logout();
   }
 
+  function retrieveCartProducts() {
+    const cartProducts = getSavedCartProducts();
+    console.log(cartProducts)
+    return cartProducts;
+  }
+
+  cartProductsArray = retrieveCartProducts();
 
   function LoggedIn() {
      // --- Settings & Account Code--- //// 
@@ -223,11 +242,18 @@ function ToolBarContent () {
           <NotLoggedIn/>)
         }
         <Tooltip title="View Cart">
-          <IconButton aria-label="cart" onClick={handleOpenCartItems} sx={{ p: "20px" }}>
-            <StyledBadge badgeContent={4} color="secondary">
-              <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
-            </StyledBadge>
-          </IconButton>
+          { cartProductsArray.length === 0 
+            ?
+            <IconButton aria-label="cart" onClick={handleOpenCartItems} sx={{ p: "20px" }}>
+                <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
+            </IconButton>
+            :
+            <IconButton aria-label="cart" onClick={handleOpenCartItems} sx={{ p: "20px" }}>
+              <StyledBadge badgeContent={handleNumCartItems} color="secondary">
+                <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
+              </StyledBadge>
+            </IconButton>
+          }
         </Tooltip>
         <Menu
           sx={{ mt: "45px" }}
@@ -239,7 +265,7 @@ function ToolBarContent () {
           open={Boolean(anchorElUserCart)}
           onClose={handleCloseCartItems}
         >
-          {cartItems.map((cart) => (
+          {cartProductsArray.map((cart) => (
             <MenuItem key={cart} onClick={handleCloseCartItems}>
               <Typography textAlign="center">{cart}</Typography>
             </MenuItem>

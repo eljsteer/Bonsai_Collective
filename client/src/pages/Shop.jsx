@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 
 import { Link } from 'react-router-dom';
+import Box from "@mui/material/Box";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Grid from "@mui/material/Unstable_Grid2";
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
 
@@ -35,51 +37,64 @@ function ProductCard(props) {
   ProductCard.propTypes = {
     _id: PropTypes.string,
     name: PropTypes.string,
-    description: PropTypes.string,
-    imageBonzai: PropTypes.src,
+    price: PropTypes.string,
+    productDescription: PropTypes.string,
+    imageProduct: PropTypes.src,
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {props.description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          <Link 
-            to={`/product/${props._id}`}
-            style={{textDecoration:"none"}}
-          >
-            View
-          </Link>
-        </Button>
-      </CardActions>
-    </Card>
+    <Card sx={{ margin: "10px", maxWidth: 345 }}>
+    <CardActionArea>
+      <CardMedia
+        component="img"
+        height="140"
+        image={props.imageProduct}
+        alt="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {props.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {props.productDescription}
+        </Typography>
+      </CardContent>
+    </CardActionArea>
+    <CardActions>
+      <Button size="small" color="primary">
+        View
+      </Button>
+    </CardActions>
+  </Card>
   );
 }
 
   return (
-    <div>
-      {allProducts.map((product, i) => (
-        <ProductCard 
-          key={i}
-          name={product.name}
-          description={product.description}
-        />
-      ))}
-    </div>
+    <Box>
+      <Box sx={{ display:"flex", justifyContent:"center", margin: 2 }}>
+          <Typography variant="h3" sx={{margin: 5 }}>Shop</Typography>
+      </Box>
+      <Box sx={{flexGrow: 1,  padding: 2 }}>
+        <Grid 
+          container 
+          sx={{display: "flex", justifyContent:"center", alignItems:"top"}} 
+          spacing={{ xs: 2, md: 3 }} 
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          >
+          {allProducts.map((product, i) => (
+              <ProductCard 
+                key={i}
+                name={product.name}
+                productDescription={product.productDescription}
+                price={product.price}
+                imageProduct={product.imageProduct}
+              />
+            ))
+          }
+        </Grid>
+      </Box>
+      <br/>
+      <br/>
+    </Box>   
   );
 }
