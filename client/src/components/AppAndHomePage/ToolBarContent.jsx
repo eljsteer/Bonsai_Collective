@@ -60,7 +60,7 @@ const navLinks = [
   {
       id: 2,
       name: "Shop",
-      url: "/shop"
+      url: "/products"
   },
   {
       id: 3,
@@ -122,7 +122,6 @@ function ToolBarContent () {
 
   function retrieveCartProducts() {
     const cartProducts = getSavedCartProducts();
-    console.log(cartProducts)
     return cartProducts;
   }
 

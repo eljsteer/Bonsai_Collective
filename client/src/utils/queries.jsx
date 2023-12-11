@@ -100,3 +100,17 @@ export const QUERY_SINGLE_BONZAI = gql`
     }
   }
 `;
+
+export const QUERY_SINGLE_PRODUCT = gql`
+  query singleProduct($productId: ID!) {
+    singleProduct(productId: $productId) {
+      _id
+      name
+      productDescription
+      category
+      imageProduct
+      price
+      stock
+    }
+  }
+`;

@@ -17,12 +17,14 @@ import RootLayout from "./layouts/RootLayout"
 import ErrorPage from "./utils/error-page.jsx"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import About from "./pages/About.jsx";
 import Blog from "./pages/Blog.jsx";
 import Shop from "./pages/Shop.jsx";
 import Explore from "./pages/Explore";
-import Signup from "./pages/Signup";
+import SingleBonzai from "./pages/SingleBonzai.jsx";
+import SingleProduct from "./pages/SingleProduct.jsx";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
 
@@ -52,13 +54,15 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} errorElement= {<ErrorPage/>} >
       <Route index element={<Home />} />
-      <Route path="login" element = {<Login/>} />
-      <Route path="signup" element = {<Signup/>} />
-      <Route path="profile" element = {<Profile/>} />
-      <Route path="about" element = {<About/>} />
-      <Route path="blog" element = {<Blog/>} />
-      <Route path="shop" element = {<Shop/>} />
-      <Route path="explore" element = {<Explore/>} />
+      <Route path="/login" element = {<Login/>} />
+      <Route path="/signup" element = {<Signup/>} />
+      <Route path="/profile" element = {<Profile/>} />
+      <Route path="/about" element = {<About/>} />
+      <Route path="/blog" element = {<Blog/>} />
+      <Route path="/products" element = {<Shop/>} />
+      <Route path="/explore" element = {<Explore/>} />
+      <Route path="/bonzai/:id" element = {<SingleBonzai/>} />
+      <Route path="/products/:id" element = {<SingleProduct/>} />
     </Route>
   )
 )

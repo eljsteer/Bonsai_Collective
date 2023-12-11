@@ -1,24 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
-
-import { Link } from 'react-router-dom';
 import Box from "@mui/material/Box";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Grid from "@mui/material/Unstable_Grid2";
-import { Button, CardActionArea, CardActions, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import NativeSelect from '@mui/material/NativeSelect';
 import InputBase from '@mui/material/InputBase';
 
-import { FaCartArrowDown } from "react-icons/fa6";
-
+import ProductCard from "../components/ProductCard";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_PRODUCTS } from "../utils/queries";
@@ -64,79 +54,76 @@ export default function Shop() {
     ]
   });
 
+  const [category, setCategory] = React.useState('');
+  const [sortBy, setSortBy] = React.useState('');
   const allProducts = data?.allProducts || [];
+  const categoriesArray = [];
+  const sortByArray = ["Alphabetically, A-Z", "Alphabetically, Z-A", "Price, low-high", "Price, high-low" ];
 
-  console.log(allProducts)
+  allProducts.forEach((product) => {
+    if(categoriesArray.includes(product.category)) {
+      return;
+    } else {
+      categoriesArray.push(product.category);
+    }
+  })
 
   if (loading) {
-    return <h2>Bonzai is Growing...</h2>;
+    return <h2> Filling up Shop Shelves...</h2>;
   }
 
   if(error) {
     if (error) return `Error! ${error.message}`;
   }
 
-    const [age, setAge] = React.useState('');
-    const handleChange = (event) => {
-      setAge(event.target.value);
+
+    const handleCateogryChange = (event) => {
+      setCategory(event.target.value);
     };
-
-function ProductCard(props) {
-
-  ProductCard.propTypes = {
-    _id: PropTypes.string,
-    name: PropTypes.string,
-    price: PropTypes.string,
-    productDescription: PropTypes.string,
-    imageProduct: PropTypes.src,
-  };
-
-  return (
-    <Card sx={{ margin: "20px", minWidth: 300, maxWidth: 300, borderRadius: "0" }}>
-      <CardActionArea sx={{ flex: '1 0 auto' }}>
-        <CardMedia
-          component="img"
-          height="300px"
-          image={props.imageProduct}
-          alt="green iguana"
-        />
-        <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center"}}>
-          <Typography gutterBottom sx={{textAlign: "center", fontFamily:"20px, Montserrat, sans-serif", fontWeight:"600"}}>
-            {props.name}
-          </Typography>
-          <Typography sx={{fontFamily:"20px, Montserrat, sans-serif", }}>
-            ${props.price}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions sx={{display:"flex", justifyContent:"center"}}>
-        <Button size="medium" color="success" variant="outlined">
-          <FaCartArrowDown style={{fontSize:"20px", marginRight:"5px"}} color="green"/>
-          Add to Cart
-        </Button>
-      </CardActions>
-    </Card>
-  );
-}
+    
+    const handleSortByChange = (event) => {
+      setSortBy(event.target.value);
+    };
 
   return (
   <Container>
     <Box sx={{ display:"flex", justifyContent:"center", margin: 2 }}>
       <Typography variant="h3" sx={{margin: 5 }}>Shop</Typography>
     </Box>
-    <Box sx={{ padding:"10px 0px", borderTop:"2px Solid Black", borderBottom:"2px Solid Black"  }}>
-      <FormControl sx={{ }} variant="standard">
+    <Box sx={{ display:"flex", borderTop:"2px Solid Black", borderBottom:"2px Solid Black"  }}>
+      <FormControl sx={{ display:"flex", flexDirection:"row", alignItems:"center"}} variant="standard">
+        <Typography sx={{margin:"0px 20px", fontFamily:"Montserrat, sans-serif"}}>FILTER BY:</Typography>
         <NativeSelect
-          id="demo-customized-select-native"
-          value={age}
-          onChange={handleChange}
+          id="categorySelect"
+          value={category}
+          onChange={handleCateogryChange}
           input={<BootstrapInput />}
           label="All Products"
+          sx={{border:"none"}}
         >
           <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+          {categoriesArray.map((category, i ) => (
+            <option key={i} value={category}>{category}</option>
+            ))
+          }
+        </NativeSelect>
+      </FormControl>
+      <FormControl sx={{display:"flex", flexDirection:"row", alignItems:"center"}} variant="standard">
+        <Typography sx={{margin:"0px 20px", fontFamily:"Montserrat, sans-serif"}}>SORT BY:</Typography>
+        <NativeSelect
+          id="sortBySelect"
+          value={sortBy}
+          onChange={handleSortByChange}
+          input={<BootstrapInput />}
+          size="large"
+          label="Sort By"
+          sx={{border:"none"}}
+        >
+          <option aria-label="None" value="" />
+          {sortByArray.map((sortBy, i ) => (
+            <option key={i} value={sortBy}>{sortBy}</option>
+            ))
+          }
         </NativeSelect>
       </FormControl>
     </Box>
