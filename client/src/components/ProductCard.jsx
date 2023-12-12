@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+
 
 import { Button } from '@mui/material';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia } from '@mui/material';
+import { Box } from '@mui/material';
+import { CardActionArea, CardActions, CardContent, CardMedia } from '@mui/material';
 import { Typography } from '@mui/material';
 import PropTypes from "prop-types";
 // import Select from '@mui/material/Select';
@@ -12,16 +13,16 @@ import { FaCartArrowDown } from 'react-icons/fa';
 export default function ProductCard(props) {
 
   ProductCard.propTypes = {
-    _id: PropTypes.string,
+    id: PropTypes.string,
     name: PropTypes.string,
-    price: PropTypes.string,
     productDescription: PropTypes.string,
+    price: PropTypes.string,
     imageProduct: PropTypes.src,
   };
 
   return (
-    <Card sx={{ margin: "20px", minWidth: 300, maxWidth: 300, borderRadius: "0" }}>
-      <Link to={`/products/${props._id}`}>
+    <Box>
+      <Box sx={{ margin: "0px 20px", minWidth: 300, maxWidth: 300, borderRadius: "0" }}>
         <CardActionArea sx={{ flex: '1 0 auto' }}>
           <CardMedia
             component="img"
@@ -38,13 +39,13 @@ export default function ProductCard(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
-      </Link>
+      </Box>
       <CardActions sx={{display:"flex", justifyContent:"center"}}>
           <Button size="medium" color="success" variant="outlined">
             <FaCartArrowDown style={{fontSize:"20px", marginRight:"5px"}} color="green"/>
             Add to Cart
           </Button>
       </CardActions>
-    </Card>
+    </Box>
   );
 }

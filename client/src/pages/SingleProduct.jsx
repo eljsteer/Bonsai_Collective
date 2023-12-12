@@ -26,20 +26,31 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 export default function SingleProduct() {
-    const { id } = useParams();
-    const { loading, data, error } = useQuery(QUERY_SINGLE_PRODUCT, {
-        variables: { productId: id },
-    });
+  const { id } = useParams();
 
-    if (loading) {
-      return <h2>Product is getting Built...</h2>;
-    }
-  
-    if(error) {
-      if (error) return `Error! ${error.message}`;
-    }
+  // Log the value of id to the console for debugging
+  console.log('Product ID:', id,);
 
-    const singleProduct = data?.singleProduct || {};
+  const { loading, data, error } = useQuery(QUERY_SINGLE_PRODUCT, {
+    variables: { productId: id },
+  });
+
+  // Check if id is valid ObjectId before making the query
+  const isValidObjectId = /^[0-9a-fA-F]{24}$/.test(id);
+
+  if (!isValidObjectId) {
+    return <h2>Invalid Product ID</h2>;
+  }
+
+  if (loading) {
+    return <h2>Product is getting Built...</h2>;
+  }
+
+  if (error) {
+    return <h2>Error! {error.message}</h2>;
+  }
+
+  const singleProduct = data?.singleProduct || {};
 
     // const stripeDonate =  (donationIndex) => {
     //     console.log(donationIndex)

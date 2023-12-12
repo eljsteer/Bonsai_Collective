@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import Box from "@mui/material/Box";
+
 import Typography from '@mui/material/Typography';
 import Grid from "@mui/material/Unstable_Grid2";
 import { Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import InputBase from '@mui/material/InputBase';
@@ -45,6 +48,15 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: "var(--ComponentGBColor)",
+    ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 
 
 export default function Shop() {
@@ -136,6 +148,11 @@ export default function Shop() {
           columns={{ xs: 4, sm: 8, md: 12 }}
           >
           {allProducts.map((product, i) => (
+            <Link
+              key={i}
+              to={`/products/${product._id}`}
+              underline="none"
+            >
               <ProductCard 
                 key={i}
                 name={product.name}
@@ -143,6 +160,7 @@ export default function Shop() {
                 price={product.price}
                 imageProduct={product.imageProduct}
               />
+            </Link>
             ))
           }
         </Grid>
