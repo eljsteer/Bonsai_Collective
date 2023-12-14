@@ -1,60 +1,42 @@
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
-const drawerWidth = 240;
+// import Box from '@mui/joy/Box';
+// import Button from '@mui/joy/Button';
+// import Card from '@mui/joy/Card';
+// import CardContent from '@mui/joy/CardContent';
+// import Typography from '@mui/joy/Typography';
+// import Sheet from '@mui/joy/Sheet';
+import { Box, Button } from "@mui/material";
+import { GiTreeBranch } from "react-icons/gi";
+import { RiSeedlingFill } from "react-icons/ri";
 
 export default function Profile() {
+
+
+  const profileOptions = [
+    {
+        id: 0,
+        icon: <GiTreeBranch />,
+        name: "My Bonzai",
+        url: "/mybonzai"
+    },
+    {
+        id: 1,
+        icon: <RiSeedlingFill />,
+        name: "Add Bonzai",
+        url: "/addbonzai"
+    }
+  ];
+
+
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
-        }}
-      >
-        <Toolbar />
-        <Box sx={{ overflow: 'auto' }}>
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
+
+        <Box>
+          {profileOptions.map((option, i) => (
+            <Button key={i} variant="outlined">
+              {option.name}
+            </Button>
+          )
+          )}
         </Box>
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-      </Box>
-    </Box>
   );
 }

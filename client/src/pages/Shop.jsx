@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Grid from "@mui/material/Unstable_Grid2";
 import { Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import InputBase from '@mui/material/InputBase';
@@ -49,13 +48,13 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "var(--ComponentGBColor)",
-    ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: "var(--ComponentGBColor)",
+//     ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: 'center',
+//   color: theme.palette.text.secondary,
+// }));
 
 
 
