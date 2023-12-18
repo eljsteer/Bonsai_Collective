@@ -21,6 +21,13 @@ export const QUERY_ME =gql`
         description
         price
         imageBonzai
+        chapters {
+          _id
+          chapterIMG
+          age
+          chapterStage
+          chapterDescription
+        }
       }
     }
   }
@@ -43,6 +50,13 @@ export const QUERY_USER = gql`
         description
         price
         imageBonzai
+        chapters {
+          _id
+          chapterIMG
+          age
+          chapterStage
+          chapterDescription
+        }
       }
     }
   }
@@ -97,6 +111,13 @@ export const QUERY_SINGLE_BONZAI = gql`
       description
       price
       imageBonzai
+      chapters {
+        _id
+        chapterIMG
+        age
+        chapterStage
+        chapterDescription
+      }
     }
   }
 `;

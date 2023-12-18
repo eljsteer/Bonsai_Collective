@@ -1,0 +1,9 @@
+html {
+  height: 100%;
+}
+
+.Root-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}

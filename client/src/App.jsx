@@ -25,6 +25,7 @@ import Shop from "./pages/Shop.jsx";
 import Explore from "./pages/Explore";
 import SingleBonzai from "./pages/SingleBonzai.jsx";
 import SingleProduct from "./pages/SingleProduct.jsx";
+import AddBonzai from "./pages/AddBonzai.jsx";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
 
@@ -63,6 +64,7 @@ const router = createBrowserRouter(
       <Route path="/explore" element = {<Explore/>} />
       <Route path="/bonzai/:id" element = {<SingleBonzai/>} />
       <Route path="/products/:id" element = {<SingleProduct/>} />
+      <Route path="addBonzai" element = {<AddBonzai/>} />
     </Route>
   )
 )

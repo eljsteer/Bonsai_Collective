@@ -1,5 +1,5 @@
-import { Button}  from "@mui/material";
-import { Link } from "react-router-dom"
+// import { Button}  from "@mui/material";
+// import { Link } from "react-router-dom"
 import "./styles/Footer.css"
 
 import { FaPinterest } from "react-icons/fa";
@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className="res__footer section__padding">
-        <div className="res__footer-links">
+        {/* <div className="res__footer-links">
           <div className="res__footer-links_div">
             <h4>About</h4>
             <Link className="res__footer-links_Link" href="/about">
@@ -61,7 +61,7 @@ export default function Footer() {
               <Button>Grow Blog</Button>
             </Link>
           </div>
-        </div>
+        </div> */}
 
       <hr />
 
