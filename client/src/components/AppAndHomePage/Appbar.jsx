@@ -30,7 +30,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-import Auth from "../../utils/auth";
+import Auth from "../../utils/authClient";
 
 
 const drawerWidth = 240;

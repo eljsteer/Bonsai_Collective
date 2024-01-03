@@ -66,7 +66,7 @@ export const QUERY_PRODUCTS = gql`
   query allProducts {
     allProducts{
       _id
-      name
+      productName
       productDescription
       category
       imageProduct
@@ -126,7 +126,7 @@ export const QUERY_SINGLE_PRODUCT = gql`
   query singleProduct($productId: ID!) {
     singleProduct(productId: $productId) {
       _id
-      name
+      productName
       productDescription
       category
       imageProduct

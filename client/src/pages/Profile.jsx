@@ -1,34 +1,31 @@
-import { Link } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { Link, Outlet } from 'react-router-dom';
+import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 import { GiTreeBranch } from "react-icons/gi";
 import { RiSeedlingFill } from "react-icons/ri";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
+// import UserBonzais from '../components/MyBonzai';
 
 export default function Profile() {
-  const {loading, data} = useQuery(QUERY_ME);
-  
-  if (loading) {
-    return <div>Fire is starting...</div>;
+  const {loading, data, error} = useQuery(QUERY_ME);
+
+  if(error) {
+    console.log(error);
+    return <div>Error loading data</div>;
   }
   
-  const userData = data?.me.userBonzai || [];
+  if (loading) {
+    return <div>Profile is Loading...</div>;
+  }
+
+  console.log(data)
+
+  const userData = data?.me || [];
   const allUserBonzai = data?.me.userBonzai || [];
 
   console.log(userData)
@@ -40,31 +37,31 @@ export default function Profile() {
         id: 0,
         icon: <GiTreeBranch />,
         name: "My Bonzai",
-        url: "/mybonzai"
+        url: "myBonzai"
     },
     {
         id: 1,
         icon: <RiSeedlingFill />,
         name: "Add Bonzai",
-        url: "/addBonzai"
+        url: "addBonzai"
     }
   ];
 
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
+    <Box sx={{ flexGrow: 1, display:"flex", flexDirection:"column", margin:"5px" }}>
+      <Grid container spacing={1}>
         <Grid xs={4} md={2}>
-          <Card>
+          <Box>
             <CardMedia
-              // image={userData.}
+              image={userData?.profileImage || "https://source.unsplash.com/random/?profile"}
             >
             </CardMedia>
             <Box>
               {profileOptions.map((option, i) => (
               <Link
                 key={i}
-                to={`${option.url}`}
+                to={`/profile/${option.url}`}
                 underline="none"
               >
                 <Button key={i} variant="outlined">
@@ -74,10 +71,14 @@ export default function Profile() {
               )
               )}
             </Box>
-          </Card>
+          </Box>
         </Grid>
-        <Grid xs={8} md={10}>
-          <Item>xs=6 md=8</Item>
+        <Grid 
+          sx={{display: "flex", justifyContent:"center", alignItems:"top"}} 
+          // spacing={{ xs: 2, md: 3 }} 
+          xs={8} md={10}
+        >
+          <Outlet/>
         </Grid>
       </Grid>
     </Box>

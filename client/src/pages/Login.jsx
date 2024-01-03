@@ -24,7 +24,7 @@ import "../styles/Login.css"
 import {validateEmail } from "../utils/helpers";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
-import Auth from "../utils/auth";
+import Auth from "../utils/authClient";
 
 // Page Material UI Theme
 const Item = styled(Paper)(({ theme }) => ({

@@ -9,9 +9,11 @@ import { jwtDecode } from "jwt-decode";
 class AuthService {
   // get user data
   getProfile() {
-    return jwtDecode(this.getToken());
+    const token = this.getToken();
+    const decodedToken = jwtDecode(token);
+    console.log("Decoded Token:", decodedToken);
+    return decodedToken;
   }
-
   // check if user"s logged in
   loggedIn() {
     // Checks if there is a saved token and it"s still valid
@@ -33,8 +35,32 @@ class AuthService {
 
   getToken() {
     // Retrieves the user token from localStorage
-    return localStorage.getItem("id_token");
+    const token = localStorage.getItem("id_token");
+    console.log("Retrieved Token:", token);
+    return token;
   }
+
+  // refreshToken = async () => {
+  //   try {
+  //     const response = await fetch('/path/to/refresh', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ refreshToken: yourRefreshToken }),
+  //     });
+  
+  //     const data = await response.json();
+  //     if (data.token) {
+  //       localStorage.setItem('id_token', data.token);
+  //     } else {
+  //       // Handle error, redirect to login, etc.
+  //     }
+  //   } catch (error) {
+  //     console.error("Error refreshing token:", error);
+  //     // Redirect to login or handle error
+  //   }
+  // }
 
   login(idToken) {
     // Saves user token to localStorage

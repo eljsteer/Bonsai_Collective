@@ -1,13 +1,13 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Container } from '@mui/material';
 
-const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+const steps = ['Add Bonzai Details', 'Upload Image', 'Add Chapters'];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -51,13 +51,12 @@ export default function HorizontalLinearStepper() {
     });
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
+  const handleSubmit = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   return (
-    // <Box sx={{ width: '100%' }}>
-    <Container>
+    <Box sx={{width:"80%"}}>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -78,21 +77,28 @@ export default function HorizontalLinearStepper() {
         })}
       </Stepper>
       {activeStep === steps.length ? (
-        <React.Fragment>
+        <Box style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
+            Completed, Thank You for Listing your Bonzai
           </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
+              <Link                 
+                  to="/profile/myBonzai"
+                  underline="none">
+                <Button sx={{width:"minContent"}} color="success" variant="contained">
+                  View My Bonzai
+                </Button>
+              </Link>
           </Box>
-        </React.Fragment>
+        </Box>
       ) : (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          <Typography sx={{ mt: 2, mb: 1 }}> Hello {activeStep + 1}</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
-              color="inherit"
+              color="success"
+              variant="outlined"
               disabled={activeStep === 0}
               onClick={handleBack}
               sx={{ mr: 1 }}
@@ -101,18 +107,30 @@ export default function HorizontalLinearStepper() {
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
             {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+              <Button color="success" onClick={handleSkip} sx={{ mr: 1 }}>
                 Skip
               </Button>
             )}
-
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            {activeStep === steps.length - 1 ? 
+              <Button
+                color="success"
+                variant="outlined"
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+              :
+              <Button 
+                onClick={handleNext}
+                color="success"
+                variant="outlined"
+              >
+                Next
             </Button>
+            }
           </Box>
         </React.Fragment>
       )}
-    </Container>
-    // </Box>
+    </Box>
   );
 }

@@ -92,7 +92,7 @@ export default function SingleProduct() {
                     </CardMedia>
                     <Box sx={{maxWidth:"500px"}}>
                         <Typography gutterBottom variant="h5" component="div" sx={{textAlign: 'center'}}>
-                            {singleProduct.name} <br />                        
+                            {singleProduct.productName} <br />                        
                         </Typography>
                         <br/>
                         <Typography sx={{textAlign: 'center'}} variant="body1">

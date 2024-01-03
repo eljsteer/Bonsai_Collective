@@ -154,7 +154,7 @@ export default function Shop() {
             >
               <ProductCard 
                 key={i}
-                name={product.name}
+                productName={product.productName}
                 productDescription={product.productDescription}
                 price={product.price}
                 imageProduct={product.imageProduct}

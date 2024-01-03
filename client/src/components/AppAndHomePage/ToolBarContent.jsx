@@ -22,7 +22,7 @@ import { getSavedCartProducts } from "../../utils/localStorage"
 // import { useQuery } from "@apollo/client";
 // import { QUERY_ME } from "../utils/queries";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Auth from "../../utils/auth";
+import Auth from "../../utils/authClient";
 
 // import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { GiBonsaiTree } from "react-icons/gi";
@@ -65,7 +65,7 @@ const navLinks = [
   {
       id: 3,
       name: "Explore",
-      url: "/explore"
+      url: "/bonzai"
   }
 ];
 

@@ -107,7 +107,7 @@ export default function SingleBonzai() {
                 <br/>
                 {/* Conditional Rendering for whether User is logged in */}
                 <CardContent>
-                  <Link to='/explore'>
+                  <Link to='/bonzai'>
                     <Button 
                       variant="contained"
                       // onClick={handleVoteUpdate}

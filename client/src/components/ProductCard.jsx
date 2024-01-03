@@ -14,7 +14,7 @@ export default function ProductCard(props) {
 
   ProductCard.propTypes = {
     id: PropTypes.string,
-    name: PropTypes.string,
+    productName: PropTypes.string,
     productDescription: PropTypes.string,
     price: PropTypes.string,
     imageProduct: PropTypes.src,
@@ -32,7 +32,7 @@ export default function ProductCard(props) {
           />
           <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center"}}>
             <Typography gutterBottom sx={{textAlign: "center", fontFamily:"Montserrat, sans-serif", fontWeight:"600"}}>
-              {props.name}
+              {props.productName}
             </Typography>
             <Typography sx={{fontFamily:"Montserrat, sans-serif", }}>
               ${props.price}
