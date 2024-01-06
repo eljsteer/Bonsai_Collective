@@ -9,10 +9,9 @@ import { jwtDecode } from "jwt-decode";
 class AuthService {
   // get user data
   getProfile() {
-    const token = this.getToken();
-    const decodedToken = jwtDecode(token);
-    console.log("Decoded Token:", decodedToken);
-    return decodedToken;
+    const token = jwtDecode(this.getToken());
+    console.log("Adding Token to Headers", token);
+    return token;
   }
   // check if user"s logged in
   loggedIn() {
