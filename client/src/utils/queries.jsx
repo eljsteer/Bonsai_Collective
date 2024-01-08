@@ -11,6 +11,7 @@ export const QUERY_ME =gql`
       email 
       firstName
       lastName
+      bio
       userBonzai {
         _id
         userId
@@ -40,6 +41,7 @@ export const QUERY_USER = gql`
       email 
       firstName
       lastName
+      bio
       userBonzai {
         _id
         userId

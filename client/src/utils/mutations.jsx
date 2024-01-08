@@ -16,6 +16,14 @@ export const CREATE_USER = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+mutation updateUser($updateData: UserInput!) {
+  updateUser(updateData: $updateData) {
+    bio
+  }
+} 
+`;
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {

@@ -15,9 +15,18 @@ class AuthService {
   }
   // check if user"s logged in
   loggedIn() {
-    // Checks if there is a saved token and it"s still valid
     const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
+    if (!token) {
+      return false;
+    }
+  
+    const isExpired = this.isTokenExpired(token);
+    if (isExpired) {
+      this.logout(); // clears the token and redirects to home
+      return false;
+    }
+  
+    return true;
   }
 
   // check if token is expired
@@ -77,7 +86,7 @@ class AuthService {
     // Clear user token and profile data from localStorage
     localStorage.removeItem("id_token");
     console.log("Logged Out")
-    // this will reload the page and reset the state of the application
+    // this will reload the page and reassign the page to homePage
     window.location.assign("/");
   }
 }

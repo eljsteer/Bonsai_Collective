@@ -22,7 +22,7 @@ export default function UserBonzais() {
   console.log(allUserBonzai)
 
   return (
-    <Box>
+    <Box sx={{display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
       {allUserBonzai.map((bonzai, i) => (
         <Box key={i} sx={{ margin:"10px", maxwidth: 500 }} xs={12} sm={12} md={10}>
           <Link

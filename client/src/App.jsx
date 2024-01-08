@@ -19,7 +19,8 @@ import Home from "./pages/Home";
 import RequireAuth from "./utils/RequireAuth.jsx";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Profile from "./pages/Profile";
+import ProfileAccount from "./pages/ProfileAccount.jsx";
+import ProfileBonzai from "./pages/ProfileBonzai.jsx";
 import About from "./pages/About.jsx";
 import Blog from "./pages/Blog.jsx";
 import Shop from "./pages/Shop.jsx";
@@ -66,9 +67,12 @@ const router = createBrowserRouter(
       <Route path="/products" element = {<Shop/>} />
       <Route path="/products/:id" element = {<SingleProduct/>} />
       <Route path="/profile" element={<RequireAuth />}>
-        <Route index element={<Profile />} />
-        <Route path="addBonzai" element={<AddBonzai />} />
-        <Route path="myBonzai" element={<MyBonzai />} />
+        <Route index element={<ProfileAccount />} />
+        {/* Nesting MyBonzai and AddBonzai under ProfileBonzai layout */}
+        <Route element={<ProfileBonzai />}>
+          <Route path="myBonzai" element={<MyBonzai />} />
+          <Route path="addBonzai" element={<AddBonzai />} />
+        </Route>
       </Route>
       <Route path="/bonzai" element = {<Explore/>} />
       <Route path="/bonzai/:id" element = {<SingleBonzai/>} />

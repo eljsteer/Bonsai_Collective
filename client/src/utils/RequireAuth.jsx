@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import Auth from "./authClient"; // Adjust the import path as needed
+import Auth from "./authClient";
 
 const RequireAuth = () => {
   return Auth.loggedIn() ? <Outlet /> : <Navigate to="/login" replace />;

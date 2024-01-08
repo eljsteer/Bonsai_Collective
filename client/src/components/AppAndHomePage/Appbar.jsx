@@ -57,7 +57,7 @@ const loggedInItems = [
       id: 2,
       icon: <AccountBoxIcon />,
       name: "Profile",
-      url: "/profile"
+      url: "/profile/myBonzai"
   },
   {
       id: 3,
