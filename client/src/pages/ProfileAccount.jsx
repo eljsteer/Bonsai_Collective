@@ -18,10 +18,7 @@ import {
   FilledInput,
 } from "@mui/material";
 
-import { TbPlant } from "react-icons/tb";
-import { BiImageAdd } from "react-icons/bi";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import EditIcon from '@mui/icons-material/Edit';
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 
@@ -119,102 +116,100 @@ const ProfileAccount = () => {
 
 // JSX Page Returned
   return (
-  <>
+    <>
     <div className="image__CoverImg" style={{ position: "relative", height: "100svh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
     <div className="coverImageOverlay">
-      <Card sx={{ backgroundColor: "#32392D" }}>
-          <Typography variant="h3">Welcome {welcomeName}</Typography>
-          <Divider/>
-          <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
-            <CardActions>
-              <NavButton color="success" startIcon={<TbPlant />}>
-                <Link to="/profile/myBonzai" style={{textDecoration:"none"}}>
-                  My Bonzai
-                </Link>
-              </NavButton>
-              <NavButton color="success" startIcon={<BiImageAdd />}>
-                <Link to="/profile/addBonzai" style={{textDecoration:"none"}}>
-                  Add Bonzai
-                </Link>
-              </NavButton>
-            </CardActions>
-          </Box>
-          <Box
-            component="form"
-            sx={{
-              "& .MuiTextField-root": { m: 1 },
-              flexGrow: 1,
-              display: "flex",
-              flexDirection:"column",
-              justifyContent:"center",
-              alignItems:"center",
-            }}
-            noValidate
-          > 
-            { editDetail === true 
-              ? 
-              <>
-                <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-first">First Name</InputLabel>
-                  <OutlinedInput
-                    id="outlined-error-helper-text-first"
-                    sx={{ display: "flex", justifyContent:"center", backgroundColor:"white"}}
-                    type="text"
-                    name="firstName"
-                    placeholder="Please enter First Name"
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    value={userFormData.firstName}
-                    // error={firstInputError}
-                    // helpertext={firstHelperText ? firstHelperText : undefined}
-                    required
-                  />
-              </>
-              :
-              <Typography></Typography>
-            }
-            <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-last">Last Name</InputLabel>
-              <OutlinedInput
-                id="outlined-error-helper-text-last"
-                sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
-                type="text"
-                name="lastName"
-                placeholder="Please enter Last Name"
-                onChange={handleInputChange}
-                // onBlur={handleBlur}
-                value={userFormData.lastName}
-                // error={lastInputError}
-                // helpertext={lastHelperText ? lastHelperText : undefined}
-                required
-              />
-              <p></p>
-            <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-email">Email</InputLabel>
-              <OutlinedInput
-                id="outlined-error-helper-text-email"
-                sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
-                type="email"
-                name="email"
-                placeholder="Please enter your email"
-                onChange={handleInputChange}
-                onBlur={handleBlur}
-                value={userFormData.email}
-                error={emailError}
-                helpertext={emailHelperText ? emailHelperText : undefined}
-                autoComplete="email"
-                required
-              />
-              <p></p>
-          </Box>
-            <Button
-              disabled={emailError === true}
-              type="submit"
-              color="success"
-              variant="contained"
-              sx={{ justifyContent:"center"}}
-              // onSubmit={handleFormSubmit}
-              >
-              Back
-            </Button>
-      </Card>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1 },
+            flexGrow: 1,
+            display: "flex",
+            flexDirection:"column",
+            justifyContent:"center",
+            alignItems:"center",
+          }}
+          noValidate
+          // onSubmit={handleFormSubmit}
+        > 
+          <Card sx={{ backgroundColor: "#32392D", }}>
+            <Typography>Welcome {welcomeName}</Typography>
+            <CardContent sx={{ display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
+              <Typography>
+                Hello
+                <TextField
+                  hiddenLabel
+                  id="filled-hidden-label-small"
+                  value={userFormData.firstName}
+                  variant="filled"
+                  size="small"
+                />
+                <EditIcon/>
+              </Typography>
+                <OutlinedInput
+                  id="outlined-error-helper-text-first"
+                  sx={{ display: "flex", justifyContent:"center", backgroundColor:"white"}}
+                  type="text"
+                  name="firstName"
+                  placeholder="Please enter First Name"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.firstName}
+                  // error={firstInputError}
+                  // helpertext={firstHelperText ? firstHelperText : undefined}
+                  disabled
+                  required
+                />
+                <p></p>
+              <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-last">Last Name</InputLabel>
+                <OutlinedInput
+                  id="outlined-error-helper-text-last"
+                  sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
+                  type="text"
+                  name="lastName"
+                  placeholder="Please enter Last Name"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.lastName}
+                  // error={lastInputError}
+                  // helpertext={lastHelperText ? lastHelperText : undefined}
+                  required
+                />
+                <p></p>
+              <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-email">Email</InputLabel>
+                <OutlinedInput
+                  id="outlined-error-helper-text-email"
+                  sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
+                  type="email"
+                  name="email"
+                  placeholder="Please enter your email"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={userFormData.email}
+                  error={emailError}
+                  helpertext={emailHelperText ? emailHelperText : undefined}
+                  autoComplete="email"
+                  required
+                />
+                <p></p>
+            </CardContent>
+            <Box sx={{ width: "100%" }}>
+              <Box spacing={2}>
+                <Item>
+                  <Button
+                    disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.bio) || emailError === true}
+                    type="submit"
+                    variant="contained"
+                    sx={{ width: "50%" }}
+                    // onSubmit={handleFormSubmit}
+                    >
+                    Submit
+                  </Button>
+                </Item>
+              </Box>
+            </Box>
+          </Card>
+        </Box>
     </div>
     </div>
   </>
