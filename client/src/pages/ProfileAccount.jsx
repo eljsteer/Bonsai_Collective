@@ -10,6 +10,7 @@ import {
   Divider,
   IconButton,
   InputAdornment,
+  Input,
   InputBase,
   InputLabel,
   OutlinedInput,
@@ -18,6 +19,8 @@ import {
   FilledInput,
 } from "@mui/material";
 
+import { TbPlant } from "react-icons/tb";
+import { BiImageAdd } from "react-icons/bi";
 import EditIcon from '@mui/icons-material/Edit';
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
@@ -49,8 +52,6 @@ const NavButton = styled(Button)({
   backgroundColor: '#fff',
   borderColor: '#ADFABB',
   fontFamily: [
-    '-apple-system',
-    'BlinkMacSystemFont',
     'Montserrat,sans-serif',
   ].join(','),
   '&:hover': {
@@ -120,78 +121,87 @@ const ProfileAccount = () => {
     <div className="image__CoverImg" style={{ position: "relative", height: "100svh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
     <div className="coverImageOverlay">
         <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1 },
-            flexGrow: 1,
-            display: "flex",
-            flexDirection:"column",
-            justifyContent:"center",
-            alignItems:"center",
-          }}
-          noValidate
+          sx={{"& .MuiTextField-root": { m: 1 },flexGrow: 1, display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center",}}
           // onSubmit={handleFormSubmit}
-        > 
-          <Card sx={{ backgroundColor: "#32392D", }}>
-            <Typography>Welcome {welcomeName}</Typography>
+          > 
+          <Card 
+            component="form"
+            sx={{ backgroundColor: "#32392D", }}
+            noValidate
+            >
+            <Typography variant="h4" sx={{margin:"10px", color: "white", fontFamily:"Montserrat,sans-serif"}}>Welcome {welcomeName}</Typography>
+            <CardActions sx={{display:"flex", justifyContent:"center"}}>
+              <ButtonGroup variant="outlined">
+                <Button startIcon={<TbPlant />} sx={{ color:"white", margin:"3px" }}>
+                  <Link to="/profile/myBonzai" style={{ color:"white", textDecoration:"none" }}>
+                    My Bonzai
+                  </Link>
+                </Button>
+                <Button startIcon={<BiImageAdd />} sx={{ color:"white", margin:"3px" }}>
+                  <Link to="/profile/addBonzai" style={{ color:"white", textDecoration:"none"}}>
+                    Add Bonzai
+                  </Link>
+                </Button>
+              </ButtonGroup>
+            </CardActions>
             <CardContent sx={{ display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
-              <Typography>
-                Hello
-                <TextField
+              <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
+                First Name:
+                <InputBase
                   hiddenLabel
                   id="filled-hidden-label-small"
-                  value={userFormData.firstName}
+                  value={userData.firstName}
                   variant="filled"
+                  sx={{color:"white", fontFamily:"Montserrat,sans-serif", margin:"0px 10px"}}
                   size="small"
                 />
-                <EditIcon/>
+                <IconButton>
+                  <EditIcon/>
+                </IconButton>
               </Typography>
-                <OutlinedInput
-                  id="outlined-error-helper-text-first"
-                  sx={{ display: "flex", justifyContent:"center", backgroundColor:"white"}}
-                  type="text"
-                  name="firstName"
-                  placeholder="Please enter First Name"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.firstName}
-                  // error={firstInputError}
-                  // helpertext={firstHelperText ? firstHelperText : undefined}
-                  disabled
-                  required
+              <Typography sx={{display:"flex", alignItems:"center", color:"white",fontFamily:"Montserrat,sans-serif" }}>
+                Last Name:
+                <InputBase
+                  hiddenLabel
+                  id="filled-hidden-label-small"
+                  value={userData.lastName}
+                  variant="filled"
+                  sx={{color:"white", fontFamily:"Montserrat,sans-serif", margin:"0px 10px"}}
+                  size="small"
                 />
-                <p></p>
-              <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-last">Last Name</InputLabel>
-                <OutlinedInput
-                  id="outlined-error-helper-text-last"
-                  sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
-                  type="text"
-                  name="lastName"
-                  placeholder="Please enter Last Name"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.lastName}
-                  // error={lastInputError}
-                  // helpertext={lastHelperText ? lastHelperText : undefined}
-                  required
+                <IconButton>
+                  <EditIcon/>
+                </IconButton>
+              </Typography>
+              <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
+                Email:
+                <InputBase
+                  hiddenLabel
+                  id="filled-hidden-label-small"
+                  value={userData.email}
+                  variant="filled"
+                  sx={{color:"white", fontFamily:"Montserrat,sans-serif", margin:"0px 10px"}}
+                  fullWidth
+                  size="small"
                 />
-                <p></p>
-              <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text-email">Email</InputLabel>
-                <OutlinedInput
-                  id="outlined-error-helper-text-email"
-                  sx={{display: "flex", justifyContent:"center", backgroundColor:"white"}}
-                  type="email"
-                  name="email"
-                  placeholder="Please enter your email"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={userFormData.email}
-                  error={emailError}
-                  helpertext={emailHelperText ? emailHelperText : undefined}
-                  autoComplete="email"
-                  required
+                <IconButton>
+                  <EditIcon/>
+                </IconButton>
+              </Typography>
+              <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
+                Bio:
+                <InputBase
+                  hiddenLabel
+                  id="filled-hidden-label-small"
+                  value={userData.bio}
+                  variant="filled"
+                  sx={{color:"white", fontFamily:"Montserrat,sans-serif", margin:"0px 10px"}}
+                  fullWidth
                 />
-                <p></p>
+                <IconButton>
+                  <EditIcon/>
+                </IconButton>
+              </Typography>
             </CardContent>
             <Box sx={{ width: "100%" }}>
               <Box spacing={2}>
