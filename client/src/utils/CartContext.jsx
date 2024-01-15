@@ -5,6 +5,8 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
+  const [productAdded, setProductAdded] = useState(null)
+  const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
 
   useEffect(() => {
     const storedCartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
@@ -24,9 +26,20 @@ export const CartProvider = ({ children }) => {
     }
   
     setCartProducts(newCartProducts);
+    latestAddedProduct(productID)
+    setIsCartMenuOpen(true);
     localStorage.setItem('CartProducts', JSON.stringify(newCartProducts));
+    return productAdded;
   };
   
+  const latestAddedProduct = (product) => {
+    setProductAdded(product)
+  }
+
+    // Function to close the cart menu
+    const closeCartMenu = () => {
+      setIsCartMenuOpen(false);
+    };
 
     // Function to remove product from cart (if needed later)
     // const removeProductFromCart = (productId) => {
@@ -35,7 +48,7 @@ export const CartProvider = ({ children }) => {
     // };
     
   return (
-    <CartContext.Provider value={{ cartProducts, addProductToCart }}>
+    <CartContext.Provider value={{ cartProducts, addProductToCart, latestAddedProduct, productAdded, closeCartMenu, isCartMenuOpen }}>
       {children}
     </CartContext.Provider>
   );

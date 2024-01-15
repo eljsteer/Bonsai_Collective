@@ -136,7 +136,7 @@ export const QUERY_SINGLE_BONZAI = gql`
 
 export const QUERY_SINGLE_PRODUCT = gql`
   query singleProduct($productId: ID!) {
-    singleProduct(_id: $productId) {
+    singleProduct(productId: $productId) {
       _id
       productName
       productDescription

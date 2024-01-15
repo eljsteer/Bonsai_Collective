@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import { Badge } from "@mui/material";
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
@@ -12,7 +12,6 @@ import { Menu } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Tooltip } from "@mui/material";
-import { Typography } from "@mui/material";
 import { ListItemButton } from "@mui/material";
 
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
@@ -20,8 +19,9 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { CartContext } from "../../utils/CartContext";
 
 
-// import { useQuery } from "@apollo/client";
-// import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
+import { useQuery } from "@apollo/client";
+import { QUERY_SINGLE_PRODUCT } from "../../utils/queries";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import Auth from "../../utils/authClient";
 
@@ -89,46 +89,48 @@ const AccountLinks = [
 ////<<-------- Toolbar Component Function -------->>////
 ////-----------------------------------------------////
 export default function ToolBarContent () {
-  const { cartProducts } = useContext(CartContext);
+  const [anchorElUserCart, setAnchorElUserCart] = useState();
+  const [anchorElUser, setAnchorElUser] = useState();
+  const { cartProducts, isCartMenuOpen, closeCartMenu, productAdded } = useContext(CartContext);
+  
+  // const Navigate = useNavigate();
 
-  let cartProductsArray = cartProducts
+  const { data, loading, error } = useQuery(QUERY_SINGLE_PRODUCT, {
+    variables: { productId: productAdded },
+    skip: !productAdded // Skip the query if productAdded is null
+  });
 
+  let singleProductAdded = data?.singleProduct || {};
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
   //// --- Cart Code--- //// 
-  const [anchorElUserCart, setAnchorElUserCart] = React.useState(null);
 
-  const handleOpenCartItems = (event) => {
-    if(cartProductsArray.length === 0) {
-      return;
-    } else {
-      setAnchorElUserCart(event.currentTarget);
-    }
+  const handleCloseCartItems = () => {
+    closeCartMenu();
+    setAnchorElUserCart(null)
   };
 
   const handleNumCartItems = () => {
-    const numCartItems = cartProductsArray.length;
+    const numCartItems = cartProducts.length;
     return numCartItems;
-  }
-
-  const handleCloseCartItems = () => {
-    setAnchorElUserCart(null);
-  };
-
-  const handleLogout = () => {
-    Auth.logout();
   }
 
   function LoggedIn() {
      // --- Settings & Account Code--- //// 
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
     const open = Boolean(anchorElUser);
 
-    const handleOpenUserMenu = (event) => {
-      setAnchorElUser(event.currentTarget);
-    };
+  const handleLogout = () => {
+    Auth.logout();
+  }
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-    const handleCloseUserMenu = () => {
-      setAnchorElUser(null);
-    };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
     return (
       <Box>
         <Tooltip title="Account Settings">
@@ -194,27 +196,6 @@ export default function ToolBarContent () {
       <Link to="/">
         <img className="logo" src={bonzaiLogo} style={{ width: 100, height: 100 }} alt="Bonzai Collective logo" />
       </Link>
-
-      {/* <Typography
-        variant="h5"
-        component="a"
-        href="/"
-        sx={{
-          mr: 2,
-          display: { xs: "none", sm: "flex" },
-          justifyContent: "center",
-          textAlign: "center",
-          flexGrow: 1,
-          fontFamily: "monospace",
-          fontSize: "1em",
-          fontWeight: 700,
-          letterSpacing: ".3rem",
-          color: "inherit",
-          textDecoration: "none",
-        }}
-      >
-        BONZAI COLLECTIVE
-      </Typography> */}
       <Box className="NavLinks" sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" }, justifyContent: "center", }}>
         {navLinks.map((navlink) => (
           <Button
@@ -230,22 +211,26 @@ export default function ToolBarContent () {
       <Box sx={{ display: "flex", flexDirection:"row", justifyContent:"space-between", alignItems: "center"}}>
         { (Auth.loggedIn() 
           ? 
-          <LoggedIn/>
+          <LoggedIn setAnchorElUser={setAnchorElUser}/>
           : 
           <NotLoggedIn/>)
         }
         <Tooltip title="View Cart">
-          { cartProductsArray.length === 0 
+          { cartProducts.length === 0 
             ?
-            <IconButton aria-label="cart" onClick={handleOpenCartItems} sx={{ p: "20px" }}>
-                <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
-            </IconButton>
+            <Link to="/cart">
+              <IconButton aria-label="cart" sx={{ p: "20px" }}>
+                  <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
+              </IconButton>
+            </Link>
             :
-            <IconButton aria-label="cart" onClick={handleOpenCartItems} sx={{ p: "20px" }}>
-              <StyledBadge badgeContent={handleNumCartItems} color="secondary">
-                <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
-              </StyledBadge>
-            </IconButton>
+            <Link to="cart">
+              <IconButton aria-label="cart" sx={{ p: "20px" }}>
+                <StyledBadge badgeContent={handleNumCartItems()} color="secondary">
+                  <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
+                </StyledBadge>
+              </IconButton>
+            </Link>
           }
         </Tooltip>
         <Menu
@@ -255,17 +240,10 @@ export default function ToolBarContent () {
           anchorEl={anchorElUserCart}
           anchorOrigin={{ horizontal: "right", vertical: "top"  }}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
-          open={Boolean(anchorElUserCart)}
+          open={isCartMenuOpen}
           onClose={handleCloseCartItems}
-        >
-          {cartProductsArray.map((cart, i) => (
-            <MenuItem key={i} onClick={handleCloseCartItems}>
-              <Typography textAlign="center">{cart.ProductID}</Typography>
-              
-              <Typography>{cart.Quantity}</Typography>
-            </MenuItem>
-          ))}
-        <Divider/>
+        > 
+          <Typography>{singleProductAdded.productName}</Typography>
           <MenuItem sx={{display:"flex", justifyContent:"center"}}>
             <Link 
               to="/cart"
