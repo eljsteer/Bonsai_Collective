@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Box from "@mui/material/Box";
 
+import { useQuery } from "@apollo/client";
+import { QUERY_PRODUCTS } from "../utils/queries";
+
+import { CartContext } from "../utils/CartContext";
+import ProductCard from "../components/ProductCard";
+
+import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import Grid from "@mui/material/Unstable_Grid2";
+import { Button } from '@mui/material';
+import { CardActions } from '@mui/material';
 import { Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import InputBase from '@mui/material/InputBase';
-
-import ProductCard from "../components/ProductCard";
-
-import { useQuery } from "@apollo/client";
-import { QUERY_PRODUCTS } from "../utils/queries";
+import { FaCartArrowDown } from 'react-icons/fa';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -56,8 +60,6 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 //   color: theme.palette.text.secondary,
 // }));
 
-
-
 export default function Shop() {
   const {error, loading, data} = useQuery(QUERY_PRODUCTS, {
     refetchQueries: [
@@ -65,11 +67,23 @@ export default function Shop() {
     ]
   });
 
+  const allProducts = data?.allProducts || [];
+
+//// ---- Shop Categories ----- /////
   const [category, setCategory] = React.useState('');
   const [sortBy, setSortBy] = React.useState('');
-  const allProducts = data?.allProducts || [];
   const categoriesArray = [];
   const sortByArray = ["Alphabetically, A-Z", "Alphabetically, Z-A", "Price, low-high", "Price, high-low" ];
+
+  
+
+  const { cartProducts, addProductToCart } = useContext(CartContext);
+
+  console.log(cartProducts)
+
+  const handleAddProductToCart = (productID) =>  {
+    addProductToCart(productID);
+  }
 
   allProducts.forEach((product) => {
     if(categoriesArray.includes(product.category)) {
@@ -88,7 +102,7 @@ export default function Shop() {
   }
 
 
-    const handleCateogryChange = (event) => {
+    const handleCategoryChange = (event) => {
       setCategory(event.target.value);
     };
     
@@ -107,7 +121,7 @@ export default function Shop() {
         <NativeSelect
           id="categorySelect"
           value={category}
-          onChange={handleCateogryChange}
+          onChange={handleCategoryChange}
           input={<BootstrapInput />}
           label="All Products"
           sx={{border:"none"}}
@@ -147,19 +161,33 @@ export default function Shop() {
           columns={{ xs: 4, sm: 8, md: 12 }}
           >
           {allProducts.map((product, i) => (
-            <Link
-              key={i}
-              to={`/products/${product._id}`}
-              underline="none"
-            >
-              <ProductCard 
-                key={i}
-                productName={product.productName}
-                productDescription={product.productDescription}
-                price={product.price}
-                imageProduct={product.imageProduct}
-              />
-            </Link>
+            <Box key={i}>
+              <Link
+                to={`/products/${product._id}`}
+                underline="none"
+              >
+                <ProductCard 
+                  key={i}
+                  productName={product.productName}
+                  productDescription={product.productDescription}
+                  price={product.price}
+                  imageProduct={product.imageProduct}
+                />
+              </Link>
+              <CardActions key={i} sx={{display:"flex", justifyContent:"center"}}>
+                <Button 
+                  key={i}
+                  size="medium"
+                  color="success" 
+                  variant="outlined"
+                  onClick={() => handleAddProductToCart(product._id)}
+                >
+                  
+                  <FaCartArrowDown style={{fontSize:"20px", marginRight:"5px"}} color="green"/>
+                  Add to Cart
+                </Button>
+              </CardActions>
+            </Box>
             ))
           }
         </Grid>

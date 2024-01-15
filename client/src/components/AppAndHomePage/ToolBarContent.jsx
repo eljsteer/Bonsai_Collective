@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Avatar } from "@mui/material";
@@ -17,10 +17,11 @@ import { ListItemButton } from "@mui/material";
 
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
-import { getSavedCartProducts } from "../../utils/localStorage"
+import { CartContext } from "../../utils/CartContext";
+
 
 // import { useQuery } from "@apollo/client";
-// import { QUERY_ME } from "../utils/queries";
+// import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Auth from "../../utils/authClient";
 
@@ -84,17 +85,13 @@ const AccountLinks = [
   },
 ];
 
-// const cartItems = ["Black Rectangle Pot", "5yr Chinese Elm", "Japanese Red Maple Seeds - 20units","Display Rocks",];
-
-
 ////-----------------------------------------------////
 ////<<-------- Toolbar Component Function -------->>////
 ////-----------------------------------------------////
-function ToolBarContent () {
+export default function ToolBarContent () {
+  const { cartProducts } = useContext(CartContext);
 
-  let cartProductsArray = []
-  // const { data} = useQuery(QUERY_ME);
-  // const userName = `${data.me.firstName} ${ data.me.lastName}`
+  let cartProductsArray = cartProducts
 
   //// --- Cart Code--- //// 
   const [anchorElUserCart, setAnchorElUserCart] = React.useState(null);
@@ -119,13 +116,6 @@ function ToolBarContent () {
   const handleLogout = () => {
     Auth.logout();
   }
-
-  function retrieveCartProducts() {
-    const cartProducts = getSavedCartProducts();
-    return cartProducts;
-  }
-
-  cartProductsArray = retrieveCartProducts();
 
   function LoggedIn() {
      // --- Settings & Account Code--- //// 
@@ -268,15 +258,24 @@ function ToolBarContent () {
           open={Boolean(anchorElUserCart)}
           onClose={handleCloseCartItems}
         >
-          {cartProductsArray.map((cart) => (
-            <MenuItem key={cart} onClick={handleCloseCartItems}>
-              <Typography textAlign="center">{cart}</Typography>
+          {cartProductsArray.map((cart, i) => (
+            <MenuItem key={i} onClick={handleCloseCartItems}>
+              <Typography textAlign="center">{cart.ProductID}</Typography>
+              
+              <Typography>{cart.Quantity}</Typography>
             </MenuItem>
           ))}
+        <Divider/>
+          <MenuItem sx={{display:"flex", justifyContent:"center"}}>
+            <Link 
+              to="/cart"
+              style={{ textDecoration:"none", color:"black", fontFamily:"Montserrat,sans-serif", fontSize:"1.2rem"}}
+            >
+              View Cart
+            </Link>
+          </MenuItem>
         </Menu>
       </Box>
     </>
   );
 }
-
-export default ToolBarContent;

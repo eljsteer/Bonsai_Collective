@@ -78,6 +78,16 @@ export const QUERY_PRODUCTS = gql`
   }
 `;
 
+export const QUERY_PRODUCTS_BY_IDS = gql`
+  query cartProductsByIds($ids: [ID!]) {
+    cartProductsByIds(ids: $ids) {
+      _id
+      productName
+      price
+    }
+  }
+`;
+
 export const QUERY_BONZAI = gql`
   {
     allBonzai {
@@ -126,7 +136,7 @@ export const QUERY_SINGLE_BONZAI = gql`
 
 export const QUERY_SINGLE_PRODUCT = gql`
   query singleProduct($productId: ID!) {
-    singleProduct(productId: $productId) {
+    singleProduct(_id: $productId) {
       _id
       productName
       productDescription

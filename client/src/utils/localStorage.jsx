@@ -1,4 +1,4 @@
-const cartArray = [];
+
 
 // // function to retrieve saved Bonzai 
 // export const getSavedBonzaiIds = () => {
@@ -27,8 +27,3 @@ export const getSavedCartProducts = () => {
   return savedCartProducts;
 };
 
-// function to save projects by Id
-export const addProductToCart = (selectedProduct) => {
-  cartArray.push(selectedProduct);
-  localStorage.setItem("userCartArray", JSON.stringify(cartArray));
-};

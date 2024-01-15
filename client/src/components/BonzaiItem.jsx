@@ -22,10 +22,8 @@ export default function BonzaiItem (props) {
     title: PropTypes.string,
     price: PropTypes.string,
     description: PropTypes.string,
-    imageBonzai: PropTypes.src,
+    imageBonzai: PropTypes.arrayOf(PropTypes.string),
   };
-
-  console.log(props)
 
   //// --- Featured Individual Item Component JSX --- ////
   return (
@@ -35,7 +33,7 @@ export default function BonzaiItem (props) {
             <CardMedia 
               className="cardImage"
               component="img"
-              image={props.imageBonzai}
+              image={props.imageBonzai[0]}
             />
             <div className="Image_Overlay">
               <CardContent>

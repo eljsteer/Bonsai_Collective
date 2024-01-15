@@ -29,8 +29,10 @@ import SingleBonzai from "./pages/SingleBonzai.jsx";
 import SingleProduct from "./pages/SingleProduct.jsx";
 import AddBonzai from "./components/AddBonzai.jsx";
 import MyBonzai from "./components/MyBonzai.jsx";
+import Cart from "./pages/Cart.jsx"
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
+import { CartProvider } from "./utils/CartContext.jsx";
 
 // create HTTP link for graphQL
 const httpLink = createHttpLink({
@@ -58,36 +60,41 @@ const client = new ApolloClient({
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />} errorElement= {<ErrorPage/>} >
-      <Route index element={<Home />} />
+    <Route path="/" element = {<RootLayout />} errorElement= {<ErrorPage/>} >
+      <Route index element = {<Home />} />
       <Route path="/login" element = {<Login/>} />
       <Route path="/signup" element = {<Signup/>} />
       <Route path="/about" element = {<About/>} />
       <Route path="/blog" element = {<Blog/>} />
       <Route path="/products" element = {<Shop/>} />
       <Route path="/products/:id" element = {<SingleProduct/>} />
-      <Route path="/profile" element={<RequireAuth />}>
-        <Route index element={<ProfileAccount />} />
+      <Route path="/profile" element = {<RequireAuth />}>
+        <Route index element = {<ProfileAccount />} />
         {/* Nesting MyBonzai and AddBonzai under ProfileBonzai layout */}
-        <Route element={<ProfileBonzai />}>
-          <Route path="myBonzai" element={<MyBonzai />} />
-          <Route path="addBonzai" element={<AddBonzai />} />
+        <Route element = {<ProfileBonzai />}>
+          <Route path="myBonzai" element = {<MyBonzai />} />
+          <Route path="addBonzai" element = {<AddBonzai />} />
         </Route>
       </Route>
       <Route path="/bonzai" element = {<Explore/>} />
       <Route path="/bonzai/:id" element = {<SingleBonzai/>} />
+      <Route path="/cart" element = {<Cart/>} />
     </Route>
   )
 )
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <RouterProvider router={router}/>
-      </ThemeProvider>
-    </ApolloProvider>
+
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <CartProvider>
+            <RouterProvider router={router}/>
+          </CartProvider>
+        </ThemeProvider>
+      </ApolloProvider>
+
   )
 }
 
