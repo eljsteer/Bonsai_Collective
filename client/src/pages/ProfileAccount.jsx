@@ -1,35 +1,36 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Box,
   Button,
-  ButtonGroup,
+  // ButtonGroup,
   Card,
   CardContent,
   CardActions,
-  Divider,
+  // Divider,
   IconButton,
-  InputAdornment,
+  // InputAdornment,
   Input,
-  InputBase,
-  InputLabel,
-  OutlinedInput,
-  TextField,
+  // InputBase,
+  // InputLabel,
+  // OutlinedInput,
+  // TextField,
   Typography,
-  FilledInput,
+  // FilledInput,
 } from "@mui/material";
 
 import { TbPlant } from "react-icons/tb";
 import { BiImageAdd } from "react-icons/bi";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 
-import {validateEmail } from "../utils/helpers";
-import { useMutation } from "@apollo/client";
+
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
-import Auth from "../utils/authClient";
+// import {validateEmail } from "../utils/helpers";
+// import { useMutation } from "@apollo/client";
+// import Auth from "../utils/authClient";
 
 // >>------------------>>
 // Signup Page Code
@@ -45,58 +46,58 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const NavButton = styled(Button)({
-  textTransform: 'none',
+  textTransform: "none",
   fontSize: 16,
-  padding: '6px 12px',
-  border: '1px solid',
-  backgroundColor: '#fff',
-  borderColor: '#ADFABB',
+  padding: "6px 12px",
+  border: "1px solid",
+  backgroundColor: "#515b3a",
+  borderColor: "#282D24",
   fontFamily: [
-    'Montserrat,sans-serif',
-  ].join(','),
-  '&:hover': {
-    backgroundColor: '#0069d9',
-    borderColor: '#0062cc',
-    boxShadow: 'none',
+    "Montserrat,sans-serif",
+  ].join(","),
+  "&:hover": {
+    backgroundColor: "#282D24",
+    borderColor: "#515b3a",
+    boxShadow: "none",
   },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#0062cc',
-    borderColor: '#005cbf',
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#282D24",
+    borderColor: "#005cbf",
   },
-  '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+  "&:focus": {
+    boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
   },
 });
 
 const ProfileAccount = () => {
-  const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "", showPassword: false});
-  const [emailError, setEmailError] = useState(false);
-  const [emailHelperText, setEmailHelperText] = useState(false);
-  const [editDetail, setEditDetail] = useState(false);
+  // const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "", showPassword: false});
+  // const [emailError, setEmailError] = useState(false);
+  // const [emailHelperText, setEmailHelperText] = useState(false);
+  // const [editDetail, setEditDetail] = useState(false);
 
-  const handleBlur = (event) => {
-    const { name, value } = event.target;
-  const isValid = validateEmail(event.target.value);
+  // const handleBlur = (event) => {
+  //   const { name, value } = event.target;
+  //   const isValid = validateEmail(event.target.value);
 
-  if (name === "email") {
-    if(!isValid) {
-      setEmailError(true);
-      setEmailHelperText("A valid Email is required");
-    } else if (isValid) {
-      setEmailError(false);
-      setEmailHelperText(false);
-    }
-  } 
-  }
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
+  //   if (name === "email") {
+  //     if(!isValid) {
+  //       setEmailError(true);
+  //       setEmailHelperText("A valid Email is required");
+  //     } else if (isValid) {
+  //       setEmailError(false);
+  //       setEmailHelperText(false);
+  //     }
+  //   } 
+  // }
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setUserFormData({ ...userFormData, [name]: value });
+  // };
 
-  const handleEditDetail = (event) => {
-    setEditDetail(true)
-  };
+  // const handleEditDetail = (event) => {
+  //   setEditDetail(true)
+  // };
 
   const {loading, data, error} = useQuery(QUERY_ME);
 
@@ -129,25 +130,23 @@ const ProfileAccount = () => {
             sx={{ backgroundColor: "#32392D", }}
             noValidate
             >
-            <Typography variant="h4" sx={{margin:"10px", color: "white", fontFamily:"Montserrat,sans-serif"}}>Welcome {welcomeName}</Typography>
+            <Typography variant="h4" sx={{margin:"20px", color: "white", fontFamily:"Montserrat,sans-serif", fontWeight:"600", textAlign:"center", textTransform:"uppercase"}}>WELCOME {welcomeName}</Typography>
             <CardActions sx={{display:"flex", justifyContent:"center"}}>
-              <ButtonGroup variant="outlined">
-                <Button startIcon={<TbPlant />} sx={{ color:"white", margin:"3px" }}>
+                <NavButton variant="outlined" startIcon={<TbPlant />} sx={{ color:"white", margin:"3px" }}>
                   <Link to="/profile/myBonzai" style={{ color:"white", textDecoration:"none" }}>
                     My Bonzai
                   </Link>
-                </Button>
-                <Button startIcon={<BiImageAdd />} sx={{ color:"white", margin:"3px" }}>
+                </NavButton>
+                <NavButton startIcon={<BiImageAdd />} sx={{ color:"white", margin:"3px" }}>
                   <Link to="/profile/addBonzai" style={{ color:"white", textDecoration:"none"}}>
                     Add Bonzai
                   </Link>
-                </Button>
-              </ButtonGroup>
+                </NavButton>
             </CardActions>
             <CardContent sx={{ display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
               <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
                 First Name:
-                <InputBase
+                <Input
                   hiddenLabel
                   id="filled-hidden-label-small"
                   value={userData.firstName}
@@ -161,7 +160,7 @@ const ProfileAccount = () => {
               </Typography>
               <Typography sx={{display:"flex", alignItems:"center", color:"white",fontFamily:"Montserrat,sans-serif" }}>
                 Last Name:
-                <InputBase
+                <Input
                   hiddenLabel
                   id="filled-hidden-label-small"
                   value={userData.lastName}
@@ -175,7 +174,7 @@ const ProfileAccount = () => {
               </Typography>
               <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
                 Email:
-                <InputBase
+                <Input
                   hiddenLabel
                   id="filled-hidden-label-small"
                   value={userData.email}
@@ -190,7 +189,7 @@ const ProfileAccount = () => {
               </Typography>
               <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
                 Bio:
-                <InputBase
+                <Input
                   hiddenLabel
                   id="filled-hidden-label-small"
                   value={userData.bio}
@@ -207,10 +206,10 @@ const ProfileAccount = () => {
               <Box spacing={2}>
                 <Item>
                   <Button
-                    disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.bio) || emailError === true}
+                    // disabled={!(emailError === true)}
                     type="submit"
                     variant="contained"
-                    sx={{ width: "50%" }}
+                    sx={{ width: "50%", backgroundColor:"#515b3a", fontFamily:"Montserrat, sans-serif" }}
                     // onSubmit={handleFormSubmit}
                     >
                     Submit
