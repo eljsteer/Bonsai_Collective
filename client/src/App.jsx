@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom"
 
-import theme from "./Theme"
+import theme from "./utils/Theme.jsx"
 
 // import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -32,7 +32,7 @@ import MyBonzai from "./components/MyBonzai.jsx";
 import Cart from "./pages/Cart.jsx"
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
-import { CartProvider } from "./utils/CartContext.jsx";
+import { CartContextProvider } from "./utils/CartContext.jsx";
 
 // create HTTP link for graphQL
 const httpLink = createHttpLink({
@@ -85,13 +85,12 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <CartProvider>
+          <CartContextProvider>
             <RouterProvider router={router}/>
-          </CartProvider>
+          </CartContextProvider>
         </ThemeProvider>
       </ApolloProvider>
 

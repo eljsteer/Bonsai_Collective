@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export const CartContextProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
   const [productAdded, setProductAdded] = useState(null)
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
@@ -54,6 +54,6 @@ export const CartProvider = ({ children }) => {
   );
 };
     
-  CartProvider.propTypes = {
+  CartContextProvider.propTypes = {
     children: PropTypes.node.isRequired,
   };
