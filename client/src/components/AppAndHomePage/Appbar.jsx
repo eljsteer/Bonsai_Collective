@@ -137,7 +137,7 @@ function ResponsiveAppBar() {
   return (
     <Container id="back-to-top-anchor" sx={{ display: "flex", position: "absolute"}}>
       <HideOnScroll>
-        <AppBar sx={{backgroundColor: "#515b3a"}} component="nav">
+        <AppBar sx={{backgroundColor: "#C3BCA9"}} component="nav">
           <Toolbar sx={{ justifyContent: "space-between"}}>
             <IconButton 
               color="inherit"
