@@ -202,7 +202,7 @@ export default function ToolBarContent () {
             className="navLinksBttn"
             href={navlink.url}
             key={navlink.id}
-            sx={{ mx: { sm: 0, md: 2, lg: 6}, fontFamily:"Montserrat, sans-serif",fontSize:{sm: "1.1rem", md: "1.4rem", lg: "1.7rem"}, fontWeight: "400", color: "black", borderRadius: "0"}}
+            sx={{ mx: { sm: 0, md: 2, lg: 6}, fontFamily:"Montserrat, sans-serif", fontSize:{sm: "1.1rem", md: "1.4rem", lg: "1.7rem"}, fontWeight: "500", color: "black", borderRadius: "0"}}
           >
             {navlink.name}
           </Button>
@@ -224,7 +224,7 @@ export default function ToolBarContent () {
               </IconButton>
             </Link>
             :
-            <Link to="cart">
+            <Link to="/cart">
               <IconButton aria-label="cart" sx={{ p: "20px" }}>
                 <StyledBadge badgeContent={handleNumCartItems()} color="secondary">
                   <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />

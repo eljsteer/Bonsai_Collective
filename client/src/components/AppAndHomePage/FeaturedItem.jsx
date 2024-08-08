@@ -16,7 +16,7 @@ const shopImageURL = "https://source.unsplash.com/random/1000x1400/?nature,plant
 
 //// --- Featured Item Component--- ////
 // To be inserted into Featured Swiper container component.
-function FeaturedItem ({item}) {
+function FeaturedItem ({ item }) {
 
   FeaturedItem.propTypes = {
     item: PropTypes.object,

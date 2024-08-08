@@ -51,8 +51,8 @@ function Header() {
   );
 
   return (
-    <div>
-      <AppBar className="staticAppBar" sx={{backgroundColor: "#C3BCA9"}} component="nav" position="static">
+    <div id="cover">
+      <AppBar id="staticAppBar" component="nav" position="static">
         <Toolbar sx={{ justifyContent: "space-between"}}>
           <IconButton
             color="inherit"
@@ -61,7 +61,7 @@ function Header() {
             className="mobileOpen"
             open={mobileOpen}
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: "none" }, color: "black" }}
           >
             <MenuIcon />
           </IconButton>

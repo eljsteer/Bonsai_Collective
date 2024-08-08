@@ -1,3 +1,11 @@
+#cover {
+  z-index: 100;
+}
+
+#staticAppBar {
+  background-color: #ffffff83;
+}
+
 .navLinksBttn:hover::before {
   border-bottom: 2px solid black;
   transform: scaleX(1);
