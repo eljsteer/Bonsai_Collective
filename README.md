@@ -1,2 +1,2 @@
-# Bonzai_Collective
-Ecommerce Site that has all your bonsai growing needs! Connect and share your Bonzai Journey with other uses.
+# Bonsai_Collective
+Ecommerce Site that has all your Bonsai growing needs! Connect and share your Bonsai Journey with other uses.
