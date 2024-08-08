@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import GrowerBio from '../components/GrowerBio';
 
-export default function ProfileBonzai() {
+export default function ProfileBonsai() {
 
 
   return (
@@ -13,7 +13,7 @@ export default function ProfileBonzai() {
           <GrowerBio/>
         </Grid>
         <Grid 
-          id="ProfileBonzaiWindow"
+          id="ProfileBonsaiWindow"
           sx={{display: "flex", justifyContent:"center"}} 
           xs={8} md={10}
         >

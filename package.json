@@ -1,7 +1,7 @@
 {
-  "name": "bonzai_collective",
+  "name": "bonsai_collective",
   "version": "1.0.0",
-  "description": "Ecommerce Site that has all your bonsai growing needs! Connect and share your Bonzai Journey with other uses.",
+  "description": "Ecommerce Site that has all your bonsai growing needs! Connect and share your Bonsai Journey with other uses.",
   "main": "index.js",
   "scripts": {
     "test": "cd client && npm start",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eljsteer/Bonzai_Collective.git"
+    "url": "git+https://github.com/eljsteer/Bonsai_Collective.git"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -21,7 +21,7 @@
     "concurrently": "^5.3.0"
   },
   "bugs": {
-    "url": "https://github.com/eljsteer/Bonzai_Collective/issues"
+    "url": "https://github.com/eljsteer/Bonsai_Collective/issues"
   },
-  "homepage": "https://github.com/eljsteer/Bonzai_Collective#readme"
+  "homepage": "https://github.com/eljsteer/Bonsai_Collective#readme"
 }

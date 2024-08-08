@@ -20,15 +20,15 @@ import RequireAuth from "./utils/RequireAuth.jsx";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ProfileAccount from "./pages/ProfileAccount.jsx";
-import ProfileBonzai from "./pages/ProfileBonzai.jsx";
+import ProfileBonsai from "./pages/ProfileBonsai.jsx";
 import About from "./pages/About.jsx";
 import Blog from "./pages/Blog.jsx";
 import Shop from "./pages/Shop.jsx";
 import Explore from "./pages/Explore";
-import SingleBonzai from "./pages/SingleBonzai.jsx";
+import SingleBonsai from "./pages/SingleBonsai.jsx";
 import SingleProduct from "./pages/SingleProduct.jsx";
-import AddBonzai from "./components/AddBonzai.jsx";
-import MyBonzai from "./components/MyBonzai.jsx";
+import AddBonsai from "./components/AddBonsai.jsx";
+import MyBonsai from "./components/MyBonsai.jsx";
 import Cart from "./pages/Cart.jsx"
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
@@ -70,14 +70,14 @@ const router = createBrowserRouter(
       <Route path="/products/:id" element = {<SingleProduct/>} />
       <Route path="/profile" element = {<RequireAuth />}>
         <Route index element = {<ProfileAccount />} />
-        {/* Nesting MyBonzai and AddBonzai under ProfileBonzai layout */}
-        <Route element = {<ProfileBonzai />}>
-          <Route path="myBonzai" element = {<MyBonzai />} />
-          <Route path="addBonzai" element = {<AddBonzai />} />
+        {/* Nesting MyBonsai and AddBonsai under ProfileBonsai layout */}
+        <Route element = {<ProfileBonsai />}>
+          <Route path="myBonsai" element = {<MyBonsai />} />
+          <Route path="addBonsai" element = {<AddBonsai />} />
         </Route>
       </Route>
-      <Route path="/bonzai" element = {<Explore/>} />
-      <Route path="/bonzai/:id" element = {<SingleBonzai/>} />
+      <Route path="/bonsai" element = {<Explore/>} />
+      <Route path="/bonsai/:id" element = {<SingleBonsai/>} />
       <Route path="/cart" element = {<Cart/>} />
     </Route>
   )

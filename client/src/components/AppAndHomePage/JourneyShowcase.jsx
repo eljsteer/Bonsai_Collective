@@ -9,7 +9,7 @@ import "./styles/JourneysHome.css"
 
 const JourneyImageURL = "https://source.unsplash.com/random/500x500/?nature,plants,trees";
 
-// Item Styling for Bonzai Journey Showcase
+// Item Styling for Bonsai Journey Showcase
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -24,15 +24,15 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function JourneyShowcase() {
 
-// Function to return Chapters array from Bonzai Journey Data Json File.
-  const numRandomBonzaiChapters = () => {
-    const numBonzaiDB = JourneysData.length
-    const randomInt = Math.floor(Math.random() * numBonzaiDB);
+// Function to return Chapters array from Bonsai Journey Data Json File.
+  const numRandomBonsaiChapters = () => {
+    const numBonsaiDB = JourneysData.length
+    const randomInt = Math.floor(Math.random() * numBonsaiDB);
     const chapters = JourneysData[randomInt].chapers;
     return chapters;
   }
 
-  let numChapters  = numRandomBonzaiChapters();
+  let numChapters  = numRandomBonsaiChapters();
 
 //// --- Leftside section JSX function --- //// 
 // Function displays an image and description with left hand styling.

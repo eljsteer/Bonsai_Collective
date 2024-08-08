@@ -27,8 +27,8 @@ export default function Footer() {
           </div>
           <div className="res__footer-links_div">
             <h4>Explore</h4>
-            <Link className="res__footer-links_Link" href="/bonzais">
-              <Button>Bonzais</Button>
+            <Link className="res__footer-links_Link" href="/bonsais">
+              <Button>Bonsais</Button>
             </Link>
             <Link className="res__footer-links_Link" href="/growers">
               <Button>Growers</Button>

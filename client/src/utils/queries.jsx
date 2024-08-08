@@ -12,7 +12,7 @@ export const QUERY_ME =gql`
       firstName
       lastName
       bio
-      userBonzai {
+      userBonsai {
         _id
         userId
         title
@@ -21,7 +21,7 @@ export const QUERY_ME =gql`
         scientificName
         description
         price
-        imageBonzai
+        imageBonsai
         chapters {
           _id
           chapterIMG
@@ -42,7 +42,7 @@ export const QUERY_USER = gql`
       firstName
       lastName
       bio
-      userBonzai {
+      userBonsai {
         _id
         userId
         title
@@ -51,7 +51,7 @@ export const QUERY_USER = gql`
         scientificName
         description
         price
-        imageBonzai
+        imageBonsai
         chapters {
           _id
           chapterIMG
@@ -88,9 +88,9 @@ export const QUERY_PRODUCTS_BY_IDS = gql`
   }
 `;
 
-export const QUERY_BONZAI = gql`
+export const QUERY_BONSAI = gql`
   {
-    allBonzai {
+    allBonsai {
       _id
       userId
       title
@@ -99,7 +99,7 @@ export const QUERY_BONZAI = gql`
       scientificName
       description
       price
-      imageBonzai
+      imageBonsai
       chapters {
         _id
         chapterIMG
@@ -111,9 +111,9 @@ export const QUERY_BONZAI = gql`
   }
 `;
 
-export const QUERY_SINGLE_BONZAI = gql`
-  query singleBonzai($bonzaiId: ID!) {
-    singleBonzai(bonzaiId: $bonzaiId) {
+export const QUERY_SINGLE_BONSAI = gql`
+  query singleBonsai($bonsaiId: ID!) {
+    singleBonsai(bonsaiId: $bonsaiId) {
       _id
       userId
       title
@@ -122,7 +122,7 @@ export const QUERY_SINGLE_BONZAI = gql`
       scientificName
       description
       price
-      imageBonzai
+      imageBonsai
       chapters {
         _id
         chapterIMG

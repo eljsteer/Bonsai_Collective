@@ -133,13 +133,13 @@ const ProfileAccount = () => {
             <Typography variant="h4" sx={{margin:"20px", color: "white", fontFamily:"Montserrat,sans-serif", fontWeight:"600", textAlign:"center", textTransform:"uppercase"}}>WELCOME {welcomeName}</Typography>
             <CardActions sx={{display:"flex", justifyContent:"center"}}>
                 <NavButton variant="outlined" startIcon={<TbPlant />} sx={{ color:"white", margin:"3px" }}>
-                  <Link to="/profile/myBonzai" style={{ color:"white", textDecoration:"none" }}>
-                    My Bonzai
+                  <Link to="/profile/myBonsai" style={{ color:"white", textDecoration:"none" }}>
+                    My Bonsai
                   </Link>
                 </NavButton>
                 <NavButton startIcon={<BiImageAdd />} sx={{ color:"white", margin:"3px" }}>
-                  <Link to="/profile/addBonzai" style={{ color:"white", textDecoration:"none"}}>
-                    Add Bonzai
+                  <Link to="/profile/addBonsai" style={{ color:"white", textDecoration:"none"}}>
+                    Add Bonsai
                   </Link>
                 </NavButton>
             </CardActions>

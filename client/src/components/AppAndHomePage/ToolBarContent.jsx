@@ -31,7 +31,7 @@ import { GiBonsaiTree } from "react-icons/gi";
 import "./styles/Header.css"
 
 ////// <<---Images--->>//////
-import bonzaiLogo from "../../assets/headerLogo/BonzaiLogo2_Title.png";
+import bonsaiLogo from "../../assets/headerLogo/BonsaiLogo2_Title.png";
 
 //// <<----Custom Theme Example---->> //////
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -66,7 +66,7 @@ const navLinks = [
   {
       id: 3,
       name: "Explore",
-      url: "/bonzai"
+      url: "/bonsai"
   }
 ];
 
@@ -194,7 +194,7 @@ export default function ToolBarContent () {
   return (
     <>
       <Link to="/">
-        <img className="logo" src={bonzaiLogo} style={{ width: 100, height: 100 }} alt="Bonzai Collective logo" />
+        <img className="logo" src={bonsaiLogo} style={{ width: 100, height: 100 }} alt="Bonsai Collective logo" />
       </Link>
       <Box className="NavLinks" sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" }, justifyContent: "center", }}>
         {navLinks.map((navlink) => (

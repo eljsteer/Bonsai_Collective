@@ -1,20 +1,20 @@
 
 
-// // function to retrieve saved Bonzai 
-// export const getSavedBonzaiIds = () => {
-//   const savedBonzaiIds = localStorage.getItem("saved_bonzai")
-//   ? JSON.parse(localStorage.getItem("saved_bonzai"))
+// // function to retrieve saved Bonsai 
+// export const getSavedBonsaiIds = () => {
+//   const savedBonsaiIds = localStorage.getItem("saved_bonsai")
+//   ? JSON.parse(localStorage.getItem("saved_bonsai"))
 //   : [];
 
-//   return savedBonzaiIds;
+//   return savedBonsaiIds;
 // };
 
 // // function to save projects by Id
-// export const saveBonzaiIds = (bonzaiIdArr) => {
-//   if (bonzaiIdArr.length) {
-//   localStorage.setItem("saved_bonzai", JSON.stringify(bonzaiIdArr));
+// export const saveBonsaiIds = (bonsaiIdArr) => {
+//   if (bonsaiIdArr.length) {
+//   localStorage.setItem("saved_bonsai", JSON.stringify(bonsaiIdArr));
 //   } else {
-//       localStorage.removeItem("saved_bonzai");
+//       localStorage.removeItem("saved_bonsai");
 //   }
 // };
 

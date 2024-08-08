@@ -7,7 +7,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const steps = ['Add Bonzai Details', 'Upload Image', 'Add Chapters'];
+const steps = ['Add Bonsai Details', 'Upload Image', 'Add Chapters'];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -79,15 +79,15 @@ export default function HorizontalLinearStepper() {
       {activeStep === steps.length ? (
         <Box style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            Completed, Thank You for Listing your Bonzai
+            Completed, Thank You for Listing your Bonsai
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
               <Link                 
-                  to="/profile/myBonzai"
+                  to="/profile/myBonsai"
                   underline="none">
                 <Button sx={{width:"minContent"}} color="success" variant="contained">
-                  View My Bonzai
+                  View My Bonsai
                 </Button>
               </Link>
           </Box>

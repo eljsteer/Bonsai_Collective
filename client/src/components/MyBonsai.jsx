@@ -1,40 +1,40 @@
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import BonzaiItem from "./BonzaiItem";
+import BonsaiItem from "./BonsaiItem";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 
-export default function UserBonzais() {
+export default function UserBonsais() {
 
   const {loading, data} = useQuery(QUERY_ME);
   
   if (loading) {
-    return <div>Fire is starting...</div>;
+    return <div>Bonsai is growing...</div>;
   }
   
-  const userData = data?.me.userBonzai || [];
-  const allUserBonzai = data?.me.userBonzai || [];
+  const userData = data?.me.userBonsai || [];
+  const allUserBonsai = data?.me.userBonsai || [];
 
   console.log(userData)
   console.log(data)
-  console.log(allUserBonzai)
+  console.log(allUserBonsai)
 
   return (
     <Box sx={{display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
-      {allUserBonzai.map((bonzai, i) => (
+      {allUserBonsai.map((bonsai, i) => (
         <Box key={i} sx={{ margin:"10px", maxwidth: 500 }} xs={12} sm={12} md={10}>
           <Link
-            to={`/bonzai/${bonzai._id}`}
+            to={`/bonsai/${bonsai._id}`}
             underline="none"
           >
-            <BonzaiItem 
+            <BonsaiItem 
               key={i}
-              title={bonzai.title}                
-              price={bonzai.price}
-              description={bonzai.description}
-              imageBonzai={bonzai.imageBonzai}
+              title={bonsai.title}                
+              price={bonsai.price}
+              description={bonsai.description}
+              imageBonsai={bonsai.imageBonsai}
         
             />
           </Link>            

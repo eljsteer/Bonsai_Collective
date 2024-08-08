@@ -35,11 +35,11 @@ export default function GrowerBio() {
   console.log(data)
 
   const userData = data?.me || [];
-  const allUserBonzai = data?.me.userBonzai || [];
+  const allUserBonsai = data?.me.userBonsai || [];
 
   console.log(userData)
   console.log(data)
-  console.log(allUserBonzai)
+  console.log(allUserBonsai)
 
   return (
     <Box sx={{display: "flex", flexDirection:"row", margin:"20px"}}>
@@ -105,13 +105,13 @@ export default function GrowerBio() {
           <CardActions>
             <ButtonGroup variant="text">
               <Button color="success" startIcon={<TbPlant />} sx={{margin:"3px"}}>
-                <Link to="/profile/myBonzai" style={{textDecoration:"none"}}>
-                  My Bonzai
+                <Link to="/profile/myBonsai" style={{textDecoration:"none"}}>
+                  My Bonsai
                 </Link>
               </Button>
               <Button color="success" startIcon={<BiImageAdd />} sx={{margin:"3px"}}>
-                <Link to="/profile/addBonzai" style={{textDecoration:"none"}}>
-                  Add Bonzai
+                <Link to="/profile/addBonsai" style={{textDecoration:"none"}}>
+                  Add Bonsai
                 </Link>
               </Button>
             </ButtonGroup>

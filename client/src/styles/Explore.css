@@ -23,7 +23,7 @@ swiper-slide img {
   }
 }
 
-.BonzaiCardContainer {
+.BonsaiCardContainer {
   display: flex;
   flex-direction: row;
   position: relative;

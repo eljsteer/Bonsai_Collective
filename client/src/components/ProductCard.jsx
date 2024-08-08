@@ -26,7 +26,7 @@ export default function ProductCard(props) {
             component="img"
             height="300px"
             image={props.imageProduct[0]}
-            alt="Bonzai Growing Products"
+            alt="Bonsai Growing Products"
           />
           <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center"}}>
             <Typography gutterBottom sx={{color:"black", textAlign: "center", fontFamily:"Montserrat, sans-serif", fontWeight:"600"}}>

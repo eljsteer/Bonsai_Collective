@@ -1,39 +1,35 @@
 
-import BonzaiItem from "../components/BonzaiItem";
+import BonsaiItem from "../components/BonsaiItem";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 
 import { useQuery } from "@apollo/client";
-import { QUERY_BONZAI } from "../utils/queries";
+import { QUERY_BONSAI } from "../utils/queries";
 
 // >>---------------------------------->>
 // Explore Page Code
 // >>---------------------------------->>
 
-// Page Material UI Theme
-// let theme = createTheme();
-// theme = responsiveFontSizes(theme);
-
 export default function Explore() {
-  const {loading, data} = useQuery(QUERY_BONZAI, {
+  const {loading, data} = useQuery(QUERY_BONSAI, {
     refetchQueries: [
-      {query: QUERY_BONZAI}
+      {query: QUERY_BONSAI}
   ]
   });
 
-  const allBonzai = data?.allBonzai || [];
+  const allBonsai = data?.allBonsai || [];
   
   if (loading) {
-    return <h2>Bonzai is Growing...</h2>;
+    return <h2>Bonsai is Growing...</h2>;
   }
 
   // JSX Page Returned
   return (
     <Box>
       <Box sx={{ display:"flex", justifyContent:"center", margin: 2 }}>
-          <Typography variant="h3" sx={{margin: 5 }}>BONZAI</Typography>
+          <Typography variant="h3" sx={{margin: 5 }}>BONSAI</Typography>
       </Box>
       <Box sx={{flexGrow: 1,  padding: 2 }}>
         <Grid 
@@ -42,18 +38,18 @@ export default function Explore() {
           spacing={{ xs: 2, md: 3 }} 
           columns={{ xs: 4, sm: 8, md: 12 }}
           >
-          {allBonzai.map((bonzai, i) => (
+          {allBonsai.map((bonsai, i) => (
             <Box key={i} sx={{ margin:"10px", maxwidth: 500 }} xs={12} sm={12} md={10}>
               <Link
-                to={`/bonzai/${bonzai._id}`}
+                to={`/bonsai/${bonsai._id}`}
                 underline="none"
               >
-                <BonzaiItem 
+                <BonsaiItem 
                   key={i}
-                  title={bonzai.title}                
-                  price={bonzai.price}
-                  description={bonzai.description}
-                  imageBonzai={bonzai.imageBonzai}
+                  title={bonsai.title}                
+                  price={bonsai.price}
+                  description={bonsai.description}
+                  imageBonsai={bonsai.imageBonsai}
             
                 />
               </Link>            

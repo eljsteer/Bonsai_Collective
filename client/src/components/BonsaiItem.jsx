@@ -11,29 +11,29 @@ import { Typography } from "@mui/material";
 import "../styles/Explore.css";
 
 //// --- Random Unsplash Image Source --- ////
-// const shopImageURL = "https://source.unsplash.com/random/?bonzai";
+// const shopImageURL = "https://source.unsplash.com/random/?bonsai";
 
 
 //// --- Featured Item Component--- ////
 // To be inserted into Featured Swiper container component.
-export default function BonzaiItem (props) {
+export default function BonsaiItem (props) {
 
-  BonzaiItem.propTypes = {
+  BonsaiItem.propTypes = {
     title: PropTypes.string,
     price: PropTypes.string,
     description: PropTypes.string,
-    imageBonzai: PropTypes.arrayOf(PropTypes.string),
+    imageBonsai: PropTypes.arrayOf(PropTypes.string),
   };
 
   //// --- Featured Individual Item Component JSX --- ////
   return (
       <Card sx={{ display: "flex", maxWidth: 400 }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardActionArea  sx={{ flex: '1 0 auto' }} className="BonzaiCardContainer">
+          <CardActionArea  sx={{ flex: '1 0 auto' }} className="BonsaiCardContainer">
             <CardMedia 
               className="cardImage"
               component="img"
-              image={props.imageBonzai[0]}
+              image={props.imageBonsai[0]}
             />
             <div className="Image_Overlay">
               <CardContent>

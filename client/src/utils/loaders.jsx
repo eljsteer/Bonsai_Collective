@@ -1,7 +1,7 @@
-import { getBonzai } from "./queries"
+import { getBonsai } from "./queries"
 
 export async function loader() {
 
-  const bonzai = await getBonzai();
-  return { bonzai };
+  const bonsai = await getBonsai();
+  return { bonsai };
 }

@@ -87,7 +87,7 @@ export default function SingleProduct() {
                       component="img"
                       height="500px"
                       image={singleProduct.imageProduct}
-                      alt="Bonzai Growing Products"
+                      alt="Bonsai Growing Products"
                     >
                     </CardMedia>
                     <Box sx={{maxWidth:"500px"}}>

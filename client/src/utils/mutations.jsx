@@ -36,17 +36,17 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const UPDATE_BONZAI = gql`
-mutation updateBonzai($updateData: BonzaiInput!) {
-  updateBonzai(updateData: $updateData) {
+export const UPDATE_BONSAI = gql`
+mutation updateBonsai($updateData: BonsaiInput!) {
+  updateBonsai(updateData: $updateData) {
     chapters
   }
 } 
 `;
 
-export const ADD_BONZAI = gql`
-  mutation addBonzai($title: String!, $dateGrown: String!, $treeFamily: String, $scientificName: String, $description: String!, $price: String, $imageBonzai: String) {
-    addBonzai(title: $title, dateGrown: $dateGrown, treeFamily: $treeFamily, scientificName: $scientificName, description: $description, price: $price, imageBonzai: $imageBonzai) {
+export const ADD_BONSAI = gql`
+  mutation addBonsai($title: String!, $dateGrown: String!, $treeFamily: String, $scientificName: String, $description: String!, $price: String, $imageBonsai: String) {
+    addBonsai(title: $title, dateGrown: $dateGrown, treeFamily: $treeFamily, scientificName: $scientificName, description: $description, price: $price, imageBonsai: $imageBonsai) {
       _id
       userId
       title
@@ -54,21 +54,21 @@ export const ADD_BONZAI = gql`
       scientificName
       description
       price
-      imageBonzai
+      imageBonsai
     }
   }
 `;
 
-export const REMOVE_BONZAI = gql`
-  mutation removeBonzai($bonzaiId: ID!) {
-    removeBonzai(bonzaiId: $bonzaiId) {
+export const REMOVE_BONSAI = gql`
+  mutation removeBonsai($bonsaiId: ID!) {
+    removeBonsai(bonsaiId: $bonsaiId) {
       _id
       title
       dateGrown
       treeFamily
       scientificName
       description
-      imageBonzai
+      imageBonsai
       price
     }
   }  

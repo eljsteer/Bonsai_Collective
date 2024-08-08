@@ -18,7 +18,7 @@ function Featured() {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/shop");
+    navigate("/products");
   }
 
   useEffect(() => {
