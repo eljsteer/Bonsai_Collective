@@ -32,9 +32,6 @@ import { QUERY_ME } from "../utils/queries";
 // import { useMutation } from "@apollo/client";
 // import Auth from "../utils/authClient";
 
-// >>------------------>>
-// Signup Page Code
-// >>------------------>>
 
 // Page Theme Material UI
 const Item = styled(Paper)(({ theme }) => ({

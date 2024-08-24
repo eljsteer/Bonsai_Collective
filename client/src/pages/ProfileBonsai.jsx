@@ -5,7 +5,6 @@ import GrowerBio from '../components/GrowerBio';
 
 export default function ProfileBonsai() {
 
-
   return (
     <Box sx={{ flexGrow: 1, display:"flex", flexDirection:"column", margin:"5px" }}>
       <Grid container spacing={1}>

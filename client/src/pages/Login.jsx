@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+// ------ MaterialUi Imports ------>>
 import { Alert, Divider } from "@mui/material";
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
@@ -13,20 +13,19 @@ import { OutlinedInput } from "@mui/material";
 import { Typography } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
-
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-
+// ------ CSS Stylesheet ------>>
 import "../styles/Login.css"
 
-import {validateEmail } from "../utils/helpers";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/authClient";
+import {validateEmail } from "../utils/helpers";
 
-// Page Material UI Theme
+//--- MaterialUi Custom element with Styling --->>
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#32392D",
   ...theme.typography.body1,
@@ -36,10 +35,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-//// >>------------------------>> ////
-////      Login Page Code
-//// >>------------------------>> ////
-
+//// ------ Login page ------>>
+//// ------------------------>>
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "", showPassword: false});
   const [showAlert, setShowAlert] = useState(false);
@@ -50,7 +47,7 @@ const Login = () => {
   const [open, setOpen] = useState(false);
   const [ loginUser ] = useMutation(LOGIN_USER);
 
-
+  // --- Function to handle user text input --->> 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -69,6 +66,7 @@ const Login = () => {
     });
   };
 
+  // --- Function to show password when user is inputting --->>
   const handleClickShowPassword = () => {
     setUserFormData({
       ...userFormData,
@@ -80,6 +78,7 @@ const Login = () => {
     event.preventDefault();
   };
 
+  // --- Function to handle when user has moved focus away from form input elements --->>
   const handleBlur = (event) => {
     const { name, value } = event.target;
     const isValid = validateEmail(event.target.value);
@@ -102,6 +101,7 @@ const Login = () => {
     } 
   }
   
+  // --- Function to handle when user clicks form submit button --->>
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     
@@ -111,7 +111,7 @@ const Login = () => {
       }
       setOpen(false);
     };
-    
+
     const action = (
         <IconButton
           size="small"
@@ -154,7 +154,6 @@ const Login = () => {
     });
   };
 
-// JSX Page Returned
   return (
     <Box id="coverImageContainer" sx={{ position:"relative", display: "flex", flexDirection:"column", }}>
       <img src="https://images.unsplash.com/photo-1686652655595-aeb97ff65577?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1925&q=80" alt="Cover image" className="image__CoverImg" />

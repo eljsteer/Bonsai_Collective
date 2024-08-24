@@ -1,13 +1,12 @@
 import { useContext } from "react";
-
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 
 import { CartContext } from "../utils/CartContext";
 
-////-----------------------------------------------////
-////<<-------- Toolbar Component Function -------->>////
-////-----------------------------------------------////
+
+//// -------- Cart component to hold products purchased by user ------>>
+//// ----------------------------------------------------------------->>
 export default function Cart () {
   const { cartProducts } = useContext(CartContext);
 

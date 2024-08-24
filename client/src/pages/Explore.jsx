@@ -1,5 +1,3 @@
-
-import BonsaiItem from "../components/BonsaiItem";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -7,25 +5,25 @@ import Typography from "@mui/material/Typography";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_BONSAI } from "../utils/queries";
+import BonsaiItem from "../components/BonsaiItem";
 
-// >>---------------------------------->>
-// Explore Page Code
-// >>---------------------------------->>
-
+//// ------ Explore page displaying bonsai's for sale ------>>
+//// ------------------------------------------------------->>
 export default function Explore() {
+  //--- MongoDB query to return all Bonsai --->>
   const {loading, data} = useQuery(QUERY_BONSAI, {
     refetchQueries: [
       {query: QUERY_BONSAI}
   ]
   });
-
+  
+  //returns all bonsai if any exist or empty array 
   const allBonsai = data?.allBonsai || [];
   
   if (loading) {
     return <h2>Bonsai is Growing...</h2>;
   }
 
-  // JSX Page Returned
   return (
     <Box>
       <Box sx={{ display:"flex", justifyContent:"center", margin: 2 }}>
@@ -44,13 +42,13 @@ export default function Explore() {
                 to={`/bonsai/${bonsai._id}`}
                 underline="none"
               >
+                {/* Bonsai component import */}
                 <BonsaiItem 
                   key={i}
                   title={bonsai.title}                
                   price={bonsai.price}
                   description={bonsai.description}
                   imageBonsai={bonsai.imageBonsai}
-            
                 />
               </Link>            
             </Box>

@@ -1,12 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useQuery } from "@apollo/client";
-import { QUERY_PRODUCTS } from "../utils/queries";
-
-import { CartContext } from "../utils/CartContext";
-import ProductCard from "../components/ProductCard";
-
 import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import Grid from "@mui/material/Unstable_Grid2";
@@ -19,6 +13,12 @@ import NativeSelect from '@mui/material/NativeSelect';
 import InputBase from '@mui/material/InputBase';
 import { FaCartArrowDown } from 'react-icons/fa';
 
+import { useQuery } from "@apollo/client";
+import { QUERY_PRODUCTS } from "../utils/queries";
+
+import { CartContext } from "../utils/CartContext";
+import ProductCard from "../components/ProductCard";
+
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
     marginTop: theme.spacing(3),
@@ -26,12 +26,10 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     borderRadius: 4,
     position: 'relative',
-    // backgroundColor: theme.palette.background.paper,
     border: '1px solid #ced4da',
     fontSize: 16,
     padding: '10px 26px 10px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -52,14 +50,6 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: "var(--ComponentGBColor)",
-//     ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-// }));
-
 export default function Shop() {
   const {error, loading, data} = useQuery(QUERY_PRODUCTS, {
     refetchQueries: [
@@ -74,8 +64,6 @@ export default function Shop() {
   const [sortBy, setSortBy] = React.useState('');
   const categoriesArray = [];
   const sortByArray = ["Alphabetically, A-Z", "Alphabetically, Z-A", "Price, low-high", "Price, high-low" ];
-
-  
 
   const { cartProducts, addProductToCart } = useContext(CartContext);
 

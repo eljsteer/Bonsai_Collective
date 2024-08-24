@@ -1,6 +1,5 @@
-// >>------------------------>>
-// GraphQl Query Functions
-// >>------------------------>>
+//// ------ GraphQl queries to backend ------>>
+//// ------------------------------------->>
 
 import { gql } from '@apollo/client';
 
