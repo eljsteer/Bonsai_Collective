@@ -24,11 +24,11 @@ import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../utils/mutations";
 import Auth from "../utils/authClient";
 
-// >>------------------>>
-// Signup Page Code
-// >>------------------>>
 
-// Page Theme Material UI
+// ------------------------------------------------------------------------------
+
+
+// --- MaterialUi Custom Theme element --->>
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#32392D",
   ...theme.typography.body1,
@@ -37,6 +37,9 @@ const Item = styled(Paper)(({ theme }) => ({
   color: "white",
 }));
 
+
+//// ------ Signup page ------>>
+//// ------------------------->>
 const Signup = () => {
   const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "", showPassword: false});
   
@@ -134,7 +137,7 @@ const Signup = () => {
     });
   };
 
-// JSX Page Returned
+  
   return (
   <>
     <div className="image__CoverImg" style={{ position: "relative", height: "100svh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>

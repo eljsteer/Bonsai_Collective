@@ -156,7 +156,7 @@ const Login = () => {
 
   return (
     <Box id="coverImageContainer" sx={{ position:"relative", display: "flex", flexDirection:"column", }}>
-      <img src="https://images.unsplash.com/photo-1686652655595-aeb97ff65577?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1925&q=80" alt="Cover image" className="image__CoverImg" />
+      <Box id="image__CoverImg" />
       <Box className="coverImageOverlay">
         <Box
           component="form"
@@ -166,12 +166,13 @@ const Login = () => {
             display:"flex",
             flexDirection:"column",
             alignItems:"center",
+            justifyContent: "center"
           }}
           noValidate
           onSubmit={handleFormSubmit}
           autoComplete="off"
         > 
-          <Card sx={{ marginTop:"100px", backgroundColor: "#32392D" }}>
+          <Card sx={{ backgroundColor: "#32392D" }}>
             <CardContent sx={{display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
               <InputLabel sx={{color:"white"}} htmlFor="outlined-error-helper-text">Email</InputLabel>
                 <OutlinedInput
