@@ -1,10 +1,9 @@
+import { Link } from "react-router-dom"
 import { Avatar } from "@mui/material"
 import { Box } from "@mui/material"
 import { Card } from "@mui/material"
 import { CardActions } from "@mui/material"
 import { CardContent } from "@mui/material"
-
-
 import { Button } from "@mui/material"
 import { ButtonGroup } from "@mui/material"
 import { IconButton } from "@mui/material"
@@ -12,15 +11,18 @@ import { SvgIcon } from "@mui/material"
 import { Typography } from "@mui/material"
 import { TbPlant } from "react-icons/tb";
 import { BiImageAdd } from "react-icons/bi";
-
-import { Link } from "react-router-dom"
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 
-const RandomUserProfImg = "https://source.unsplash.com/random/?profile"
 
+////----------------------------------------------------------------
+
+
+////--------------------------------////
+////------ Grower bio profile ------////
+////--------------------------------////
 export default function GrowerBio() {
-
+  const RandomUserProfImg = "https://source.unsplash.com/random/?profile"
   const {loading, data, error} = useQuery(QUERY_ME);
 
   if(error) {

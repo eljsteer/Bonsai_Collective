@@ -1,17 +1,24 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-const steps = ['Add Bonsai Details', 'Upload Image', 'Add Chapters'];
 
+////---------------------------------------------------------------------
+
+
+////------------------------------------------------------////
+////------ Small screen navigation drawer component ------////
+////------------------------------------------------------////
 export default function HorizontalLinearStepper() {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
+  const [activeStep, setActiveStep] = useState(0);
+  const [skipped, setSkipped] = useState(new Set());
+  
+  const steps = ["Add Bonsai Details', 'Upload Image', 'Add+ Chapters"];
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -38,8 +45,6 @@ export default function HorizontalLinearStepper() {
 
   const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
       throw new Error("You can't skip a step that isn't optional.");
     }
 
@@ -93,7 +98,7 @@ export default function HorizontalLinearStepper() {
           </Box>
         </Box>
       ) : (
-        <React.Fragment>
+        <>
           <Typography sx={{ mt: 2, mb: 1 }}> Hello {activeStep + 1}</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
@@ -129,7 +134,7 @@ export default function HorizontalLinearStepper() {
             </Button>
             }
           </Box>
-        </React.Fragment>
+        </>
       )}
     </Box>
   );

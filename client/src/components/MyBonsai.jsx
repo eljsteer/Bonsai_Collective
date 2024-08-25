@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import BonsaiItem from "./BonsaiItem";
-
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
+import BonsaiItem from "./BonsaiItem";
 
-export default function UserBonsais() {
+
+////---------------------------------------------------------------------------
+
+
+////-----------------------------------////
+////------ Logged in users Bonsai------////
+////-----------------------------------////
+export default function MyBonsai() {
 
   const {loading, data} = useQuery(QUERY_ME);
   

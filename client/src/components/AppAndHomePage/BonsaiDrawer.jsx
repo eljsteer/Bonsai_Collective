@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
-
 import { Box } from "@mui/material";
 import { Divider } from "@mui/material";
 import { Drawer } from "@mui/material";
@@ -9,61 +8,67 @@ import { ListItem } from "@mui/material";
 import { ListItemButton } from "@mui/material";
 import { ListItemText } from "@mui/material"; 
 import { Typography } from "@mui/material"; 
-
 import bonsaiLogo from "../../assets/headerLogo/BonsaiLogo3.png";
-
 import Auth from "../../utils/authClient";
 
 
-const drawerWidth = 240;
+////------------------------------------------------------------------------------
 
-//// --- Navigation Buttons and Paths --- ////
-const navItems = [
-  {
-      id: 0,
-      name: "Home",
-      url: "/"
-  },
-  {
-      id: 1,
-      name: "Discover",
-      url: "/discover"
-  }
-];
 
-const loggedInItems = [
-  ...navItems,
-  {
-      id: 2,
-      name: "Profile",
-      url: "/profile/myBonsai"
-  },
-  {
-      id: 3,
-      name: "Logout",
-      url: "/", 
-      onClick: () => Auth.logout()
-  }
-];
-
-const loggedOutItems = [
-  ...navItems,
-  {
-      id: 4,
-      name: "Login",
-      url: "/login"
-  }
-];
+////------------------------------------------------------////
+////------ Small screen navigation drawer component ------////
+////------------------------------------------------------////
 export default function BonsaiDrawer({ mobileOpen, handleDrawerToggle }) {
 
-//// --- Navigation Bar Mobile Drawer --- ////
+  //------- Width of naviagation drawer when in small screen --->>
+  const drawerWidth = 300;
+
+  //------- Naviagation data objects ------>>
+  const navItems = [
+    {
+        id: 0,
+        name: "Home",
+        url: "/"
+    },
+    {
+        id: 1,
+        name: "Discover",
+        url: "/discover"
+    }
+  ];
+  
+  const loggedInItems = [
+    ...navItems,
+    {
+        id: 2,
+        name: "Profile",
+        url: "/profile/myBonsai"
+    },
+    {
+        id: 3,
+        name: "Logout",
+        url: "/", 
+        onClick: () => Auth.logout()
+    }
+  ];
+  
+  const loggedOutItems = [
+    ...navItems,
+    {
+        id: 4,
+        name: "Login",
+        url: "/login"
+    }
+  ];
+
+
   return (
     <Drawer
       variant="temporary"
       open={mobileOpen}
       onClose={handleDrawerToggle}
       ModalProps={{
-        keepMounted: true, // Better open performance on mobile.
+        keepMounted: true,
       }}
       sx={{
         display: { xs: "block", sm: "none" },

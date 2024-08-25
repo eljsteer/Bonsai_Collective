@@ -1,15 +1,14 @@
 import PropTypes from "prop-types";
-
 import { Box } from "@mui/material";
 import { Fab } from "@mui/material";
 import { Fade } from "@mui/material";
 import { useScrollTrigger } from "@mui/material";
-
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
 import "./styles/Header.css"
 
-//// --- Scroll to Top Arrow JSX function --- //// 
+
+////------ Scroll up top component ------>>
+////------------------------------------->>
 function ScrollTop(props) {
   const { children } = props;
   const trigger = useScrollTrigger({
@@ -17,7 +16,7 @@ function ScrollTop(props) {
     threshold: 100,
   });
 
-//// --- Event handler for Scroll up Click JSX function --- //// 
+  // ------ Event handler for Scroll up Click JSX function ------>>
   const handleScrollUpClick = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector(
       "#back-to-top-anchor",
@@ -43,12 +42,11 @@ function ScrollTop(props) {
   );
 }
 
-ScrollTop.propTypes = {
-  children: PropTypes.element.isRequired,
-};
 
-//// --- Scroll to Top Arrow JSX function --- //// 
-function ScropUpTop(scrollUpProps) {
+////-------------------------------------////
+////------ Scroll up top component ------////
+////-------------------------------------////
+export default function ScropUpTop(scrollUpProps) {
   return (
     <>
       <ScrollTop {...scrollUpProps}>
@@ -60,4 +58,6 @@ function ScropUpTop(scrollUpProps) {
   ) 
 }
 
-export default ScropUpTop;
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired,
+};

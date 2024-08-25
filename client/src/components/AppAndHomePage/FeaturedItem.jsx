@@ -1,28 +1,24 @@
 import PropTypes from "prop-types";
-
 import { Button } from "@mui/material";
 import { Card } from "@mui/material";
 import { CardActions } from "@mui/material";
 import { CardActionArea } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { CardMedia } from "@mui/material";
-import { Typography } from "@mui/material";
-
+import { Typography } from "@mui/material"; 
 import "./styles/Featured.css";
 
-//// --- Random Unsplash Image Source --- ////
+
+////------------------------------------------------------------------------------
+
+
 const shopImageURL = "https://source.unsplash.com/random/1000x1400/?nature,plants,trees";
 
+////--------------------------------------////
+////------ Featured image component ------////
+////--------------------------------------////
+export default function FeaturedItem ({ item }) {
 
-//// --- Featured Item Component--- ////
-// To be inserted into Featured Swiper container component.
-function FeaturedItem ({ item }) {
-
-  FeaturedItem.propTypes = {
-    item: PropTypes.object,
-  };
-
-  //// --- Featured Individual Item Component JSX --- ////
   return (
     <swiper-slide >
     <div className="slide-content">
@@ -58,4 +54,6 @@ function FeaturedItem ({ item }) {
   )
 }
 
-export default FeaturedItem;
+FeaturedItem.propTypes = {
+  item: PropTypes.object,
+};

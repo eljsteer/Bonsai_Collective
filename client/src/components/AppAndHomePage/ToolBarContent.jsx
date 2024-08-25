@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { Avatar, Typography } from "@mui/material";
 import { Badge } from "@mui/material";
 import { Box } from "@mui/material";
@@ -13,39 +12,30 @@ import { MenuItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Tooltip } from "@mui/material";
 import { ListItemButton } from "@mui/material";
-
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-
-import { CartContext } from "../../utils/CartContext";
-
+import LogoutIcon from "@mui/icons-material/Logout";
+import { GiBonsaiTree } from "react-icons/gi";
+import "./styles/Header.css";
 
 import { useQuery } from "@apollo/client";
+import { CartContext } from "../../utils/CartContext";
 import { QUERY_SINGLE_PRODUCT } from "../../utils/queries";
-
-import LogoutIcon from "@mui/icons-material/Logout";
 import Auth from "../../utils/authClient";
 
-// import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { GiBonsaiTree } from "react-icons/gi";
-
-import "./styles/Header.css"
-
-////// <<---Images--->>//////
+//// ------ Image imports------>>
 import bonsaiLogo from "../../assets/headerLogo/BonsaiLogo2_Title.png";
 
-//// <<----Custom Theme Example---->> //////
+
+// ------------------------------------------------------------------------------
+
+
+//// ------ MaterialUi custom styled component------>>
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     border: `2px solid ${theme.palette.background.paper}`,
     padding: "0 4px",
   },
 }));
-
-// const StyledButton = styled(Button)(() => ({
-//   "& .MuiButtonBase-root-MuiButton-root": {
-//     borderRadius: "0px",
-//   },
-// }));
 
 const navLinks = [
   {
@@ -85,16 +75,15 @@ const AccountLinks = [
   },
 ];
 
-////-----------------------------------------------////
-////<<-------- Toolbar Component Function -------->>////
-////-----------------------------------------------////
+////----------------------------------------------////
+////------ Appbar toolbar content component ------////
+////----------------------------------------------////
 export default function ToolBarContent () {
   const [anchorElUserCart, setAnchorElUserCart] = useState();
   const [anchorElUser, setAnchorElUser] = useState();
   const { cartProducts, isCartMenuOpen, closeCartMenu, productAdded } = useContext(CartContext);
   
-  // const Navigate = useNavigate();
-
+  // ------ Function to query and return single products for cart ------>>
   const { data, loading, error } = useQuery(QUERY_SINGLE_PRODUCT, {
     variables: { productId: productAdded },
     skip: !productAdded // Skip the query if productAdded is null
@@ -104,7 +93,6 @@ export default function ToolBarContent () {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-  //// --- Cart Code--- //// 
 
   const handleCloseCartItems = () => {
     closeCartMenu();
@@ -116,13 +104,15 @@ export default function ToolBarContent () {
     return numCartItems;
   }
 
+  //// ------ Logged in component ------>>
+  //// --------------------------------->>
   function LoggedIn() {
-     // --- Settings & Account Code--- //// 
     const open = Boolean(anchorElUser);
 
   const handleLogout = () => {
     Auth.logout();
   }
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -179,6 +169,8 @@ export default function ToolBarContent () {
     )
   }
 
+  //// ------ Logged out component ------>>
+  //// ---------------------------------->>
   function NotLoggedIn() {
     return (
       <Link to="/login">

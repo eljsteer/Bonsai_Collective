@@ -1,13 +1,14 @@
 // import { Button}  from "@mui/material";
 // import { Link } from "react-router-dom"
-import "./styles/Footer.css"
-
 import { FaPinterest } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
+import "./styles/Footer.css"
 
-//// --- Footer Function and JSX --- ////
+////------------------------------////
+////------ Footer component ------////
+////------------------------------////
 export default function Footer() {
   return (
     <div className="footer">
@@ -62,9 +63,7 @@ export default function Footer() {
             </Link>
           </div>
         </div> */}
-
       <hr />
-
       <div className="res__footer-below">
         <div className="res__footer-copyright">
           <p>

@@ -1,22 +1,16 @@
-
 import { Box } from '@mui/material';
 import { CardActionArea, CardContent, CardMedia } from '@mui/material';
 import { Typography } from '@mui/material';
 import PropTypes from "prop-types";
-// import Select from '@mui/material/Select';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
 
 
+////-------------------------------------------------------------------
+
+
+///--------------------------------------------------------------////
+////------ Product card component - displayed on shop page ------////
+////-------------------------------------------------------------////
 export default function ProductCard(props) {
-
-  ProductCard.propTypes = {
-    id: PropTypes.string,
-    productName: PropTypes.string,
-    productDescription: PropTypes.string,
-    price: PropTypes.string,
-    imageProduct: PropTypes.arrayOf(PropTypes.string),
-  };
 
   return (
     <Box>
@@ -41,3 +35,11 @@ export default function ProductCard(props) {
     </Box>
   );
 }
+
+ProductCard.propTypes = {
+  id: PropTypes.string,
+  productName: PropTypes.string,
+  productDescription: PropTypes.string,
+  price: PropTypes.string,
+  imageProduct: PropTypes.arrayOf(PropTypes.string),
+};

@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-
 import { Box, Button } from "@mui/material";
 import { Card } from "@mui/material";
 import { CardActions } from "@mui/material";
@@ -7,25 +6,17 @@ import { CardActionArea } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { CardMedia } from "@mui/material";
 import { Typography } from "@mui/material";
-
 import "../styles/Explore.css";
 
-//// --- Random Unsplash Image Source --- ////
-// const shopImageURL = "https://source.unsplash.com/random/?bonsai";
+
+////-----------------------------------------------------------------------------
 
 
-//// --- Featured Item Component--- ////
-// To be inserted into Featured Swiper container component.
+////-------------------------////
+////------ Bonsai Item ------////
+////-------------------------////
 export default function BonsaiItem (props) {
 
-  BonsaiItem.propTypes = {
-    title: PropTypes.string,
-    price: PropTypes.string,
-    description: PropTypes.string,
-    imageBonsai: PropTypes.arrayOf(PropTypes.string),
-  };
-
-  //// --- Featured Individual Item Component JSX --- ////
   return (
       <Card sx={{ display: "flex", maxWidth: 400 }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -60,3 +51,10 @@ export default function BonsaiItem (props) {
       </Card>
   )
 }
+
+BonsaiItem.propTypes = {
+  title: PropTypes.string,
+  price: PropTypes.string,
+  description: PropTypes.string,
+  imageBonsai: PropTypes.arrayOf(PropTypes.string),
+};

@@ -1,21 +1,20 @@
 import { useState } from "react";
-
 import { AppBar } from "@mui/material";
 import { Toolbar } from "@mui/material"; 
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-
 import ResponsiveAppBar from "./Appbar";
 import ToolBarContent from "./ToolBarContent";
 import BonsaiDrawer from "./BonsaiDrawer";
 import "./styles/Header.css"
 
 
-////-------------------------------------////
-////<<-------- Header Function -------->>////
-////-------------------------------------////
+////-----------------------------------------------------------------
 
-// Contains Toolbar Component, and also Appbar Component
+
+////------------------------------////
+////------- Header Function ------////
+////------------------------------////
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 

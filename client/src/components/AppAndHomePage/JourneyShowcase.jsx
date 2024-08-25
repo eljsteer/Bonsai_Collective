@@ -9,7 +9,7 @@ import "./styles/JourneysHome.css"
 
 const JourneyImageURL = "https://source.unsplash.com/random/500x500/?nature,plants,trees";
 
-// Item Styling for Bonsai Journey Showcase
+//------ MaterialUi custom styling for Item element ------>>
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -18,13 +18,12 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-////-------------------------------------////
-////<<-------- Header Function -------->>////
-////-------------------------------------////
-
+////-----------------------------------------////
+////------ Journey home page component ------////
+////-----------------------------------------////
 export default function JourneyShowcase() {
 
-// Function to return Chapters array from Bonsai Journey Data Json File.
+// ------ Function to return chapters array from Bonsai journey data Json file ------>>
   const numRandomBonsaiChapters = () => {
     const numBonsaiDB = JourneysData.length
     const randomInt = Math.floor(Math.random() * numBonsaiDB);
@@ -34,8 +33,8 @@ export default function JourneyShowcase() {
 
   let numChapters  = numRandomBonsaiChapters();
 
-//// --- Leftside section JSX function --- //// 
-// Function displays an image and description with left hand styling.
+  // ------ Leftside section JSX component ------>>
+  // ------ Function displays an image and description with left hand styling. ------>>
   const LeftSideJourney = (props) => {
     LeftSideJourney.propTypes = {
       chapterDescr: PropTypes.string,
@@ -52,8 +51,8 @@ export default function JourneyShowcase() {
     );
   }
 
-//// --- Rightside section JSX function --- //// 
-// Function displays an image and description with Right hand styling.
+  // ------ Rightside section JSX component ------>>
+  // ------ Function displays an image and description with right hand styling. ------>>
   const RightSideJourney = (props) => {
     RightSideJourney.propTypes = {
       chapterDescr: PropTypes.string,
@@ -70,8 +69,8 @@ export default function JourneyShowcase() {
     );
   }
 
-//// --- Mobile/Smallscreen section JSX function --- //// 
-// Function displays an image and description with styling to change when in small displays. 
+  // ------ Mobile/Smallscreen section JSX function ------>>
+  // ------ Function displays an image and description with styling to change when in small displays. ------>> 
   const MobileJourney = (props) => {
     MobileJourney.propTypes = {
       chapterDescr: PropTypes.func,
@@ -88,7 +87,7 @@ export default function JourneyShowcase() {
     );
   }
 
-//// --- Conditional function to display Left, Fight or Mobile JSX--- //// 
+// ------- Conditional function to display Left, Right or Mobile JSX ------>> 
   const JourneyShowcaseItem = (chapter) => {
     JourneyShowcaseItem.propTypes = {
       chapterId: PropTypes.func,
@@ -108,7 +107,7 @@ export default function JourneyShowcase() {
     }
   }
 
-//// --- Journey Container Mapping over each Chapter to display JSX dependent on conditional function --- //// 
+
   return (
     <Box sx={{background: "#C3E1EA", display: "flex", justifyContent:"center"}}>
       <Container className="journeyContainer" sx={{ flexGrow: 1, margin:0, minWidth:"100%"}}>

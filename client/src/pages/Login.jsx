@@ -17,15 +17,18 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-// ------ CSS Stylesheet ------>>
-import "../styles/Login.css"
 
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/authClient";
 import {validateEmail } from "../utils/helpers";
+import "../styles/Login.css"
 
-//--- MaterialUi Custom element with Styling --->>
+
+////-------------------------------------------------------------------------------
+
+
+//------ MaterialUi Custom element with Styling ------>>
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#32392D",
   ...theme.typography.body1,
@@ -35,8 +38,9 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-//// ------ Login page ------>>
-//// ------------------------>>
+////------------------------////
+////------ Login page ------////
+////------------------------////
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "", showPassword: false});
   const [showAlert, setShowAlert] = useState(false);

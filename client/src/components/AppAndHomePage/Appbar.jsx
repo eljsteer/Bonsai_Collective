@@ -1,6 +1,5 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-
 import {AppBar} from "@mui/material";
 import { Box } from "@mui/material";
 import { Container } from "@mui/material";
@@ -9,16 +8,17 @@ import { Slide } from "@mui/material";
 import { Toolbar } from "@mui/material";
 import { useScrollTrigger } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-
-import "./styles/Header.css"
-
 import ToolBarContent from "./ToolBarContent";
 import BonsaiDrawer from "./BonsaiDrawer";
+import "./styles/Header.css"
 
-////-------------------------------------////
-////<<-------- AppBar Function -------->>////
-////-------------------------------------////
 
+////---------------------------------------------------------------
+
+
+////---------------------------------------////
+////---------- Appbar component  ----------////
+////---------------------------------------////
 export default function ResponsiveAppBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -26,7 +26,7 @@ export default function ResponsiveAppBar() {
     setMobileOpen((prevState) => !prevState);
   };
 
-//// --- Hide Up Arrow Function --- ////
+  //------ Hide scroll up arrow on scroll up ------>>
   function HideOnScroll(hideProps) {
     const { children } = hideProps;
     const trigger = useScrollTrigger();
@@ -42,7 +42,6 @@ export default function ResponsiveAppBar() {
     children: PropTypes.element.isRequired,
   };
 
-  //// --- Navigation Bar JSX --- ////
   return (
     <Container id="back-to-top-anchor" sx={{ display: "flex", position: "absolute"}}>
       <HideOnScroll>

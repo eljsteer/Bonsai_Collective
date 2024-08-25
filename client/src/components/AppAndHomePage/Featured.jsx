@@ -1,18 +1,16 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { register } from "swiper/element/bundle";
-
-import featuredData from "../../utils/jsonData/featuredData.json";
-import FeaturedItem from "./FeaturedItem";
-
-import "./styles/Featured.css"
-
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import featuredData from "../../utils/jsonData/featuredData.json";
+import FeaturedItem from "./FeaturedItem";
+import "./styles/Featured.css"
 
-////----------------------------------------------////
-////<<-------- Featured Swiper Function -------->>////
-////----------------------------------------------////
+
+////--------------------------------------------------------////
+////---------- Featured products swuiper function ----------////
+////--------------------------------------------------------////
 function Featured() {
   const swiperRef = useRef(null);
   const navigate = useNavigate();
@@ -22,17 +20,16 @@ function Featured() {
   }
 
   useEffect(() => {
-    // Register Swiper web component
+    //------ Register to start Swiper web component ------>>
     register();
 
-    // Add event listener
+    //------ Add event listener ------>>
     swiperRef.current.addEventListener("slidechange", (e) => {
       console.log(e.detail);
     });
 
-    // Object with parameters
+    //------ Swiper details parameters to apply on slide change ----->> 
     const swiperParams = {
-      // or pass it in on
       on: {
         slideChange(s) {
           console.log(s);
@@ -40,10 +37,9 @@ function Featured() {
       },
     };
 
-    // Assign it to swiper element
     Object.assign(swiperRef.current, swiperParams);
 
-    // Swiper element Settings and breakpoints
+    //------- Swiper element settings and breakpoints ------>>
     const swiperEl = document.querySelector("swiper-container")
     Object.assign(swiperEl, {
       spaceBetween: 40,
@@ -75,11 +71,10 @@ function Featured() {
     });
     swiperEl.initialize();
 
-    // initialize swiper
     swiperRef.current.initialize();
   }, []);
 
-  //// --- Featured Swiper JSX --- ////
+
   return (
     <Box id="featuredContainer">
       <div className="swiper-button-prev"></div>
@@ -105,7 +100,6 @@ function Featured() {
             featuredData.map( item => <FeaturedItem key={item.id} item={item} /> )
         }
       </swiper-container>
-      
       <Button id="viewMore" variant="outlined" onClick={handleNavigate}>
         View More
       </Button>
