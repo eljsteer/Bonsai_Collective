@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// ------ MaterialUi Imports ------>>
 import { Alert, Divider } from "@mui/material";
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
@@ -17,7 +16,6 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/authClient";

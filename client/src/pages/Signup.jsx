@@ -11,22 +11,16 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  Paper,
   Typography,
 } from "@mui/material";
-
+import { styled } from "@mui/material/styles";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-
 import {validateEmail } from "../utils/helpers";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../utils/mutations";
 import Auth from "../utils/authClient";
-
-
-// ------------------------------------------------------------------------------
-
 
 // --- MaterialUi Custom Theme element --->>
 const Item = styled(Paper)(({ theme }) => ({
@@ -38,28 +32,31 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-//// ------ Signup page ------>>
-//// ------------------------->>
+// ------------------------------------------------------------------------------
+
+
+////-------------------------////
+////------ Signup page ------////
+////-------------------------////
 const Signup = () => {
   const [userFormData, setUserFormData] = useState({ firstName:"", lastName:"", email: "", password: "", showPassword: false});
-  
   const [firstInputError, setFirstInputError] = useState(false);
   const [lastInputError, setLastInputError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordInputError, setPasswordInputError] = useState(false);
-
   const [firstHelperText, setFirstHelperText] = useState(false);
   const [lastHelperText, setLastHelperText] = useState(false);
   const [emailHelperText, setEmailHelperText] = useState(false);
   const [passwordHelperText, setPasswordHelperText] = useState(false);
-
   const [createUser ] = useMutation(CREATE_USER);
 
+//// ------ Functions to handle inputs to update state with data for pushing to Database ------>> 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+//// ------ Function to handle show password upon entering------>> 
   const handleClickShowPassword = () => {
     setUserFormData({
       ...userFormData,
@@ -71,6 +68,7 @@ const Signup = () => {
     event.preventDefault();
   };
 
+//// ------ Function to handle change of focus from inputs to alert user to errors ------>> 
   const handleBlur = (event) => {
     const { name, value } = event.target;
     const isValid = validateEmail(event.target.value);
@@ -112,6 +110,7 @@ const Signup = () => {
     } 
   }
 
+//// ------ Function to handle form submission to save new user data in DB ------>>
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 

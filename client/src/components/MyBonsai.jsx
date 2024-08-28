@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
-
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import BonsaiItem from "./BonsaiItem";

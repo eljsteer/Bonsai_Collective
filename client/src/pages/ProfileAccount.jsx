@@ -113,7 +113,6 @@ const ProfileAccount = () => {
 
   const welcomeName = `${userData.firstName} ${userData.lastName}`
 
-// JSX Page Returned
   return (
     <>
     <div className="image__CoverImg" style={{ position: "relative", height: "100svh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>

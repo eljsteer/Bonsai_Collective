@@ -1,35 +1,36 @@
-// >>------------------------>>
-// Authentication Code Functions
-// >>------------------------>>
+////-------------------------------------------////
+////------ User Authentication Functions ------////
+////-------------------------------------------////
 
-// Used to decode a token and retrieve the  user"s information
+////------ Used to decode a token and retrieve the  user"s information ------>>
 import { jwtDecode } from "jwt-decode";
 
-// create a new class to instantiate the user
+////------ create a new class to instantiate the user ------>>
 class AuthService {
-  // get user data
+////------ Returns token to pass to headers when user accesses their profile ------>>
   getProfile() {
     const token = jwtDecode(this.getToken());
     console.log("Adding Token to Headers", token);
     return token;
   }
-  // check if user"s logged in
+
+////------ Checks if user is logged in, if there is an existing valid tokem ------>>
   loggedIn() {
     const token = this.getToken();
     if (!token) {
       return false;
     }
-  
+
+//// ------- clears the token and redirects to home, if token is expired ------>>
     const isExpired = this.isTokenExpired(token);
     if (isExpired) {
-      this.logout(); // clears the token and redirects to home
+      this.logout(); 
       return false;
     }
-  
     return true;
   }
 
-  // check if token is expired
+////------ Checks if token is expired ------->>
   isTokenExpired(token) {
     try {
       const decoded = jwtDecode(token);
@@ -41,8 +42,8 @@ class AuthService {
     }
   }
 
+////------ Returns the user token from localStorage ------>>
   getToken() {
-    // Retrieves the user token from localStorage
     const token = localStorage.getItem("id_token");
     console.log("Retrieved Token:", token);
     return token;
@@ -70,23 +71,23 @@ class AuthService {
   //   }
   // }
 
+////------ After logging in, Saves user token to localstorage ------>>
   login(idToken) {
-    // Saves user token to localStorage
     localStorage.setItem("id_token", idToken);
     window.location.assign("/");
   }
 
+////------ Saves token for logged in user to localstorage ------>>
   signup(idToken) {
-    // Saves user token to localStorage
     localStorage.setItem("id_token", idToken);
     window.location.replace("/profile");
   }
 
+////------ Clear user token and profile data from localStorage ------>>
   logout() {
-    // Clear user token and profile data from localStorage
     localStorage.removeItem("id_token");
     console.log("Logged Out")
-    // this will reload the page and reassign the page to homePage
+    // Reload the page and navigates to homePage
     window.location.assign("/");
   }
 }

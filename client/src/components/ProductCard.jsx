@@ -1,7 +1,7 @@
+import PropTypes from "prop-types";
 import { Box } from '@mui/material';
 import { CardActionArea, CardContent, CardMedia } from '@mui/material';
 import { Typography } from '@mui/material';
-import PropTypes from "prop-types";
 
 
 ////-------------------------------------------------------------------

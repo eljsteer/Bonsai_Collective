@@ -5,15 +5,14 @@ import {
   RouterProvider,
 } from "react-router-dom"
 
+////------ Theming ------ ////
 import theme from "./utils/Theme.jsx"
-
-// import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
-////// <<-- Layouts -->> //////
+////------ Layouts ------ ////
 import RootLayout from "./layouts/RootLayout"
 
-////// <<-- Pages -->> //////
+////------ Pages ------////
 import ErrorPage from "./utils/error-page.jsx"
 import Home from "./pages/Home";
 import RequireAuth from "./utils/RequireAuth.jsx";
@@ -34,12 +33,12 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@ap
 import { setContext } from '@apollo/client/link/context'
 import { CartContextProvider } from "./utils/CartContext.jsx";
 
-// create HTTP link for graphQL
+////------ Create HTTP link for graphQL ------>>
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
 });
 
-// authLink variable to check local storage for token 
+////------- AuthLink variable to check local storage for token ------>>
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
   console.log("Adding Token to Headers:", token);
@@ -85,16 +84,15 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-      <ApolloProvider client={client}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <CartContextProvider>
-            <RouterProvider router={router}/>
-          </CartContextProvider>
-        </ThemeProvider>
-      </ApolloProvider>
-
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <CartContextProvider>
+          <RouterProvider router={router}/>
+        </CartContextProvider>
+      </ThemeProvider>
+    </ApolloProvider>
   )
 }
 
-export default App
+export default App;

@@ -1,6 +1,6 @@
 
 
-// // function to retrieve saved Bonsai 
+////------ Function to retrieve saved Bonsai ------>>
 // export const getSavedBonsaiIds = () => {
 //   const savedBonsaiIds = localStorage.getItem("saved_bonsai")
 //   ? JSON.parse(localStorage.getItem("saved_bonsai"))
@@ -9,7 +9,7 @@
 //   return savedBonsaiIds;
 // };
 
-// // function to save projects by Id
+////------ Function to save Bonsai by Id ------>>
 // export const saveBonsaiIds = (bonsaiIdArr) => {
 //   if (bonsaiIdArr.length) {
 //   localStorage.setItem("saved_bonsai", JSON.stringify(bonsaiIdArr));
@@ -18,7 +18,7 @@
 //   }
 // };
 
-// function to retrieve  Products 
+////------ Function to retrieve Products ------>>
 export const getSavedCartProducts = () => {
   const savedCartProducts = localStorage.getItem("userCartArray")
   ? JSON.parse(localStorage.getItem("uesrCartArray"))
