@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "swiper/element/bundle";
 import { Box } from "@mui/material";
-import { Button } from "@mui/material";
 import featuredData from "../utils/jsonData/featuredData.json";
 import FeaturedItem from "./FeaturedItem";
+import ButtonStyled from "./MainApp/ButtonStyled";
 import "./styles/Featured.css"
 
 
@@ -100,9 +100,13 @@ function Featured() {
             featuredData.map( item => <FeaturedItem key={item.id} item={item} /> )
         }
       </swiper-container>
-      <Button id="viewMore" variant="outlined" onClick={handleNavigate}>
-        View More
-      </Button>
+      <ButtonStyled 
+          text="View More" 
+          borderColor="black"
+          hoverColor="white"
+          color="black"
+          onClick={handleNavigate}
+        />
     </Box>
   );
 }

@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { Card } from "@mui/material";
 import { CardActions } from "@mui/material";
 import { CardActionArea } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { CardMedia } from "@mui/material";
 import { Typography } from "@mui/material";
+import ButtonStyled from "./MainApp/ButtonStyled";
 import "../styles/Explore.css";
 
 
@@ -36,9 +37,7 @@ export default function BonsaiItem (props) {
                 </Typography>
               </CardContent>
               <CardActions style={{display:"flex", justifyContent: "center"}}>
-                <Button variant="outlined" style={{color: "white", border: "2px solid white"}}>
-                  View my Story
-                </Button>
+                <ButtonStyled text="View My Story" borderColor="white"/>
               </CardActions>
             </div>
             <div>

@@ -9,10 +9,20 @@
 
 #soonImgOverlay {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0, 0.7);
+}
+
+#comingSoonText {
+  text-align: center;
+  font-family: Montserrat, sans-serif ;
+  color: white;
+  margin-bottom: 40px;
 }
