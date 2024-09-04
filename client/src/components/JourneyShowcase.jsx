@@ -4,8 +4,8 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
-import JourneysData from "../../utils/jsonData/journeysData.json"
-import "./styles/JourneysHome.css"
+import JourneysData from "../utils/jsonData/journeysData.json"
+import "./styles/journeyshome.css"
 
 const JourneyImageURL = "https://source.unsplash.com/random/500x500/?nature,plants,trees";
 
@@ -40,11 +40,11 @@ export default function JourneyShowcase() {
       chapterDescr: PropTypes.string,
     };
     return (
-      <Grid item="true"  className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
+      <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
         <picture style={{padding:0}}>
           <img srcSet={JourneyImageURL} className="journeyImg"/>
         </picture>
-        <div style={{display:"flex", maxHeight:"500px", backgroundColor:"#C3E1EA"}}>
+        <div style={{display:"flex", maxHeight:"500px"}}>
             <p style={{display:"flex", alignItems:"center", textAlign:"center", lineHeight:"2.5rem", color:"#000" }}>{props.chapterDescr}</p>
         </div>
       </Grid>
@@ -58,8 +58,8 @@ export default function JourneyShowcase() {
       chapterDescr: PropTypes.string,
     };
     return (
-      <Grid item="true" className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
-        <div style={{display:"flex", maxHeight:"500px", backgroundColor:"#C3E1EA"}} >
+      <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
+        <div style={{display:"flex", maxHeight:"500px"}} >
           <p style={{display:"flex", alignItems:"center", textAlign:"center", lineHeight:"2.5rem", color: "#000"}}>{props.chapterDescr}</p>
         </div>
         <picture style={{padding:0}}>
@@ -76,7 +76,7 @@ export default function JourneyShowcase() {
       chapterDescr: PropTypes.func,
     };
     return (
-      <Grid item="true" className="journeyContainer" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", flexDirection:"column"}}>
+      <Grid item="true" className="mobileGrid" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", flexDirection:"column"}}>
         <Item sx={{display:"flex", maxHeight:"500px"}} >
           <p style={{display:"flex", alignItems:"center"}}>{props.chapterDescr}</p>
         </Item>
@@ -109,7 +109,7 @@ export default function JourneyShowcase() {
 
 
   return (
-    <Box sx={{background: "#C3E1EA", display: "flex", justifyContent:"center"}}>
+    <Box id="journeyWrapper">
       <Container className="journeyContainer" sx={{ flexGrow: 1, margin:0, minWidth:"100%"}}>
         <Grid   
           container="true"

@@ -103,6 +103,20 @@ export default function ToolBarContent () {
     return numCartItems;
   }
 
+    //// ------ Logged out component ------>>
+  //// ---------------------------------->>
+  function NotLoggedIn() {
+    return (
+      <Link to="/login">
+        <Button
+          className="navLinksBttn"
+          sx={{fontFamily:"Montserrat, sans-serif", fontSize:{sm: "0.7rem", md: "0.9rem", lg: "1.1rem"}, fontWeight: "600", color: "black", height:"fit-content"}}>
+            LOGIN
+        </Button>
+      </Link>
+    )
+  }
+
   //// ------ Logged in component ------>>
   //// --------------------------------->>
   function LoggedIn() {
@@ -168,20 +182,6 @@ export default function ToolBarContent () {
     )
   }
 
-  //// ------ Logged out component ------>>
-  //// ---------------------------------->>
-  function NotLoggedIn() {
-    return (
-      <Link to="/login">
-        <Button
-          className="navLinksBttn"
-          sx={{fontFamily:"Montserrat, sans-serif", fontSize:{sm: "0.7rem", md: "0.9rem", lg: "1.1rem"}, fontWeight: "600", color: "black", height:"fit-content"}}>
-            LOGIN
-        </Button>
-      </Link>
-    )
-  }
-
   return (
     <>
       <Link to="/">
@@ -190,10 +190,10 @@ export default function ToolBarContent () {
       <Box className="NavLinks" sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" }, justifyContent: "center", }}>
         {navLinks.map((navlink) => (
           <Button
-            className="navLinksBttn"
+            id="navLinksBttn"
             href={navlink.url}
             key={navlink.id}
-            sx={{ mx: { sm: 0, md: 2, lg: 6}, fontFamily:"Montserrat, sans-serif", fontSize:{sm: "1.1rem", md: "1.4rem", lg: "1.7rem"}, fontWeight: "500", color: "black", borderRadius: "0"}}
+            sx={{ mx: { sm: 0, md: 2, lg: 6}, fontFamily:"Montserrat, sans-serif", fontSize:{sm: "1.1rem", md: "1.4rem", lg: "1.7rem"}, fontWeight: "500", }}
           >
             {navlink.name}
           </Button>

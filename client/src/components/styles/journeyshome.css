@@ -1,3 +1,9 @@
+#journeyWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff83;
+}
+
 .leftSide {
   justify-content: start;
 }

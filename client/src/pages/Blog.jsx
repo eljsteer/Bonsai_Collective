@@ -1,8 +1,11 @@
+import ComingSoon from "../components/ComingSoon";
+import { Box } from "@mui/material";
+
 function Blog() {
   return (
-    <div>
-      Blog
-    </div>
+    <Box>
+      <ComingSoon/>
+    </Box>
   );
 }
 

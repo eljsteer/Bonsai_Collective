@@ -6,7 +6,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ResponsiveAppBar from "./Appbar";
 import ToolBarContent from "./ToolBarContent";
 import BonsaiDrawer from "./BonsaiDrawer";
-import "./styles/Header.css"
+import "./styles/header.css"
 
 
 ////-----------------------------------------------------------------

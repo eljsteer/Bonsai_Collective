@@ -10,7 +10,7 @@ import { useScrollTrigger } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ToolBarContent from "./ToolBarContent";
 import BonsaiDrawer from "./BonsaiDrawer";
-import "./styles/Header.css"
+import "./styles/header.css"
 
 
 ////---------------------------------------------------------------

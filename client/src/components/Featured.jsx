@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { register } from "swiper/element/bundle";
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
-import featuredData from "../../utils/jsonData/featuredData.json";
+import featuredData from "../utils/jsonData/featuredData.json";
 import FeaturedItem from "./FeaturedItem";
 import "./styles/Featured.css"
 
