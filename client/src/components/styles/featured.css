@@ -19,6 +19,10 @@ swiper-slide img {
   object-fit: cover;
 }
 
+.SwiperCardImage {
+  height: 500px;
+}
+
 @media (min-width: 1500px) {  
   swiper-container {
     width: 90%;
@@ -70,4 +74,10 @@ swiper-slide img {
 
 #viewMore {
   text-wrap: nowrap;
+}
+
+@media (max-width: 600px) {  
+  .SwiperCardImage {
+    max-height: 500px;
+  }
 }

@@ -11,54 +11,43 @@
     "price": "16.50"
   }, {
     "id":3,
-    "title": "5L Premium Bonsai Potting Mix",
-    "description": "Online e-commerce application to search, purchase and deliver your favourite spirit products straight to your door with Bottle Clink.",
-    "price": "9"
-  }, {
-    "id":4,
-    "title": "2.5L Premium Bonsai Potting Mix",
-    "description": "A Gem super site for all exquisite Gem business, Purchase, Sell and Trade and discuss all things related to Gems",
-    "price": "4.5"
-  }, {
-    "id":5,
     "title": "Bonsai Turntable 30cm",
     "description": "A specialised application for all things Antiques, Art and History. This E-commerce enables users to connect with buyers and sellers of these specialised antiques and art pieces. Users are able to take part or host auctions or other methods trade to transact over the app.",
     "price": "20"
   }, {
-    "id":6,
+    "id":4,
     "title": "Kiyonal Cut Paste",
     "description": "An application that utilises NFT's verification in the exporting of Engineering and automobiles and other expensive products",
     "price": "30"
   }, {
-    "id":7,
+    "id":5,
     "title": "Branch Bender",
     "description": "An application aimed at those within the underworld of society who possess a certain set of skills, where the user can advertise their skills for \"Hire\" or locate and connect with any type of lackey they require",
     "price": "30"
   }, {
-    "id":8,
+    "id":6,
     "title": "Decorative Pebbles 500ml",
     "description": "Make searching and connecting with racetrack bookies easy with our simple Racetrack bookies application. At the click of a button search race events near you.",
     "price": "10"
   }, {
-    "id":9,
+    "id":7,
     "title": "Secateur",
     "description": "Online e-commerce application to search, purchase and deliver your favourite spirit products straight to your door with Bottle Clink.",
     "price": "25"
   }, {
-    "id":10,
+    "id":8,
     "title": "220mm Painted Square Bonsai Pot",
     "description": "A Gem super site for all exquisite Gem business, Purchase, Sell and Trade and discuss all things related to Gems",
     "price": "15"
   }, {
-    "id":11,
+    "id":9,
     "title": "Blue Glazed Bonsai Pot - Rectangle",
     "description": "A specialised application for all things Antiques, Art and History. This E-commerce enables users to connect with buyers and sellers of these specialised antiques and art pieces. Users are able to take part or host auctions or other methods trade to transact over the app.",
     "price": "20"
   }, {
-    "id":12,
+    "id":10,
     "title": "Juniper Squamata Bonsai Tree Large Kit",
     "description": "An application that utilises NFT's verification in the exporting of Engineering and automobiles and other expensive products",
-    "price": "150",
-    "imageSrc": "assets/images/carousel/pexels-ivan-babydov-7788009.jpg"
+    "price": "150"
   }
 ]

@@ -2,10 +2,12 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "swiper/element/bundle";
 import { Box } from "@mui/material";
-import featuredData from "../utils/jsonData/featuredData.json";
+// import featuredData from "../utils/jsonData/featuredData.json";
 import FeaturedItem from "./FeaturedItem";
 import ButtonStyled from "./MainApp/ButtonStyled";
-import "./styles/Featured.css"
+import { useQuery } from "@apollo/client";
+import { QUERY_PRODUCTS } from "../utils/queries";
+import "./styles/featured.css"
 
 
 ////--------------------------------------------------------////
@@ -58,23 +60,30 @@ function Featured() {
           spaceBetween: 40,
         },
       },
-      injectStyles: [
-        `
-          .swiper-button-next,
-          .swiper-button-prev {
-            background-color: #515b3a;
-            padding: 8px 18px;
-            border-radius: 100%;
-          },
-      `,
-      ],
     });
+
     swiperEl.initialize();
 
     swiperRef.current.initialize();
+
   }, []);
 
   const queryImg = "Gardening"
+
+    //// ------ Database Product queries ------>>
+    const {error, data} = useQuery(QUERY_PRODUCTS, {
+      refetchQueries: [
+        {query: QUERY_PRODUCTS}
+      ]
+    });
+  
+  //// ------ Assign Products data array to constant ------>>
+    const featuredProducts = data?.allProducts || [];
+    console.log(featuredProducts)
+  
+    if(error) {
+      if (error) return `Error! ${error.message}`;
+    }  
 
   return (
     <Box id="featuredContainer">
@@ -85,11 +94,6 @@ function Featured() {
         ref={swiperRef}
         init="false"
         grabCursor={true}
-        navigation = {{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-          disabledClass: "swiper-button-disabled",
-        }}
         style={{
           "--swiper-navigation-color": "white",
           "--swiper-navigation-size": "30px",
@@ -98,7 +102,7 @@ function Featured() {
         }}
       >
         {
-            featuredData.map( item => <FeaturedItem key={item.id} item={item} queryImg={queryImg} /> )
+          featuredProducts.map( item => <FeaturedItem key={item._id} item={item} queryImg={queryImg}/> )
         }
       </swiper-container>
       <ButtonStyled 

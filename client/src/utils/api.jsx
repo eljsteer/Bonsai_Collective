@@ -6,7 +6,7 @@ const UNSPLASH_ACCESS_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 //// ---------------------------------------------------------------------------------////
 export const getRandomPhoto = async (queryImg) => {
   try {
-    const response = await fetch(`${UNSPLASH_BASE_URL}/search/photos?query=${queryImg}`, {
+    const response = await fetch(`${UNSPLASH_BASE_URL}/search/photos?orientation=portrait&query=${queryImg}`, {
       headers: {
         Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}`,
       }

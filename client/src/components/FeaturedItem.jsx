@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { Button, Card, CardActions, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import { getRandomPhoto } from "../utils/api";
-import "./styles/Featured.css";
+import "./styles/featured.css";
 
 export default function FeaturedItem({ item, queryImg }) {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [loading, setLoading] = useState(true);   
-
+  
   useEffect(() => {
     async function fetchPhoto() {
       try {
@@ -36,20 +37,25 @@ export default function FeaturedItem({ item, queryImg }) {
               <CardMedia
                 className="SwiperCardImage"
                 component="img"
-                image={photoUrl || "fallback-image-url.jpg"}  // Display the fetched image or a fallback
-                alt={item.title}
+                image={photoUrl}
+                alt={item.productName}
               />
               <div className="Image_Overlay">
                 <CardContent>
                   <Typography gutterBottom variant="h6" component="div">
-                    {item.title}
+                    {item.productName}
                   </Typography>
                   <Typography variant="body1" color="white">
                     ${item.price}
                   </Typography>
                 </CardContent>
                 <CardActions style={{ display: "flex", justifyContent: "center" }}>
-                  <Button variant="outlined" style={{ color: "white", border: "2px solid white" }}>
+                  <Button
+                    component={Link}
+                    to={`/products/${item._id}`}
+                    variant="outlined" 
+                    style={{ color: "white", border: "2px solid white" }}
+                  >
                     Shop This
                   </Button>
                 </CardActions>
