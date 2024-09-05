@@ -15,7 +15,7 @@ import RootLayout from "./layouts/RootLayout"
 ////------ Pages ------////
 import ErrorPage from "./utils/error-page.jsx"
 import Home from "./pages/Home";
-import RequireAuth from "./utils/RequireAuth.jsx";
+import RequireAuth from "./utils/requireAuth.jsx";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ProfileAccount from "./pages/ProfileAccount.jsx";
@@ -31,7 +31,7 @@ import MyBonsai from "./components/MyBonsai.jsx";
 import Cart from "./pages/Cart.jsx"
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
-import { CartContextProvider } from "./utils/CartContext.jsx";
+import { CartContextProvider } from "./utils/cartContext.jsx";
 
 ////------ Create HTTP link for graphQL ------>>
 const httpLink = createHttpLink({

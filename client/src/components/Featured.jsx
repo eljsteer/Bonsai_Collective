@@ -74,6 +74,7 @@ function Featured() {
     swiperRef.current.initialize();
   }, []);
 
+  const queryImg = "Gardening"
 
   return (
     <Box id="featuredContainer">
@@ -97,7 +98,7 @@ function Featured() {
         }}
       >
         {
-            featuredData.map( item => <FeaturedItem key={item.id} item={item} /> )
+            featuredData.map( item => <FeaturedItem key={item.id} item={item} queryImg={queryImg} /> )
         }
       </swiper-container>
       <ButtonStyled 

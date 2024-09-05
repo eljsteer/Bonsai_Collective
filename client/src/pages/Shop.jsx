@@ -13,7 +13,7 @@ import { styled } from "@mui/material/styles";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useQuery } from "@apollo/client";
 import { QUERY_PRODUCTS } from "../utils/queries";
-import { CartContext } from "../utils/CartContext";
+import { CartContext } from "../utils/cartContext";
 import ProductCard from "../components/ProductCard";
 
 
