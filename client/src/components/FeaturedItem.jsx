@@ -1,35 +1,10 @@
-import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
 import { Button, Card, CardActions, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
-import { getRandomPhoto } from "../utils/api";
-import "./styles/featured.css";
+import "./styles/featured.css"
 
-export default function FeaturedItem({ item, queryImg }) {
-  const [photoUrl, setPhotoUrl] = useState(null);
-  const [loading, setLoading] = useState(true);   
-  
-  useEffect(() => {
-    async function fetchPhoto() {
-      try {
-        const data = await getRandomPhoto(queryImg); 
-        const randomPhoto = data.results[Math.floor(Math.random() * data.results.length)]; 
-        setPhotoUrl(randomPhoto.urls.regular);
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch photo:", error);
-        setLoading(false);
-      }
-    }
-    fetchPhoto();
-  }, [queryImg]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+export default function FeaturedItem({ item, imageUrl }) {
   return (
-    <swiper-slide>
       <div className="slide-content">
         <div className="card-wrapper">
           <Card sx={{ maxWidth: 400 }}>
@@ -37,7 +12,7 @@ export default function FeaturedItem({ item, queryImg }) {
               <CardMedia
                 className="SwiperCardImage"
                 component="img"
-                image={photoUrl}
+                image={imageUrl}
                 alt={item.productName}
               />
               <div className="Image_Overlay">
@@ -53,7 +28,7 @@ export default function FeaturedItem({ item, queryImg }) {
                   <Button
                     component={Link}
                     to={`/products/${item._id}`}
-                    variant="outlined" 
+                    variant="outlined"
                     style={{ color: "white", border: "2px solid white" }}
                   >
                     Shop This
@@ -64,11 +39,10 @@ export default function FeaturedItem({ item, queryImg }) {
           </Card>
         </div>
       </div>
-    </swiper-slide>
   );
 }
 
 FeaturedItem.propTypes = {
-  item: PropTypes.object,
-  queryImg: PropTypes.string,
+  item: PropTypes.object.isRequired,
+  imageUrl: PropTypes.string.isRequired,
 };

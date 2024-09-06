@@ -1,11 +1,10 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-// import { createTheme, responsiveFontSizes, ThemeProvider, } from '@mui/material/styles';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
@@ -20,6 +19,7 @@ import { CardMedia } from '@mui/material';
 ////--------------------------------------////
 export default function SingleProduct() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
 ////------ Log the value of id to the console for debugging ------>>
   console.log('Product ID:', id,);
@@ -71,16 +71,14 @@ export default function SingleProduct() {
             </Box>
         </CardContent>
         <br/>
-        {/* Conditional Rendering for whether User is logged in */}
         <CardContent>
-          <Link to='/products'>
             <Button 
               variant="contained"
+              onClick={() => navigate(-1)}
             >
               <ChevronLeftIcon/> 
               Go Back
             </Button>
-          </Link> 
         </CardContent>
       </Card>
     </Container>

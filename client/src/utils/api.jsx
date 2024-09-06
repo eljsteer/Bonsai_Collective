@@ -4,9 +4,9 @@ const UNSPLASH_ACCESS_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 //// ---------------------------------------------------------------------------------////
 //// ------ Function to return random Unsplash photo based on random query prop ------////
 //// ---------------------------------------------------------------------------------////
-export const getRandomPhoto = async (queryImg) => {
+export const getRandomPhoto = async (queryImg, perPage = 30) => {
   try {
-    const response = await fetch(`${UNSPLASH_BASE_URL}/search/photos?orientation=portrait&query=${queryImg}`, {
+    const response = await fetch(`${UNSPLASH_BASE_URL}/search/photos?orientation=portrait&query=${queryImg}&per_page=${perPage}`, {
       headers: {
         Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}`,
       }
@@ -17,6 +17,7 @@ export const getRandomPhoto = async (queryImg) => {
     }
 
     const data = await response.json()
+
     console.log(data);
     return data;
     
