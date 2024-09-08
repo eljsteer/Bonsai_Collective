@@ -32,6 +32,7 @@ import Cart from "./pages/Cart.jsx"
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
 import { CartContextProvider } from "./utils/cartContext.jsx";
+import AddUserInfo from "./pages/AddUserInfo.jsx";
 
 ////------ Create HTTP link for graphQL ------>>
 const httpLink = createHttpLink({
@@ -67,6 +68,7 @@ const router = createBrowserRouter(
       <Route path="/blog" element = {<Blog/>} />
       <Route path="/products" element = {<Shop/>} />
       <Route path="/products/:id" element = {<SingleProduct/>} />
+      <Route path="/adduserinfo" element = {<AddUserInfo />}/>
       <Route path="/profile" element = {<RequireAuth />}>
         <Route index element = {<ProfileAccount />} />
         {/* Nesting MyBonsai and AddBonsai under ProfileBonsai layout */}

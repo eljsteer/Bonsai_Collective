@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/eljsteer/Bonsai_Collective/issues"
   },
-  "homepage": "https://github.com/eljsteer/Bonsai_Collective#readme"
+  "homepage": "https://github.com/eljsteer/Bonsai_Collective#readme",
+  "dependencies": {
+    "@apollo/server": "^4.11.0"
+  }
 }

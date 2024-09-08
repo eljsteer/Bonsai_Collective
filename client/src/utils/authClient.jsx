@@ -80,7 +80,7 @@ class AuthService {
 ////------ Saves token for logged in user to localstorage ------>>
   signup(idToken) {
     localStorage.setItem("id_token", idToken);
-    window.location.replace("/profile");
+    window.location.replace("/adduserinfo");
   }
 
 ////------ Clear user token and profile data from localStorage ------>>

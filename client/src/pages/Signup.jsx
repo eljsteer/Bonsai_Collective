@@ -122,11 +122,16 @@ const Signup = () => {
       const { data } = await createUser({
         variables: { ...userFormData },
       });
-      console.log({data})
       Auth.signup(data.createUser.token);
     } catch (err) {
-      console.error(err);
-    }
+      console.error('Error creating user:', err.message);
+      if (err.graphQLErrors) {
+        console.error('GraphQL Errors:', err.graphQLErrors);
+      }
+      if (err.networkError) {
+        console.error('Network Error:', err.networkError);
+      }
+    }    
 
     setUserFormData({
       firstName: "",
@@ -222,7 +227,7 @@ const Signup = () => {
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                    {userFormData.showPassword ? <VisibilityOff /> : <Visibility />}
+                      {userFormData.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 }

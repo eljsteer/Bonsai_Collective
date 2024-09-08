@@ -16,10 +16,29 @@ export const CREATE_USER = gql`
   }
 `;
 
+export const UPDATE_USER_BIO = gql`
+  mutation updateBio($updateBio: UserBioInput!) {
+    updateBio(updateBio: $updateBio) {
+      bio
+    }
+  }
+`;
+
+
 export const UPDATE_USER = gql`
 mutation updateUser($updateData: UserInput!) {
   updateUser(updateData: $updateData) {
+    firstName
+    lastName
     bio
+  }
+} 
+`;
+
+export const UPDATE_USER_EMAIL = gql`
+mutation updateUserEmail($updateData: UserEmailInput) {
+  updateUserEmail(updateData: $updateData) {
+    email
   }
 } 
 `;
