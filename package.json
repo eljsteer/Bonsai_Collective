@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "client": "npm --prefix client start",  
-    "server": "npm --prefix server start",   
-    "install": "npm install --prefix server", 
+    "server": "npm --prefix server start",
     "build": "npm run build --prefix client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "seed": "cd server && npm run seed"
