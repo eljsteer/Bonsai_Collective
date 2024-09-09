@@ -4,7 +4,7 @@
   "description": "Ecommerce Site that has all your bonsai growing needs! Connect and share your Bonsai Journey with other uses.",
   "main": "index.js",
   "scripts": {
-    "install": "npm install cd server && npm install",
+    "install": "cd server && npm install",
     "start": "cd server && nodemon server.js",
     "client": "npm --prefix client start",  
     "server": "npm --prefix server start",
