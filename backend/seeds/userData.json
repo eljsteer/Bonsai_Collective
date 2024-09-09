@@ -1,0 +1,37 @@
+[
+  {
+    "firstName": "Tommy",
+    "lastName": "Shelby",
+    "email": "tommyguns@shelby.com",
+    "password": "password123",
+    "bio": "Hello, I am a passionate Bonsai enthusiast"
+  },
+  {
+    "firstName": "Ragnar",
+    "lastName": "Lothbrok",
+    "email": "ragnarrrbrokeback@vikings.com",
+    "password": "password123",
+    "bio": "Hello, I am a passionate Bonsai enthusiast"
+  },
+  {
+    "firstName": "Pablo",
+    "lastName": "Escobar",
+    "email": "pablodeniro.escobar@narcos.com",
+    "password": "password123",
+    "bio": "Hello, I am a passionate Bonsai enthusiast"
+  },
+  {
+    "firstName": "Alfie",
+    "lastName": "Solomons",
+    "email": "alfieboy@solomons.com",
+    "password": "password123",
+    "bio": "Hello, I am a passionate Bonsai enthusiast"
+  },
+  {
+    "firstName": "Taika",
+    "lastName": "Waititi",
+    "email": "taika@waikikivolcano.com",
+    "password": "password123",
+    "bio": "Hello, I am a passionate Bonsai enthusiast"
+  }
+]
