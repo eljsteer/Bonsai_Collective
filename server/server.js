@@ -40,7 +40,10 @@ const startApolloServer = async () => {
   await server.start();
   app.use(
     '/graphql', 
-    cors(), 
+    cors({
+      origin: 'https://bonsai-collective.onrender.com',
+      credentials: true,
+    }), 
     express.json(), 
     express.urlencoded({ extended: true }), 
     expressMiddleware(server, {
