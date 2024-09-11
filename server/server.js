@@ -11,20 +11,23 @@ const { getUserFromToken } = require('./utils/authServer');
 const app = express();
 const httpServer = http.createServer(app);
 
-// ------ Set the correct port, using the environment variable provided by Render or default to 5000 ------>>
+// ------ Set the correct port, using the environment variable provided by Render or default to 3001 ------>>
 const PORT = process.env.PORT || 3001;
 const allowedOrigins = ['https://bonsai-collective.onrender.com', 'http://localhost:3000'];
 
-//// ------ Sets up new Apollo Server ------>>
-//// --------------------------------------->>
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-});
+// ------ Apply CORS globally ------>>
+app.use(cors({
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 
-//// ------ Serve static files in production mode ------>>
-//// --------------------------------------------------->>
+// ------ Serve static files in production mode ------>>
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
   app.get('*', (req, res) => {
@@ -32,24 +35,20 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-
+//// ------ Set up Apollo Server ------>>
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+});
 
 //// ------ Start Apollo Server with Express integration ------>>
-//// ---------------------------------------------------------->>
 const startApolloServer = async () => {
   await server.start();
+  
+  // Express middleware with Apollo Server integration
   app.use(
-    '/graphql', 
-    cors({
-      origin: function (origin, callback) {
-        if (allowedOrigins.includes(origin) || !origin) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-      },
-      credentials: true,
-    }), 
+    '/graphql',
     express.json(), 
     express.urlencoded({ extended: true }), 
     expressMiddleware(server, {
@@ -59,8 +58,7 @@ const startApolloServer = async () => {
     }),
   );
 
-//// ------ Start backend server ------>>
-//// ---------------------------------->>
+  // Start backend server
   db.once('open', () => {
     httpServer.listen({ port: PORT }, () => {
       console.log(`🔥 API server running on port ${PORT}`);
@@ -70,5 +68,3 @@ const startApolloServer = async () => {
 };
 
 startApolloServer();
-
-
