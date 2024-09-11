@@ -1,19 +1,19 @@
-const db = require('./config/connection');
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const cors = require('cors');
-const { ApolloServer } = require('@apollo/server');
-const { expressMiddleware } = require('@apollo/server/express4');
-const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
-const { typeDefs, resolvers } = require('./schema');
-const { getUserFromToken } = require('./utils/authServer');
+const db = require("./config/connection");
+const express = require("express");
+const path = require("path");
+const http = require("http");
+const cors = require("cors");
+const { ApolloServer } = require("@apollo/server");
+const { expressMiddleware } = require("@apollo/server/express4");
+const { ApolloServerPluginDrainHttpServer } = require("@apollo/server/plugin/drainHttpServer");
+const { typeDefs, resolvers } = require("./schema");
+const { getUserFromToken } = require("./utils/authServer");
 const app = express();
 const httpServer = http.createServer(app);
 
 // ------ Set the correct port, using the environment variable provided by Render or default to 3001 ------>>
 const PORT = process.env.PORT || 3001;
-const allowedOrigins = ['https://bonsai-collective.onrender.com', 'http://localhost:3000'];
+const allowedOrigins = ["https://bonsai-collective.onrender.com", "http://localhost:3000"];
 
 // ------ Apply CORS globally ------>>
 app.use(cors({
@@ -21,19 +21,24 @@ app.use(cors({
     if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
   },
   credentials: true,
 }));
 
-// ------ Serve static files in production mode ------>>
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
+// Serve static files in production mode
+if (process.env.NODE_ENV === "production") {
+  const clientDistPath = path.join(__dirname, "../client/dist");
+  console.log("Serving static files from:", clientDistPath);
+  
+  app.use(express.static(clientDistPath));
   
   // Catch-all route to serve index.html for any unknown paths
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  app.get("*", (req, res) => {
+    const indexPath = path.join(clientDistPath, "index.html");
+    console.log("Serving index.html from:", indexPath);
+    res.sendFile(indexPath);
   });
 }
 
@@ -51,7 +56,7 @@ const startApolloServer = async () => {
   
   // Express middleware with Apollo Server integration
   app.use(
-    '/graphql',
+    "/graphql",
     express.json(), 
     express.urlencoded({ extended: true }), 
     expressMiddleware(server, {
@@ -62,7 +67,7 @@ const startApolloServer = async () => {
   );
 
   // Start backend server
-  db.once('open', () => {
+  db.once("open", () => {
     httpServer.listen({ port: PORT }, () => {
       console.log(`🔥 API server running on port ${PORT}`);
       console.log(`🌍 GraphQL in use at http://localhost:${PORT}/graphql`);
