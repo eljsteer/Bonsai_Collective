@@ -31,7 +31,7 @@ import MyBonsai from "./components/MyBonsai.jsx";
 import Cart from "./pages/Cart.jsx"
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
-import { CartContextProvider } from "./utils/cartContext.jsx";
+import { CartContextProvider } from "./utils/CartContext.jsx";
 import AddUserInfo from "./pages/AddUserInfo.jsx";
 
 ////------ Create HTTP link for graphQL ------>>

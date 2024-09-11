@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
-import { CartContext } from "../utils/cartContext";
+import { CartContext } from "../utils/CartContext";
 
 
 ////----------------------------------------------------

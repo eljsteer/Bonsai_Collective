@@ -16,7 +16,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { GiBonsaiTree } from "react-icons/gi";
 import Auth from "../../utils/authClient";
-import { CartContext } from "../../utils/cartContext";
+import { CartContext } from "../../utils/CartContext";
 import { useQuery } from "@apollo/client";
 import { QUERY_SINGLE_PRODUCT } from "../../utils/queries";
 import "./styles/Header.css";
