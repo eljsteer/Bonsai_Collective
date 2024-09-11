@@ -15,7 +15,7 @@ import RootLayout from "./layouts/RootLayout"
 ////------ Pages ------////
 import ErrorPage from "./utils/error-page.jsx"
 import Home from "./pages/Home";
-import RequireAuth from "./utils/requireAuth.jsx";
+import RequireAuth from "./utils/RequireAuth.jsx";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ProfileAccount from "./pages/ProfileAccount.jsx";
