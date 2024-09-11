@@ -30,10 +30,13 @@ app.use(cors({
 // ------ Serve static files in production mode ------>>
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
+  
+  // Catch-all route to serve index.html for any unknown paths
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 }
+
 
 //// ------ Set up Apollo Server ------>>
 const server = new ApolloServer({
