@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
-
 import { useQuery } from "@apollo/client";
 import { QUERY_BONSAI } from "../utils/queries";
 import BonsaiItem from "../components/BonsaiItem";

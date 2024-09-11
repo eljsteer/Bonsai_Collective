@@ -19,7 +19,7 @@ import Auth from "../../utils/authClient";
 import { CartContext } from "../../utils/CartContext";
 import { useQuery } from "@apollo/client";
 import { QUERY_SINGLE_PRODUCT } from "../../utils/queries";
-import "./styles/Header.css";
+import "./styles/header.css";
 
 //// ------ Image imports------>>
 import bonsaiLogo from "../../assets/headerLogo/BonsaiLogo2_Title.png";

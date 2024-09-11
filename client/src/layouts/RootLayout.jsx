@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/MainApp/Header";
 import Footer from "../components/MainApp/Footer";
 import ScrollUpTop from "../components/MainApp/ScrollUpTop";
-import "../styles/RootLayout.css"
+import "../styles/rootLayout.css"
 
 
 ////---------------------------------------------------------------

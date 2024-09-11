@@ -20,7 +20,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/authClient";
 import {validateEmail } from "../utils/helpers";
-import "../styles/Login.css"
+import "../styles/login.css"
 
 
 ////-------------------------------------------------------------------------------

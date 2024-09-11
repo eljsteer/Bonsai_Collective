@@ -7,7 +7,7 @@ import { CardContent } from "@mui/material";
 import { CardMedia } from "@mui/material";
 import { Typography } from "@mui/material";
 import ButtonStyled from "./MainApp/ButtonStyled";
-import "../styles/Explore.css";
+import "../styles/explore.css";
 
 
 ////-----------------------------------------------------------------------------
