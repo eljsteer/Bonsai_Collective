@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import JourneysData from "../utils/jsonData/journeysData.json"
-import "./styles/journeyshome.css"
+import "./styles/journeyshowcase.css"
 
 const JourneyImageURL = "https://source.unsplash.com/random/500x500/?nature,plants,trees";
 
