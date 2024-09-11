@@ -13,12 +13,12 @@ import "../styles/rootLayout.css"
 ////-------------------------------------------------------////
 export default function RootLayout() {
   return (
-    <div className="Root-layout">
+    <div className="rootLayout">
       <Header/>
       <main>
         <Outlet/>
       </main>
-      <Footer className="Footer"/>
+      <Footer className="footer"/>
       <ScrollUpTop />
     </div>
   )
