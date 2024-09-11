@@ -4,7 +4,7 @@ import { Fab } from "@mui/material";
 import { Fade } from "@mui/material";
 import { useScrollTrigger } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import "./styles/Header.css"
+import "./styles/header.css"
 
 
 ////------ Scroll up top component ------>>
