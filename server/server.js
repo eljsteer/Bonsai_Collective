@@ -13,7 +13,7 @@ const httpServer = http.createServer(app);
 
 // ------ Set the correct port, using the environment variable provided by Render or default to 5000 ------>>
 const PORT = process.env.PORT || 3001;
-
+const allowedOrigins = ['https://bonsai-collective.onrender.com', 'http://localhost:3000'];
 
 //// ------ Sets up new Apollo Server ------>>
 //// --------------------------------------->>
@@ -41,7 +41,13 @@ const startApolloServer = async () => {
   app.use(
     '/graphql', 
     cors({
-      origin: 'https://bonsai-collective.onrender.com',
+      origin: function (origin, callback) {
+        if (allowedOrigins.includes(origin) || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
       credentials: true,
     }), 
     express.json(), 
