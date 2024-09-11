@@ -28,17 +28,12 @@ app.use(cors({
 }));
 
 // Serve static files in production mode
-if (process.env.NODE_ENV === "production") {
-  const clientDistPath = path.join(__dirname, "../client/dist");
-  console.log("Serving static files from:", clientDistPath);
-  
-  app.use(express.static(clientDistPath));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..src/client/dist')));
   
   // Catch-all route to serve index.html for any unknown paths
-  app.get("*", (req, res) => {
-    const indexPath = path.join(clientDistPath, "index.html");
-    console.log("Serving index.html from:", indexPath);
-    res.sendFile(indexPath);
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..src/client/dist/index.html'));
   });
 }
 
