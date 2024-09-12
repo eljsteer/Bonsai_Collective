@@ -27,17 +27,17 @@ app.use(cors({
   credentials: true,
 }));
 
-// Serve static files in production mode
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-  console.log("Resolved path to static files:", path.join(__dirname, '../client/dist'));
+// // Serve static files in production mode
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/dist')));
+//   console.log("Resolved path to static files:", path.join(__dirname, '../client/dist'));
 
   
-  // Catch-all route to serve index.html for any unknown paths
-  app.get('*', (_req, res) => {
-    return res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-  });
-}
+//   // Catch-all route to serve index.html for any unknown paths
+//   app.get('*', (_req, res) => {
+//     return res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+//   });
+// }
 
 
 //// ------ Set up Apollo Server ------>>
