@@ -29,11 +29,13 @@ app.use(cors({
 
 // Serve static files in production mode
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '..src/client/dist')));
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+  console.log("Resolved path to static files:", path.join(__dirname, '../client/dist'));
+
   
   // Catch-all route to serve index.html for any unknown paths
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..src/client/dist/index.html'));
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   });
 }
 
