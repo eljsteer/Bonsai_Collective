@@ -34,8 +34,8 @@ if (process.env.NODE_ENV === 'production') {
 
   
   // Catch-all route to serve index.html for any unknown paths
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  app.get('*', (_req, res) => {
+    return res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   });
 }
 
