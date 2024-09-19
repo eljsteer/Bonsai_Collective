@@ -1,6 +1,5 @@
 const db = require("./config/connection");
 const express = require("express");
-const path = require("path");
 const http = require("http");
 const cors = require("cors");
 const { ApolloServer } = require("@apollo/server");
@@ -13,32 +12,40 @@ const httpServer = http.createServer(app);
 
 // ------ Set the correct port, using the environment variable provided by Render or default to 3001 ------>>
 const PORT = process.env.PORT || 3001;
-const allowedOrigins = ["https://bonsai-collective.onrender.com", "http://localhost:3000"];
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:3001",
+    "https://bonsai-collective.onrender.com",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+  optionsSuccessStatus: 200, // For legacy browser support
+};
 
 // ------ Apply CORS globally ------>>
-app.use(cors({
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
+app.use(cors(corsOptions));
 
-// // Serve static files in production mode
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/dist')));
-//   console.log("Resolved path to static files:", path.join(__dirname, '../client/dist'));
+// Handle preflight requests for CORS
+app.options('*', cors(corsOptions)); // This should handle OPTIONS preflight requests properly
 
-  
-//   // Catch-all route to serve index.html for any unknown paths
-//   app.get('*', (_req, res) => {
-//     return res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-//   });
-// }
-
+// Ensure that 'Access-Control-Allow-Origin' is being set
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+  next();
+});
 
 //// ------ Set up Apollo Server ------>>
 const server = new ApolloServer({
@@ -50,17 +57,17 @@ const server = new ApolloServer({
 //// ------ Start Apollo Server with Express integration ------>>
 const startApolloServer = async () => {
   await server.start();
-  
+
   // Express middleware with Apollo Server integration
   app.use(
     "/graphql",
-    express.json(), 
-    express.urlencoded({ extended: true }), 
+    express.json(),
+    express.urlencoded({ extended: true }),
     expressMiddleware(server, {
       context: async ({ req }) => ({
         user: await getUserFromToken(req),
       }),
-    }),
+    })
   );
 
   // Start backend server
@@ -71,5 +78,11 @@ const startApolloServer = async () => {
     });
   });
 };
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Internal Server Error" });
+});
 
 startApolloServer();

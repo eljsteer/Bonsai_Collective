@@ -37,6 +37,7 @@ import AddUserInfo from "./pages/AddUserInfo.jsx";
 ////------ Create HTTP link for graphQL ------>>
 const httpLink = createHttpLink({
   uri: "https://bonsai-collective-server.onrender.com/graphql",
+  credentials: "include"
 });
 
 ////------- AuthLink variable to check local storage for token ------>>

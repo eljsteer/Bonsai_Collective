@@ -11,7 +11,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import "./styles/featured.css";
-import { getRandomPhoto } from "../utils/api";
+import { getRandomPhoto } from "../utils/apiUnsplash";
 
 export default function Featured() {
   const queryImg = "Gardening";

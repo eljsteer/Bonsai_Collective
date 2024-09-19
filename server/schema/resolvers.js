@@ -13,6 +13,7 @@ const { mongoose } = require("mongoose")
 //// --------------------------------------------------------------------------------------------------------------////
 const resolvers = {
   Query: {
+
 ////------ Query to return a single Product ------>>
 //// --------------------------------------------->>
     singleProduct: async (parent, { productId }) => {

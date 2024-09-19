@@ -7,9 +7,11 @@ const UNSPLASH_ACCESS_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 export const getRandomPhoto = async (queryImg, perPage = 30) => {
   try {
     const response = await fetch(`${UNSPLASH_BASE_URL}/search/photos?orientation=portrait&query=${queryImg}&per_page=${perPage}`, {
+      method: "GET",
       headers: {
         Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}`,
-      }
+      },
+      mode: "cors"
     });
 
     if (!response.ok) {

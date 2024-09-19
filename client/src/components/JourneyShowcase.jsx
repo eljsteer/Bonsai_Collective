@@ -7,8 +7,6 @@ import Grid from "@mui/material/Unstable_Grid2";
 import JourneysData from "../utils/jsonData/journeysData.json"
 import "./styles/journeyshowcase.css"
 
-const JourneyImageURL = "https://source.unsplash.com/random/500x500/?nature,plants,trees";
-
 //------ MaterialUi custom styling for Item element ------>>
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
