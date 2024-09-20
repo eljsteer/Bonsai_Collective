@@ -43,9 +43,15 @@ swiper-slide img {
   }
 }
 
-@media (min-width: 600px) {  
-  swiper-slide {
-    margin-right: 0px;
+@media (max-width: 600px) {  
+  #featuredContainer {
+    margin: 50px 100px;
+  }
+}
+
+@media (max-width: 500px) {  
+  #featuredContainer {
+    margin: 50px 80px;
   }
 }
 
