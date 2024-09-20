@@ -12,12 +12,12 @@ const httpServer = http.createServer(app);
 
 // ------ Set the correct port, using the environment variable provided by Render or default to 3001 ------>>
 const PORT = process.env.PORT || 3001;
+const isDevelopment = process.env.NODE_ENV === "development"
+
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:3001",
-    "https://bonsai-collective.onrender.com",
-  ],
+  origin: isDevelopment
+    ? "http://localhost:5173"
+    : "https://bonsai-collective.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
   optionsSuccessStatus: 200, // For legacy browser support
@@ -29,7 +29,6 @@ app.use(cors(corsOptions));
 // Handle preflight requests for CORS
 app.options('*', cors(corsOptions)); // This should handle OPTIONS preflight requests properly
 
-// Ensure that 'Access-Control-Allow-Origin' is being set
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");

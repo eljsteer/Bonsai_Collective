@@ -15,6 +15,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { CartContext } from "../utils/CartContext";
 import ProductCard from "../components/ProductCard";
+import LoadingBackdrop from "../components/LoadingBackdrop";
 
 
 ////------------------------------------------------------------
@@ -89,7 +90,7 @@ export default function Shop() {
   })
 
   if (loading) {
-    return <h2> Filling up Shop Shelves...</h2>;
+    return <LoadingBackdrop/>;
   }
 
   if(error) {
