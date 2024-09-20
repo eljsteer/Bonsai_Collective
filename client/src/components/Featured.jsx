@@ -51,8 +51,8 @@ export default function Featured() {
     <Box id="featuredContainer">
       {featuredProducts.length > 0 && (
         <Swiper
-          slidesPerView={3}
-          spaceBetween={10}
+          slidesPerView={1}
+          spaceBetween={20}
           breakpoints = {{
             600: {
               slidesPerView: 2,
@@ -62,7 +62,7 @@ export default function Featured() {
               slidesPerView: 3,
               spaceBetween: 40,
             },
-            1600: {
+            1400: {
               slidesPerView: 4,
               spaceBetween: 40,
             },
