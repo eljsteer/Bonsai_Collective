@@ -17,11 +17,12 @@ const isDevelopment = process.env.NODE_ENV === "development"
 const corsOptions = {
   origin: isDevelopment
     ? "http://localhost:5173"
-    : "https://bonsai-collective.onrender.com",
+    : ["https://bonsai-collective.onrender.com", "http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
   optionsSuccessStatus: 200, // For legacy browser support
 };
+
 
 // ------ Apply CORS globally ------>>
 app.use(cors(corsOptions));

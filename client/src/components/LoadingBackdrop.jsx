@@ -8,9 +8,9 @@ export default function LoadingBackdrop() {
     setOpen(false);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   return (
     <div>
