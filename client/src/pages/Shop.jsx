@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -11,12 +11,12 @@ import NativeSelect from "@mui/material/NativeSelect";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
 import { FaCartArrowDown } from "react-icons/fa";
-import { useQuery } from "@apollo/client";
-import { QUERY_PRODUCTS } from "../utils/queries";
-import { CartContext } from "../utils/CartContext";
 import ProductCard from "../components/ProductCard";
 import LoadingBackdrop from "../components/LoadingBackdrop";
-
+import { CartContext } from "../utils/CartContext";
+import { useQuery } from "@apollo/client";
+import { QUERY_PRODUCTS } from "../utils/queries";
+import { getRandomPhoto } from "../utils/apiUnsplash";
 
 ////------------------------------------------------------------
 
@@ -57,16 +57,32 @@ export default function Shop() {
     },
   }));
 
+  const queryImg = "Gardening Tools";
+  const [shopProducts, setShopProducts] = useState([]);
+
 //// ------ Database Product queries ------>>
-  const {error, loading, data} = useQuery(QUERY_PRODUCTS, {
-    refetchQueries: [
-      {query: QUERY_PRODUCTS}
-    ]
-  });
+  const {error, loading, data} = useQuery(QUERY_PRODUCTS);
 
-//// ------ Assign Products data array to constant ------>>
-  const allProducts = data?.allProducts || [];
+  useEffect(() => {
+    async function fetchData() {
+      if (!data || !data.allProducts) return;
+      try {
+        const fetchedPhotos = await getRandomPhoto(queryImg);
 
+        const featuredProducts = data?.allProducts || [];
+        if (featuredProducts.length && fetchedPhotos.results.length) {
+          const combined = featuredProducts.map((product, index) => ({
+            ...product,
+            imageUrl: fetchedPhotos.results[index]?.urls?.regular || "", 
+          }));
+          setShopProducts(combined);
+        }
+      } catch (error) {
+        console.error("Failed to fetch photo:", error);
+      }
+    }
+    fetchData();
+  }, [data]);
 //// ------ Shop Categories ----->>
   const [category, setCategory] = useState("");
   const [sortBy, setSortBy] = useState("");
@@ -81,7 +97,7 @@ export default function Shop() {
     addProductToCart(productID);
   }
 
-  allProducts.forEach((product) => {
+  shopProducts.forEach((product) => {
     if(categoriesArray.includes(product.category)) {
       return;
     } else {
@@ -156,18 +172,15 @@ export default function Shop() {
             spacing={{ xs: 2, md: 3 }} 
             columns={{ xs: 4, sm: 8, md: 12 }}
             >
-            {allProducts.map((product, i) => (
-              <Box key={i}>
+            {shopProducts.map((product, i) => (
+              <Box key={product._id}>
                 <Link
                   to={`/products/${product._id}`}
                   underline="none"
                 >
                   <ProductCard 
-                    key={i}
-                    productName={product.productName}
-                    productDescription={product.productDescription}
-                    price={product.price}
-                    imageProduct={product.imageProduct}
+                    product={product}
+                    imageUrl={product.imageUrl}
                   />
                 </Link>
                 <CardActions key={i} sx={{display:"flex", justifyContent:"center"}}>

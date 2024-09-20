@@ -10,7 +10,7 @@ import { Typography } from '@mui/material';
 ///--------------------------------------------------------------////
 ////------ Product card component - displayed on shop page ------////
 ////-------------------------------------------------------------////
-export default function ProductCard(props) {
+export default function ProductCard({ product, imageUrl}) {
 
   return (
     <Box>
@@ -19,15 +19,15 @@ export default function ProductCard(props) {
           <CardMedia
             component="img"
             height="300px"
-            image={props.imageProduct[0]}
+            image={imageUrl}
             alt="Bonsai Growing Products"
           />
           <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center"}}>
             <Typography gutterBottom sx={{color:"black", textAlign: "center", fontFamily:"Montserrat, sans-serif", fontWeight:"600"}}>
-              {props.productName}
+              {product.productName}
             </Typography>
             <Typography sx={{color:"black", fontFamily:"Montserrat, sans-serif", }}>
-              ${props.price}
+              ${product.price}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -37,9 +37,6 @@ export default function ProductCard(props) {
 }
 
 ProductCard.propTypes = {
-  id: PropTypes.string,
-  productName: PropTypes.string,
-  productDescription: PropTypes.string,
-  price: PropTypes.string,
-  imageProduct: PropTypes.arrayOf(PropTypes.string),
+  product: PropTypes.object.isRequired,
+  imageUrl: PropTypes.string.isRequired,
 };
