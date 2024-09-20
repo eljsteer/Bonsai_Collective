@@ -1,0 +1,8 @@
+.backdrop {
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingText {
+  padding-bottom: 20px;
+}

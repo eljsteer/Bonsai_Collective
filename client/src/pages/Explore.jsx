@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { useQuery } from "@apollo/client";
 import { QUERY_BONSAI } from "../utils/queries";
 import BonsaiItem from "../components/BonsaiItem";
+import LoadingBackdrop from "../components/LoadingBackdrop";
 
 //// ------ Explore page displaying bonsai's for sale ------>>
 //// ------------------------------------------------------->>
@@ -20,7 +21,7 @@ export default function Explore() {
   const allBonsai = data?.allBonsai || [];
   
   if (loading) {
-    return <h2>Bonsai is Growing...</h2>;
+    return <LoadingBackdrop loadingText={"Growing Bonsai..."}/>;
   }
 
   return (

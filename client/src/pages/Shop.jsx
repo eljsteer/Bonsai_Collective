@@ -90,7 +90,7 @@ export default function Shop() {
   })
 
   if (loading) {
-    return <LoadingBackdrop/>;
+    return <LoadingBackdrop loadingText={"Filling Shop Shelves..."}/>;
   }
 
   if(error) {
