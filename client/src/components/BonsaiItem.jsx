@@ -16,7 +16,7 @@ import "./styles/bonsaiItem.css";
 ////-------------------------////
 ////------ Bonsai Item ------////
 ////-------------------------////
-export default function BonsaiItem (props) {
+export default function BonsaiItem ({ bonsai, imageUrl}) {
 
   return (
       <Card sx={{ display: "flex", maxWidth: 400 }}>
@@ -25,26 +25,26 @@ export default function BonsaiItem (props) {
             <CardMedia 
               className="cardImage"
               component="img"
-              image={props.imageBonsai[0]}
+              image={imageUrl}
             />
             <div className="Image_Overlay">
               <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
-                  {props.title}
+                  {bonsai.title}
                 </Typography>
                 <Typography variant="body1" color="white">
-                  ${props.price}
+                  ${bonsai.price}
                 </Typography>
               </CardContent>
               <CardActions style={{display:"flex", justifyContent: "center"}}>
                 <ButtonStyled text="View My Story" borderColor="white"/>
               </CardActions>
             </div>
-            <div>
+            {/* <div>
               <Typography variant="body1" color="black">
-                {props.description}
+                {bonsai.description}
               </Typography>
-            </div>
+            </div> */}
           </CardActionArea> 
         </Box>
       </Card>
@@ -52,8 +52,6 @@ export default function BonsaiItem (props) {
 }
 
 BonsaiItem.propTypes = {
-  title: PropTypes.string,
-  price: PropTypes.string,
-  description: PropTypes.string,
-  imageBonsai: PropTypes.arrayOf(PropTypes.string),
+  bonsai: PropTypes.object.isRequired,
+  imageUrl: PropTypes.string.isRequired,
 };

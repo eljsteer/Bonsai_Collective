@@ -27,26 +27,26 @@ export default function MobileDrawer({ mobileOpen, handleDrawerToggle }) {
   const navItems = [
     {
         id: 0,
-        name: "Home",
+        name: "HOME",
         url: "/"
     }, {
         id: 1,
-        name: "About",
+        name: "ABOUT",
         url: "/about"
     },
     {
         id: 2,
-        name: "Shop",
+        name: "SHOP",
         url: "/products"
     },
     {
         id: 3,
-        name: "Explore",
+        name: "EXPLORE",
         url: "/bonsai"
     },
     {
         id: 4,
-        name: "Blog",
+        name: "BLOG",
         url: "/blog"
     },
   ];
@@ -55,12 +55,12 @@ export default function MobileDrawer({ mobileOpen, handleDrawerToggle }) {
     ...navItems,
     {
         id: 5,
-        name: "Profile",
+        name: "PROFILE",
         url: "/profile/myBonsai"
     },
     {
         id: 6,
-        name: "Logout",
+        name: "LOGOUT",
         url: "/", 
         onClick: () => Auth.logout()
     }
@@ -70,7 +70,7 @@ export default function MobileDrawer({ mobileOpen, handleDrawerToggle }) {
     ...navItems,
     {
         id: 5,
-        name: "Login",
+        name: "LOGIN",
         url: "/login"
     }
   ];
@@ -92,16 +92,19 @@ export default function MobileDrawer({ mobileOpen, handleDrawerToggle }) {
       <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
         <img className="logo" src={bonsaiLogo} style={{ width: 50, height: 50 }} alt="Bonsai Collective logo" />
         <Typography variant="h6" sx={{ my: 2 }}>
-          Bonsai Collective
+          BONSAI COLLECTIVE
         </Typography>
         <Divider />
         <List>
           {(Auth.loggedIn() ? loggedInItems : loggedOutItems).map((item) => (
-            <ListItem key={item.id} disablePadding>
+          <Box key={item.id}>
+            <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }} to={item.url} component={ Link }>
-                <ListItemText primary={item.name}/>
+                <ListItemText primary={item.name} />
               </ListItemButton>
             </ListItem>
+            <Divider variant="middle" component="li" />
+          </Box>
           ))}
         </List>
       </Box>

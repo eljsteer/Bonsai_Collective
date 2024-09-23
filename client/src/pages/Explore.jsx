@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 import { useQuery } from "@apollo/client";
 import { QUERY_BONSAI } from "../utils/queries";
+import { getRandomPhoto } from "../utils/apiUnsplash";
 import BonsaiItem from "../components/BonsaiItem";
 import LoadingBackdrop from "../components/LoadingBackdrop";
 
@@ -16,9 +18,29 @@ export default function Explore() {
       {query: QUERY_BONSAI}
   ]
   });
-  
-  //returns all bonsai if any exist or empty array 
-  const allBonsai = data?.allBonsai || [];
+  const queryImg = "Bonsai";
+  const [bonsaiExplore, setBonsaiExplore] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!data || !data.allBonsai) return;
+      try {
+        const fetchedPhotos = await getRandomPhoto(queryImg);
+
+        const allBonsai = data?.allBonsai || [];
+        if (allBonsai.length && fetchedPhotos.results.length) {
+          const combined = allBonsai.map((bonsai, index) => ({
+            ...bonsai,
+            imageUrl: fetchedPhotos.results[index]?.urls?.regular || "", 
+          }));
+          setBonsaiExplore(combined);
+        }
+      } catch (error) {
+        console.error("Failed to fetch photo:", error);
+      }
+    }
+    fetchData();
+  }, [data]);
   
   if (loading) {
     return <LoadingBackdrop loadingText={"Growing Bonsai..."}/>;
@@ -36,19 +58,16 @@ export default function Explore() {
           spacing={{ xs: 2, md: 3 }} 
           columns={{ xs: 4, sm: 8, md: 12 }}
           >
-          {allBonsai.map((bonsai, i) => (
+          {bonsaiExplore.map((bonsai, i) => (
             <Box key={i} sx={{ margin:"10px", maxwidth: 500 }} xs={12} sm={12} md={10}>
               <Link
                 to={`/bonsai/${bonsai._id}`}
                 underline="none"
               >
                 {/* Bonsai component import */}
-                <BonsaiItem 
-                  key={i}
-                  title={bonsai.title}                
-                  price={bonsai.price}
-                  description={bonsai.description}
-                  imageBonsai={bonsai.imageBonsai}
+                <BonsaiItem
+                  bonsai={bonsai}
+                  imageUrl={bonsai.imageUrl}
                 />
               </Link>            
             </Box>

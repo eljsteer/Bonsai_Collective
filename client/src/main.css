@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat, sans-serif"
+}
+
+/* Color Palette #1 */
+
+/* 
+  1. #C4BDAA
+  2. #515B3A
+  3. #353D2F
+  4. #984447
+  5. #476C9B
+*/

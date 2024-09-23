@@ -6,7 +6,6 @@ import {
 } from "react-router-dom"
 
 ////------ Theming ------ ////
-import theme from "./utils/Theme.jsx"
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
 ////------ Layouts ------ ////
@@ -33,6 +32,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@ap
 import { setContext } from '@apollo/client/link/context'
 import { CartContextProvider } from "./utils/CartContext.jsx";
 import AddUserInfo from "./pages/AddUserInfo.jsx";
+import theme from "./utils/Theme.jsx";
 
 ////------ Create HTTP link for graphQL ------>>
 const httpLink = createHttpLink({
@@ -88,8 +88,8 @@ const router = createBrowserRouter(
 function App() {
   return (
     <ApolloProvider client={client}>
+      <CssBaseline />
       <ThemeProvider theme={theme}>
-        <CssBaseline />
         <CartContextProvider>
           <RouterProvider router={router}/>
         </CartContextProvider>

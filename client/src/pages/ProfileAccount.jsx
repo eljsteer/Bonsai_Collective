@@ -49,9 +49,6 @@ const NavButton = styled(Button)({
   border: "1px solid",
   backgroundColor: "#515b3a",
   borderColor: "#282D24",
-  fontFamily: [
-    "Montserrat,sans-serif",
-  ].join(","),
   "&:hover": {
     backgroundColor: "#282D24",
     borderColor: "#515b3a",
@@ -126,7 +123,7 @@ const ProfileAccount = () => {
             sx={{ backgroundColor: "#32392D", }}
             noValidate
             >
-            <Typography variant="h4" sx={{margin:"20px", color: "white", fontFamily:"Montserrat,sans-serif", fontWeight:"600", textAlign:"center", textTransform:"uppercase"}}>WELCOME {welcomeName}</Typography>
+            <Typography variant="h4" sx={{ margin:"20px", color: "white", fontWeight:"600", textAlign:"center", textTransform:"uppercase" }}>WELCOME {welcomeName}</Typography>
             <CardActions sx={{display:"flex", justifyContent:"center"}}>
                 <NavButton variant="outlined" startIcon={<TbPlant />} sx={{ color:"white", margin:"3px" }}>
                   <Link to="/profile/myBonsai" style={{ color:"white", textDecoration:"none" }}>
@@ -139,43 +136,43 @@ const ProfileAccount = () => {
                   </Link>
                 </NavButton>
             </CardActions>
-            <CardContent sx={{ display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px"}}>
-              <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
+            <CardContent sx={{ display: "flex", justifyContent: "center", flexDirection: "column", margin:"20px" }}>
+              <Typography sx={{ display:"flex", alignItems:"center", color:"white" }}>
                 First Name:
                 <Input
                   hiddenLabel
                   id="filled-hidden-label-small"
                   value={userData.firstName}
                   variant="filled"
-                  sx={{color:"white", fontFamily:"Montserrat,sans-serif", margin:"0px 10px"}}
+                  sx={{color:"white", margin:"0px 10px"}}
                   size="small"
                 />
                 <IconButton>
                   <EditIcon/>
                 </IconButton>
               </Typography>
-              <Typography sx={{display:"flex", alignItems:"center", color:"white",fontFamily:"Montserrat,sans-serif" }}>
+              <Typography sx={{display:"flex", alignItems:"center", color:"white" }}>
                 Last Name:
                 <Input
                   hiddenLabel
                   id="filled-hidden-label-small"
                   value={userData.lastName}
                   variant="filled"
-                  sx={{color:"white", fontFamily:"Montserrat,sans-serif", margin:"0px 10px"}}
+                  sx={{color:"white", margin:"0px 10px"}}
                   size="small"
                 />
                 <IconButton>
                   <EditIcon/>
                 </IconButton>
               </Typography>
-              <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
+              <Typography sx={{display:"flex", alignItems:"center", color:"white" }}>
                 Email:
                 <Input
                   hiddenLabel
                   id="filled-hidden-label-small"
                   value={userData.email}
                   variant="filled"
-                  sx={{color:"white", fontFamily:"Montserrat,sans-serif", margin:"0px 10px"}}
+                  sx={{color:"white", margin:"0px 10px"}}
                   fullWidth
                   size="small"
                 />
@@ -183,14 +180,14 @@ const ProfileAccount = () => {
                   <EditIcon/>
                 </IconButton>
               </Typography>
-              <Typography sx={{display:"flex", alignItems:"center", color:"white", fontFamily:"Montserrat,sans-serif"}}>
+              <Typography sx={{display:"flex", alignItems:"center", color:"white" }}>
                 Bio:
                 <Input
                   hiddenLabel
                   id="filled-hidden-label-small"
                   value={userData.bio}
                   variant="filled"
-                  sx={{color:"white", fontFamily:"Montserrat,sans-serif", margin:"0px 10px"}}
+                  sx={{color:"white", margin:"0px 10px"}}
                   fullWidth
                 />
                 <IconButton>
@@ -205,7 +202,7 @@ const ProfileAccount = () => {
                     // disabled={!(emailError === true)}
                     type="submit"
                     variant="contained"
-                    sx={{ width: "50%", backgroundColor:"#515b3a", fontFamily:"Montserrat, sans-serif" }}
+                    sx={{ width: "50%", backgroundColor:"#515b3a" }}
                     // onSubmit={handleFormSubmit}
                     >
                     Submit

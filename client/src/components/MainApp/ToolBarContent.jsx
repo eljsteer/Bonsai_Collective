@@ -110,7 +110,7 @@ export default function ToolBarContent () {
       <Link to="/login">
         <Button
           className="navLinksBttn"
-          sx={{fontFamily:"Montserrat, sans-serif", fontSize:{sm: "0.7rem", md: "0.9rem", lg: "1.1rem"}, fontWeight: "600", color: "black", height:"fit-content"}}>
+          sx={{ fontSize:{sm: "0.7rem", md: "0.9rem", lg: "1.1rem"}, fontWeight: "600", color: "black", height:"fit-content"}}>
             LOGIN
         </Button>
       </Link>
@@ -157,7 +157,7 @@ export default function ToolBarContent () {
             >
               <Link 
                 to={`${item.url}`}
-                style={{display:"flex", flexWrap:"nowrap", color:"black", textDecoration:"none", fontFamily:"Montserrat,sans-serif", fontSize:"1.2rem"}}  
+                style={{display:"flex", flexWrap:"nowrap", color:"black", textDecoration:"none", fontSize:"1.2rem"}}  
               >
                 {item.icon}&nbsp;&nbsp;{item.name}
               </Link>
@@ -166,7 +166,7 @@ export default function ToolBarContent () {
           <Divider />
           <MenuItem onClick={handleCloseUserMenu}>
             <Link  style={{textDecoration:"none"}} to="/">
-              <ListItemButton onClick={handleLogout} sx={{ color:"black", fontFamily:"Montserrat,sans-serif", fontSize:"1.2rem"}}>
+              <ListItemButton onClick={handleLogout} sx={{ color:"black", fontSize:"1.2rem"}}>
                 <ListItemIcon>
                   <LogoutIcon 
                     fontSize="small" 
@@ -193,7 +193,7 @@ export default function ToolBarContent () {
             id="navLinksBttn"
             href={navlink.url}
             key={navlink.id}
-            sx={{ mx: { sm: 0, md: 2, lg: 6}, fontFamily:"Montserrat, sans-serif", fontSize:{sm: "1.1rem", md: "1.4rem", lg: "1.7rem"}, fontWeight: "500", }}
+            sx={{ mx: { sm: 0, md: 2, lg: 6}, fontSize:{sm: "1.1rem", md: "1.4rem", lg: "1.7rem"}, fontWeight: "500", }}
           >
             {navlink.name}
           </Button>
@@ -238,7 +238,7 @@ export default function ToolBarContent () {
           <MenuItem sx={{display:"flex", justifyContent:"center"}}>
             <Link 
               to="/cart"
-              style={{ textDecoration:"none", color:"black", fontFamily:"Montserrat,sans-serif", fontSize:"1.2rem"}}
+              style={{ textDecoration:"none", color:"black", fontSize:"1.2rem"}}
             >
               View Cart
             </Link>

@@ -23,10 +23,10 @@ export default function ProductCard({ product, imageUrl}) {
             alt="Bonsai Growing Products"
           />
           <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center"}}>
-            <Typography gutterBottom sx={{color:"black", textAlign: "center", fontFamily:"Montserrat, sans-serif", fontWeight:"600"}}>
+            <Typography gutterBottom sx={{color:"black", textAlign: "center", fontWeight:"600"}}>
               {product.productName}
             </Typography>
-            <Typography sx={{color:"black", fontFamily:"Montserrat, sans-serif", }}>
+            <Typography sx={{color:"black" }}>
               ${product.price}
             </Typography>
           </CardContent>

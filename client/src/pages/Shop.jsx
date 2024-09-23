@@ -125,11 +125,11 @@ export default function Shop() {
   return (
     <Container>
       <Box sx={{ display:"flex", justifyContent:"center", margin: 2 }}>
-        <Typography variant="h3" sx={{margin: 5 }}>Shop</Typography>
+        <Typography variant="h3" sx={{ margin: 5 }}>SHOP</Typography>
       </Box>
       <Box sx={{ display:"flex", borderTop:"2px Solid Black", borderBottom:"2px Solid Black"  }}>
         <FormControl sx={{ display:"flex", flexDirection:"row", alignItems:"center"}} variant="standard">
-          <Typography sx={{margin:"0px 20px", fontFamily:"Montserrat, sans-serif"}}>FILTER BY:</Typography>
+          <Typography sx={{ margin:"0px 20px" }}>FILTER BY:</Typography>
           <NativeSelect
             id="categorySelect"
             value={category}
@@ -146,7 +146,7 @@ export default function Shop() {
           </NativeSelect>
         </FormControl>
         <FormControl sx={{display:"flex", flexDirection:"row", alignItems:"center"}} variant="standard">
-          <Typography sx={{margin:"0px 20px", fontFamily:"Montserrat, sans-serif"}}>SORT BY:</Typography>
+          <Typography sx={{ margin:"0px 20px" }}>SORT BY:</Typography>
           <NativeSelect
             id="sortBySelect"
             value={sortBy}
