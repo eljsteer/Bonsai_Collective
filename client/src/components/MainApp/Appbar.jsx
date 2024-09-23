@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import {AppBar} from "@mui/material";
+import { AppBar } from "@mui/material";
 import { Box } from "@mui/material";
 import { Container } from "@mui/material";
 import { IconButton } from "@mui/material";
@@ -9,7 +9,7 @@ import { Toolbar } from "@mui/material";
 import { useScrollTrigger } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ToolBarContent from "./ToolBarContent";
-import BonsaiDrawer from "./BonsaiDrawer";
+import MobileDrawer from "./MobileDrawer";
 import "./styles/header.css"
 
 
@@ -63,7 +63,7 @@ export default function ResponsiveAppBar() {
         </AppBar>
       </HideOnScroll>
       <nav>
-        <BonsaiDrawer mobileOpen={ mobileOpen } handleDrawerToggle={ handleDrawerToggle } />
+        <MobileDrawer mobileOpen={ mobileOpen } handleDrawerToggle={ handleDrawerToggle } />
       </nav>
       <Box component="main">
         <Toolbar />

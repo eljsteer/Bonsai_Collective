@@ -18,7 +18,7 @@ import Auth from "../../utils/authClient";
 ////------------------------------------------------------////
 ////------ Small screen navigation drawer component ------////
 ////------------------------------------------------------////
-export default function BonsaiDrawer({ mobileOpen, handleDrawerToggle }) {
+export default function MobileDrawer({ mobileOpen, handleDrawerToggle }) {
 
   //------- Width of naviagation drawer when in small screen --->>
   const drawerWidth = 300;
@@ -29,23 +29,37 @@ export default function BonsaiDrawer({ mobileOpen, handleDrawerToggle }) {
         id: 0,
         name: "Home",
         url: "/"
+    }, {
+        id: 1,
+        name: "About",
+        url: "/about"
     },
     {
-        id: 1,
-        name: "Discover",
-        url: "/discover"
-    }
+        id: 2,
+        name: "Shop",
+        url: "/products"
+    },
+    {
+        id: 3,
+        name: "Explore",
+        url: "/bonsai"
+    },
+    {
+        id: 4,
+        name: "Blog",
+        url: "/blog"
+    },
   ];
   
   const loggedInItems = [
     ...navItems,
     {
-        id: 2,
+        id: 5,
         name: "Profile",
         url: "/profile/myBonsai"
     },
     {
-        id: 3,
+        id: 6,
         name: "Logout",
         url: "/", 
         onClick: () => Auth.logout()
@@ -55,7 +69,7 @@ export default function BonsaiDrawer({ mobileOpen, handleDrawerToggle }) {
   const loggedOutItems = [
     ...navItems,
     {
-        id: 4,
+        id: 5,
         name: "Login",
         url: "/login"
     }
@@ -84,7 +98,7 @@ export default function BonsaiDrawer({ mobileOpen, handleDrawerToggle }) {
         <List>
           {(Auth.loggedIn() ? loggedInItems : loggedOutItems).map((item) => (
             <ListItem key={item.id} disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }} component={ Link }>
+              <ListItemButton sx={{ textAlign: "center" }} to={item.url} component={ Link }>
                 <ListItemText primary={item.name}/>
               </ListItemButton>
             </ListItem>
@@ -95,7 +109,7 @@ export default function BonsaiDrawer({ mobileOpen, handleDrawerToggle }) {
   );
 }
 
-BonsaiDrawer.propTypes = {
+MobileDrawer.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   handleDrawerToggle: PropTypes.func.isRequired,
 };

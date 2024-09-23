@@ -5,7 +5,7 @@ import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ResponsiveAppBar from "./Appbar";
 import ToolBarContent from "./ToolBarContent";
-import BonsaiDrawer from "./BonsaiDrawer";
+import MobileDrawer from "./MobileDrawer";
 import "./styles/header.css"
 
 
@@ -41,7 +41,7 @@ export default function Header() {
         </Toolbar>
       </AppBar>
       <nav>
-        <BonsaiDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
+        <MobileDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
       </nav>
       <ResponsiveAppBar />
     </div>
