@@ -3,6 +3,9 @@ const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 
 const bonsaiSchema = new Schema({
+    seed: {
+      type: Boolean,
+    }, 
     title: {
       type: String,
       minlength: [3, 'Must be at least 3 characters, got {VALUE}'],
@@ -33,6 +36,9 @@ const bonsaiSchema = new Schema({
         type: String,
       }
     ],
+    bonsaiImgUrl: {
+      type: String,
+    },
     chapters: [
       {
         chapterIMG: [String],

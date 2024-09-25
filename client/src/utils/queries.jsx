@@ -22,6 +22,7 @@ export const QUERY_ME =gql`
         description
         price
         imageBonsai
+        bonsaiImgUrl
         chapters {
           _id
           chapterIMG
@@ -52,6 +53,7 @@ export const QUERY_USER = gql`
         description
         price
         imageBonsai
+        bonsaiImgUrl
         chapters {
           _id
           chapterIMG
@@ -72,6 +74,7 @@ export const QUERY_PRODUCTS = gql`
       productDescription
       category
       imageProduct
+      productImgUrl
       price
       stock
     }
@@ -84,6 +87,7 @@ export const QUERY_PRODUCTS_BY_IDS = gql`
       _id
       productName
       price
+      productImgUrl
     }
   }
 `;
@@ -100,6 +104,7 @@ export const QUERY_BONSAI = gql`
       description
       price
       imageBonsai
+      bonsaiImgUrl
       chapters {
         _id
         chapterIMG
@@ -123,6 +128,7 @@ export const QUERY_SINGLE_BONSAI = gql`
       description
       price
       imageBonsai
+      bonsaiImgUrl
       chapters {
         _id
         chapterIMG
@@ -142,6 +148,7 @@ export const QUERY_SINGLE_PRODUCT = gql`
       productDescription
       category
       imageProduct
+      productImgUrl
       price
       stock
     }

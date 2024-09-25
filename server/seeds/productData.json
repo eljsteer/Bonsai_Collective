@@ -1,5 +1,6 @@
 [
   {    
+    "seed": true,
     "productName": "Pot Mesh",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Accesories",
@@ -7,6 +8,7 @@
     "price": "12.50",
     "stock": 2
   }, {    
+    "seed": true,
     "productName": "10L Premium Bonsai Potting Mix",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Potting Mix",
@@ -14,6 +16,7 @@
     "price": "16.50",
     "stock": 4
   }, {    
+    "seed": true,
     "productName": "5L Premium Bonsai Potting Mix",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Potting Mix",
@@ -21,6 +24,7 @@
     "price": "9",
     "stock": 8
   }, {    
+    "seed": true,
     "productName": "2.5L Premium Bonsai Potting Mix",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Potting Mix",
@@ -28,6 +32,7 @@
     "price": "4.5",
     "stock": 24
   }, {    
+    "seed": true,
     "productName": "Bonsai Turntable 30cm",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Accesories",
@@ -35,6 +40,7 @@
     "price": "20",
     "stock": 10
   }, {    
+    "seed": true,
     "productName": "Kiyonal Cut Paste",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category":"Accesories",
@@ -42,6 +48,7 @@
     "price": "30",
     "stock": 16
   }, {    
+    "seed": true,
     "productName": "Branch Bender",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category":"Accesories",
@@ -49,6 +56,7 @@
     "price": "30",
     "stock": 6
   }, {    
+    "seed": true,
     "productName": "Decorative Pebbles 500ml",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Decorations",
@@ -56,6 +64,7 @@
     "price": "10",
     "stock": 9
   }, {    
+    "seed": true,
     "productName": "Secateur",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Accesories",
@@ -63,6 +72,7 @@
     "price": "25",
     "stock": 5
   }, {
+    "seed": true,
     "productName": "220mm Painted Square Bonsai Pot",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Pots",
@@ -70,6 +80,7 @@
     "price": "15",
     "stock": 13
   }, {
+    "seed": true,
     "productName": "Blue Glazed Bonsai Pot - Rectangle",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Pots",
@@ -77,6 +88,7 @@
     "price": "20",
     "stock": 18
   }, {
+    "seed": true,
     "productName": "Juniper Squamata Bonsai Tree Large Kit",
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Kits",

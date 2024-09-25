@@ -17,6 +17,7 @@ const typeDefs = gql`
     productDescription: String!
     category: String!
     imageProduct: [String!]!
+    productImgUrl: String
     price: String!
     stock: Float!
   }
@@ -64,11 +65,22 @@ const typeDefs = gql`
     email: String
   }
 
+  input ProductImageInput {
+    _id: ID!
+    productImgUrl: String!
+  }
+  
+  input BonsaiImageInput {
+    _id: ID!
+    bonsaiImgUrl: String!
+  }
+
   input ProductInput {
     productName: String!
     productDescription: String!
     category: String!
     imageProduct: [String!]
+    productImgUrl: String!
     price: String!
     stock: Float!
   }
@@ -105,9 +117,11 @@ const typeDefs = gql`
     updateUserEmail(updateUserEmail: UserEmailInput): User
     login(email: String!, password: String!): Auth
     addProduct(productName: String!, summary: String!, imageProduct: [String!], price: String!, stock: Int!): Product
+    updateProductImgUrl(ProductImgUrl: String!): Product
     removeProduct(productId: ID!): Product
     addBonsai(title: String!, treeFamily: String!, scientificName: String, description: String, imageBonsai: [String!], price: Float!, chapters: [ChapterInput!]): Bonsai
     updateBonsai(bonsaiId: ID!, updateBonsaiData: BonsaiInput!): Bonsai
+    updateBonsaiImageUrl(bonsaiId: ID!, updateBonsaiImgUrlData: BonsaiImageInput!): Bonsai
     removeBonsai(bonsaiId: ID!): Bonsai
   }
 `;

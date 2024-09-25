@@ -69,13 +69,14 @@ export default function Shop() {
       try {
         const fetchedPhotos = await getRandomPhoto(queryImg);
 
-        const featuredProducts = data?.allProducts || [];
-        if (featuredProducts.length && fetchedPhotos.results.length) {
-          const combined = featuredProducts.map((product, index) => ({
+        const allShopProducts = data?.allProducts || [];
+        if (allShopProducts.length && fetchedPhotos.results.length) {
+          const combined = allShopProducts.map((product, index) => ({
             ...product,
-            imageUrl: fetchedPhotos.results[index]?.urls?.regular || "", 
+            productImgUrl: fetchedPhotos.results[index]?.urls?.regular || "", 
           }));
           setShopProducts(combined);
+          console.log(shopProducts)
         }
       } catch (error) {
         console.error("Failed to fetch photo:", error);
@@ -106,7 +107,7 @@ export default function Shop() {
   })
 
   if (loading) {
-    return <LoadingBackdrop loadingText={"Filling Shop Shelves..."}/>;
+    return <LoadingBackdrop loadingText={"Spinning up server and filling shop shelves..."}/>;
   }
 
   if(error) {
@@ -180,7 +181,7 @@ export default function Shop() {
                 >
                   <ProductCard 
                     product={product}
-                    imageUrl={product.imageUrl}
+                    imageUrl={product.productImgUrl}
                   />
                 </Link>
                 <CardActions key={i} sx={{display:"flex", justifyContent:"center"}}>

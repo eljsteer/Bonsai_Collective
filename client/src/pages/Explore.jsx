@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_BONSAI } from "../utils/queries";
+import { UPDATE_BONSAI_IMAGE_URLS } from "../utils/mutations";
 import { getRandomPhoto } from "../utils/apiUnsplash";
 import BonsaiItem from "../components/BonsaiItem";
 import LoadingBackdrop from "../components/LoadingBackdrop";
@@ -18,6 +19,8 @@ export default function Explore() {
       {query: QUERY_BONSAI}
   ]
   });
+  const [updateBonsaiImageUrl] = useMutation(UPDATE_BONSAI_IMAGE_URLS)
+
   const queryImg = "Bonsai";
   const [bonsaiExplore, setBonsaiExplore] = useState([]);
 
@@ -31,10 +34,17 @@ export default function Explore() {
         if (allBonsai.length && fetchedPhotos.results.length) {
           const combined = allBonsai.map((bonsai, index) => ({
             ...bonsai,
-            imageUrl: fetchedPhotos.results[index]?.urls?.regular || "", 
+            bonsaiImgUrl: fetchedPhotos.results[index]?.urls?.regular || "", 
           }));
           setBonsaiExplore(combined);
         }
+
+        const BonsaiImgUrlData = [...bonsaiExplore._id, ...bonsaiExplore.bonsaiImgUrl]
+        updateBonsaiImageUrl({
+          variables: {
+            updateBonsaiImgUrlData: BonsaiImgUrlData
+          }
+        })
       } catch (error) {
         console.error("Failed to fetch photo:", error);
       }
@@ -43,7 +53,7 @@ export default function Explore() {
   }, [data]);
   
   if (loading) {
-    return <LoadingBackdrop loadingText={"Growing Bonsai..."}/>;
+    return <LoadingBackdrop loadingText={"Spinning up server and growing bonsai..."}/>;
   }
 
   return (
@@ -67,7 +77,7 @@ export default function Explore() {
                 {/* Bonsai component import */}
                 <BonsaiItem
                   bonsai={bonsai}
-                  imageUrl={bonsai.imageUrl}
+                  imageUrl={bonsai.bonsaiImgUrl}
                 />
               </Link>            
             </Box>
