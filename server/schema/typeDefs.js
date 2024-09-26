@@ -117,12 +117,12 @@ const typeDefs = gql`
     updateUserEmail(updateUserEmail: UserEmailInput): User
     login(email: String!, password: String!): Auth
     addProduct(productName: String!, summary: String!, imageProduct: [String!], price: String!, stock: Int!): Product
-    updateProductImageUrl(productId: ID!, updateProductImgUrlData: ProductImageInput!): Product
-    removeProduct(productId: ID!): Product
+    updateProductImageUrl(_id: ID!, updateProductImgUrlData: ProductImageInput!): Product
+    removeProduct(_id: ID!): Product
     addBonsai(title: String!, treeFamily: String!, scientificName: String, description: String, imageBonsai: [String!], price: Float!, chapters: [ChapterInput!]): Bonsai
-    updateBonsai(bonsaiId: ID!, updateBonsaiData: BonsaiInput!): Bonsai
-    updateBonsaiImageUrl(bonsaiId: ID!, updateBonsaiImgUrlData: BonsaiImageInput!): Bonsai
-    removeBonsai(bonsaiId: ID!): Bonsai
+    updateBonsai(_id: ID!, updateBonsaiData: BonsaiInput!): Bonsai
+    updateBonsaiImageUrl(_id: ID!, updateBonsaiImgUrlData: BonsaiImageInput!): Bonsai
+    removeBonsai(_id: ID!): Bonsai
   }
 `;
 
