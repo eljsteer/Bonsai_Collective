@@ -28,7 +28,6 @@ const productSchema = new Schema({
     price: {
       type: String,
       required: true,
-      
     },
     stock: {
       type: Number,

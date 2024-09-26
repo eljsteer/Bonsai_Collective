@@ -76,7 +76,6 @@ export default function Shop() {
             productImgUrl: fetchedPhotos.results[index]?.urls?.regular || "", 
           }));
           setShopProducts(combined);
-          console.log(shopProducts)
         }
       } catch (error) {
         console.error("Failed to fetch photo:", error);
@@ -192,7 +191,6 @@ export default function Shop() {
                     variant="outlined"
                     onClick={() => handleAddProductToCart(product._id)}
                   >
-                    
                     <FaCartArrowDown style={{fontSize:"20px", marginRight:"5px"}} color="green"/>
                     Add to Cart
                   </Button>

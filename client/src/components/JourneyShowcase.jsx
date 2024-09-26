@@ -31,6 +31,15 @@ export default function JourneyShowcase() {
 
   let numChapters  = numRandomBonsaiChapters();
 
+
+  // const BonsaiImgUrlData = [...bonsaiExplore._id, ...bonsaiExplore.bonsaiImgUrl]
+  // updateBonsaiImageUrl({
+  //   variables: {
+  //     updateBonsaiImgUrlData: BonsaiImgUrlData
+  //   }
+  // })
+
+
   // ------ Leftside section JSX component ------>>
   // ------ Function displays an image and description with left hand styling. ------>>
   const LeftSideJourney = (props) => {
