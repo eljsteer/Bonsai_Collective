@@ -249,6 +249,22 @@ updateUserEmail: async (parent, { updateData }, context) => {
 
 //// ------ Mutation to Update the Bonsai's imageURLs ------>> 
 //// ------------------------------------------------------------>>
+updateProductImageUrl: async (parent, { updateProductImgUrlData }, context) => {
+  // Loop through each bonsai and update individually
+  const updateAllProductImageUrl = updateProductImgUrlData.map(product => ({
+    updateOne: {
+      filter: { _id: product._id },
+      update: { $set: { productImgUrl: product.productImgUrl } },
+    }
+  }));
+
+  const result = await Product.bulkWrite(updateAllProductImageUrl);
+
+  return result;
+},
+
+//// ------ Mutation to Update the Bonsai's imageURLs ------>> 
+//// ------------------------------------------------------------>>
 updateBonsaiImageUrl: async (parent, { updateBonsaiImgUrlData }, context) => {
   // Loop through each bonsai and update individually
   const updateAllBonsaiImageUrl = updateBonsaiImgUrlData.map(bonsai => ({

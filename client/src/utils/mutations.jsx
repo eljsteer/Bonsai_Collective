@@ -63,6 +63,14 @@ mutation updateBonsai($updateData: BonsaiInput!) {
 } 
 `;
 
+export const UPDATE_PRODUCT_IMAGE_URLS = gql`
+mutation updateProductImageUrl($updateProductImgUrlData: ProductImageInput!) {
+  updateProductImageUrl(updateProductImageUrl: $updateProductImageUrl) {
+    productImgUrl
+  }
+} 
+`;
+
 export const UPDATE_BONSAI_IMAGE_URLS = gql`
 mutation updateBonsaiImageUrl($updateBonsaiImgUrl: BonsaiImageInput!) {
   updateBonsaiImageUrl(updateBonsaiImgUrl: $updateBonsaiImgUrl) {

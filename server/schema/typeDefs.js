@@ -117,7 +117,7 @@ const typeDefs = gql`
     updateUserEmail(updateUserEmail: UserEmailInput): User
     login(email: String!, password: String!): Auth
     addProduct(productName: String!, summary: String!, imageProduct: [String!], price: String!, stock: Int!): Product
-    updateProductImgUrl(ProductImgUrl: String!): Product
+    updateProductImageUrl(productId: ID!, updateProductImgUrlData: ProductImageInput!): Product
     removeProduct(productId: ID!): Product
     addBonsai(title: String!, treeFamily: String!, scientificName: String, description: String, imageBonsai: [String!], price: Float!, chapters: [ChapterInput!]): Bonsai
     updateBonsai(bonsaiId: ID!, updateBonsaiData: BonsaiInput!): Bonsai

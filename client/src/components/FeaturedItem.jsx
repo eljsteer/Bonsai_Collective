@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Card, CardActions, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import "./styles/featured.css"
 
-export default function FeaturedItem({ item, imageUrl }) {
+export default function FeaturedItem({ item, productImgUrl }) {
   return (
       <div className="slide-content">
         <div className="card-wrapper">
@@ -12,7 +12,7 @@ export default function FeaturedItem({ item, imageUrl }) {
               <CardMedia
                 className="SwiperCardImage"
                 component="img"
-                image={imageUrl}
+                image={productImgUrl}
                 alt={item.productName}
               />
               <div className="Image_Overlay">
@@ -44,5 +44,5 @@ export default function FeaturedItem({ item, imageUrl }) {
 
 FeaturedItem.propTypes = {
   item: PropTypes.object.isRequired,
-  imageUrl: PropTypes.string.isRequired,
+  productImgUrl: PropTypes.string.isRequired,
 };
