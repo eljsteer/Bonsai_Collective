@@ -52,7 +52,7 @@ export default function SingleProduct() {
             <CardMedia
               component="img"
               height="500px"
-              image={singleProduct.imageProduct}
+              image={singleProduct.productImgUrl}
               alt="Bonsai Growing Products"
             >
             </CardMedia>

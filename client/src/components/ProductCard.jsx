@@ -10,7 +10,10 @@ import { Typography } from '@mui/material';
 ///--------------------------------------------------------------////
 ////------ Product card component - displayed on shop page ------////
 ////-------------------------------------------------------------////
-export default function ProductCard({ product, productImgUrl}) {
+export default function ProductCard({ product }) {
+
+  const defaultImgUrl = "https://images.unsplash.com/photo-1529331700525-2e558dc5ecb8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Replace with your preferred default image URL
+  const imageUrl = product.productImgUrl || defaultImgUrl;
 
   return (
     <Box>
@@ -19,7 +22,7 @@ export default function ProductCard({ product, productImgUrl}) {
           <CardMedia
             component="img"
             height="300px"
-            image={productImgUrl}
+            image={imageUrl}
             alt="Bonsai Growing Products"
           />
           <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center"}}>
@@ -36,7 +39,11 @@ export default function ProductCard({ product, productImgUrl}) {
   );
 }
 
+// Define the prop types, but make `productImgUrl` optional
 ProductCard.propTypes = {
-  product: PropTypes.object.isRequired,
-  productImgUrl: PropTypes.string.isRequired,
+  product: PropTypes.shape({
+    productName: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    productImgUrl: PropTypes.string, // Make this optional
+  }).isRequired,
 };

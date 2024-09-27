@@ -59,20 +59,22 @@ export default function Shop() {
 //// ------ Database Product queries ------>>
   const {error, loading, data} = useQuery(QUERY_PRODUCTS);
 
-//// ------ Shop Categories ----->>
+ //// ------ Shop Categories ----->>
   const [category, setCategory] = useState("");
   const [sortBy, setSortBy] = useState("");
   const categoriesArray = [];
   const sortByArray = ["Alphabetically, A-Z", "Alphabetically, Z-A", "Price, low-high", "Price, high-low" ];
   const { cartProducts, addProductToCart } = useContext(CartContext);
 
+  console.log(cartProducts)
+
 //// ------ Functions to add products to cart ------>> 
   const handleAddProductToCart = (productID) =>  {
     addProductToCart(productID);
   }
 
-  if (data?.products) {
-    data.products.forEach((product) => {
+  if (data?.allProducts) {
+    data.allProducts.forEach((product) => {
       if (!categoriesArray.includes(product.category)) {
         categoriesArray.push(product.category);
       }
@@ -82,7 +84,6 @@ export default function Shop() {
   if (loading) {
     return <LoadingBackdrop loadingText={"Spinning up server and filling shop shelves..."}/>;
   }
-
   if(error) {
     if (error) return `Error! ${error.message}`;
   }
@@ -95,6 +96,7 @@ export default function Shop() {
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
   };
+
 
   return (
     <Container>
@@ -146,7 +148,7 @@ export default function Shop() {
             spacing={{ xs: 2, md: 3 }} 
             columns={{ xs: 4, sm: 8, md: 12 }}
             >
-            {data?.products?.map.map((product, i) => (
+            {data?.allProducts?.map((product) => (
               <Box key={product._id}>
                 <Link
                   to={`/products/${product._id}`}
@@ -154,12 +156,10 @@ export default function Shop() {
                 >
                   <ProductCard 
                     product={product}
-                    imageUrl={product.productImgUrl}
                   />
                 </Link>
-                <CardActions key={i} sx={{display:"flex", justifyContent:"center"}}>
-                  <Button 
-                    key={i}
+                <CardActions sx={{display:"flex", justifyContent:"center"}}>
+                  <Button
                     size="medium"
                     color="success" 
                     variant="outlined"
