@@ -7,82 +7,64 @@ import ButtonStyled from "./MainApp/ButtonStyled";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { UPDATE_PRODUCT_IMAGE_URLS } from "../utils/mutations";
+
+import { checkSeedProductImages, fetchProductImages, updateProductImagesInDB } from "../utils/imgLoaders";
+
 import 'swiper/css';
 import "./styles/featured.css";
-import { getRandomPhoto } from "../utils/apiUnsplash";
 
 export default function Featured() {
   const navigate = useNavigate();
   const [shopProducts, setShopProducts] = useState([]);
   const [emptyProductURL, setEmptyProductURL] = useState(false);
   const [productImgURLData, setProductImgURLData] = useState([]);
-  const { error, data } = useQuery(QUERY_PRODUCTS);
   const [updateProductImageUrl] = useMutation(UPDATE_PRODUCT_IMAGE_URLS);
 
   const handleNavigate = () => {
     navigate("/products");
   };
 
-  // 1. Fetch products on initial page load
+  const { data, error } = useQuery(QUERY_PRODUCTS, {
+    onCompleted: (data) => {
+      console.log('Query completed:', data);
+    },
+    onError: (error) => {
+      console.error('Query error:', error);
+    },
+  })
+
+  // Fetch products on initial page load
   useEffect(() => {
     if (data && data.allProducts) {
       const shopProductsData = data.allProducts;
       setShopProducts(shopProductsData);
-      checkSeedProductImages(shopProductsData);  // Check if there are null URLs
+
+      // Check if there are null productImgUrls
+      const hasNullProductImgURL = checkSeedProductImages(shopProductsData);
+      setEmptyProductURL(hasNullProductImgURL);
     }
   }, [data]);
 
-  // 2. Check for null productImgUrl and set the "emptyProductURL" state
-  function checkSeedProductImages(items) {
-    const hasNullProductImgURL = items.some(item => item.productImgUrl === null);
-    setEmptyProductURL(hasNullProductImgURL);
-  }
-
-  // 3. Fetch Unsplash images and update productImgURLData if there are null URLs
+  // Fetch Unsplash images and update state if needed
   useEffect(() => {
-    async function fetchProductImages() {
+    async function fetchProductImagesURL() {
       if (emptyProductURL && shopProducts.length > 0) {
-        const queryImg = "Gardening Tools"; // Example query for Unsplash
         try {
-          const fetchedPhotos = await getRandomPhoto(queryImg);
-          const photoUrls = fetchedPhotos.results.map(photo => photo.urls.regular);
-
-          // 1. Create a new array "productImgURLData"
-          const productImgURLDataArray = shopProducts.map((product, index) => ({
-            _id: product._id,
-            productImgUrl: product.productImgUrl || photoUrls[index] || ""  // Map the URL to the product, ensure fallback if no URL exists
-          }));
-
-          // 2. Set the new array to state
+          const productImgURLDataArray = await fetchProductImages(shopProducts);
           setProductImgURLData(productImgURLDataArray);
         } catch (error) {
-          console.error("Failed to fetch Unsplash photos:", error);
+          console.error("Failed to fetch product images:", error);
         }
       }
     }
 
-    fetchProductImages();
+    fetchProductImagesURL();
   }, [emptyProductURL, shopProducts]);
 
-  // 4. Run mutation to update product image URLs in the database once productImgURLData is populated
+  // Update product image URLs in the database
   useEffect(() => {
     if (productImgURLData.length > 0) {
-      // Check if there are any null URLs before updating
-      const hasNullUrls = productImgURLData.some(item => !item.productImgUrl);
-
-      if (!hasNullUrls) {
-        updateProductImageUrl({
-          variables: {
-            updateProductImgUrlData: productImgURLData
-          }
-        })
-        .then(() => {
-          console.log("Product image URLs updated successfully");
-        })
-        .catch((error) => {
-          console.error("Failed to update product image URLs:", error);
-        });
-      }
+      updateProductImagesInDB(updateProductImageUrl, productImgURLData);
     }
   }, [productImgURLData, updateProductImageUrl]);
 
