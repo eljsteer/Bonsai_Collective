@@ -18,6 +18,7 @@ export default function Featured() {
   const [shopProducts, setShopProducts] = useState([]);
   const [emptyProductURL, setEmptyProductURL] = useState(false);
   const [productImgURLData, setProductImgURLData] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
   const [updateProductImageUrl] = useMutation(UPDATE_PRODUCT_IMAGE_URLS);
 
   const handleNavigate = () => {
@@ -31,13 +32,14 @@ export default function Featured() {
     onError: (error) => {
       console.error('Query error:', error);
     },
-  })
+  });
 
   // Fetch products on initial page load
   useEffect(() => {
     if (data && data.allProducts) {
       const shopProductsData = data.allProducts;
       setShopProducts(shopProductsData);
+      setLoading(false);
 
       // Check if there are null productImgUrls
       const hasNullProductImgURL = checkSeedProductImages(shopProductsData);
@@ -64,7 +66,10 @@ export default function Featured() {
   // Update product image URLs in the database
   useEffect(() => {
     if (productImgURLData.length > 0) {
-      updateProductImagesInDB(updateProductImageUrl, productImgURLData);
+      setLoading(true); // Set loading to true before updating DB
+      updateProductImagesInDB(updateProductImageUrl, productImgURLData).then(() => {
+        setLoading(false); // Set loading to false after DB update is complete
+      });
     }
   }, [productImgURLData, updateProductImageUrl]);
 
@@ -72,7 +77,8 @@ export default function Featured() {
 
   return (
     <Box id="featuredContainer">
-      {shopProducts.length > 0 && (
+      {/* Render Swiper only when loading is false */}
+      {!loading && shopProducts.length > 0 && (
         <Swiper
           slidesPerView={1}
           spaceBetween={20}
@@ -99,6 +105,9 @@ export default function Featured() {
           ))}
         </Swiper>
       )}
+      {/* Optionally, you can show a loading spinner or message while loading */}
+      {loading && <p>Loading product images...</p>}
+
       <ButtonStyled
         text="View More"
         borderColor="black"

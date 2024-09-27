@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -16,7 +16,6 @@ import LoadingBackdrop from "../components/LoadingBackdrop";
 import { CartContext } from "../utils/CartContext";
 import { useQuery } from "@apollo/client";
 import { QUERY_PRODUCTS } from "../utils/queries";
-import { getRandomPhoto } from "../utils/apiUnsplash";
 
 ////------------------------------------------------------------
 
@@ -57,32 +56,9 @@ export default function Shop() {
     },
   }));
 
-  const queryImg = "Gardening Tools";
-  const [shopProducts, setShopProducts] = useState([]);
-
 //// ------ Database Product queries ------>>
   const {error, loading, data} = useQuery(QUERY_PRODUCTS);
 
-  useEffect(() => {
-    async function fetchData() {
-      if (!data || !data.allProducts) return;
-      try {
-        const fetchedPhotos = await getRandomPhoto(queryImg);
-
-        const allShopProducts = data?.allProducts || [];
-        if (allShopProducts.length && fetchedPhotos.results.length) {
-          const combined = allShopProducts.map((product, index) => ({
-            ...product,
-            productImgUrl: fetchedPhotos.results[index]?.urls?.regular || "", 
-          }));
-          setShopProducts(combined);
-        }
-      } catch (error) {
-        console.error("Failed to fetch photo:", error);
-      }
-    }
-    fetchData();
-  }, [data]);
 //// ------ Shop Categories ----->>
   const [category, setCategory] = useState("");
   const [sortBy, setSortBy] = useState("");
@@ -90,20 +66,18 @@ export default function Shop() {
   const sortByArray = ["Alphabetically, A-Z", "Alphabetically, Z-A", "Price, low-high", "Price, high-low" ];
   const { cartProducts, addProductToCart } = useContext(CartContext);
 
-  console.log(cartProducts)
-
 //// ------ Functions to add products to cart ------>> 
   const handleAddProductToCart = (productID) =>  {
     addProductToCart(productID);
   }
 
-  shopProducts.forEach((product) => {
-    if(categoriesArray.includes(product.category)) {
-      return;
-    } else {
-      categoriesArray.push(product.category);
-    }
-  })
+  if (data?.products) {
+    data.products.forEach((product) => {
+      if (!categoriesArray.includes(product.category)) {
+        categoriesArray.push(product.category);
+      }
+    });
+  }  
 
   if (loading) {
     return <LoadingBackdrop loadingText={"Spinning up server and filling shop shelves..."}/>;
@@ -172,7 +146,7 @@ export default function Shop() {
             spacing={{ xs: 2, md: 3 }} 
             columns={{ xs: 4, sm: 8, md: 12 }}
             >
-            {shopProducts.map((product, i) => (
+            {data?.products?.map.map((product, i) => (
               <Box key={product._id}>
                 <Link
                   to={`/products/${product._id}`}
