@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box } from "@mui/material";
+import Skeleton from '@mui/material/Skeleton';
 import FeaturedItem from "./FeaturedItem";
 import ButtonStyled from "./MainApp/ButtonStyled";
 import { useQuery, useMutation } from "@apollo/client";
@@ -18,7 +19,8 @@ export default function Featured() {
   const [shopProducts, setShopProducts] = useState([]);
   const [emptyProductURL, setEmptyProductURL] = useState(false);
   const [productImgURLData, setProductImgURLData] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
+  const [swiperBreakpoint, setSwiperBreakpoint] = useState(1); 
   const [updateProductImageUrl] = useMutation(UPDATE_PRODUCT_IMAGE_URLS);
 
   const handleNavigate = () => {
@@ -75,39 +77,53 @@ export default function Featured() {
 
   if (error) return `Error! ${error.message}`;
 
+    // Adjust the number of skeletons based on Swiper's active breakpoint
+    const handleBreakpointChange = (swiper) => {
+      setSwiperBreakpoint(swiper.params.slidesPerView);
+    };
+
   return (
     <Box id="featuredContainer">
-      {/* Render Swiper only when loading is false */}
-      {!loading && shopProducts.length > 0 && (
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={20}
-          breakpoints={{
-            600: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            900: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-            1400: {
-              slidesPerView: 4,
-              spaceBetween: 40,
-            },
-          }}
-          className="mySwiper"
-        >
-          {shopProducts.map((item) => (
-            <SwiperSlide key={item._id}>
-              <FeaturedItem item={item} productImgUrl={item.productImgUrl} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      )}
-      {/* Optionally, you can show a loading spinner or message while loading */}
-      {loading && <p>Loading product images...</p>}
-
+      {/* Render Swiper regardless of loading state */}
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={20}
+        breakpoints={{
+          600: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          900: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          1400: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+        }}
+        className="mySwiper"
+        onBreakpoint={handleBreakpointChange}
+      >
+        {/* Render either Skeletons or FeaturedItems */}
+        {loading
+          ? Array(swiperBreakpoint).fill(null).map((_, index) => (
+              <SwiperSlide key={index}>
+                <Skeleton
+                  sx={{ backgroundColor: "#696969", aspectRatio: "366 / 550"}}
+                  variant="rounded"
+                  width={swiperBreakpoint > 1 ? "100%" : 399}
+                  height={swiperBreakpoint > 1 ? "100%" : 399}
+                />
+              </SwiperSlide>
+            ))
+          : shopProducts.map((item) => (
+              <SwiperSlide key={item._id}>
+                <FeaturedItem item={item} productImgUrl={item.productImgUrl} />
+              </SwiperSlide>
+            ))
+        }
+      </Swiper>
       <ButtonStyled
         text="View More"
         borderColor="black"
@@ -116,5 +132,5 @@ export default function Featured() {
         onClick={handleNavigate}
       />
     </Box>
-  );
+  );  
 }
