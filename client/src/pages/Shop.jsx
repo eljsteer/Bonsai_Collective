@@ -152,7 +152,7 @@ export default function Shop() {
               <Box key={product._id}>
                 <Link
                   to={`/products/${product._id}`}
-                  underline="none"
+                  style={{ textDecoration: "none"}}
                 >
                   <ProductCard 
                     product={product}

@@ -47,7 +47,7 @@ export default function SingleProduct() {
 
   return (
     <Container sx={{height: "auto"}}>
-      <Card sx={{ maxwidth: 1250, backgroundColor: "var(--ComponentGBColor)" }}>
+      <Card sx={{ maxwidth: 1250}}>
         <CardContent sx={{display:"flex", flexDirection:"row", padding:"16px 0px"}}>
             <CardMedia
               component="img"

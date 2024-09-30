@@ -1,14 +1,10 @@
 import PropTypes from "prop-types";
-import { Box } from '@mui/material';
-import { CardActionArea, CardContent, CardMedia } from '@mui/material';
-import { Typography } from '@mui/material';
-
-
-////-------------------------------------------------------------------
-
+import { Box } from "@mui/material";
+import { CardActionArea, CardContent, CardMedia } from "@mui/material";
+import { Typography } from "@mui/material";
 
 ///--------------------------------------------------------------////
-////------ Product card component - displayed on shop page ------////
+//------ Product card component - displayed on shop page ------////
 ////-------------------------------------------------------------////
 export default function ProductCard({ product }) {
 
@@ -18,7 +14,7 @@ export default function ProductCard({ product }) {
   return (
     <Box>
       <Box sx={{ margin: "0px 20px", minWidth: 300, maxWidth: 300, borderRadius: "0" }}>
-        <CardActionArea sx={{ flex: '1 0 auto' }}>
+        <CardActionArea sx={{ flex: "1 0 auto" }}>
           <CardMedia
             component="img"
             height="300px"
@@ -26,10 +22,23 @@ export default function ProductCard({ product }) {
             alt="Bonsai Growing Products"
           />
           <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center"}}>
-            <Typography gutterBottom sx={{color:"black", textAlign: "center", fontWeight:"600"}}>
+            <Typography 
+              gutterBottom 
+              sx={{
+                color: "black", 
+                textAlign: "center", 
+                fontWeight: "600", 
+                textDecoration: "none" // Remove underline
+              }}
+            >
               {product.productName}
             </Typography>
-            <Typography sx={{color:"black" }}>
+            <Typography 
+              sx={{
+                color: "black", 
+                textDecoration: "none" // Remove underline
+              }}
+            >
               ${product.price}
             </Typography>
           </CardContent>
