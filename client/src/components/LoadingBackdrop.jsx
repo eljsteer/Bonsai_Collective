@@ -11,7 +11,11 @@ export default function LoadingBackdrop({loadingText}) {
       sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
       open={true}
     >
-      <Typography className="loadingText" variant="h4">{loadingText}</Typography>
+      <Typography 
+        className="loadingText" 
+        sx={{ textAlign: "center"}}
+        variant="h4"
+      >{loadingText}</Typography>
       <CircularProgress color="inherit" />
     </Backdrop>
   );
