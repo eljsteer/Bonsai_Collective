@@ -141,7 +141,7 @@ export default function Shop() {
         </FormControl>
       </Box>
       <Box sx={{display:"flex", flexDirection:"row"}}>
-        <Box sx={{flexGrow: 1,  padding: 2 }}>
+        <Box sx={{flexGrow: 1,  padding: 5 }}>
           <Grid 
             container 
             sx={{display: "flex", justifyContent:"center", alignItems:"top"}} 
@@ -163,6 +163,7 @@ export default function Shop() {
                     size="medium"
                     color="success" 
                     variant="outlined"
+                    style={{ margin: "10px"}}
                     onClick={() => handleAddProductToCart(product._id)}
                   >
                     <FaCartArrowDown style={{fontSize:"20px", marginRight:"5px"}} color="green"/>

@@ -21,14 +21,15 @@ export default function ProductCard({ product }) {
             image={imageUrl}
             alt="Bonsai Growing Products"
           />
-          <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center"}}>
+          <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center", height: "110px"}}>
             <Typography 
               gutterBottom 
               sx={{
                 color: "black", 
                 textAlign: "center", 
                 fontWeight: "600", 
-                textDecoration: "none" // Remove underline
+                textDecoration: "none",
+                minHeight: "50px"
               }}
             >
               {product.productName}
@@ -36,7 +37,7 @@ export default function ProductCard({ product }) {
             <Typography 
               sx={{
                 color: "black", 
-                textDecoration: "none" // Remove underline
+                textDecoration: "none"
               }}
             >
               ${product.price}
