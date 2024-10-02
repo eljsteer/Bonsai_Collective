@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, Typography } from "@mui/material";
@@ -78,14 +79,14 @@ const AccountLinks = [
 ////------ Appbar toolbar content component ------////
 ////----------------------------------------------////
 export default function ToolBarContent () {
-  const [anchorElUserCart, setAnchorElUserCart] = useState();
-  const [anchorElUser, setAnchorElUser] = useState();
+  const [anchorElUserCart, setAnchorElUserCart] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const { cartProducts, isCartMenuOpen, closeCartMenu, productAdded } = useContext(CartContext);
   
   // ------ Function to query and return single products for cart ------>>
   const { data, loading, error } = useQuery(QUERY_SINGLE_PRODUCT, {
     variables: { productId: productAdded },
-    skip: !productAdded // Skip the query if productAdded is null
+    skip: !productAdded
   });
 
   let singleProductAdded = data?.singleProduct || {};
@@ -119,7 +120,7 @@ export default function ToolBarContent () {
 
   //// ------ Logged in component ------>>
   //// --------------------------------->>
-  function LoggedIn() {
+  function LoggedIn({ anchorElUser }) {
     const open = Boolean(anchorElUser);
 
   const handleLogout = () => {
@@ -127,6 +128,7 @@ export default function ToolBarContent () {
   }
 
   const handleOpenUserMenu = (event) => {
+    console.log(event.currentTarget);
     setAnchorElUser(event.currentTarget);
   };
 
@@ -134,10 +136,14 @@ export default function ToolBarContent () {
     setAnchorElUser(null);
   };
 
+  LoggedIn.propTypes = {
+    anchorElUser: PropTypes.object.isRequired,
+  };
+
     return (
       <Box>
         <Tooltip title="Account Settings">
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: "10px" }}>
+          <IconButton id="ProfileSettings" onClick={handleOpenUserMenu} sx={{ p: "10px" }}>
             <Avatar alt="Jason Steer" sx={{backgroundColor: "#353d2f" }} />
           </IconButton>
         </Tooltip>
@@ -182,6 +188,7 @@ export default function ToolBarContent () {
     )
   }
 
+
   return (
     <>
       <Link to="/">
@@ -202,7 +209,7 @@ export default function ToolBarContent () {
       <Box sx={{ display: "flex", flexDirection:"row", justifyContent:"space-between", alignItems: "center"}}>
         { (Auth.loggedIn() 
           ? 
-          <LoggedIn setAnchorElUser={setAnchorElUser}/>
+          <LoggedIn anchorElUser={anchorElUser}/>
           : 
           <NotLoggedIn/>)
         }
@@ -248,3 +255,11 @@ export default function ToolBarContent () {
     </>
   );
 }
+
+// ToolBarContent does not have any props for now, but you can still define the default props or future props if needed
+ToolBarContent.propTypes = {
+  cartProducts: PropTypes.array,
+  isCartMenuOpen: PropTypes.bool,
+  closeCartMenu: PropTypes.func,
+  productAdded: PropTypes.string,
+};

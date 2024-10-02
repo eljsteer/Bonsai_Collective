@@ -37,7 +37,7 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <ToolBarContent />         
+          <ToolBarContent />
         </Toolbar>
       </AppBar>
       <nav>
