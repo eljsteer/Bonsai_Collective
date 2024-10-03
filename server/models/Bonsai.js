@@ -41,6 +41,7 @@ const bonsaiSchema = new Schema({
     },
     chapters: [
       {
+        chapterId: Number,
         chapterIMG: [String],
         age: String,
         chapterStage: String,

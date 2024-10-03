@@ -22,22 +22,36 @@ db.once('open', async () => {
     //--- create products with productData --->>
     let productInfo = await Product.create(productData);
 
-    //--- Function to loop through bonsai seed data, create bonsai in DB and randomly assign to a user --->>
+    let chapterIdCounter = 1
+
+    //--- Function to loop through bonsai seed data, create bonsai in DB, and randomly assign to a user --->
     for (let i = 0; i < bonsaiData.length; i++) {
-        const { _id, userId } = await Bonsai.create({...bonsaiData[i], userId: userInfo[Math.floor(Math.random() * userInfo.length)]});
+      // Update the chapters in bonsaiData with incremented chapterId
+      let bonsaiChapters = {
+          ...bonsaiData[i],
+          chapters: bonsaiData[i].chapters.map(chapter => ({
+              ...chapter,
+              chapterId: chapterIdCounter++  // Increment the chapterIdCounter for each chapter
+          })),
+      };
 
-        //--- Log each created Bonsai to console to check data is correct --->>
-        console.log(bonsaiData[i])
+      const { _id, userId } = await Bonsai.create({
+          ...bonsaiChapters,
+          userId: userInfo[Math.floor(Math.random() * userInfo.length)]
+      });
 
-        //--- Function to update each User with their randomly assigned Bonsai's data and BonsaiId --->>
-        const user = await User.findOneAndUpdate(
-          { _id: userId },
-          {
-            $addToSet: {
-              userBonsai: _id,
-            },
-          }
-        );
+      //--- Log each created Bonsai to console to check data is correct --->
+      console.log(bonsaiChapters);
+
+      //--- Function to update each User with their randomly assigned Bonsai's data and BonsaiId --->>
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        {
+          $addToSet: {
+            userBonsai: _id,
+          },
+        }
+      );
 
         //--- Finally Log User to check which users are assigned which bonsais --->>
         console.log(user);

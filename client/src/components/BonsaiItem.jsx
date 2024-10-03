@@ -16,7 +16,10 @@ import "./styles/bonsaiItem.css";
 ////-------------------------////
 ////------ Bonsai Item ------////
 ////-------------------------////
-export default function BonsaiItem ({ bonsai, bonsaiImgUrl}) {
+export default function BonsaiItem ({ bonsai }) {
+
+  const defaultImgUrl = "https://images.unsplash.com/photo-1561641250-c06551cf3b02?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Replace with your preferred default image URL
+  const imageUrl = bonsai.bonsaiImgUrl || defaultImgUrl;
 
   return (
       <Card sx={{ display: "flex", maxWidth: 400 }}>
@@ -25,7 +28,8 @@ export default function BonsaiItem ({ bonsai, bonsaiImgUrl}) {
             <CardMedia 
               className="cardImage"
               component="img"
-              image={bonsaiImgUrl}
+              image={imageUrl}
+              alt="Bonsai Trees"
             />
             <div className="Image_Overlay">
               <CardContent>
@@ -52,6 +56,9 @@ export default function BonsaiItem ({ bonsai, bonsaiImgUrl}) {
 }
 
 BonsaiItem.propTypes = {
-  bonsai: PropTypes.object.isRequired,
-  bonsaiImgUrl: PropTypes.string.isRequired,
+  bonsai: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    bonsaiImgUrl: PropTypes.string,
+  }).isRequired,
 };

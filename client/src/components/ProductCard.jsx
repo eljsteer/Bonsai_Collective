@@ -49,11 +49,10 @@ export default function ProductCard({ product }) {
   );
 }
 
-// Define the prop types, but make `productImgUrl` optional
 ProductCard.propTypes = {
   product: PropTypes.shape({
     productName: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    productImgUrl: PropTypes.string, // Make this optional
+    productImgUrl: PropTypes.string,
   }).isRequired,
 };

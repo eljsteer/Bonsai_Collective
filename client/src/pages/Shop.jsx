@@ -147,16 +147,14 @@ export default function Shop() {
             sx={{display: "flex", justifyContent:"center", alignItems:"top"}} 
             spacing={{ xs: 2, md: 3 }} 
             columns={{ xs: 4, sm: 8, md: 12 }}
-            >
+          >
             {data?.allProducts?.map((product) => (
               <Box key={product._id}>
                 <Link
                   to={`/products/${product._id}`}
                   style={{ textDecoration: "none"}}
                 >
-                  <ProductCard 
-                    product={product}
-                  />
+                  <ProductCard product={product}/>
                 </Link>
                 <CardActions sx={{display:"flex", justifyContent:"center"}}>
                   <Button
