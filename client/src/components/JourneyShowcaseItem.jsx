@@ -14,14 +14,14 @@ const Item = styled(Paper)(({ theme }) => ({
 
   // ------ Leftside section JSX component ------>>
   // ------ Function displays an image and description with left hand styling. ------>>
-  const LeftSideJourney = ({ bonsai, bonsaiImgUrl }) => {
+  const LeftSideJourney = ({ bonsai }) => {
     LeftSideJourney.propTypes = {
-      chapterDescription: PropTypes.string,
+      bonsai: PropTypes.object.isRequired
     };
     return (
       <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
         <picture style={{padding:0}}>
-          <img srcSet={bonsaiImgUrl} className="journeyImg"/>
+          <img srcSet={bonsai.chapterIMG[0]} className="journeyImg"/>
         </picture>
         <div style={{display:"flex", maxHeight:"500px"}}>
             <p style={{display:"flex", alignItems:"center", textAlign:"center", lineHeight:"2.5rem", color:"#000" }}>{bonsai.chapterDescription}</p>
@@ -32,9 +32,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
   // ------ Rightside section JSX component ------>>
   // ------ Function displays an image and description with right hand styling. ------>>
-  const RightSideJourney = (bonsai) => {
+  const RightSideJourney = ({ bonsai }) => {
     RightSideJourney.propTypes = {
-      chapterDescription: PropTypes.string,
+      bonsai: PropTypes.object.isRequired
     };
     return (
       <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
@@ -42,7 +42,7 @@ const Item = styled(Paper)(({ theme }) => ({
           <p style={{display:"flex", alignItems:"center", textAlign:"center", lineHeight:"2.5rem", color: "#000"}}>{bonsai.chapterDescription}</p>
         </div>
         <picture style={{padding:0}}>
-          <img srcSet={JourneyImageURL} className="journeyImg"/>
+          <img srcSet={bonsai.chapterIMG[0]} className="journeyImg"/>
         </picture>
       </Grid>
     );
@@ -50,9 +50,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
   // ------ Mobile/Smallscreen section JSX function ------>>
   // ------ Function displays an image and description with styling to change when in small displays. ------>> 
-  const MobileJourney = (bonsai) => {
+  const MobileJourney = ({ bonsai }) => {
     MobileJourney.propTypes = {
-      chapterDescription: PropTypes.func,
+      bonsai: PropTypes.object.isRequired
     };
     return (
       <Grid item="true" className="mobileGrid" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", flexDirection:"column"}}>
@@ -60,7 +60,7 @@ const Item = styled(Paper)(({ theme }) => ({
           <p style={{display:"flex", alignItems:"center"}}>{bonsai.chapterDescription}</p>
         </Item>
         <picture style={{padding:0}}>
-          <img srcSet={JourneyImageURL} className="journeyImg"/>
+          <img srcSet={bonsai.chapterIMG[0]} className="journeyImg"/>
         </picture>
       </Grid>
     );

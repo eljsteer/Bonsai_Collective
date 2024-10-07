@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
-// import JourneysData from "../utils/jsonData/journeysData.json"
 import JourneyShowcaseItem from "./JourneyShowcaseItem"
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_BONSAI } from "../utils/queries";
@@ -13,11 +12,12 @@ import { checkSeedBonsaiImages, fetchBonsaiImages, updateBonsaiImagesInDB } from
 import "./styles/journeyshowcase.css"
 import { Typography } from "@mui/material";
 
+
+
 ////-----------------------------------------////
 ////------ Journey home page component ------////
 ////-----------------------------------------////
 export default function JourneyShowcase() {
-
   const [exploreBonsai, setExploreBonsai] = useState([]);
   const [emptyBonsaiURL, setEmptyBonsaiURL] = useState(false);
   const [bonsaiImgURLData, setBonsaiImgURLData] = useState([]);
@@ -33,44 +33,44 @@ export default function JourneyShowcase() {
     },
   });
 
-    // Fetch bonsai on initial page load
-    useEffect(() => {
-      if (data && data.allbonsais) {
-        const exploreBonsaiData = data.allBonsai;
-        setExploreBonsai(exploreBonsaiData);
-        setLoading(false);
+  //   // Fetch bonsai on initial page load
+  //   useEffect(() => {
+  //     if (data && data.allbonsai) {
+  //       const exploreBonsaiData = data.allBonsai;
+  //       setExploreBonsai(exploreBonsaiData);
+  //       setLoading(false);
   
-        // Check if there are null productImgUrls
-        const hasNullBonsaiImgURL = checkSeedBonsaiImages(exploreBonsaiData);
-        setEmptyBonsaiURL(hasNullBonsaiImgURL);
-      }
-    }, [data]);
+  //       // Check if there are null productImgUrls
+  //       const hasNullBonsaiImgURL = checkSeedBonsaiImages(exploreBonsaiData);
+  //       setEmptyBonsaiURL(hasNullBonsaiImgURL);
+  //     }
+  //   }, [data]);
 
-      // Fetch Unsplash images and update state if needed
-  useEffect(() => {
-    async function fetchBonsaiImagesURL() {
-      if (emptyBonsaiURL && exploreBonsai.length > 0) {
-        try {
-          const bonsaiImgURLDataArray = await fetchBonsaiImages(exploreBonsai);
-          setBonsaiImgURLData(bonsaiImgURLDataArray);
-        } catch (error) {
-          console.error("Failed to fetch bonsai images:", error);
-        }
-      }
-    }
+  //     // Fetch Unsplash images and update state if needed
+  // useEffect(() => {
+  //   async function fetchBonsaiImagesURL() {
+  //     if (emptyBonsaiURL && exploreBonsai.length > 0) {
+  //       try {
+  //         const bonsaiImgURLDataArray = await fetchBonsaiImages(exploreBonsai);
+  //         setBonsaiImgURLData(bonsaiImgURLDataArray);
+  //       } catch (error) {
+  //         console.error("Failed to fetch bonsai images:", error);
+  //       }
+  //     }
+  //   }
 
-    fetchBonsaiImagesURL();
-  }, [emptyBonsaiURL, exploreBonsai]);
+  //   fetchBonsaiImagesURL();
+  // }, [emptyBonsaiURL, exploreBonsai]);
 
-  // Update product image URLs in the database
-  useEffect(() => {
-    if (bonsaiImgURLData.length > 0) {
-      setLoading(true); // Set loading to true before updating DB
-      updateBonsaiImagesInDB(updateBonsaiImageUrl, bonsaiImgURLData).then(() => {
-        setLoading(false); // Set loading to false after DB update is complete
-      });
-    }
-  }, [bonsaiImgURLData, updateBonsaiImageUrl]);
+  // // Update product image URLs in the database
+  // useEffect(() => {
+  //   if (bonsaiImgURLData.length > 0) {
+  //     setLoading(true); // Set loading to true before updating DB
+  //     updateBonsaiImagesInDB(updateBonsaiImageUrl, bonsaiImgURLData).then(() => {
+  //       setLoading(false); // Set loading to false after DB update is complete
+  //     });
+  //   }
+  // }, [bonsaiImgURLData, updateBonsaiImageUrl]);
 
   if (error) return `Error! ${error.message}`;
 
@@ -88,7 +88,7 @@ export default function JourneyShowcase() {
         >
           {loading 
             ? 
-          <Typography>Loading</Typography>
+              <Typography>Loading</Typography>
             :
               data?.allBonsai?.chapters.map((chapter) => {
                 return (
@@ -100,8 +100,7 @@ export default function JourneyShowcase() {
                     className={chapter.chapterId % 2 !== 0 ? "leftSide" : "rightSide"}
                   >
                   <JourneyShowcaseItem 
-                    chapterId = {chapter.chapterId} 
-                    chapterDescription={chapter.chapterDescription}
+                    chapter={chapter}
                   />
                 </Grid>)
               })

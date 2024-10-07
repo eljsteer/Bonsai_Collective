@@ -104,10 +104,10 @@ const typeDefs = gql`
     users: [User]
     user(email: String!): User
     singleProduct(productId: ID!): Product
-    allProducts: [Product]
-    cartProductsByIds(ids: [ID!]): [Product]
     singleBonsai(bonsaiId: ID!): Bonsai
+    allProducts: [Product]
     allBonsai: [Bonsai]
+    cartProductsByIds(ids: [ID!]): [Product]
     me: User
   }
 

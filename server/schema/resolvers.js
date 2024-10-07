@@ -61,7 +61,8 @@ const resolvers = {
 //// ------ Query to return all Bonsai ------>>
 //// ---------------------------------------->>
     allBonsai: async () => {
-      const bonsaiData = await Bonsai.find().sort({ createdAt: -1 });
+      const bonsaiData = await Bonsai.find();
+      // bonsaiData.sort({ createdAt: -1 })
       return bonsaiData;
     },
 
