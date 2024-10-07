@@ -12,78 +12,102 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-  // ------ Leftside section JSX component ------>>
-  // ------ Function displays an image and description with left hand styling. ------>>
-  const LeftSideJourney = ({ bonsai }) => {
-    LeftSideJourney.propTypes = {
-      bonsai: PropTypes.object.isRequired
-    };
-    return (
-      <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
-        <picture style={{padding:0}}>
-          <img srcSet={bonsai.chapterIMG[0]} className="journeyImg"/>
-        </picture>
-        <div style={{display:"flex", maxHeight:"500px"}}>
-            <p style={{display:"flex", alignItems:"center", textAlign:"center", lineHeight:"2.5rem", color:"#000" }}>{bonsai.chapterDescription}</p>
-        </div>
-      </Grid>
-    );
+// ------ Leftside section JSX component ----->>
+const LeftSideJourney = ({ chapter }) => {
+  return (
+    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
+      <picture style={{ padding: 0 }}>
+        <img src={chapter.chapterIMG[0]} className="journeyImg" alt="Chapter image" />
+      </picture>
+      <div style={{ display: "flex", maxHeight: "500px" }}>
+        <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
+          {chapter.chapterDescription}
+        </p>
+      </div>
+    </Grid>
+  );
+};
+
+// ------ Rightside section JSX component ----->>
+const RightSideJourney = ({ chapter }) => {
+  return (
+    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
+      <div style={{ display: "flex", maxHeight: "500px" }}>
+        <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
+          {chapter.chapterDescription}
+        </p>
+      </div>
+      <picture style={{ padding: 0 }}>
+        <img src={chapter.chapterIMG[0]} className="journeyImg" alt="Chapter image" />
+      </picture>
+    </Grid>
+  );
+};
+
+// ------ Mobile/Smallscreen section JSX function ----->>
+const MobileJourney = ({ chapter }) => {
+  return (
+    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", flexDirection: "column" }}>
+      <Item sx={{ display: "flex", maxHeight: "500px" }}>
+        <p style={{ display: "flex", alignItems: "center" }}>{chapter.chapterDescription}</p>
+      </Item>
+      <picture style={{ padding: 0 }}>
+        <img src={chapter.chapterIMG[0]} className="journeyImg" alt="Chapter image" />
+      </picture>
+    </Grid>
+  );
+};
+
+// ------- Conditional function to display Left, Right, or Mobile JSX ------>>
+const JourneyShowcaseItem = ({ chapter }) => {
+  const isMobile = screen.width <= 800;
+
+  if (!chapter) {
+    return <p>No chapter data available.</p>;
   }
 
-  // ------ Rightside section JSX component ------>>
-  // ------ Function displays an image and description with right hand styling. ------>>
-  const RightSideJourney = ({ bonsai }) => {
-    RightSideJourney.propTypes = {
-      bonsai: PropTypes.object.isRequired
-    };
-    return (
-      <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", justifyContent: "end"}}>
-        <div style={{display:"flex", maxHeight:"500px"}} >
-          <p style={{display:"flex", alignItems:"center", textAlign:"center", lineHeight:"2.5rem", color: "#000"}}>{bonsai.chapterDescription}</p>
-        </div>
-        <picture style={{padding:0}}>
-          <img srcSet={bonsai.chapterIMG[0]} className="journeyImg"/>
-        </picture>
-      </Grid>
-    );
-  }
-
-  // ------ Mobile/Smallscreen section JSX function ------>>
-  // ------ Function displays an image and description with styling to change when in small displays. ------>> 
-  const MobileJourney = ({ bonsai }) => {
-    MobileJourney.propTypes = {
-      bonsai: PropTypes.object.isRequired
-    };
-    return (
-      <Grid item="true" className="mobileGrid" xs={12} md={10} lg={8} padding={4} sx={{display:"flex", flexDirection:"column"}}>
-        <Item sx={{display:"flex", maxHeight:"500px"}} >
-          <p style={{display:"flex", alignItems:"center"}}>{bonsai.chapterDescription}</p>
-        </Item>
-        <picture style={{padding:0}}>
-          <img srcSet={bonsai.chapterIMG[0]} className="journeyImg"/>
-        </picture>
-      </Grid>
-    );
-  }
-
-// ------- Conditional function to display Left, Right or Mobile JSX ------>> 
-const JourneyShowcaseItem = (chapter) => {
-  JourneyShowcaseItem.propTypes = {
-    chapterId: PropTypes.func,
-  };
-  if (screen.width <= 800) {
-    <MobileJourney chapterDescription={chapter.chapterDescription}/>
+  if (isMobile) {
+    return <MobileJourney chapter={chapter} />;
   } else {
-    if(chapter.chapterId % 2 !== 0) {
-      return (
-        <LeftSideJourney chapterDescription={chapter.chapterDescription}/>
-      )
+    if (chapter.chapterId % 2 !== 0) {
+      return <LeftSideJourney chapter={chapter} />;
     } else {
-      return (
-        <RightSideJourney chapterDescription={chapter.chapterDescription}/>
-      );
+      return <RightSideJourney chapter={chapter} />;
     }
   }
-}
+};
+
+// ---- Define PropTypes for each component ---->>
+JourneyShowcaseItem.propTypes = {
+  chapter: PropTypes.shape({
+    chapterId: PropTypes.number.isRequired,
+    chapterDescription: PropTypes.string.isRequired,
+    chapterIMG: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};
+
+LeftSideJourney.propTypes = {
+  chapter: PropTypes.shape({
+    chapterId: PropTypes.number.isRequired,
+    chapterDescription: PropTypes.string.isRequired,
+    chapterIMG: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};
+
+RightSideJourney.propTypes = {
+  chapter: PropTypes.shape({
+    chapterId: PropTypes.number.isRequired,
+    chapterDescription: PropTypes.string.isRequired,
+    chapterIMG: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};
+
+MobileJourney.propTypes = {
+  chapter: PropTypes.shape({
+    chapterId: PropTypes.number.isRequired,
+    chapterDescription: PropTypes.string.isRequired,
+    chapterIMG: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};
 
 export default JourneyShowcaseItem;

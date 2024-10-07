@@ -122,7 +122,7 @@ const typeDefs = gql`
     removeProduct(_id: ID!): Product
     addBonsai(title: String!, treeFamily: String!, scientificName: String, description: String, imageBonsai: [String!], price: Float!, chapters: [ChapterInput!]): Bonsai
     updateBonsai(_id: ID!, updateBonsaiData: BonsaiInput!): Bonsai
-    updateBonsaiImageUrl(_id: ID!, updateBonsaiImgUrlData: BonsaiImageInput!): Bonsai
+    updateBonsaiImageUrl(updateBonsaiImgUrlData: [BonsaiImageInput!]!): [Bonsai]
     addChapter(addChapterData: ChapterInput!): Chapter
     removeBonsai(_id: ID!): Bonsai
   }

@@ -266,20 +266,19 @@ updateProductImageUrl: async (_, { updateProductImgUrlData }) => {
 
 //// ------ Mutation to Update the Bonsai's imageURLs ------>> 
 //// ------------------------------------------------------------>>
-updateBonsaiImageUrl: async (parent, { updateBonsaiImgUrlData }, context) => {
-  // Loop through each bonsai and update individually
-  const updateAllBonsaiImageUrl = updateBonsaiImgUrlData.map(bonsai => ({
-    updateOne: {
-      filter: { _id: bonsai._id },
-      update: { $set: { bonsaiImgUrl: bonsai.bonsaiImgUrl } },
-    }
-  }));
-
-  const result = await Bonsai.bulkWrite(updateAllBonsaiImageUrl);
-
-  return result;
+updateProductImageUrl: async (_, { updateBonsaiImgUrlData }) => {
+  // Loop through each bonsai input and update the database
+  const updateAllBonsaiImageUrl = await Promise.all(
+    updateBonsaiImgUrlData.map(async (bonsai) => {
+      return await Bonsai.findByIdAndUpdate(
+        bonsai._id,
+        { bonsaiImgUrl: bonsai.bonsaiImgUrl },
+        { new: true }
+      );
+    })
+  );
+  return updateAllBonsaiImageUrl;
 },
-
 //// ------ Mutation to delete a specific Bonsai for the logged in User ------>> 
 //// ------------------------------------------------------------------------->>
     removeBonsai: async (parent, { bonsaiId }, context) => {

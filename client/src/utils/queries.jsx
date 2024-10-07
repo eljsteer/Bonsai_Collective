@@ -24,7 +24,7 @@ export const QUERY_ME =gql`
         imageBonsai
         bonsaiImgUrl
         chapters {
-          _id
+          chapterId
           chapterIMG
           age
           chapterStage
@@ -55,7 +55,7 @@ export const QUERY_USER = gql`
         imageBonsai
         bonsaiImgUrl
         chapters {
-          _id
+          chapterId
           chapterIMG
           age
           chapterStage
@@ -106,7 +106,7 @@ export const QUERY_BONSAI = gql`
       imageBonsai
       bonsaiImgUrl
       chapters {
-        _id
+        chapterId
         chapterIMG
         age
         chapterStage
@@ -130,7 +130,7 @@ export const QUERY_SINGLE_BONSAI = gql`
       imageBonsai
       bonsaiImgUrl
       chapters {
-        _id
+        chapterId
         chapterIMG
         age
         chapterStage
