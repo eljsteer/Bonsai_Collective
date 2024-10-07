@@ -22,11 +22,10 @@ db.once('open', async () => {
     //--- create products with productData --->>
     let productInfo = await Product.create(productData);
 
-    let chapterIdCounter = 1
-
     //--- Function to loop through bonsai seed data, create bonsai in DB, and randomly assign to a user --->
     for (let i = 0; i < bonsaiData.length; i++) {
       // Update the chapters in bonsaiData with incremented chapterId
+      let chapterIdCounter = 1
       let bonsaiChapters = {
           ...bonsaiData[i],
           chapters: bonsaiData[i].chapters.map(chapter => ({
@@ -34,6 +33,7 @@ db.once('open', async () => {
               chapterId: chapterIdCounter++  // Increment the chapterIdCounter for each chapter
           })),
       };
+
 
       const { _id, userId } = await Bonsai.create({
           ...bonsaiChapters,
