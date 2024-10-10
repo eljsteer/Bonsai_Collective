@@ -55,6 +55,21 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const ADD_TO_CART = gql`
+  mutation addToCart($userId: ID!, $cartItem: CartItemInput!) {
+    addToCart(userId: $userId, cartItem: $cartItem) {
+      userId
+      items {
+        productId
+        productName
+        productPrice
+        quantity
+      }
+    }
+  }
+`;
+
+
 export const UPDATE_BONSAI = gql`
 mutation updateBonsai($updateData: BonsaiInput!) {
   updateBonsai(updateData: $updateData) {
@@ -82,15 +97,15 @@ mutation updateBonsaiImageUrl($updateBonsaiImgUrlData: [BonsaiImageInput!]!) {
 `;
 
 export const ADD_BONSAI = gql`
-  mutation addBonsai($title: String!, $dateGrown: String!, $treeFamily: String, $scientificName: String, $description: String!, $price: String, $imageBonsai: String) {
-    addBonsai(title: $title, dateGrown: $dateGrown, treeFamily: $treeFamily, scientificName: $scientificName, description: $description, price: $price, imageBonsai: $imageBonsai) {
+  mutation addBonsai($title: String!, $dateGrown: String!, $treeFamily: String, $scientificName: String, $description: String!, $bonsaiPrice: String, $imageBonsai: String) {
+    addBonsai(title: $title, dateGrown: $dateGrown, treeFamily: $treeFamily, scientificName: $scientificName, description: $description, bonsaiPrice: $price, imageBonsai: $imageBonsai) {
       _id
       userId
       title
       treeFamily
       scientificName
       description
-      price
+      bonsaiPrice
       imageBonsai
     }
   }
@@ -106,7 +121,7 @@ export const REMOVE_BONSAI = gql`
       scientificName
       description
       imageBonsai
-      price
+      bonsaiPrice
     }
   }  
 `;

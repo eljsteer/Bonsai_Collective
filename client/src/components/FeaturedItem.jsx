@@ -21,7 +21,7 @@ export default function FeaturedItem({ item, productImgUrl }) {
                     {item.productName}
                   </Typography>
                   <Typography variant="body1" color="white">
-                    ${item.price}
+                    ${item.productPrice}
                   </Typography>
                 </CardContent>
                 <CardActions style={{ display: "flex", justifyContent: "center" }}>

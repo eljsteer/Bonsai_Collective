@@ -37,7 +37,7 @@ export default function BonsaiItem ({ bonsai }) {
                   {bonsai.title}
                 </Typography>
                 <Typography variant="body1" color="white">
-                  ${bonsai.price}
+                  ${bonsai.bonsaiPrice}
                 </Typography>
               </CardContent>
               <CardActions style={{display:"flex", justifyContent: "center"}}>
@@ -53,7 +53,7 @@ export default function BonsaiItem ({ bonsai }) {
 BonsaiItem.propTypes = {
   bonsai: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    bonsaiPrice: PropTypes.number.isRequired,
     bonsaiImgUrl: PropTypes.string,
   }).isRequired,
 };

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -8,7 +8,6 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
 import LoadingBackdrop from '../components/LoadingBackdrop';
 
@@ -21,9 +20,6 @@ import LoadingBackdrop from '../components/LoadingBackdrop';
 export default function SingleProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
-
-////------ Log the value of id to the console for debugging ------>>
-  console.log("Product ID:", id,);
 
   const { loading, data, error } = useQuery(QUERY_SINGLE_PRODUCT, {
     variables: { productId: id },
@@ -68,7 +64,7 @@ export default function SingleProduct() {
                 </Typography>
                 <br/>
                 <Typography gutterBottom variant="body1" component="div" sx={{textAlign: "center"}}>
-                    Price: ${singleProduct.price} <br />
+                    Price: ${singleProduct.productPrice} <br />
                 </Typography>
             </Box>
         </CardContent>

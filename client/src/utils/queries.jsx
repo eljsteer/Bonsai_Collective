@@ -20,7 +20,7 @@ export const QUERY_ME =gql`
         treeFamily
         scientificName
         description
-        price
+        bonsaiPrice
         imageBonsai
         bonsaiImgUrl
         chapters {
@@ -51,7 +51,7 @@ export const QUERY_USER = gql`
         treeFamily
         scientificName
         description
-        price
+        bonsaiPrice
         imageBonsai
         bonsaiImgUrl
         chapters {
@@ -75,7 +75,7 @@ export const QUERY_PRODUCTS = gql`
       category
       imageProduct
       productImgUrl
-      price
+      productPrice
       stock
     }
   }
@@ -86,7 +86,7 @@ export const QUERY_PRODUCTS_BY_IDS = gql`
     cartProductsByIds(ids: $ids) {
       _id
       productName
-      price
+      productPrice
       productImgUrl
     }
   }
@@ -102,7 +102,7 @@ export const QUERY_BONSAI = gql`
       treeFamily
       scientificName
       description
-      price
+      bonsaiPrice
       imageBonsai
       bonsaiImgUrl
       chapters {
@@ -126,7 +126,7 @@ export const QUERY_SINGLE_BONSAI = gql`
       treeFamily
       scientificName
       description
-      price
+      bonsaiPrice
       imageBonsai
       bonsaiImgUrl
       chapters {
@@ -149,7 +149,7 @@ export const QUERY_SINGLE_PRODUCT = gql`
       category
       imageProduct
       productImgUrl
-      price
+      productPrice
       stock
     }
   }

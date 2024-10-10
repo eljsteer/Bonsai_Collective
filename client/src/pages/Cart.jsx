@@ -18,7 +18,7 @@ export default function Cart () {
   return (
     <Box>
           {cartProductsArray.map((cart, i) => (
-            <Box key={i}>
+            <Box id="cartContainer" key={i}>
               <Typography textAlign="center">{cart.ProductID}</Typography>
               <Typography>{cart.Quantity}</Typography>
             </Box>

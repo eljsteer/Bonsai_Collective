@@ -4,6 +4,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const Bonsai = require('./Bonsai');
+const Cart = require('./Cart');
 
 const userSchema = new Schema({
   email: {
@@ -34,6 +35,12 @@ const userSchema = new Schema({
       {
         type: Schema.Types.ObjectId, 
         ref: 'Bonsai',
+      },
+    ],    
+    userCart: [
+      {
+        type: Schema.Types.ObjectId, 
+        ref: 'Cart',
       },
     ],    
   },

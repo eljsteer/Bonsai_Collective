@@ -37,7 +37,7 @@ export default function MyBonsai() {
             <BonsaiItem 
               key={i}
               title={bonsai.title}                
-              price={bonsai.price}
+              bonsaiPrice={bonsai.bonsaiPrice}
               description={bonsai.description}
               imageBonsai={bonsai.imageBonsai}
         

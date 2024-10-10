@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // import { createTheme, responsiveFontSizes, ThemeProvider, } from '@mui/material/styles';
 import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_BONSAI } from '../utils/queries';
 import { CardMedia } from '@mui/material';
 import LoadingBackdrop from '../components/LoadingBackdrop';
@@ -22,9 +21,7 @@ import LoadingBackdrop from '../components/LoadingBackdrop';
 ////-------------------------------------////
 export default function SingleBonsai() {
   const { id } = useParams();
-
-////------ Log the value of id to the console for debugging ------>>
-  console.log('Bonsai ID:', id,);
+  const navigate = useNavigate();
 
   const { loading, data, error } = useQuery(QUERY_SINGLE_BONSAI, {
     variables: { bonsaiId: id },
@@ -66,20 +63,20 @@ export default function SingleBonsai() {
               </Typography>
               <br/>
               <Typography gutterBottom variant="body1" component="div" sx={{textAlign: 'center'}}>
-                Price: ${singleBonsai.price} <br />
+                Price: ${singleBonsai.bonsaiPrice} <br />
               </Typography>
           </Box>
         </CardContent>
         <br/>
         <CardContent>
-          <Link to='/bonsai'>
-            <Button 
+        <Button 
               variant="contained"
+              color="success"
+              onClick={() => navigate(-1)}
             >
-              <ChevronLeftIcon/>
+              <ChevronLeftIcon/> 
               Go Back
             </Button>
-          </Link> 
         </CardContent>
       </Card>
     </Container>

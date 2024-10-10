@@ -27,7 +27,7 @@ const bonsaiSchema = new Schema({
       type: String,
       required: true,
     },
-    price: {
+    bonsaiPrice: {
       type: String,
       required: true,
     },

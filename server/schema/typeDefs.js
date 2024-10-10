@@ -18,7 +18,7 @@ const typeDefs = gql`
     category: String!
     imageProduct: [String!]!
     productImgUrl: String
-    price: String!
+    productPrice: Float!
     stock: Float!
   }
 
@@ -31,10 +31,22 @@ const typeDefs = gql`
     description: String!
     imageBonsai: [String!]
     bonsaiImgUrl: String
-    price: String!
+    bonsaiPrice: Float!
     chapters: [Chapter!]!
     userId: String
   }
+
+  type Cart {
+    userId: ID!,
+    items: [CartProductItem!]!
+  }
+
+  type CartProductItem {
+  productId: ID!
+  productName: String!
+  productPrice: Float!
+  quantity: Int!
+}
 
   type Chapter {
     chapterId: Int!,
@@ -50,6 +62,17 @@ const typeDefs = gql`
     age: String!, 
     chapterStage: String!,
     chapterDescription: String!
+  }
+
+  input CartInput {
+    items: [CartItemInput!]!
+  }
+
+  input CartItemInput {
+    productId: ID!
+    productName: String!
+    productPrice: Float!
+    quantity: Int = 1
   }
 
   input UserBioInput {
@@ -82,7 +105,7 @@ const typeDefs = gql`
     category: String!
     imageProduct: [String!]
     productImgUrl: String!
-    price: String!
+    productPrice: Float!
     stock: Float!
   }
 
@@ -92,7 +115,7 @@ const typeDefs = gql`
     scientificName: String
     description: String!
     imageBonsai: [String!]
-    price: String!
+    bonsaiPrice: Float!
   }
 
   type Auth {
@@ -107,7 +130,7 @@ const typeDefs = gql`
     singleBonsai(bonsaiId: ID!): Bonsai
     allProducts: [Product]
     allBonsai: [Bonsai]
-    cartProductsByIds(ids: [ID!]): [Product]
+    myCart(ids: [ID!]): [Product]
     me: User
   }
 
@@ -117,10 +140,11 @@ const typeDefs = gql`
     updateUser(updateUserData: UserInput!): User
     updateUserEmail(updateUserEmail: UserEmailInput): User
     login(email: String!, password: String!): Auth
-    addProduct(productName: String!, summary: String!, imageProduct: [String!], price: String!, stock: Int!): Product
+    addToCart(userId: ID!, cartItem: CartItemInput!): Cart
+    addProduct(productName: String!, summary: String!, imageProduct: [String!], productPrice: Float!, stock: Int!): Product
     updateProductImageUrl(updateProductImgUrlData: [ProductImageInput!]!): [Product]
     removeProduct(_id: ID!): Product
-    addBonsai(title: String!, treeFamily: String!, scientificName: String, description: String, imageBonsai: [String!], price: Float!, chapters: [ChapterInput!]): Bonsai
+    addBonsai(title: String!, treeFamily: String!, scientificName: String, description: String, imageBonsai: [String!], bonsaiPrice: Float!, chapters: [ChapterInput!]): Bonsai
     updateBonsai(_id: ID!, updateBonsaiData: BonsaiInput!): Bonsai
     updateBonsaiImageUrl(updateBonsaiImgUrlData: [BonsaiImageInput!]!): [Bonsai]
     addChapter(addChapterData: ChapterInput!): Chapter

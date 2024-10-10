@@ -25,7 +25,7 @@ const productSchema = new Schema({
     productImgUrl: {
       type: String,
     },
-    price: {
+    productPrice: {
       type: String,
       required: true,
     },

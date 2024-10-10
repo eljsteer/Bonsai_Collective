@@ -1,6 +1,6 @@
 const { GraphQLError } = require("graphql");
 const { ApolloServerErrorCode } = require('@apollo/server/errors');
-const { User, Product, Bonsai } = require("../models");
+const { User, Product, Bonsai, Cart } = require("../models");
 const { signToken } = require("../utils/authServer");
 const { mongoose } = require("mongoose")
 
@@ -40,7 +40,7 @@ const resolvers = {
 
 //// ------ Query to return product/s by their Id ------>>
 //// --------------------------------------------------->>
-    cartProductsByIds: async (_, { ids }) => {
+    myCart: async (_, { ids }) => {
       try {
         const products = await Product.find({ '_id': { $in: ids } });
         return products;
@@ -205,7 +205,7 @@ updateUserEmail: async (parent, { updateData }, context) => {
 
 //// ------ Mutation to for a User to Add a Bonsai to their profile ------>>
 //// --------------------------------------------------------------------->>
-    addBonsai: async (parent, { title, treeFamily, scientificName, description, price }, context) => {
+    addBonsai: async (parent, { title, treeFamily, scientificName, description, bonsaiPrice }, context) => {
       //--- Function to check if User is logged in then to create bonsai and assign the User's Id ---//
       if (context.user) {
         const newBonsai = await Bonsai.create({
@@ -213,7 +213,7 @@ updateUserEmail: async (parent, { updateData }, context) => {
           treeFamily,
           scientificName, 
           description, 
-          price,
+          bonsaiPrice,
           imageBonsai,
           userId : context.user._id
         });
@@ -246,6 +246,39 @@ updateUserEmail: async (parent, { updateData }, context) => {
         return updatedBonsai;
       }
       throw new AuthenticationError('You must to be logged in!');
+    },
+
+//// ------ Mutation to Add products to Users Cart ------>> 
+//// ------------------------------------------------------------>>
+    addToCart: async (_, { userId, cartItem }, context) => {
+      const cart = await c.findOne({ userId });
+    
+      if (cart) {
+        // Check if the item already exists in the cart
+        const itemIndex = cart.items.findIndex(
+          (item) => item.productId.toString() === cartItem.productId
+        );
+    
+        if (itemIndex > -1) {
+          // If the item exists, update the quantity
+          cart.items[itemIndex].quantity += cartItem.quantity;
+        } else {
+          // Otherwise, add the new item to the cart
+          cart.items.push(cartItem);
+        }
+    
+        await cart.save();
+        return cart;
+      } else {
+        // Create a new cart if none exists
+        const newCart = new Cart({
+          userId,
+          items: [cartItem]
+        });
+    
+        await newCart.save();
+        return newCart;
+      }
     },
 
 //// ------ Mutation to Update the Bonsai's imageURLs ------>> 

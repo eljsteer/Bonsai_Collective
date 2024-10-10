@@ -5,7 +5,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Accesories",
     "imageProduct": [],
-    "price": "12.50",
+    "productPrice": 12.50,
     "stock": 2
   }, {    
     "seed": true,
@@ -13,7 +13,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Potting Mix",
     "imageProduct": [],
-    "price": "16.50",
+    "productPrice": 16.50,
     "stock": 4
   }, {    
     "seed": true,
@@ -21,7 +21,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Potting Mix",
     "imageProduct": [],
-    "price": "9",
+    "productPrice": 9.00,
     "stock": 8
   }, {    
     "seed": true,
@@ -29,7 +29,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Potting Mix",
     "imageProduct": [],
-    "price": "4.5",
+    "productPrice": 4.50,
     "stock": 24
   }, {    
     "seed": true,
@@ -37,7 +37,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Accesories",
     "imageProduct": [],
-    "price": "20",
+    "productPrice": 20,
     "stock": 10
   }, {    
     "seed": true,
@@ -45,7 +45,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category":"Accesories",
     "imageProduct": [],
-    "price": "30",
+    "productPrice": 30.00,
     "stock": 16
   }, {    
     "seed": true,
@@ -53,7 +53,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category":"Accesories",
     "imageProduct": [],
-    "price": "30",
+    "productPrice": 30.00,
     "stock": 6
   }, {    
     "seed": true,
@@ -61,7 +61,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Decorations",
     "imageProduct": [],
-    "price": "10",
+    "productPrice": 10.00,
     "stock": 9
   }, {    
     "seed": true,
@@ -69,7 +69,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Accesories",
     "imageProduct": [],
-    "price": "25",
+    "productPrice": 25.00,
     "stock": 5
   }, {
     "seed": true,
@@ -77,7 +77,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Pots",
     "imageProduct": [],
-    "price": "15",
+    "productPrice": 15.00,
     "stock": 13
   }, {
     "seed": true,
@@ -85,7 +85,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Pots",
     "imageProduct": [],
-    "price": "20",
+    "productPrice": 20.00,
     "stock": 18
   }, {
     "seed": true,
@@ -93,7 +93,7 @@
     "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ex sem, pretium id rhoncus ac, posuere ut urna. Morbi convallis.",
     "category": "Kits",
     "imageProduct": [],
-    "price": "70",
+    "productPrice": 70.00,
     "stock": 7
   }
 ]

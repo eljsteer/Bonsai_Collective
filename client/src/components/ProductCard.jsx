@@ -40,7 +40,7 @@ export default function ProductCard({ product }) {
                 textDecoration: "none"
               }}
             >
-              ${product.price}
+              ${product.productPrice}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -52,7 +52,7 @@ export default function ProductCard({ product }) {
 ProductCard.propTypes = {
   product: PropTypes.shape({
     productName: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    productPrice: PropTypes.number.isRequired,
     productImgUrl: PropTypes.string,
   }).isRequired,
 };
