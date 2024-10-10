@@ -52,6 +52,10 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  formatError: (err) => {
+    console.error(err);
+    return err;
+  },
 });
 
 //// ------ Start Apollo Server with Express integration ------>>

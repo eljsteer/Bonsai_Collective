@@ -39,12 +39,12 @@ export default function Featured() {
   // Fetch products on initial page load
   useEffect(() => {
     if (data && data.allProducts) {
-      const shopProductsData = data.allProducts;
-      setShopProducts(shopProductsData);
+      const shopProductsQueryData = data.allProducts;
+      setShopProducts(shopProductsQueryData);
       setLoading(false);
 
-      // Check if there are null productImgUrls
-      const hasNullProductImgURL = checkSeedProductImages(shopProductsData);
+      // Check if there are null productImgUrls, if so set state to true
+      const hasNullProductImgURL = checkSeedProductImages(shopProductsQueryData);
       setEmptyProductURL(hasNullProductImgURL);
     }
   }, [data]);
@@ -56,6 +56,7 @@ export default function Featured() {
         try {
           const productImgURLDataArray = await fetchProductImages(shopProducts);
           setProductImgURLData(productImgURLDataArray);
+          console.log("Product Image URL Data:", productImgURLDataArray);
         } catch (error) {
           console.error("Failed to fetch product images:", error);
         }
@@ -65,15 +66,26 @@ export default function Featured() {
     fetchProductImagesURL();
   }, [emptyProductURL, shopProducts]);
 
-  // Update product image URLs in the database
-  useEffect(() => {
+// Update product image URLs in the database
+useEffect(() => {
+  const updateImages = async () => {
     if (productImgURLData.length > 0) {
       setLoading(true); // Set loading to true before updating DB
-      updateProductImagesInDB(updateProductImageUrl, productImgURLData).then(() => {
-        setLoading(false); // Set loading to false after DB update is complete
-      });
+      try {
+        const response = await updateProductImagesInDB(updateProductImageUrl, productImgURLData);
+        console.log("Mutation Response:", response);
+      } catch (error) {
+        console.error("Error updating product image URLs:", error);
+      } finally {
+        setLoading(false); // Ensure loading is turned off regardless of success or failure
+      }
     }
-  }, [productImgURLData, updateProductImageUrl]);
+  };
+
+  updateImages();
+}, [productImgURLData, updateProductImageUrl]);
+
+  
 
   if (error) return `Error! ${error.message}`;
 
@@ -117,7 +129,7 @@ export default function Featured() {
                 />
               </SwiperSlide>
             ))
-          : shopProducts.map((item) => (
+          : data.allProducts.map((item) => (
               <SwiperSlide key={item._id}>
                 <FeaturedItem item={item} productImgUrl={item.productImgUrl} />
               </SwiperSlide>

@@ -93,7 +93,7 @@ export const QUERY_PRODUCTS_BY_IDS = gql`
 `;
 
 export const QUERY_BONSAI = gql`
-  {
+  query allBonsai {
     allBonsai {
       _id
       userId

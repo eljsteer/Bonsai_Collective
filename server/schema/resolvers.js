@@ -251,34 +251,55 @@ updateUserEmail: async (parent, { updateData }, context) => {
 //// ------ Mutation to Update the Bonsai's imageURLs ------>> 
 //// ------------------------------------------------------------>>
 updateProductImageUrl: async (_, { updateProductImgUrlData }) => {
-  // Loop through each product input and update the database
-  const updateAllProductImageUrl = await Promise.all(
-    updateProductImgUrlData.map(async (product) => {
-      return await Product.findByIdAndUpdate(
-        product._id,
-        { productImgUrl: product.productImgUrl },
-        { new: true }
-      );
-    })
-  );
-  return updateAllProductImageUrl;
+  console.log("Resolver is called"); // Add this line
+  console.log("Received updateProductImgUrlData:", updateProductImgUrlData);
+  if (!Array.isArray(updateProductImgUrlData)) {
+    throw new Error("updateProductImgUrlData must be an array");
+  }
+
+  try {
+    const updatedProducts = await Promise.all(
+      updateProductImgUrlData.map(async (product) => {
+        const updatedProduct = await Product.findByIdAndUpdate(
+          product._id,
+          { productImgUrl: product.productImgUrl },
+          { new: true }
+        );
+        return updatedProduct;
+      })
+    );
+    return updatedProducts;
+  } catch (error) {
+    console.error("Error updating product image URLs:", error);
+    throw new Error("Failed to update product image URLs.");
+  }
 },
+
 
 //// ------ Mutation to Update the Bonsai's imageURLs ------>> 
 //// ------------------------------------------------------------>>
-updateProductImageUrl: async (_, { updateBonsaiImgUrlData }) => {
-  // Loop through each bonsai input and update the database
-  const updateAllBonsaiImageUrl = await Promise.all(
-    updateBonsaiImgUrlData.map(async (bonsai) => {
-      return await Bonsai.findByIdAndUpdate(
-        bonsai._id,
-        { bonsaiImgUrl: bonsai.bonsaiImgUrl },
-        { new: true }
-      );
-    })
-  );
-  return updateAllBonsaiImageUrl;
+updateBonsaiImageUrl: async (_, { updateBonsaiImgUrlData }) => {
+  try {
+    const updateAllBonsaiImageUrl = await Promise.all(
+      updateBonsaiImgUrlData.map(async (bonsai) => {
+        const updatedBonsai = await Bonsai.findByIdAndUpdate(
+          bonsai._id,
+          { bonsaiImgUrl: bonsai.bonsaiImgUrl },
+          { new: true }
+        );
+        if (!updatedBonsai) {
+          throw new Error(`Bonsai with ID ${bonsai._id} not found`);
+        }
+        return updatedBonsai;
+      })
+    );
+    return updateAllBonsaiImageUrl;
+  } catch (error) {
+    console.error("Error updating bonsai image URLs:", error);
+    throw new Error("Failed to update bonsai image URLs");
+  }
 },
+
 //// ------ Mutation to delete a specific Bonsai for the logged in User ------>> 
 //// ------------------------------------------------------------------------->>
     removeBonsai: async (parent, { bonsaiId }, context) => {
