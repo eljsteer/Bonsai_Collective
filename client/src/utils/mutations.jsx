@@ -98,7 +98,7 @@ mutation updateBonsaiImageUrl($updateBonsaiImgUrlData: [BonsaiImageInput!]!) {
 
 export const ADD_BONSAI = gql`
   mutation addBonsai($title: String!, $dateGrown: String!, $treeFamily: String, $scientificName: String, $description: String!, $bonsaiPrice: String, $imageBonsai: String) {
-    addBonsai(title: $title, dateGrown: $dateGrown, treeFamily: $treeFamily, scientificName: $scientificName, description: $description, bonsaiPrice: $price, imageBonsai: $imageBonsai) {
+    addBonsai(title: $title, dateGrown: $dateGrown, treeFamily: $treeFamily, scientificName: $scientificName, description: $description, bonsaiPrice: $bonsaiPrice, imageBonsai: $imageBonsai) {
       _id
       userId
       title
