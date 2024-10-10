@@ -3,13 +3,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import { CardMedia } from "@mui/material";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_SINGLE_PRODUCT } from "../utils/queries";
-import { CardMedia } from "@mui/material";
+import LoadingBackdrop from '../components/LoadingBackdrop';
 
 ////-------------------------------------------------------------------------------------
 
@@ -36,7 +37,7 @@ export default function SingleProduct() {
   }
 
   if (loading) {
-    return <h2>Product is getting Built...</h2>;
+    return <LoadingBackdrop loadingText={"Building product..."}/>;
   }
 
   if (error) {

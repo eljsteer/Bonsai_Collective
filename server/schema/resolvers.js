@@ -251,8 +251,6 @@ updateUserEmail: async (parent, { updateData }, context) => {
 //// ------ Mutation to Update the Bonsai's imageURLs ------>> 
 //// ------------------------------------------------------------>>
 updateProductImageUrl: async (_, { updateProductImgUrlData }) => {
-  console.log("Resolver is called"); // Add this line
-  console.log("Received updateProductImgUrlData:", updateProductImgUrlData);
   if (!Array.isArray(updateProductImgUrlData)) {
     throw new Error("updateProductImgUrlData must be an array");
   }

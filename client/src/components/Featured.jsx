@@ -72,8 +72,7 @@ useEffect(() => {
     if (productImgURLData.length > 0) {
       setLoading(true); // Set loading to true before updating DB
       try {
-        const response = await updateProductImagesInDB(updateProductImageUrl, productImgURLData);
-        console.log("Mutation Response:", response);
+        await updateProductImagesInDB(updateProductImageUrl, productImgURLData);
       } catch (error) {
         console.error("Error updating product image URLs:", error);
       } finally {

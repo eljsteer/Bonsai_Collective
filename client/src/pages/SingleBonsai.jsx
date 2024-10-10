@@ -11,6 +11,7 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_BONSAI } from '../utils/queries';
 import { CardMedia } from '@mui/material';
+import LoadingBackdrop from '../components/LoadingBackdrop';
 
 
 ////-------------------------------------------------------------------------------------
@@ -36,7 +37,7 @@ export default function SingleBonsai() {
     return <h2>Invalid Bonsai ID</h2>;
   }
   if (loading) {
-    return <h2>Bonsai is being Prepped for Display...</h2>;
+    return <LoadingBackdrop loadingText={"Growing Bonsai..."}/>;
   }
   if (error) {
     return <h2>Error! {error.message}</h2>;
@@ -51,7 +52,7 @@ export default function SingleBonsai() {
           <CardMedia
             component="img"
             height="500px"
-            image={singleBonsai.imageBonsai}
+            image={singleBonsai.imageBonsai[0] || singleBonsai.bonsaiImgUrl}
             alt="Bonsai Main Image"
           >
           </CardMedia>
@@ -70,7 +71,6 @@ export default function SingleBonsai() {
           </Box>
         </CardContent>
         <br/>
-        {/* Conditional Rendering for whether User is logged in */}
         <CardContent>
           <Link to='/bonsai'>
             <Button 

@@ -31,19 +31,16 @@ export async function fetchProductImages(shopProducts, queryImg="Gardening Tools
 export async function updateProductImagesInDB(updateProductImageUrl, productImgURLData) {
   const hasNullUrls = productImgURLData.some(item => !item.productImgUrl);
 
-  
   if (!hasNullUrls) {
-    console.log("Null URLs found, updating product images...");
     try {
       console.log("Sending variables for mutation:", {
         updateProductImgUrlData: productImgURLData
       });
-      const response = await updateProductImageUrl({
+      await updateProductImageUrl({
         variables: {
           updateProductImgUrlData: productImgURLData
         }
       });
-      console.log("Product image URLs updated successfully:", response);
     } catch (error) {
       console.error("Failed to update product image URLs:", error);
     }

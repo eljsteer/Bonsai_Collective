@@ -41,14 +41,9 @@ export default function BonsaiItem ({ bonsai }) {
                 </Typography>
               </CardContent>
               <CardActions style={{display:"flex", justifyContent: "center"}}>
-                <ButtonStyled text="View My Story" borderColor="white"/>
+                <ButtonStyled text="View My Story" borderColor="white" color="white" />
               </CardActions>
             </div>
-            {/* <div>
-              <Typography variant="body1" color="black">
-                {bonsai.description}
-              </Typography>
-            </div> */}
           </CardActionArea> 
         </Box>
       </Card>
