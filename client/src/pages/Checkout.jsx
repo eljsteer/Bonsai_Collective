@@ -10,7 +10,7 @@ import { CartContext } from "../utils/CartContext";
 ////--------------------------------////
 ////------ Shopping Cart Page ------////
 ////--------------------------------////
-export default function Cart () {
+export default function Checkout () {
   const { cartProducts } = useContext(CartContext);
 
   let cartProductsArray = cartProducts

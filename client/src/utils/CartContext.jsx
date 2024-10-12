@@ -8,8 +8,9 @@ export const CartContext = createContext();
 ////------------------------------------------------////
 export const CartContextProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
-  const [productAdded, setProductAdded] = useState(null)
+  const [productAdded, setProductAdded] = useState(null);
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
+  const [anchorElUserCart, setAnchorElUserCart] = useState(null);
 
   useEffect(() => {
     const storedCartProducts = JSON.parse(localStorage.getItem('CartProducts')) || [];
@@ -17,8 +18,9 @@ export const CartContextProvider = ({ children }) => {
   }, []);
 
 ////------ Function to add product to cart ------>> 
-  const addProductToCart = (productID) => {
+  const addProductToCart = ( productID, productName, productPrice ) => {
     const newCartProducts = [...cartProducts];
+////------ Function to function to check newCartProducts to check if the item to be added is already in array ------>> 
     const existingProductIndex = newCartProducts.findIndex(p => p.ProductID === productID);
 
 ////------ Function to check if product is already in cart, if so then increment quantity ------>> 
@@ -27,11 +29,16 @@ export const CartContextProvider = ({ children }) => {
       newCartProducts[existingProductIndex].Quantity += 1;
     } else {
       // Add new product to cart
-      newCartProducts.push({ ProductID: productID, Quantity: 1 });
+      newCartProducts.push({ 
+        ProductID: productID, 
+        ProductName: productName,
+        ProductPrice: productPrice,
+        Quantity: 1 
+      });
     }
   
     setCartProducts(newCartProducts);
-    latestAddedProduct(productID)
+    latestAddedProduct(productID, productName, productPrice)
     setIsCartMenuOpen(true);
     localStorage.setItem('CartProducts', JSON.stringify(newCartProducts));
     return productAdded;
@@ -42,9 +49,15 @@ export const CartContextProvider = ({ children }) => {
     setProductAdded(product)
   }
 
+// Set CartIcon as anchor manually
+    const setCartIconAsAnchor = (cartIconElement) => {
+      setAnchorElUserCart(cartIconElement);
+    };
+
 ////------ Function to close the cart dropdown info ------>>
     const closeCartMenu = () => {
       setIsCartMenuOpen(false);
+      setAnchorElUserCart(null); // Reset anchor when closing
     };
 
 //// ------ Function to remove product from cart ------>>
@@ -54,7 +67,7 @@ export const CartContextProvider = ({ children }) => {
     // };
     
   return (
-    <CartContext.Provider value={{ cartProducts, addProductToCart, latestAddedProduct, productAdded, closeCartMenu, isCartMenuOpen }}>
+    <CartContext.Provider value={{ cartProducts, addProductToCart, latestAddedProduct, productAdded, closeCartMenu, isCartMenuOpen, anchorElUserCart, setCartIconAsAnchor }}>
       {children}
     </CartContext.Provider>
   );

@@ -14,7 +14,6 @@ import { Avatar } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-
 const AccountLinks = [
   {
       id: 0,
@@ -41,7 +40,6 @@ const AccountLinks = [
   }
 
   const handleOpenUserMenu = (event) => {
-    console.log(event.currentTarget);
     setAnchorElUser(event.currentTarget);
   };
 
@@ -50,7 +48,7 @@ const AccountLinks = [
   };
 
   LoggedIn.propTypes = {
-    anchorElUser: PropTypes.object.isRequired,
+    anchorElUser: PropTypes.object,
   };
 
     return (

@@ -27,7 +27,7 @@ import SingleBonsai from "./pages/SingleBonsai.jsx";
 import SingleProduct from "./pages/SingleProduct.jsx";
 import AddBonsai from "./components/AddBonsai.jsx";
 import MyBonsai from "./components/MyBonsai.jsx";
-import Cart from "./pages/Cart.jsx"
+import Checkout from "./pages/Checkout.jsx"
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context'
 import { CartContextProvider } from "./utils/CartContext.jsx";
@@ -80,7 +80,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/bonsai" element = {<Explore/>} />
       <Route path="/bonsai/:id" element = {<SingleBonsai/>} />
-      <Route path="/cart" element = {<Cart/>} />
+      <Route path="/checkout" element = {<Checkout/>} />
     </Route>
   )
 )

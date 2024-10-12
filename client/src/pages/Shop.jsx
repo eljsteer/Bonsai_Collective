@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CardActions from "@mui/material/CardActions";
@@ -14,10 +14,9 @@ import { styled } from "@mui/material/styles";
 import { FaCartArrowDown } from "react-icons/fa";
 import ProductCard from "../components/ProductCard";
 import LoadingBackdrop from "../components/LoadingBackdrop";
-// import { CartContext } from "../utils/CartContext";
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_PRODUCTS } from "../utils/queries";
-import { ADD_TO_CART } from "../utils/mutations";
+import { CartContext } from "../utils/CartContext";
+import { useQuery } from "@apollo/client";
+import { QUERY_PRODUCTS } from "../utils/queries"; 
 
 ////------------------------------------------------------------
 
@@ -60,7 +59,7 @@ export default function Shop() {
 
 //// ------ Database Product queries ------>>
   const {error, loading, data} = useQuery( QUERY_PRODUCTS );
-  const [addToCart] = useMutation(ADD_TO_CART);
+  const { addProductToCart } = useContext(CartContext);
 
  //// ------ Shop Categories ----->>
   const [category, setCategory] = useState("");
@@ -69,24 +68,8 @@ export default function Shop() {
   const sortByArray = ["Alphabetically, A-Z", "Alphabetically, Z-A", "Price, low-high", "Price, high-low" ];
   // const { cartProducts, addProductToCart } = useContext(CartContext);
 
-  const handleAddProductToCart = async (productId, productName, productPrice) => {
-    const token = localStorage.getItem('token'); // or wherever you store the JWT
-    const decodedToken = jwtDecode(token);
-    const userId = decodedToken.userId;
-  
-    const response = await addToCart({
-      variables: {
-        userId,
-        cartItem: {
-          productId,
-          productName,
-          productPrice,
-          quantity: 1
-        }
-      }
-    });
-  
-    console.log(response.data);
+  const handleAddProductToCart = (productID, productName, productPrice, event) => { 
+    addProductToCart(productID, productName, productPrice, event);
   };
   
 
@@ -179,7 +162,7 @@ export default function Shop() {
                     color="success" 
                     variant="outlined"
                     style={{ margin: "10px"}}
-                    onClick={() => handleAddProductToCart(product._id, product.productName)}
+                    onClick={(event) => handleAddProductToCart(product._id, product.productName, product.productPrice, event)}
                   >
                     <FaCartArrowDown style={{fontSize:"20px", marginRight:"5px"}} color="green"/>
                     Add to Cart
