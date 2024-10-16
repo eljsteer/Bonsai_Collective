@@ -11,6 +11,11 @@ export default function ProductCard({ product }) {
   const defaultImgUrl = "https://images.unsplash.com/photo-1529331700525-2e558dc5ecb8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Replace with your preferred default image URL
   const imageUrl = product.productImgUrl || defaultImgUrl;
 
+  let productPrice = product.productPrice
+  let currencyFormat = new Intl.NumberFormat("en-Au");
+  let priceFormatted = currencyFormat.format(productPrice);
+  console.log(priceFormatted)
+
   return (
     <Box>
       <Box sx={{ margin: "0px 20px", minWidth: 300, maxWidth: 300, borderRadius: "0" }}>

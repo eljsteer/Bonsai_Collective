@@ -11,7 +11,7 @@ import { Menu } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import { Tooltip } from "@mui/material";
 import { Avatar } from "@mui/material";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import { GiTreeBranch } from "react-icons/gi";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 const AccountLinks = [
@@ -23,9 +23,9 @@ const AccountLinks = [
   },
   {
       id: 1,
-      icon: <ManageAccountsIcon />,
-      name: "My Account",
-      url: "/profile"
+      icon: <GiTreeBranch />      ,
+      name: "My Bonsai",
+      url: "/profile/myBonsai"
   },
 ];
 

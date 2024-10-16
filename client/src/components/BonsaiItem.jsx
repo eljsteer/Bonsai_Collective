@@ -21,6 +21,10 @@ export default function BonsaiItem ({ bonsai }) {
   const defaultImgUrl = "https://images.unsplash.com/photo-1561641250-c06551cf3b02?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Replace with your preferred default image URL
   const imageUrl = bonsai.bonsaiImgUrl || defaultImgUrl;
 
+  let bonsaiPrice = bonsai.bonsaiPrice
+  let currencyFormat = new Intl.NumberFormat("en-Au");
+  let priceFormatted = currencyFormat.format(bonsaiPrice);
+
   return (
       <Card sx={{ display: "flex", maxWidth: 400 }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -37,7 +41,7 @@ export default function BonsaiItem ({ bonsai }) {
                   {bonsai.title}
                 </Typography>
                 <Typography variant="body1" color="white">
-                  ${bonsai.bonsaiPrice}
+                  ${priceFormatted}
                 </Typography>
               </CardContent>
               <CardActions style={{display:"flex", justifyContent: "center"}}>
