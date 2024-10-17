@@ -14,7 +14,6 @@ export default function ProductCard({ product }) {
   let productPrice = product.productPrice
   let currencyFormat = new Intl.NumberFormat("en-Au");
   let priceFormatted = currencyFormat.format(productPrice);
-  console.log(priceFormatted)
 
   return (
     <Box>
@@ -45,7 +44,7 @@ export default function ProductCard({ product }) {
                 textDecoration: "none"
               }}
             >
-              ${product.productPrice}
+              ${priceFormatted}
             </Typography>
           </CardContent>
         </CardActionArea>

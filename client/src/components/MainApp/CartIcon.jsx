@@ -54,11 +54,11 @@ const CartIcon = forwardRef((props, ref) => {
     <Box>
       <Tooltip title="View Cart">
         {cartProducts.length === 0 ? (
-          <IconButton component={Link} aria-label="cart" sx={{ p: "20px" }} to="/checkout" ref={ref}>
+          <IconButton component={Link} aria-label="cart" sx={{ p: "20px" }} to="/cart" ref={ref}>
             <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
           </IconButton>
         ) : (
-          <IconButton component={Link} aria-label="cart" sx={{ p: "20px" }} to="/checkout" ref={ref}>
+          <IconButton component={Link} aria-label="cart" sx={{ p: "20px" }} to="/cart" ref={ref}>
             <StyledBadge badgeContent={handleNumCartItems()} color="secondary">
               <GiBonsaiTree style={{ fontSize: "2.5rem", color: "#000" }} />
             </StyledBadge>
@@ -75,13 +75,13 @@ const CartIcon = forwardRef((props, ref) => {
         anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
         transformOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Typography sx={{ padding: "16px"}}>{singleProductAdded.productName}</Typography>
+        <Typography sx={{ padding: "16px", textAlign: "center" }}>{singleProductAdded.productName}</Typography>
         <MenuItem sx={{ display: "flex", justifyContent: "center" }}>
           <Link 
-            to="/checkout"
+            to="/cart"
             style={{ textDecoration: "none", color: "black", fontSize: "1.2rem" }}
           >
-            Go to Checkout
+            View cart
           </Link>
         </MenuItem>
       </Menu>
