@@ -9,25 +9,26 @@ export default function Cart () {
   const { cartProducts, setCartProducts } = useContext(CartContext);
 
   const handleQuantityChange = (ProductID, amount) => {
-    const updatedCart = cartProducts.map(item =>
+    setCartProducts((prevCart) => 
+      prevCart.map(item => 
         item.ProductID === ProductID
           ? { ...item, Quantity: item.Quantity + amount >= 0 ? item.Quantity + amount : 0 }
           : item
+        )
       );
-      setCartProducts(updatedCart)
-  };
+    };
 
   const handleInputChange = (ProductID, event) => {
     const newQuantity = event.target.value ? Math.max(0, parseInt(event.target.value)) : 0;
-    const updatedCart = cartProducts.map(item =>
-      item.ProductID === ProductID ? { ...item, Quantity: newQuantity } : item
+    setCartProducts((prevCart) =>
+      prevCart.map(item =>
+        item.ProductID === ProductID ? { ...item, Quantity: newQuantity } : item
+      )
     );
-    setCartProducts(updatedCart);
   };
 
   const handleDelete = (ProductID) => {
-    const updatedCart = cartProducts.filter(item => item.ProductID !== ProductID);
-    setCartProducts(updatedCart);
+    setCartProducts((prevCart) => prevCart.filter(item => item.ProductID !== ProductID));
   };
 
   const getTotal = () => {

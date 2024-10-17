@@ -19,7 +19,9 @@ export const CartContextProvider = ({ children }) => {
 
   // Sync cartProducts with localStorage whenever cartProducts changes
   useEffect(() => {
-    localStorage.setItem('CartProducts', JSON.stringify(cartProducts));
+    if (cartProducts.length > 0) {
+      localStorage.setItem('CartProducts', JSON.stringify(cartProducts));
+    }
   }, [cartProducts]);
 
 ////------ Function to add product to cart ------>> 
