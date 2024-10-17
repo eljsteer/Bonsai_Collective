@@ -6,9 +6,6 @@ import JourneyShowcaseItem from "./JourneyShowcaseItem";
 import { useQuery } from "@apollo/client";
 import { QUERY_BONSAI } from "../utils/queries";
 
-
-import { Typography } from "@mui/material";
-
 import "./styles/journeyshowcase.css";
 
 export default function JourneyShowcase() {
@@ -37,20 +34,17 @@ export default function JourneyShowcase() {
     <Box id="journeyWrapper">
       <Container className="journeyContainer" sx={{ flexGrow: 1, margin: 0, minWidth: "100%" }}>
         <Grid container spacing={4} sx={{ display: "flex", minWidth: "100%" }}>
-          {loading ? (
-            <Typography>Loading</Typography>
-          ) : (
-            // Ensure data exists and handle cases where data is undefined or empty
-              data.allBonsai[randomBonsaiNum].chapters.map((chapter) => (
-                <Grid
-                  key={chapter.chapterId}
-                  style={{ display: "flex" }}
-                  className={chapter.chapterId % 2 !== 0 ? "leftSide" : "rightSide"}
-                >
-                  <JourneyShowcaseItem chapter={chapter} />
-                </Grid>
-              ))
-            )
+          {
+          // Ensure data exists and handle cases where data is undefined or empty
+            data?.allBonsai[randomBonsaiNum]?.chapters.map((chapter) => (
+              <Grid
+                key={chapter.chapterId}
+                style={{ display: "flex" }}
+                className={chapter.chapterId % 2 !== 0 ? "leftSide" : "rightSide"}
+              >
+                <JourneyShowcaseItem chapter={chapter} loading={loading}/>
+              </Grid>
+            ))
           }
         </Grid>
       </Container>

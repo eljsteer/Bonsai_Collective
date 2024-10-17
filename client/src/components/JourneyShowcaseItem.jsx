@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import styled from "@mui/material/styles/styled";
 import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 
 //------ MaterialUi custom styling for Item element ------>>
 const Item = styled(Paper)(({ theme }) => ({
@@ -13,32 +15,78 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 // ------ Leftside section JSX component ----->>
-const LeftSideJourney = ({ chapter }) => {
+const LeftSideJourney = ({ chapter, loading }) => {
+  if ( loading || !chapter) {
+    return(
+      <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
+      <Box style={{ padding: 0 }}>
+        <Skeleton
+          sx={{ backgroundColor: "#696969", maxWidth: "400px", maxHeight: "600px" }}
+          variant="rounded"
+        />
+      </Box>
+      <Box style={{ display: "flex", maxHeight: "500px" }}>
+        <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
+          Vestibulum imperdiet, lacus efficitur dapibus facilisis, quam justo efficitur sem, eget tincidunt lectus magna sit amet odio. Morbi tristique, ante a ultrices facilisis, mi orci viverra ipsum, vitae dapibus nibh ex non ipsum.
+        </p>
+      </Box>
+    </Grid>
+    )
+  }
+
   return (
     <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
       <picture style={{ padding: 0 }}>
-        <img src={chapter.chapterIMG[0]} className="journeyImg" alt="Chapter image" />
+        <img 
+          className="journeyImg" 
+          src={chapter.chapterIMG[0]} 
+          style={{ maxWidth: "400px", maxHeight: "600px", objectFit: "cover" }}
+          alt="Chapter image"
+        />
       </picture>
-      <div style={{ display: "flex", maxHeight: "500px" }}>
+      <Box style={{ display: "flex", maxHeight: "500px" }}>
         <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
           {chapter.chapterDescription}
         </p>
-      </div>
+      </Box>
     </Grid>
   );
 };
 
 // ------ Rightside section JSX component ----->>
-const RightSideJourney = ({ chapter }) => {
+const RightSideJourney = ({ chapter, loading }) => {
+  if ( loading || !chapter) {
+    return(
+      <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
+      <Box style={{ display: "flex", maxHeight: "500px" }}>
+        <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
+          Vestibulum imperdiet, lacus efficitur dapibus facilisis, quam justo efficitur sem, eget tincidunt lectus magna sit amet odio. Morbi tristique, ante a ultrices facilisis, mi orci viverra ipsum, vitae dapibus nibh ex non ipsum.
+        </p>
+      </Box>
+      <Box style={{ padding: 0 }}>
+        <Skeleton
+          sx={{ backgroundColor: "#696969", maxWidth: "400px", maxHeight: "600px" }}
+          variant="rounded"
+        />
+      </Box>
+    </Grid>
+    )
+  }
+
   return (
     <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
-      <div style={{ display: "flex", maxHeight: "500px" }}>
+      <Box style={{ display: "flex", maxHeight: "500px" }}>
         <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
           {chapter.chapterDescription}
         </p>
-      </div>
+      </Box>
       <picture style={{ padding: 0 }}>
-        <img src={chapter.chapterIMG[0]} className="journeyImg" alt="Chapter image" />
+        <img 
+          className="journeyImg" 
+          src={chapter.chapterIMG[0]} 
+          style={{ maxWidth: "400px", maxHeight: "600px", objectFit: "cover" }}
+          alt="Chapter image"
+        />
       </picture>
     </Grid>
   );
@@ -47,19 +95,24 @@ const RightSideJourney = ({ chapter }) => {
 // ------ Mobile/Smallscreen section JSX function ----->>
 const MobileJourney = ({ chapter }) => {
   return (
-    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", flexDirection: "column" }}>
+    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <picture style={{ padding: 0, display: "flex", justifyContent: "center" }}>
+        <img           
+          className="journeyImg" 
+          src={chapter.chapterIMG[0]} 
+          style={{ maxWidth: "400px", maxHeight: "600px", objectFit: "cover" }}
+          alt="Chapter image" 
+        />
+      </picture>
       <Item sx={{ display: "flex", maxHeight: "500px" }}>
         <p style={{ display: "flex", alignItems: "center" }}>{chapter.chapterDescription}</p>
       </Item>
-      <picture style={{ padding: 0 }}>
-        <img src={chapter.chapterIMG[0]} className="journeyImg" alt="Chapter image" />
-      </picture>
     </Grid>
   );
 };
 
 // ------- Conditional function to display Left, Right, or Mobile JSX ------>>
-const JourneyShowcaseItem = ({ chapter }) => {
+const JourneyShowcaseItem = ({ chapter, loading }) => {
   const isMobile = screen.width <= 800;
 
   if (!chapter) {
@@ -70,20 +123,21 @@ const JourneyShowcaseItem = ({ chapter }) => {
     return <MobileJourney chapter={chapter} />;
   } else {
     if (chapter.chapterId % 2 !== 0) {
-      return <LeftSideJourney chapter={chapter} />;
+      return <LeftSideJourney chapter={chapter} loading={loading} />;
     } else {
-      return <RightSideJourney chapter={chapter} />;
+      return <RightSideJourney chapter={chapter} loading={loading} />;
     }
   }
 };
 
-// ---- Define PropTypes for each component ---->>
+// Define PropTypes for each component
 JourneyShowcaseItem.propTypes = {
   chapter: PropTypes.shape({
     chapterId: PropTypes.number.isRequired,
     chapterDescription: PropTypes.string.isRequired,
     chapterIMG: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 LeftSideJourney.propTypes = {
@@ -92,6 +146,7 @@ LeftSideJourney.propTypes = {
     chapterDescription: PropTypes.string.isRequired,
     chapterIMG: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 RightSideJourney.propTypes = {
@@ -100,6 +155,7 @@ RightSideJourney.propTypes = {
     chapterDescription: PropTypes.string.isRequired,
     chapterIMG: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 MobileJourney.propTypes = {
@@ -108,6 +164,6 @@ MobileJourney.propTypes = {
     chapterDescription: PropTypes.string.isRequired,
     chapterIMG: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
-};
+}
 
 export default JourneyShowcaseItem;
