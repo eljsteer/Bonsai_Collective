@@ -35,20 +35,20 @@ const LeftSideJourney = ({ chapter, loading }) => {
   }
 
   return (
-    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
-      <picture style={{ padding: 0 }}>
+    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", flexDirection: "row", justifyContent: "end" }}>
+      <Grid item="true" >
         <img 
           className="journeyImg" 
           src={chapter.chapterIMG[0]} 
-          style={{ maxWidth: "400px", maxHeight: "600px", objectFit: "cover" }}
+          style={{ maxWidth:"100%", maxHeight: "520px", objectFit: "cover" }}
           alt="Chapter image"
         />
-      </picture>
-      <Box style={{ display: "flex", maxHeight: "500px" }}>
+      </Grid> 
+      <Grid item="true" style={{ display: "flex", maxWidth: "50%" }}>
         <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
           {chapter.chapterDescription}
         </p>
-      </Box>
+      </Grid>
     </Grid>
   );
 };
@@ -57,37 +57,37 @@ const LeftSideJourney = ({ chapter, loading }) => {
 const RightSideJourney = ({ chapter, loading }) => {
   if ( loading || !chapter) {
     return(
-      <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
-      <Box style={{ display: "flex", maxHeight: "500px" }}>
+      <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", flexDirection: "row", justifyContent: "end" }}>
+      <Grid style={{ display: "flex", maxHeight: "500px" }}>
         <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
           Vestibulum imperdiet, lacus efficitur dapibus facilisis, quam justo efficitur sem, eget tincidunt lectus magna sit amet odio. Morbi tristique, ante a ultrices facilisis, mi orci viverra ipsum, vitae dapibus nibh ex non ipsum.
         </p>
-      </Box>
-      <Box style={{ padding: 0 }}>
+      </Grid>
+      <Grid item="true" style={{ padding: 0 }}>
         <Skeleton
-          sx={{ backgroundColor: "#696969", maxWidth: "400px", maxHeight: "600px" }}
+          sx={{ backgroundColor: "#696969", maxWidth: "400px", maxHeight: "520px" }}
           variant="rounded"
         />
-      </Box>
+      </Grid>
     </Grid>
     )
   }
 
   return (
-    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", justifyContent: "end" }}>
-      <Box style={{ display: "flex", maxHeight: "500px" }}>
+    <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", flexDirection: "row", justifyContent: "start" }}>
+      <Grid item="true" style={{ display: "flex", maxWidth: "50%" }}>
         <p style={{ display: "flex", alignItems: "center", textAlign: "center", lineHeight: "2.5rem", color: "#000" }}>
           {chapter.chapterDescription}
         </p>
-      </Box>
-      <picture style={{ padding: 0 }}>
+      </Grid>
+      <Grid item="true" >
         <img 
           className="journeyImg" 
           src={chapter.chapterIMG[0]} 
-          style={{ maxWidth: "400px", maxHeight: "600px", objectFit: "cover" }}
+          style={{ maxWidth:"100%", maxHeight: "520px", objectFit: "cover" }}
           alt="Chapter image"
         />
-      </picture>
+      </Grid> 
     </Grid>
   );
 };
@@ -96,14 +96,14 @@ const RightSideJourney = ({ chapter, loading }) => {
 const MobileJourney = ({ chapter }) => {
   return (
     <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-      <picture style={{ padding: 0, display: "flex", justifyContent: "center" }}>
+      <Grid style={{ padding: 0, display: "flex", justifyContent: "center" }}>
         <img           
           className="journeyImg" 
           src={chapter.chapterIMG[0]} 
           style={{ maxWidth: "400px", maxHeight: "600px", objectFit: "cover" }}
           alt="Chapter image" 
         />
-      </picture>
+      </Grid>
       <Item sx={{ display: "flex", maxHeight: "500px" }}>
         <p style={{ display: "flex", alignItems: "center" }}>{chapter.chapterDescription}</p>
       </Item>
