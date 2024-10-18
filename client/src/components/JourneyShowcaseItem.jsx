@@ -96,15 +96,15 @@ const RightSideJourney = ({ chapter, loading }) => {
 const MobileJourney = ({ chapter }) => {
   return (
     <Grid item="true" xs={12} md={10} lg={8} padding={4} sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-      <Grid style={{ padding: 0, display: "flex", justifyContent: "center" }}>
+      <Grid item="true" style={{ display: "flex", justifyContent: "center" }}>
         <img           
           className="journeyImg" 
           src={chapter.chapterIMG[0]} 
-          style={{ maxWidth: "400px", maxHeight: "600px", objectFit: "cover" }}
-          alt="Chapter image" 
+          style={{ maxWidth: "400px", maxHeight: "520px", objectFit: "cover" }}
+          alt="Chapter image"
         />
       </Grid>
-      <Item sx={{ display: "flex", maxHeight: "500px" }}>
+      <Item item="true" sx={{ margin: "10px", display: "flex", maxHeight: "500px" }}>
         <p style={{ display: "flex", alignItems: "center" }}>{chapter.chapterDescription}</p>
       </Item>
     </Grid>
