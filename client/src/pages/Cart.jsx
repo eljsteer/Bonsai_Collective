@@ -69,7 +69,7 @@ export default function Cart () {
                     onChange={(event) => handleInputChange(item.ProductID, event)}
                     inputProps={{
                       min: 0,
-                      style: { textAlign: "center", width: "10px", height: "10px" }
+                      style: { textAlign: "center", width: "15px", height: "15px" }
                     }}
                   />
                   <IconButton
