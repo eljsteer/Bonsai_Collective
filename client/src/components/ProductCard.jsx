@@ -41,7 +41,8 @@ export default function ProductCard({ product }) {
             <Typography 
               sx={{
                 color: "black", 
-                textDecoration: "none"
+                textDecoration: "none",
+                textAlign: "center"
               }}
             >
               ${priceFormatted}

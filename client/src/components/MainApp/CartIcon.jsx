@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext, forwardRef } from "react";
 import { Link } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { IconButton } from "@mui/material";
 import { Menu } from "@mui/material";
 import { MenuItem } from "@mui/material";
@@ -76,6 +76,7 @@ const CartIcon = forwardRef((props, ref) => {
         transformOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <Typography sx={{ padding: "16px", textAlign: "center" }}>{singleProductAdded.productName}</Typography>
+        <Divider variant="middle"/>
         <MenuItem sx={{ display: "flex", justifyContent: "center" }}>
           <Link 
             to="/cart"

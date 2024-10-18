@@ -41,6 +41,9 @@ export default function SingleBonsai() {
   }
 
   const singleBonsai = data?.singleBonsai || {};
+  let bonsaiPrice = singleBonsai.bonsaiPrice
+  let currencyFormat = new Intl.NumberFormat("en-Au");
+  let priceFormatted = currencyFormat.format(bonsaiPrice);
 
   return (
     <Container sx={{backgroundColor: "var(--ComponentGBColor)", height: 'auto', padding: 2}}>
@@ -53,19 +56,24 @@ export default function SingleBonsai() {
             alt="Bonsai Main Image"
           >
           </CardMedia>
-          <Box sx={{maxWidth:"500px"}}>
-              <Typography gutterBottom variant="h5" component="div" sx={{textAlign: 'center'}}>
-                {singleBonsai.title} <br />                        
+          <Box sx={{maxWidth:"500px", textAlign: "center", padding: "15px"}}>
+              <Typography gutterBottom variant="h5" component="div">
+                {singleBonsai.title}                      
               </Typography>
               <br/>
-              <Typography sx={{textAlign: 'center'}} variant="body1">
-                {singleBonsai.description} <br />
+              <Typography sx={{}} variant="body1">
+                {singleBonsai.description}
               </Typography>
               <br/>
-              <Typography gutterBottom variant="body1" component="div" sx={{textAlign: 'center'}}>
-                Price: ${singleBonsai.bonsaiPrice} <br />
+              <Typography gutterBottom variant="body1" component="div">
+                Price: ${priceFormatted}
+              </Typography>
+              <br/>
+              <Typography>
+                Auction Feature Coming Soon...
               </Typography>
           </Box>
+          
         </CardContent>
         <br/>
         <CardContent>

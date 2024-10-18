@@ -36,7 +36,7 @@ export default function BonsaiItem ({ bonsai }) {
               alt="Bonsai Trees"
             />
             <div className="Image_Overlay">
-              <CardContent>
+              <CardContent sx={{ textAlign: "center" }}>
                 <Typography gutterBottom variant="h6" component="div">
                   {bonsai.title}
                 </Typography>
