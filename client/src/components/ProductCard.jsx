@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
             component="img"
             height="300px"
             image={imageUrl}
-            alt="Bonsai Growing Products"
+            alt={imageUrl}
           />
           <CardContent sx={{ display:"flex", flexDirection:"column", alignItems:"center", height: "110px"}}>
             <Typography 

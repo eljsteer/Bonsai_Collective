@@ -13,7 +13,7 @@ export default function FeaturedItem({ item, productImgUrl }) {
                 className="SwiperCardImage"
                 component="img"
                 image={productImgUrl}
-                alt={item.productName}
+                alt={productImgUrl}
               />
               <div className="Image_Overlay">
                 <CardContent>
