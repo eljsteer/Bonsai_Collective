@@ -40,7 +40,7 @@ const LeftSideJourney = ({ chapter, loading }) => {
         <img 
           className="journeyImg" 
           src={chapter.chapterIMG[0]} 
-          style={{ maxWidth:"100%", maxHeight: "520px", objectFit: "cover" }}
+          style={{ maxWidth:"100%", maxHeight: "520px", objectFit: "cover", aspectRatio: "390/520" }}
           alt="Chapter image"
         />
       </Grid> 
@@ -84,7 +84,7 @@ const RightSideJourney = ({ chapter, loading }) => {
         <img 
           className="journeyImg" 
           src={chapter.chapterIMG[0]} 
-          style={{ maxWidth:"100%", maxHeight: "520px", objectFit: "cover" }}
+          style={{ maxWidth:"100%", maxHeight: "520px", objectFit: "cover", aspectRatio: "390/520" }}
           alt="Chapter image"
         />
       </Grid> 
