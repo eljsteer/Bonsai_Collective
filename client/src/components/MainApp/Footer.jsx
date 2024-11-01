@@ -16,13 +16,13 @@ export default function Footer() {
       <hr />
       <Box className="res__footer-below">
         <Box className="res__footer-copyright">
-          <Typography>
+          <Typography id="res__footer-developer">
             @{new Date().getFullYear()} Eljsteer. All rights reserved.
           </Typography>
           <Box className="res__footer-below-links">
             <a href="/about"><Box><Typography>About</Typography></Box></a>
             <a href="/blog"><Box><Typography>Blog</Typography></Box></a>
-            <a href="/Terms"><Box><Typography>Terms</Typography></Box></a>
+            <a href=""><Box><Typography>Terms</Typography></Box></a>
           </Box>
         </Box>
         <Box className="res__footer-social" style={{alignItems: "center"}}>
